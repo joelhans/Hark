@@ -7,17 +7,15 @@ html(lang="en")
 
 	body
 
-		div.login-container
+		div.container
 
-			h1 Hark &mdash; Password Reset
-
+			div.row
+				div.column-8.offset-2
+					h1 Hark &mdash; Password Reset
+				div.column-8.offset-2
 			h2 Enter a new password here.
-			form.create(method='post', action='/login/reset/new')
-				div
+				form.create(method='post', action='/login/reset/new')
 					input.create-password(type='password', name='password', placeholder='Enter your password here.')
-				div
 					input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
-				div
 					input(type='hidden', name='resetToken', value='' + token)
-				div
 					input.create-submit(type='submit', value='Create')

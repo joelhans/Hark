@@ -44,7 +44,7 @@ div.listen
 								i.icon-book
 					div.podcastDescription
 						p.error A note: This feature is new, and isn't working entirely properly yet. Stay tuned for updates.
-						div #{podcast.podDesc}
+						div!= podcast.podDesc
 
 - if (typeof(flash) != 'undefined')
 	div.mask
