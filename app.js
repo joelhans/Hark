@@ -788,6 +788,7 @@ app.post('/listen/playing', loadUser, function(req, res) {
 
 	Users.findAndModify({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, [], { $set: { 'playing' : playing } }, { new:true }, function(err, result) {
 		console.log('SYNC: ' + moment().format('dddd, MMMM Do YYYY, h:mm:ss a') + ' : ' + result);
+		res.send(result);
 	});
 });
 

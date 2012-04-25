@@ -77,7 +77,6 @@ $(document).ready(function() {
 		},
 		timeupdate: function(d) {
 			progress = d.jPlayer.status.currentTime;
-			console.log(progress);
 			playStatus(progress, mediaData);
 		},
 		pause: function(d) {
@@ -430,6 +429,10 @@ $(document).ready(function() {
 			data: playing,
 			success: function(data) {
 				console.log('Sync-ed!');
+			},
+			error: function(data) {
+				console.log('Error with syncing! ' + data);
+				return;
 			}
 		});
 	}
@@ -478,7 +481,7 @@ function leftFixHeight() {
 		$('.subscriptions').css('height', $(window).height() - ($('header').height() + $('.player').height()) - 52);
 	} else if ( $('.listen').height() > $(window).height() ) {
 		$('.subscriptions').css('height', $('.listen').height());
-	} else if ( $('.subscriptions').height() >= ( $(window).height() - ($('header').height() + $('.player').height()) - 232 ) ) {
+	} else {
 		console.log('Subscriptions is higher!');
 		return;
 	}
@@ -487,6 +490,9 @@ function leftFixHeight() {
 		$('.information').css('height', $(window).height() - ($('header').height() + $('.player').height()) - 52);
 	} else if ( $('.settings').height() > $(window).height() ) {
 		$('.information').css('height', $('.listen').height());
+	} else {
+		console.log('Information is higher!');
+		return;
 	}
 }
 

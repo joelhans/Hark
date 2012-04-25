@@ -491,6 +491,7 @@ header {
 	height: 100%;
 	width: 25%;
 	border-right: 1px solid $borderColor;
+	margin-bottom: 20px;
 	h1 {
 		font-size: 22px;
 		text-transform: uppercase;
@@ -534,7 +535,7 @@ header {
 	}
 	input {
 		@include inline-block;
-		margin: -1px 20px 0 20px;
+		margin: 1px 0px 0 10px;
 		width: 70%;
 		font-family: $baseFontFamily;
 		border: 1px solid $base;

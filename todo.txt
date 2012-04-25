@@ -2,36 +2,51 @@
 TODO
 --------------------------------
 
-FEATURES
 
-**** //	"Hark Directory"
+ROADMAP
 
-***	 // Don't log out users who accidentally go back to the login page (cookies).
+  0.1
+  ----------
+  [ ] --  Download, link-through buttons for each feed.
+  [ ] --  A functional description section for each podcast.
+  [ ] --  Functioning cookies/session management.
+            * Mostly, this requires a way to route logged-in users from /login 
+              to /listen.
+  [ ] --  Bug fixes (hopefully not too many).
 
-**   // When listening to a podcast, make some kind of "pulse" on its feed in the left column.
+  0.2
+  ----------
+  [ ] --  Sorting abilities for podcasts (date, feed, etc).
+  [ ] --  Account deletion doesn't route the user back home once it's done.
+  [ ] --  Better responsiveness in UI.
+            * Will mostly entail more catches for small/mobile screens.
 
-**   // Turn the getFeeds function into a cursor.each one like the updateFeeds one. Should be quicker.
+  1.0
+  ----------
+  [ ] --  A "Hark Directory"
+            * This will be a central location for feeds.
+            * I will be able to add new feeds to this database, and users will 
+              be able to browse/search for items that they're interested in.
 
-**   // Sanitize inputs.
-		- Login
-			[ ] - User e-mails.
-		- Listen
-			[ ] - Feeds.
-			    - Help sanitize adding RSS feeds by looking for an "http://" and adding it if it doesn't exist. (security?)
-
-*   // Add being able to load in older, non-databased feeds from the individual feed view.
-
-*    // Implement a kind of current "state" that allows for starting where you left off, etc.
-		The problem with this is the state of HTML5 audio capability, Flash, servers, etc. It's probably not possible.
-
-*    // Giving sort options on the initial view -- by date, by podcast, etc.
-
-*	 // Migrate application.js from use of "live" click handlers to "delegate."
 
 BUGS
 
-**** // Left column doesn't get tall enough to accomodate many many feeds.
+[ ] --  Listen syncing doesn't appear to work all that well.
+[ ] --  Left column doesn't get tall enough to accomodate many many feeds.
+[ ] --  Account deletion doesn't route the user back home once it's done.
+[ ] --  Rapid-click on "mark as listened" causes some to not have successful POSTs.
 
-***	 // Account deletion doesn't route the user back home once it's done.
 
-**   // Rapid-click on "mark as listened" causes some to not have successful POSTs.
+ORPHANED FEATURES
+
+When listening to a podcast, make some kind of "pulse" on its feed in the left column.
+
+Turn the getFeeds function into a cursor.each one like the updateFeeds one. Should be quicker.
+
+Sanitize inputs.
+  * Login -- user e-mails.
+  * Feeds -- How to prevent maliciousness?
+
+Add being able to load in older, non-databased feeds from the individual feed view.
+
+Migrate application.js from use of "live" click handlers to "delegate."
