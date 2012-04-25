@@ -1,0 +1,23 @@
+doctype 5
+html(lang="en")
+	head
+		title Hark | Reset password.
+		
+		!=partial('layout/head')
+
+	body
+
+		div.login-container
+
+			h1 Hark &mdash; Password Reset
+
+			h2 Enter a new password here.
+			form.create(method='post', action='/login/reset/new')
+				div
+					input.create-password(type='password', name='password', placeholder='Enter your password here.')
+				div
+					input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
+				div
+					input(type='hidden', name='resetToken', value='' + token)
+				div
+					input.create-submit(type='submit', value='Create')

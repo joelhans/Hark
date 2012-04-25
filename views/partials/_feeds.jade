@@ -1,0 +1,23 @@
+h1 Subscriptions
+span.updateButton
+	a(href='/listen/update', class='feedUpdate')
+		i.icon-refresh
+	span.updateAction Update
+if feeds
+	ul
+		li
+			a.loadFeed.allFeeds(href='/listen') All
+		for feed in feeds
+			li
+				a(href='/listen/remove/' + feed.feeduuid, class='removeFeed') x 
+				| 
+				a(href='/listen/podcast/' + feed.feeduuid, class='loadFeed') #{feed.feedTitle}
+		
+input(type='text', class='addFeed', placeholder='Copy a RSS feed here and hit <Enter>.')
+if feeds
+	ul
+		for feed in feeds
+			li
+				a(href='/listen/remove/' + feed.feeduuid, class='removeFeed') x 
+				| 
+				a(href='/listen/podcast/' + feed.feeduuid, class='loadFeed') #{feed.feedTitle}

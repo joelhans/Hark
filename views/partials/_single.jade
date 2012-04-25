@@ -1,0 +1,23 @@
+h1 Listen: #{feed.feedTitle} 
+ul.podcastList
+	for podcast in podcasts
+		li.podcastItem(data-uuid='' + podcast.podUUID)
+			div.podcastDate
+				p #{podcast.prettyMonth} #{podcast.prettyDay}, #{podcast.prettyYear}
+			div.podcastTitle
+				p
+					a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen #{podcast.listened}', data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
+			div.podcastFeed
+				p 
+					a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
+			div.podcastActions
+				p
+					a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen', title='Listen to this podcast.', data-file='' + podcast.podFile, id='' + podcast.podUUID)
+						i.icon-headphones
+					a(href='/listen/' + podcast.feedUUID + '/listened/' + podcast.podUUID, class='podcastListened single', title='Mark this podcast as listened.')
+						i.icon-ok
+					a(href='#', class='podcastRead', title='Read the description of this podcast.')
+						i.icon-book
+			div.podcastDescription
+				p.error A note: This feature is new, and isn't working entirely properly yet. Stay tuned for updates.
+				div #{podcast.podDesc}

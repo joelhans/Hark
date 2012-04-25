@@ -1,0 +1,150 @@
+doctype 5
+html(lang="en")
+	head
+		title Hark | Log in or sign up.
+
+		!=partial('layout/head')
+
+	body
+
+		canvas#wave(width='1000', height='40')
+
+		div.container#hark-login
+
+			section.row
+				div.column-6.hark
+					img(src='/img/hark-logo-full.png')
+					div.pulse
+					&nbsp;
+				div.column-6.hark-right
+					h2 Hark is your personal radio station.
+					h3 Podcasts. Radio. Revolutionized.
+					a.create-show(href='/#') Register
+						span.input-pulse
+					a.login-show(href='/#') Login
+						span.input-pulse
+
+					div.login-actions
+						- if (typeof(flash) == 'undefined')
+							div.hark-description
+								p Hark lets you listen to all your podcasts in a single place, without using big, messy programs. You can keep your podcasts synchronized and ready to go on any device you choose, no matter where you are.
+								p Hark is beautiful, it's easy to use, and best of all? Hark is <strong>completely free</strong>.
+						- if (typeof(flash) != 'undefined' && typeof(flash.userCreateSuccess) != 'undefined')
+							div.hark-description
+								p.success= flash.userCreateSuccess
+
+						- if (typeof(flash) == 'undefined')
+							form.login(method='post', action='/login')
+								input.login-username(type='text', name='username', placeholder='Enter your e-mail or username here.')
+								input.login-password(type='password', name='password', placeholder='Enter your password here.')
+								input.login-submit(type='submit', value='Login')
+
+							div.password-forgot
+								a(href='/#') Forgot your password?
+								- if (typeof(flash) == 'undefined')
+									form.forgot(method='POST', action='/login/forgot')
+										p That's all right. I can reset that for you. Just enter your e-mail below.
+										input.forgot-password(type='text', name='email', placeholder='Enter your e-mail here.')
+										input.forgot-submit(type='submit', value='Reset')
+
+								- if (typeof(flash) != 'undefined' && typeof(flash.errorReset) != 'undefined')
+									form.forgot-showme(method='post', action='/login/forgot')
+										p That's all right. I can reset that for you. Just enter your e-mail below.
+										input.reset-error(type='text', name='email', placeholder='Enter your e-mail here.')
+										p.error= flash.errorReset
+										input.forgot-submit(type='submit', value='Reset')
+
+							form.create(method='post', action='/users/new')
+								input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
+								input.create-username(type='text', name='username', placeholder='Enter your username here.')
+								input.create-password(type='password', name='password', placeholder='Enter your password here.')
+								input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
+								input.create-submit(type='submit', value='Create')
+
+
+						- if (typeof(flash) != 'undefined')
+							- if (typeof(flash.errorUser) != 'undefined')
+								p.error= flash.errorUser
+								form.login-showme(method='post', action='/login')
+									input.login-error(type='text', name='username', placeholder='Enter your e-mail or username here.')
+									input.login-password(type='password', name='password', placeholder='Enter your password here.')
+									input.login-submit(type='submit', value='Login')
+							- else if (typeof(flash.errorPass) != 'undefined')
+								p.error= flash.errorPass
+								form.login-showme(method='post', action='/login')
+									input.login-username(type='text', name='username', placeholder='Enter your e-mail or username here.')
+									input.login-error(type='password', name='password', placeholder='Enter your password here.')
+									input.login-submit(type='submit', value='Login')
+							- else if (typeof(flash.userCreateSuccess) != 'undefined')
+								form.login-showme(method='post', action='/login')
+									input.login-username(type='text', name='username', placeholder='Enter your e-mail or username here.')
+									input.login-password(type='password', name='password', placeholder='Enter your password here.')
+									input.login-submit(type='submit', value='Login')
+							- else
+								form.login(method='post', action='/login')
+									input.login-username(type='text', name='username', placeholder='Enter your e-mail or username here.')
+									input.login-password(type='password', name='password', placeholder='Enter your password here.')
+									input.login-submit(type='submit', value='Login')
+							
+							div.password-forgot
+								a(href='/#') Forgot your password?
+								- if (typeof(flash) == 'undefined')
+									form.forgot(method='post', action='/login/forgot')
+										p That's all right. I can reset that for you. Just enter your e-mail below.
+										input.forgot-password(type='text', name='email', placeholder='Enter your e-mail here.')
+										input.forgot-submit(type='submit', value='Reset')
+								- if (typeof(flash) != 'undefined' && typeof(flash.errorReset) != 'undefined')
+									form.forgot-showme(method='post', action='/login/forgot')
+										p That's all right. I can reset that for you. Just enter your e-mail below.
+										input.reset-error(type='text', name='email', placeholder='Enter your e-mail here.')
+										p.error= flash.errorReset
+										input.forgot-submit(type='submit', value='Reset')
+
+							- if (typeof(flash.errorCreateEmail) != 'undefined')
+								p.error= flash.errorCreateEmail
+								form.create-showme(method='post', action='/users/new')
+									input.create-error(type='text', name='email', placeholder='Enter your e-mail here.')
+									input.create-username(type='text', name='username', placeholder='Enter your username here.')
+									input.create-password(type='password', name='password', placeholder='Enter your password here.')
+									input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
+									input.create-submit(type='submit', value='Create')
+							- else if (typeof(flash.errorCreateUsername) != 'undefined')
+								p.error= flash.errorCreateEmail
+								form.create-showme(method='post', action='/users/new')
+									input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
+									input.create-error(type='text', name='username', placeholder='Enter your username here.')
+									input.create-password(type='password', name='password', placeholder='Enter your password here.')
+									input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
+									input.create-submit(type='submit', value='Create')
+							- else if (typeof(flash.errorCreatePass) != 'undefined')
+								p.error= flash.errorCreateEmail
+								form.create-showme(method='post', action='/users/new')
+									input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
+									input.create-username(type='text', name='username', placeholder='Enter your username here.')
+									input.create-error(type='password', name='password', placeholder='Enter your password here.')
+									input.create-error(type='password', name='password-validate', placeholder='Enter your password again.')
+									input.create-submit(type='submit', value='Create')
+							- else 
+								form.create(method='post', action='/users/new')
+									input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
+									input.create-username(type='text', name='username', placeholder='Enter your username here.')
+									input.create-password(type='password', name='password', placeholder='Enter your password here.')
+									input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
+									input.create-submit(type='submit', value='Create')
+
+											
+
+		canvas#about-wave(width='1000', height='40')
+
+		div#hark-about
+			div.container
+				section.row
+					div.column-4
+						h3 Radio made relevant
+						p Hark loves radio so much that it just couldn't wait to show you. Go out and find the incredible selection of incredible free programming.
+					div.column-4
+						h3 Listen anywhere
+						p Don't be bound by whatever device you're using. Hark works on desktops, tablets, or smartphones with nothing to download.
+					div.column-4
+						h3 Go iTunes-free
+						p Hark is fast. Hark lives on the web, which means it works everywhere. Just because they're called <em>pod</em>casts doesn't mean they have to be confined in iTunes.

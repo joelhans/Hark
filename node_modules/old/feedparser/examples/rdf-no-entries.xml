@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><rdf:RDF
+	xmlns="http://purl.org/rss/1.0/"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:admin="http://webns.net/mvcb/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	>
+<channel rdf:about="http://yabfog.com/blog">
+	<title>Yabfog</title>
+	<link>http://yabfog.com/blog</link>
+	<description>Yet another blog full of gas</description>
+	<dc:date>2011-07-08T14:39:55Z</dc:date>
+	<sy:updatePeriod>hourly</sy:updatePeriod>
+	<sy:updateFrequency>1</sy:updateFrequency>
+	<sy:updateBase>2000-01-01T12:00+00:00</sy:updateBase>
+	<admin:generatorAgent rdf:resource="http://wordpress.org/?v=3.2.1" />
+	<items>
+		<rdf:Seq>
+					<rdf:li rdf:resource="http://yabfog.com/blog/2011/07/08/second-best-fortune-cookie-ever"/>
+					<rdf:li rdf:resource="http://yabfog.com/blog/2011/06/16/best-fortune-cookie-ever"/>
+					<rdf:li rdf:resource="http://yabfog.com/blog/2011/06/07/remap-mac-terminal-command-k"/>
+					<rdf:li rdf:resource="http://yabfog.com/blog/2011/02/11/fun-with-river2"/>
+					<rdf:li rdf:resource="http://yabfog.com/blog/2010/10/22/were-robert-johnsons-recordings-sped-up"/>
+					<rdf:li rdf:resource="http://yabfog.com/blog/2010/10/10/optimal-browser-status-update"/>
+					<rdf:li rdf:resource="http://yabfog.com/blog/2010/07/27/failed-coleman-model-5312-battery"/>
+					<rdf:li rdf:resource="http://yabfog.com/blog/2010/06/30/link-fbi-spies-hid-secret-messages-on-public-websites"/>
+					<rdf:li rdf:resource="http://yabfog.com/blog/2009/09/17/delete-empty-folders"/>
+					<rdf:li rdf:resource="http://yabfog.com/blog/2009/06/03/xmpp-vcard-python-script"/>
+				</rdf:Seq>
+	</items>
+</channel>
+</rdf:RDF>

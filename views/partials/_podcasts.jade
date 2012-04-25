@@ -1,0 +1,54 @@
+div.subscriptions.left-column
+	h1 Subscriptions
+	span.updateButton
+		a(href='/listen/update', class='feedUpdate')
+			i.icon-refresh
+		span.updateAction Update
+	span.add-subscription
+		h2 Add:
+		input(type='text', class='addFeed', placeholder='Copy a RSS feed here and hit <Enter>.')
+	if feeds
+		ul
+			li
+				div
+					a.loadFeed.allFeeds(href='/listen') All
+			for feed in feeds
+				li
+					div
+						a(href='/listen/podcast/' + feed.feeduuid, class='loadFeed') #{feed.feedTitle}
+						span.removeFeedButton
+							a(href='/listen/remove/' + feed.feeduuid, class='removeFeed')
+								i.icon-trash
+
+div.listen
+	h1 Listen
+	if podcasts
+		ul.podcastList
+			for podcast in podcasts
+				li.podcastItem(data-uuid='' + podcast.podUUID)
+					div.podcastDate
+						p #{podcast.prettyMonth} #{podcast.prettyDay}, #{podcast.prettyYear}
+					div.podcastTitle
+						p
+							a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen #{podcast.listened}', data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
+					div.podcastFeed
+						p 
+							a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
+					div.podcastActions
+						p
+							a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen', title='Listen to this podcast.', data-file='' + podcast.podFile, id='' + podcast.podUUID, data-feed='' + podcast.feedTitle)
+								i.icon-headphones
+							a(href='/listen/' + podcast.feedUUID + '/listened/' + podcast.podUUID, class='podcastListened all', title='Mark this podcast as listened.')
+								i.icon-ok
+							a(href='#', class='podcastRead', title='Read the description of this podcast.')
+								i.icon-book
+					div.podcastDescription
+						p.error A note: This feature is new, and isn't working entirely properly yet. Stay tuned for updates.
+						div #{podcast.podDesc}
+
+- if (typeof(flash) != 'undefined')
+	div.mask
+		div.modal-error
+			span.modal-error-close x
+			- if (typeof(flash.errorAddFeed) != 'undefined')
+				p.error= flash.errorAddFeed

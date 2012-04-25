@@ -1,0 +1,987 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/utilities";
+@import "typography";
+@import "colonnade";
+@import "font-awesome";
+
+/* 	-----------------------------------------
+	-----------------------------------------
+	
+	Layout.
+	
+	-----------------------------------------
+-----------------------------------------  */
+
+/* -----------------------------------------
+	Body.
+----------------------------------------- */
+html {
+ 	height: 100%;
+ 	width: 100%;
+	overflow-y: scroll;
+	@include background($base);
+}
+
+body {
+	width: 100%;
+	@include background(image-url("/img/grainy.png"), $base);
+}
+
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/* -----------------------------------------
+	Layout.
+----------------------------------------- */
+.player {
+	padding: 0 20px 0 0;
+	@include clearfix;
+}
+
+#hark-listen, .settings-container {
+	width: 100%;
+	margin: 0 auto;
+	background-color: $base;
+}
+
+#hark-podcasts {
+	height: 100%;
+	min-height: 100%;
+	padding: 0 20px 0 0;
+	@include clearfix;
+}
+
+.left-column {
+	float: left;
+	width: 25%;
+}
+
+input {
+	font-size: 14px;
+	line-height: 21px;
+	border-radius: 4px;
+}
+
+/* -----------------------------------------
+	Login.
+----------------------------------------- */
+#hark-login { margin-top: 140px; }
+
+#hark-login, #hark-not-found {
+	.hark { height: 300px; }
+	img {
+		width: 300px; height: 300px;
+		@include background(image-url("/img/grainy.png"), $base);
+		position: absolute; top: 0px; left: 50%;
+		margin: 0 0 0 -150px;
+		z-index: 2;
+		border-radius: 150px;
+		@include inline-block;
+	}
+	.pulse {
+		width: 300px; height: 300px;
+		background-color: $linkColor;
+		position: absolute; top: 0px; left: 50%;
+		margin: 0 0 0 -150px;
+		z-index: 1;
+		border-radius: 160px;
+		@include box-shadow($linkColor 0px 0px 100px);
+		@include inline-block;
+		-webkit-animation: pulse 5s infinite;
+		-moz-animation:    pulse 5s infinite;
+		-ms-animation:     pulse 5s infinite;
+		-webkit-animation-timing-function: 	linear;
+		-moz-animation-timing-function: 	linear;
+		-ms-animation-timing-function:		linear;
+	}
+}
+
+.hark-right {
+	text-align: center;
+}
+
+a.create-show, a.login-show {
+	color: $linkColor;
+	@include bodyFont;
+	text-transform: uppercase;
+	text-align: center;
+	padding: 8px 0 10px 40px;
+	margin: 12px 0 20px 0;
+	border: 0;
+	position: relative;
+	@include inline-block;
+	@include transition(all, 0.5s, ease-in-out);
+	&:hover { color: $linkColorHover; }
+	.input-pulse {
+		width: 30px; height: 30px;
+		border: 5px solid $linkColor;
+		position: absolute; top: 4px; left: 0px;
+		@include background(image-url("/img/grainy.png"), $base);
+		@include border-radius(15px);
+		@include inline-block;
+	}
+	&:hover > .input-pulse {
+		-webkit-animation: input-pulse 2s infinite;
+		-moz-animation:    input-pulse 2s infinite;
+		-ms-animation:     input-pulse 2s infinite;
+		-webkit-animation-timing-function: 	linear;
+		-moz-animation-timing-function: 	linear;
+		-ms-animation-timing-function:		linear;
+	}
+}
+
+a.create-show { margin: 12px 120px 20px 0; }
+
+.login-actions {
+	margin-top: 40px;
+	display: block;
+	height: 200px;
+	form.login, form.create { display: none; }
+	form.login-showme, form.create-showme { display: block; }
+}
+
+.login, .forgot, .create, .login-showme, .create-showme, .forgot-showme {
+	text-align: center;
+	input { 
+		// font-family: $baseFontFamily;
+		&:nth-of-type(2n-1) { margin-right: 4%; }
+	}
+}
+
+.login-password, .login-username, .forgot-password, .create-email, .create-username, .create-password, .login-error, .reset-error, .create-error {
+	width: 48%; height: 40px;
+	@include inline-block;
+	padding: 0px 10px 0px 10px;
+	margin-bottom: 20px;
+	border: 1px solid $linkColor;
+	@include transition(all, 0.5s, ease-in-out);
+	&:hover {
+		@include box-shadow($linkColor 0px 0px 2px);
+	}
+	&:focus {
+		outline: 0;
+		@include box-shadow($linkColor 0px 0px 10px);
+	}
+}
+
+.login-error, .reset-error, .create-error {
+	border: 1px solid $errorColor;
+	@include box-shadow($errorColor 0px 0px 2px);
+	&:hover { @include box-shadow($errorColor 0px 0px 2px);	}
+	&:focus {
+		outline: 0;
+		@include box-shadow($errorColor 0px 0px 10px);
+	}
+}
+
+.login-submit, .forgot-submit, .create-submit {
+	width: 20%; height: 30px;
+	display: block;
+	margin: 0 auto 0 auto !important;
+	border: 1px solid $linkColor;
+	background-color: white;
+	@include transition(all, 0.5s, ease-in-out);
+	&:hover { @include box-shadow($linkColor 0px 0px 2px); }
+	&:focus {
+		outline: 0;
+		@include box-shadow($linkColor 0px 0px 10px);
+	}
+}
+
+.password-forgot { 
+	font-size: 14px;
+	text-align: center;
+	margin-bottom: 0px;
+	display: none;
+	padding-top: 12px;
+	a { margin-bottom: 12px; }
+}
+
+.forgot {
+	display: none;
+	margin-bottom: 40px;
+	p { font-size: 14px; }
+}
+
+.forgot-showme {
+	display: block;
+	margin-bottom: 40px;
+	p { font-size: 14px; }
+}
+
+#hark-about {
+	margin: -5px 0 0 0;
+	padding: 40px 0 0 0;
+	@include background($linkColor);
+	h3, p {
+		color: $base;
+	}
+}
+
+/* -----------------------------------------
+	Header.
+----------------------------------------- */
+header {
+	width: 100%;
+	padding-top: 10px;
+	@include background($linkColor);
+	@include clearfix;
+}
+
+.hark-listen {
+	width: 200px;
+	a {
+		width: 100px; height: 100px;
+		font-size: 24px;
+		color: $linkColor;
+		text-align: center;
+		@include background(image-url("/img/grainy.png"), $base);
+		position: absolute; top: 10px; left: 10px;
+		z-index: 2;
+		border-radius: 50px;
+		@include inline-block;
+	}
+	.pulse {
+		width: 100px; height: 100px;
+		background-color: $base;
+		position: absolute; top: 10px; left: 10px;
+		z-index: 1;
+		border-radius: 50px;
+		@include box-shadow($base 0px 0px 100px);
+		@include inline-block;
+		-webkit-animation: pulse 5s infinite;
+		-moz-animation:    pulse 5s infinite;
+		-ms-animation:     pulse 5s infinite;
+		-webkit-animation-timing-function: 	linear;
+		-moz-animation-timing-function: 	linear;
+		-ms-animation-timing-function:		linear;
+	}
+}
+
+.header-settings {
+	margin: 22px 0 0 50%;
+	@include bodyFont;
+	a {
+		width: auto; height: 30px;
+		font-size: 14px;
+		line-height: 21px;
+		text-transform: uppercase;
+		color: $base;
+		display: inline-block;
+		margin: 0 10px 0 0;
+		position: relative;
+		border: 1px solid rgba(0,0,0,0);
+		i {
+			font-size: 24px;
+			margin: 0 10px 0 0;
+		}
+	}
+}
+
+/* -----------------------------------------
+	jPlayer.
+----------------------------------------- */
+.podcast-player {
+	float: left;
+	width: 75%;
+}
+
+.jp-controls, .jp-play-container { margin-bottom: 0px; }
+
+.jp-controls li { @include inline-block; }
+
+.jp-interface { position: relative; }
+
+.jp-play, .jp-pause {
+	width: 70px; height: 70px;
+	@include border-radius(35px);
+	position: relative;
+	margin: 14px 0 12px 14px;
+	@include inline-block;
+	overflow: hidden;
+	border: 1px solid $body;
+	@include transition(all, 0s);
+	&:hover { margin: 14px 0 12px 14px; }
+}
+
+.jp-play {
+	@include background( $linkColor );
+	@include box-shadow( rgba(242, 242, 242, 0.5) 0px 1px 0px );
+	i {
+		position: absolute; top: 16px; left: 5px;
+		color: $base;
+		font-size: 50px;
+	}
+	&:hover {
+		border: 1px solid $body;
+		@include background( darken($linkColor, 25%) );
+	}
+	&:active, &:visited:active {
+		margin: 14px 0 12px 14px;
+		top: 0;
+		outline: 0px;
+		@include box-shadow($base 0px 1px 0px, $body 0px 0px 10px inset);
+		@include background( darken($linkColor, 25%) );
+	}
+}
+
+.jp-pause {
+	@include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
+	i {
+		position: absolute; top: 16px; left: 3px;
+		color: $base;
+		font-size: 50px;
+	}
+	&:hover {
+		border: 1px solid $body;
+		@include background( darken($linkColor, 25%) );
+	}
+	&:active, &:visited:active {
+		margin: 14px 0 12px 14px;
+		top: 0;
+		outline: 0px;
+		@include box-shadow($base 0px 1px 0px, $body 0px 0px 10px inset);
+		@include background( darken($linkColor, 25%) );
+	}
+}
+
+.jp-volume-control {
+	position: absolute;
+	top: 45px; left: 140px;
+}
+
+.jp-volume-bar {
+	width: 100px; height: 12px;
+	position: relative;
+	background-color: $base;
+	@include border-radius(6px);
+	border: 1px solid $body;
+	@include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
+}
+
+.jp-volume-bar-value {
+	height: 10px;
+	position: relative;
+	@include border-radius(5px);
+	@include background-image( linear-gradient($base, darken($base, 25%)) );
+}
+
+.jp-volume-tracker {
+	width: 16px; height: 16px;
+	@include border-radius(8px);
+	margin: -3px -6px 0 0;
+	background-color: $base;
+	border: 1px solid $body;
+	display: block;
+	float: right;
+	@include background-image(radial-gradient(7px 7px, $base 1px, $linkColor 8px));
+	@include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
+}
+
+.jp-mute {
+	position: absolute; top: -6px; left: -45px;
+	border: 0px;
+	&:hover { border: 0px; }
+	&:focus { outline: 0px; top: -6px; left: -45px; }
+	i {
+		color: $base;
+		font-size: 32px;
+		z-index: 10;
+	}
+}
+
+.jp-unmute {
+	position: absolute; top: -6px; left: -43px;
+	border: 0px;
+	&:hover { border: 0px; }
+	&:focus { outline: 0px; top: -6px; left: -43px; }
+	i {
+		color: $base;
+		font-size: 32px;
+		z-index: 10;
+	}
+}
+
+.jp-volume-max {
+	position: absolute; top: -6px; left: 110px;
+	border: 0px;
+	&:hover { border: 0px; }
+	&:focus { outline: 0px; top: -6px; left: 110px; }
+	i {
+		color: $base;
+		font-size: 32px;
+		z-index: 10;
+		&:active { outline: 0; border: 0px; }
+	}
+}
+
+.jp-progress-control {
+	position: absolute;
+	top: 45px; left: 340px;
+}
+
+.jp-progress-bar {
+	width: 400px; height: 12px;
+	position: relative;
+	background-color: $base;
+	@include border-radius(6px);
+	border: 1px solid $body;
+	@include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
+}
+
+.jp-seek-bar {
+	height: 10px;
+	@include border-radius(5px);
+	@include background-image( linear-gradient(rgba(0, 144, 205, 0.3), darken(rgba(0, 144, 205, 0.3), 25%)) );
+}
+
+.jp-play-bar {
+	height: 10px;
+	position: relative;
+	@include border-radius(5px);
+	@include background-image( linear-gradient($base, darken($base, 25%)) );
+}
+
+.jp-play-tracker {
+	width: 16px; height: 16px;
+	@include border-radius(8px);
+	margin: -3px -6px 0 0;
+	background-color: $base;
+	border: 1px solid $body;
+	display: block;
+	float: right;
+	@include background-image(radial-gradient(7px 7px, $base 1px, $linkColor 8px));
+	@include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
+}
+
+.jp-current-time, .jp-duration {
+	@include bodyFont;
+	margin-bottom: 0px;
+	color: $base;
+	position: absolute;
+}
+
+.jp-duration {
+	right: 0px;
+}
+
+.jp-playing {
+	width: 400px;
+	position: absolute;
+	top: 16px; left: 340px;
+	p {
+		color: $base;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin-bottom: 0px;
+		span {
+			font-size: 16px;
+			text-transform: uppercase;
+			color: $base;
+		}
+	}
+}
+
+/* -----------------------------------------
+	Sidebar / subscription list.
+----------------------------------------- */
+.subscriptions {
+	position: relative;
+	height: 100%;
+	width: 25%;
+	border-right: 1px solid $borderColor;
+	h1 {
+		font-size: 22px;
+		text-transform: uppercase;
+		margin: 6px 0 6px 0;
+		padding: 0 0 0 20px;
+	}
+}
+
+.updateButton {
+	width: 42px; height: 42px;
+	border: 0px;
+	position: absolute; top: 8px; right: 10px;
+	a, a:visited {
+		border: 0px;
+		&:hover { border: 0px; }
+		i {
+			font-size: 50px;
+			color: darken($linkColor, 25%);
+		}
+	}
+	.updateAction {
+		display: none;
+		font-size: 14px;
+		text-transform: uppercase;
+		margin: 0;
+		position: absolute; top: 5px; left: -90px;
+	}
+}
+
+.add-subscription {
+	width: 100%;
+	display: block;
+	border-top: 1px solid $borderColor;
+	padding-top: 12px;
+	h2 {
+		font-size: 18px;
+		text-transform: uppercase;
+		margin: 0;
+		padding: 0 0 0 20px;
+		@include inline-block;
+	}
+	input {
+		@include inline-block;
+		margin: -1px 20px 0 20px;
+		width: 70%;
+		font-family: $baseFontFamily;
+		border: 1px solid $base;
+		@include transition(all, 0.5s, ease-in-out);
+		&:hover {
+			@include box-shadow($linkColor 0px 0px 10px);
+		}
+		&:focus {
+			outline: 0;
+			@include box-shadow($linkColor 0px 0px 20px);
+		}
+	}
+}
+
+.subscriptions ul {
+	margin-bottom: 0px;
+	border-top: 1px solid $borderColor;
+}
+
+.subscriptions ul li {
+	width: 100%;
+	position: relative;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	font-size: 12px;
+	text-transform: uppercase;
+	border-bottom: 1px solid $borderColor;
+	padding: 0 0 0 0;
+	margin: 0 20px 0 0;
+	div {
+		@include inline-block;
+		margin: 4px 0 4px 0; padding: 0 0 0 20px;
+	}
+	&:hover {
+		background-color: rgba(33, 33, 33, 0.05);
+	}
+	&:hover > div .removeFeedButton {
+		background-color: rgba(33, 33, 33, 0.0025);
+	}
+	&:hover > div .removeFeedButton .removeFeed {
+		opacity: 100;
+	}
+}
+
+.loadFeed, .loadFeed:visited {
+	float: left;
+	color: darken($linkColor, 25%);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	border: 0px; padding: 0;
+	&:hover {
+		border: 0px;
+		padding: 0 0 0 5px;
+	}
+}
+
+.allFeeds, .allFeeds:visited {
+	color: $errorColor !important;
+}
+
+.removeFeedButton {
+	width: 46px; height: 30px;
+	background-color: transparent;
+	position: absolute; right: 0px;
+	margin: 0;
+}
+
+.removeFeed {
+	width: 30px; height: 30px;
+	@include inline-block;
+	font-size: 22px;
+	line-height: 22px;
+	color: $base;
+	background-color: $linkColor;
+	opacity: 0;
+	@include border-radius(15px);
+	border: 3px solid $bodyTrans;
+	margin: -2px 0 0 0;
+	&:hover {
+		border: 3px solid $errorColor;
+		background-color: $base;
+		color: $body;
+	}
+	i { margin: 0 0 0 -2px;	}
+}
+
+/* -----------------------------------------
+	Podcast list.
+----------------------------------------- */
+.listen {
+	float: left;
+	width: 75%; height: auto;
+	padding: 0;
+	margin: 0 0 20px 0;
+	border-bottom: 1px solid $borderColor;
+	h1 {
+		font-size: 22px;
+		text-transform: uppercase;
+		margin: 6px 0 6px 0;
+		padding: 0 0 0 20px;
+	}
+	
+}
+
+.podcastList {
+	margin-bottom: 0px;
+	border-top: 1px solid $borderColor;
+}
+
+.podcastItem {
+	padding: 0 0 0 20px;
+	border-bottom: 1px solid $borderColor;
+	border-right: 1px solid $borderColor;
+	margin-bottom: 0px;
+	line-height: 0px;
+	@include transition-property(background-color);
+	@include transition-duration(0.5s);
+	div {
+		@include inline-block;
+		margin: 0; padding: 0;
+	}
+	&:last-of-type {
+		border-bottom: 0px;
+	}
+	&:hover {
+		background-color: rgba(33, 33, 33, 0.05);
+	}
+}
+
+.podcastDate {
+	width: 15%; height: 100%;
+	p {
+		font-size: 14px;
+		margin: 0;
+	}
+}
+
+.podcastTitle {
+	width: 40%;
+	border-left: 1px solid $borderColor;
+	p {
+		font-size: 16px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin: 0;
+		padding: 11px 10px 11px 10px;
+		a {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			border: 0px;
+		}
+		a.false {
+			font-weight: 700;
+		}
+	}
+}
+
+.podcastFeed {
+	width: 30%;
+	border-left: 1px solid $borderColor;
+	p {
+		font-size: 12px;
+		text-transform: uppercase;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin: 0;
+		padding: 11px 10px 11px 10px;
+		a {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			border: 0px;
+		}
+	}
+}
+
+.podcastActions {
+	width: 15%;
+	border-left: 1px solid $borderColor;
+	p {
+		font-size: 18px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin: 0;
+		padding: 8px 10px 8px 10px;
+		text-align: center;
+		a {
+			width: 30px; height: 30px;
+			@include inline-block;
+			@include border-radius(15px);
+			font-size: 22px;
+			line-height: 22px;
+			color: $base;
+			background-color: $linkColor;
+			border: 3px solid $bodyTrans;
+			margin-right: 10px;
+			padding: 0 0 2px 0;
+			&:last-of-type { margin-right: 0px; }
+			&:hover {
+				border: 3px solid $errorColor;
+				background-color: $base;
+				color: $body;
+			}
+			i { margin: 0 0 0 -2px; }
+		}
+	}
+}
+
+.removeFeed {
+	width: 30px; height: 30px;
+	@include inline-block;
+	font-size: 22px;
+	color: $base;
+	background-color: $linkColor;
+	opacity: 0;
+	@include border-radius(15px);
+	border: 3px solid $bodyTrans;
+	margin: -2px 0 0 0;
+	&:hover {
+		border: 3px solid $errorColor;
+		background-color: $base;
+		color: $body;
+	}
+	i { margin: 0 0 0 -2px;	}
+}
+
+div.podcastDescription {
+	display: none;
+	p {
+		margin-bottom: 0px;
+		padding-bottom: 12px;
+	}
+}
+
+/* -----------------------------------------
+	Settings.
+----------------------------------------- */
+.information {
+	position: relative;
+	height: auto;
+	width: 25%;
+	border-right: 1px solid $borderColor;
+	// @include background($bodyTrans);
+	h1 {
+		font-size: 22px;
+		text-transform: uppercase;
+		margin: 6px 0 6px 0;
+		padding: 0 0 0 20px;
+	}
+	p { padding: 0 20px 0 20px; }
+	p + p { text-indent: 0px; }
+	a { color: darken($linkColor, 25%); }
+}
+
+.settings {
+	float: left;
+	width: 75%;
+	// border-left: 1px solid $borderColor;
+	padding: 0 0 0 20px;
+	h1 {
+		font-size: 22px;
+		text-transform: uppercase;
+		margin: 6px 0 6px 0;
+	}
+	h2 {
+		font-size: 18px;
+		text-transform: uppercase;
+		margin-bottom: 0px;
+	}
+	h3 {
+		font-size: 14px;
+		margin-bottom: 0px;
+	}
+}
+
+.update-password {
+	h3 {
+		width: 20%;
+		@include inline-block;
+	}
+	input {
+		width: 400px; height: 40px;
+		display: block;
+		margin: 20px 0 0 0;
+		padding: 0px 10px 0px 10px;
+		background-color: white;
+		border: 1px solid $linkColor;
+		@include transition(all, 0.5s, ease-in-out);
+		&:hover {
+			@include box-shadow($linkColor 0px 0px 2px);
+		}
+		&:focus {
+			outline: 0;
+			@include box-shadow($linkColor 0px 0px 10px);
+		}
+		&:last-of-type {
+			width: 70px;
+			margin: 20px 0 20px 165px;
+		}
+	}
+}
+
+a.delete, a.delete:visited {
+	color: $base;
+	font-size: 14px;
+	background-color: $errorColor;
+	border: 1px solid $borderColor;
+	padding: 12px 16px 12px 16px;
+	margin: 0 0 40px 0;
+	border-radius: 4px;
+	@include inline-block;
+	@include transition(all, 0.5s, ease-in-out);
+	&:hover {
+		color: $base;
+		border: 1px solid $borderColor;
+		@include box-shadow($errorColor 0px 0px 10px);
+	}
+}
+
+/*******************************************
+*
+*	404 error
+*
+*******************************************/
+#hark-not-found { padding: 80px 0 40px 0; }
+
+.not-found {
+	h1, h2 { text-align: center; }
+	.column-8 { margin-bottom: 100px; }
+}
+
+/*******************************************
+*
+*	Other errors
+*
+*******************************************/
+.error {
+	font-size: 14px;
+	line-height: 21px;
+	color: $errorColor;
+}
+
+.success { color: $successColor; }
+
+.mask, .settings-mask {
+	width: 100%; height: 100%; min-height: 100%;
+	position: fixed; left: 0px; top: 0px;
+	@include background(rgba(33, 33, 33, 0.6));
+}
+
+.settings-mask { display: none; }
+
+.modal-error, .settings-modal-error {
+	width: 400px;
+	position: fixed; top: 40%; left: 50%;
+	margin-left: -200px;
+	padding: 20px;
+	@include border-radius(5px);
+	background-color: $errorColor;
+	p {
+		color: $base;
+		margin-bottom: 0px;
+	}
+	.modal-error-close {
+		position: absolute; top: -6px; right: -6px;
+		width: 36px; height: 36px;
+		font-size: 14px;
+		line-height: 14px;
+		color: $body;
+		background-color: $base;
+		@include border-radius(18px);
+		border: 5px solid $errorColor;
+		margin: 0px 0 0 20px;
+		padding: 4px 0 0 9px;
+		@include transition-property(all);
+		@include transition-duration(0.5s);
+		&:hover {
+			border: 5px solid $body;
+			background-color: $base;
+			color: $errorColor;
+			cursor: pointer;
+		}
+	}
+}
+
+.settings-modal-error {
+	a {
+		margin: 30px auto 0 auto;
+		text-align: center;
+		display: block;
+		border: 0px;
+		&:hover { border: 0px; }
+		i {
+			@include transition-property(all);
+			@include transition-duration(0.5s);
+			font-size: 80px;
+			color: $base;
+			&:hover { color: $body; }
+		}
+	}
+}
+
+.modal-error-feed {
+	position: absolute; top: 100px; left: 40px;
+}
+
+/*******************************************
+*
+*	Canvas
+*
+*******************************************/
+#wave, #about-wave, #header-wave {
+	width: 100%;
+	height: 40px;
+}
+
+@-webkit-keyframes pulse {
+	0% { opacity: 0; }
+	50%  { opacity: 0.3; -webkit-transform:scale(1.2) }
+	100% { opacity: 0; -webkit-transform:scale(1.4); }
+}
+@-moz-keyframes pulse {
+	0% { opacity: 0; }
+	50%  { opacity: 0.3; -moz-transform:scale(1.2) }
+	100% { opacity: 0; -moz-transform:scale(1.4); }
+}
+@-ms-keyframes pulse {
+	0% { opacity: 0; }
+	50%  { opacity: 0.3; -ms-transform:scale(1.2) }
+	100% { opacity: 0; -ms-transform:scale(1.4); }
+}
+
+@-webkit-keyframes input-pulse {
+	0% { box-shadow: $linkColor 0px 0px 0px; }
+	100% { box-shadow: $linkColor 0px 0px 20px; }
+}
+@-moz-keyframes input-pulse {
+	0% { box-shadow: $linkColor 0px 0px 0px; }
+	100% { box-shadow: $linkColor 0px 0px 20px; }
+}
+@-ms-keyframes input-pulse {
+	0% { box-shadow: $linkColor 0px 0px 0px; }
+	100% { box-shadow: $linkColor 0px 0px 20px; }
+}

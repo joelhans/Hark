@@ -1,0 +1,42 @@
+div.information.left-column
+	h1 About Hark
+	p Hark is a one-man (for now!) operation by <a href='http://designbyjoel.com'>Joel Hans</a>. It's built on NodeJS, using Express, and a bunch of other cool stuff. It's very much a work-in progress, but already it's a great way to listen to podcasts.
+	p Hark is open-source! Check out the source on Github. I'm always open to contributions, so if have a feature you want to see in Hark, feel free to make a pull request.
+	h1 About Joel
+	p I'm a web designer and developer based out of Madison, Wisconsin. Interested in working with me? <a href="http://designbyjoel.com/contact/">Get in touch</a>.
+
+div.settings
+	h1 Settings
+	h2 Change password
+	- if (typeof(flash) == 'undefined')
+		form.update-password(method='post', action='/settings/update-password')
+			input(type='password', name='password-current', placeholder='Enter your current password.')
+			input(type='password', name='password-new', placeholder='Enter your new password.')
+			input(type='password', name='password-validate', placeholder='Re-enter your new password.')
+			input.update-password-submit(type='submit', value='Update')
+	- if (typeof(flash) != 'undefined')
+		form.update-password(method='post', action='/settings/update-password')
+			- if (typeof(flash.errorUpdatePassword) != 'undefined')
+				input.create-error(type='password', name='password-current', placeholder='Enter your current password.')
+				p.error= flash.errorUpdatePassword
+			- else
+				input(type='password', name='password-current', placeholder='Enter your current password.')
+
+			- if (typeof(flash.errorUpdatePasswordMatch) != 'undefined')
+				input.create-error(type='password', name='password-new', placeholder='Enter your new password.')
+				input.create-error(type='password', name='password-validate', placeholder='Re-enter your new password.')
+				p.error= flash.errorUpdatePasswordMatch
+			- else
+				input(type='password', name='password-new', placeholder='Enter your new password.')
+				input(type='password', name='password-validate', placeholder='Re-enter your new password.')
+
+			input.update-password(type='submit', value='Update')
+	h2 Delete your Hark! account
+	a.delete(href='/#') Goodbye, podcasts!
+
+div.settings-mask
+	div.settings-modal-error
+		span.modal-error-close x
+		p Are you sure you want to delete your account?
+		a.delete-confirm(href='/settings/delete')
+			i.icon-trash
