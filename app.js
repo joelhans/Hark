@@ -1,6 +1,20 @@
 //
-// MODULE DEPENDENCIES
+//	HARK!
 //
+//	Hark is your personal radio station. Podcasts. Radio. Revolutionized.
+//	Hark is open source. See it on Github: https://github.com/joelhans/Hark
+//
+//  Table of contents:
+//    * Modules
+//    * Databases
+//    * Express
+//    * Helpers
+//    * And so on...
+
+
+//  ---------------------------------------
+//  MODULES
+//  ---------------------------------------
 
 var express = require('express')
   , connect = require('connect')
@@ -16,7 +30,9 @@ var express = require('express')
   , mongodb = require('mongodb');
 var parser = new xml2js.Parser();
 
-// DATABASE INITIALIZATION
+//  ---------------------------------------
+//  DATABASES
+//  ---------------------------------------
 
 var Db = require('mongodb').Db
   , Server = require('mongodb').Server
@@ -28,15 +44,11 @@ var Db = require('mongodb').Db
 var Users = new mongodb.Collection(db, 'Users')
   , Feeds = new mongodb.Collection(db, 'Feeds');
 
-//
-//	CREATING THE SERVER
-//
+//  ---------------------------------------
+//	EXPRESS CONFIGURATION
+//  ---------------------------------------
 
 var app = module.exports = express.createServer();
-
-//
-//	CONFIGURATION
-//
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
@@ -69,9 +81,9 @@ process.on('uncaughtException', function (error) {
    console.log('TIME: ' + moment().format('dddd, MMMM Do YYYY, h:mm:ss a') + ' ERROR: ' + error.stack);
 });
 
-//
+//  ---------------------------------------
 //  HELPERS
-//
+//  ---------------------------------------
 
 function loadUser(req, res, next) {
   if (req.session.userID) {
@@ -89,9 +101,9 @@ function loadUser(req, res, next) {
 
 require('./users.js')(app, express, loadUser, Users, Feeds, db, bcrypt);
 
-//
+//  ---------------------------------------
 //  ROUTES
-//
+//  ---------------------------------------
 
 app.get('/', loadUser, function(req, res) {
 	res.redirect('/login'); // Let's just redirect ourselves to the login page.
@@ -775,7 +787,7 @@ app.post('/listen/playing', loadUser, function(req, res) {
 	var playing = req.body;
 
 	Users.findAndModify({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, [], { $set: { 'playing' : playing } }, { new:true }, function(err, result) {
-		console.log('SYNC: ' + result);
+		console.log('SYNC: ' + moment().format('dddd, MMMM Do YYYY, h:mm:ss a') + ' : ' + result);
 	});
 });
 
@@ -850,9 +862,9 @@ app.use(function(req, res){
 	res.render('404');
 });
 
-//
+//  ---------------------------------------
 //	START THE SERVER!
-//
+//  ---------------------------------------
 
 app.listen(3000);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
