@@ -68,7 +68,8 @@ $(document).ready(function() {
 	$('#jquery_jplayer_1').jPlayer({
 		swfPath: "/js",
 		supplied: 'mp3',
-		solution: 'html, flash',
+		// solution: 'html, flash',
+		solution: 'flash, html',
 		errorAlerts: false,
 		play: function(d) {
 			updatePlaying = setInterval(function(){
@@ -108,7 +109,7 @@ $(document).ready(function() {
 			});
 		},
 		error:function(d) {
-			console.log('error.');
+			console.log("Error Event: type = " + event.jPlayer.error.type);
 			console.log(d);
 		},
 		ready:function(d) {
@@ -244,9 +245,11 @@ $(document).ready(function() {
 				type: 'POST',
 				url: '/listen/' + data.feed + '/listened/' + data.id,
 				data: data,
-				success: function() {  },
-				error: function() {
-					console.log('Hark had an error.');
+				success: function(data) {
+					console.log('Marked as listened!' + data)
+				},
+				error: function(data) {
+					console.log('Hark had an error.' + data);
 				}
 			});
 		} else if ( delegator === 'single' ) {
@@ -428,7 +431,7 @@ $(document).ready(function() {
 			url: '/listen/playing',
 			data: playing,
 			success: function(data) {
-				console.log('Sync-ed!');
+				console.log('Sync-ed! ' + data);
 			},
 			error: function(data) {
 				console.log('Error with syncing! ' + data);
@@ -457,23 +460,23 @@ jQuery.fn.waveify = function(orientation) {
 		for ( var i = 0; i <= 1000; i++ ) {
 			x = i;
 			y = 10 * Math.sin(freq * x) + 20;
-			ctx.lineTo(x, y);
-		}
-		if ( orientation === 'up' ) {
-			ctx.lineTo(1000, 40);
-			ctx.lineTo(0, 40);
-			ctx.lineTo(0, 20);
-		} else if ( orientation === 'down' ) {
-			ctx.lineTo(1000, 0);
-			ctx.lineTo(0, 0);
-			ctx.lineTo(0, 20);
-		}
-		ctx.closePath();
-		ctx.stroke();
-		ctx.fill();
-	} else {
-		return false;
-	}
+      ctx.lineTo(x, y);
+    }
+    if ( orientation === 'up' ) {
+      ctx.lineTo(1000, 40);
+      ctx.lineTo(0, 40);
+      ctx.lineTo(0, 20);
+    } else if ( orientation === 'down' ) {
+      ctx.lineTo(1000, 0);
+      ctx.lineTo(0, 0);
+      ctx.lineTo(0, 20);
+    }
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+  } else {
+    return false;
+  }
 };
 
 function leftFixHeight() {
