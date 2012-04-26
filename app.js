@@ -1,6 +1,8 @@
 //
 //	HARK!
 //
+//	Current version: 0.0.1
+//
 //	Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //	Hark is open source. See it on Github: https://github.com/joelhans/Hark
 //
@@ -100,44 +102,44 @@ function loadUser(req, res, next) {
 }
 
 require('./users.js')(app, express, loadUser, Users, Feeds, db, bcrypt);
+require('./feeds.js')(app, express, loadUser, Users, Feeds);
 
 //  ---------------------------------------
 //  ROUTES
 //  ---------------------------------------
 
 app.get('/', loadUser, function(req, res) {
-	res.redirect('/login'); // Let's just redirect ourselves to the login page.
+  res.redirect('/login'); // Let's just redirect ourselves to the login page.
 });
 
 app.get('/login', function(req, res) {
-	res.render('index'); // Where we render the index template. Makes sense, right?
+  res.render('index'); // Where we render the index template. Makes sense, right?
 });
 
-app.post('/login', function(req, res) { // 
-	Users.findOne({ $or : [ { 'username': req.body.username }, { 'email': req.body.username } ] }, function(err, result) {
+app.post('/login', function(req, res) { 
+  Users.findOne({ $or : [ { 'username': req.body.username }, { 'email': req.body.username } ] }, function(err, result) {
 
-		if ( result === null ) {
-			req.flash('errorUser', "That user doesn't exist.");
-			res.render('index', {locals: {flash: req.flash()}});
-		}
-
-		bcrypt.compare(req.param('password'), result.password, function(err, result) {
-			if (result === true) {
-				req.session.userID = req.body.username;
-				res.redirect('/listen');
-			} else {
-				req.flash('errorPass', "Incorrect password. Try again.");
-				res.render('index', {locals: {flash: req.flash(), errorType: 'login'}});
-			}
-		});
-	});
-
+    if ( result === null ) { // No user found.
+      req.flash('errorUser', "That user doesn't exist.");
+      res.render('index', {locals: {flash: req.flash()}});
+    } else { // User found.
+      bcrypt.compare(req.param('password'), result.password, function(err, result) {
+        if (result === true) {
+          req.session.userID = req.body.username;
+          res.redirect('/listen');
+        } else {
+          req.flash('errorPass', "Incorrect password. Try again.");
+          res.render('index', {locals: {flash: req.flash(), errorType: 'login'}});
+        }
+      });
+    }
+  });
 });
 
 app.post('/login/forgot', function(req, res) {
-	var userEmail = req.param('email'),
-		salt = Math.round((new Date().valueOf() * Math.random())) + '';
-		resetToken = crypto.createHmac('sha1', salt).update(userEmail).digest('hex');
+	var userEmail = req.param('email')
+		, salt = Math.round((new Date().valueOf() * Math.random())) + ''
+		, resetToken = crypto.createHmac('sha1', salt).update(userEmail).digest('hex');
 
 	Users.findOne({ 'email': userEmail }, function(err, result) {
 
@@ -460,6 +462,14 @@ app.post('/listen/add', loadUser, function(req, res) {
 });
 
 //
+//	EDIT A PODCAST SUBSCRIPTION
+//
+
+app.post('/listen/edit/:_id', loadUser, function(req, res) {
+	editFeed();
+});
+
+//
 //	REMOVE A PODCAST SUBSCRIPTION
 //
 
@@ -644,6 +654,7 @@ app.post('/listen/:feed/listened/:_id', loadUser, function(req, res) {
 	Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
 		Feeds.findAndModify({ $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ] , 'pods.podUUID' : id }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
 			if(err) { throw err; }
+			res.send(results);
 		});
 	});
 
