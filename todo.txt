@@ -7,12 +7,13 @@ ROADMAP
 
   0.1
   ----------
+  [ ] --  Add the ability to edit the name of feeds.
   [ ] --  Download, link-through buttons for each feed.
   [ ] --  A functional description section for each podcast.
   [ ] --  Functioning cookies/session management.
             * Mostly, this requires a way to route logged-in users from /login 
               to /listen.
-  [ ] --  Bug fixes (hopefully not too many).
+          Bug fixes.
 
   0.2
   ----------
