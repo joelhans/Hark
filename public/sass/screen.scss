@@ -211,7 +211,7 @@ a.create-show { margin: 12px 120px 20px 0; }
 
 #hark-about {
 	margin: -5px 0 0 0;
-	padding: 40px 0 0 0;
+	padding: 40px 0 100px 0;
 	@include background($linkColor);
 	h3, p {
 		color: $base;
