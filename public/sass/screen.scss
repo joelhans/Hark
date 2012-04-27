@@ -653,6 +653,7 @@ header {
 	border-right: 1px solid $borderColor;
 	margin-bottom: 0px;
 	line-height: 0px;
+	overflow: auto;
 	@include transition-property(background-color);
 	@include transition-duration(0.5s);
 	div {
@@ -668,10 +669,11 @@ header {
 }
 
 .podcastDate {
-	width: 15%; height: 100%;
+	width: 15%; min-height: 100%;
 	p {
 		font-size: 14px;
 		margin: 0;
+		display: block;
 	}
 }
 
@@ -698,7 +700,7 @@ header {
 }
 
 .podcastFeed {
-	width: 30%;
+	width: 30%; height: 100%;
 	border-left: 1px solid $borderColor;
 	p {
 		font-size: 12px;
@@ -721,23 +723,19 @@ header {
 	width: 15%;
 	border-left: 1px solid $borderColor;
 	p {
-		font-size: 18px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
 		margin: 0;
 		padding: 8px 10px 8px 10px;
 		text-align: center;
 		a {
-			width: 30px; height: 30px;
+			width: 24px; height: 24px;
 			@include inline-block;
-			@include border-radius(15px);
-			font-size: 22px;
-			line-height: 22px;
+			@include border-radius(12px);
+			font-size: 18px;
+			line-height: 18px;
 			color: $base;
 			background-color: $linkColor;
 			border: 3px solid $bodyTrans;
-			margin-right: 10px;
+			margin-right: 6px;
 			padding: 0 0 2px 0;
 			&:last-of-type { margin-right: 0px; }
 			&:hover {
