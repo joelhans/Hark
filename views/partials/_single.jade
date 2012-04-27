@@ -12,12 +12,16 @@ ul.podcastList
 					a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
 			div.podcastActions
 				p
-					a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen', title='Listen to this podcast.', data-file='' + podcast.podFile, id='' + podcast.podUUID)
+					a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen', title='Listen to this podcast.', data-file='' + podcast.podFile, id='' + podcast.podUUID, data-feed='' + podcast.feedTitle)
 						i.icon-headphones
-					a(href='/listen/' + podcast.feedUUID + '/listened/' + podcast.podUUID, class='podcastListened single', title='Mark this podcast as listened.')
+					a(href='/listen/' + podcast.feedUUID + '/listened/' + podcast.podUUID, class='podcastListened all', title='Mark this podcast as listened.')
 						i.icon-ok
 					a(href='#', class='podcastRead', title='Read the description of this podcast.')
 						i.icon-book
+					a(href='' + podcast.podLink, title='Link to the podcast\'s site.')
+						i.icon-external-link
+					a(href="" + podcast.podFile, title='Download this podcast to your device.')
+						i.icon-chevron-down
 			div.podcastDescription
 				p.error A note: This feature is new, and isn't working entirely properly yet. Stay tuned for updates.
 				div #{podcast.podDesc}
