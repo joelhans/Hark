@@ -16,7 +16,10 @@ div.subscriptions.left-column
 				li
 					div
 						a(href='/listen/podcast/' + feed.feeduuid, class='loadFeed') #{feed.feedTitle}
-						span.removeFeedButton
+						input(type='text', class='edit-feed-input', placeholder='Type the new feed name.')
+						span.feedActions
+							a(href='#', class='editFeed')
+								i.icon-pencil
 							a(href='/listen/remove/' + feed.feeduuid, class='removeFeed')
 								i.icon-trash
 

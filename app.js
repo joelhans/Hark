@@ -138,8 +138,8 @@ app.post('/login', function(req, res) {
 
 app.post('/login/forgot', function(req, res) {
 	var userEmail = req.param('email')
-		, salt = Math.round((new Date().valueOf() * Math.random())) + ''
-		, resetToken = crypto.createHmac('sha1', salt).update(userEmail).digest('hex');
+		, salt = Math.round((new Date().valueOf() * Math.random())) + '';
+	var resetToken = crypto.createHmac('sha1', salt).update(userEmail).digest('hex');
 
 	Users.findOne({ 'email': userEmail }, function(err, result) {
 
@@ -247,76 +247,7 @@ app.post('/listen', loadUser, function(req, res) {
 	});
 });
 
-//
-// THIS GETS ALL EXISTING FEEDS, ELIMINATES ONES MARKED AS "LISTENED" AND SORTS THEM BY DATE, DESCENDING.
-//
 
-getFeeds = function(email, username, callback) {
-
-	var construction = new Array(),
-		podList = new Array(),
-		unlistened = new Array(),
-		i,
-		j;
-
-	Feeds.find( { $or : [ { 'owner': email }, { 'owner': username } ] } ).toArray(function(err, results) {
-
-		// console.log(results);
-
-		if (typeof results[0] == "undefined") {
-			callback(null, [], []);
-		} else {
-			var i,
-				j,
-				podcastList = new Array(),
-				construction = new Array();
-
-			for (i = 0; i < results.length; ++i) {
-				data = {
-					feedTitle 		: results[i].title,
-					feedDescription : results[i].description,
-					feeduuid		: results[i].uuid
-				}
-				construction.push(data);
-			}
-
-			construction.sort(function (a , b) {
-					if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
-						return 1;
-					if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
-						return -1;
-					return 0;
-				});
-
-			for (i = 0; i < results.length; ++i) {
-				for (j = 0; j < results[i].pods.length; ++j) {
-					var podData = results[i].pods[j];
-
-					podData['feedTitle'] = results[i].title;
-					podData['feedUUID'] = results[i].uuid;
-
-					if ( results[i].pods[j].listened != "true" ) {
-						podcastList.push(podData);
-					}
-				}
-			}
-
-			if (typeof podcastList[0] === "undefined") {
-				return;
-			} else {
-				podcastList.sort(function (a , b) {
-					if (a['podDate']['_d'] > b['podDate']['_d'])
-						return -1;
-					if (a['podDate']['_d'] < b['podDate']['_d'])
-						return 1;
-					return 0;
-				});
-			}
-
-			callback(null, construction, podcastList);
-		}
-	});
-}
 
 //
 // ADD A PODCAST SUBSCRIPTION
@@ -462,14 +393,6 @@ app.post('/listen/add', loadUser, function(req, res) {
 });
 
 //
-//	EDIT A PODCAST SUBSCRIPTION
-//
-
-app.post('/listen/edit/:_id', loadUser, function(req, res) {
-	editFeed();
-});
-
-//
 //	REMOVE A PODCAST SUBSCRIPTION
 //
 
@@ -477,7 +400,6 @@ app.post('/listen/remove/:_id', loadUser, function(req, res) {
 	
 	var uuid = req.param('id');
 
-	
 	Feeds.findAndModify({ $or : [ { 'owner': req.session.userID }, { 'owner': req.session.userID } ], uuid: uuid }, [], {}, { remove:true }, function(err, result) {
 		Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
 			getFeeds(result['email'], result['username'], function(error, feeds, podcastList) {
@@ -654,7 +576,7 @@ app.post('/listen/:feed/listened/:_id', loadUser, function(req, res) {
 	Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
 		Feeds.findAndModify({ $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ] , 'pods.podUUID' : id }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
 			if(err) { throw err; }
-			res.send(results);
+			res.send(result);
 		});
 	});
 

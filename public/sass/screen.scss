@@ -503,12 +503,12 @@ header {
 .updateButton {
 	width: 42px; height: 42px;
 	border: 0px;
-	position: absolute; top: 8px; right: 10px;
+	position: absolute; top: 16px; right: 0px;
 	a, a:visited {
 		border: 0px;
 		&:hover { border: 0px; }
 		i {
-			font-size: 50px;
+			font-size: 28px;
 			color: darken($linkColor, 25%);
 		}
 	}
@@ -573,10 +573,13 @@ header {
 	&:hover {
 		background-color: rgba(33, 33, 33, 0.05);
 	}
-	&:hover > div .removeFeedButton {
+	&:hover > div .feedActions {
 		background-color: rgba(33, 33, 33, 0.0025);
 	}
-	&:hover > div .removeFeedButton .removeFeed {
+	&:hover > div .feedActions .removeFeed {
+		opacity: 100;
+	}
+	&:hover > div .feedActions .editFeed {
 		opacity: 100;
 	}
 }
@@ -594,30 +597,46 @@ header {
 	}
 }
 
+.edit-feed-input {
+	float: left;
+	display: none;
+	margin: 0px;
+	font-family: $baseFontFamily;
+	border: 1px solid $base;
+	@include transition(all, 0.5s, ease-in-out);
+	&:hover {
+		@include box-shadow($linkColor 0px 0px 10px);
+	}
+	&:focus {
+		outline: 0;
+		@include box-shadow($linkColor 0px 0px 20px);
+	}
+}
+
 .allFeeds, .allFeeds:visited {
 	color: $errorColor !important;
 }
 
-.removeFeedButton {
+.feedActions {
 	width: 46px; height: 30px;
 	background-color: transparent;
-	position: absolute; right: 0px;
+	position: absolute; right: 15px;
 	margin: 0;
 }
 
-.removeFeed {
-	width: 30px; height: 30px;
+.removeFeed, .editFeed, .removeFeed:visited, .editFeed:visited {
+	width: 24px; height: 24px;
 	@include inline-block;
-	font-size: 22px;
-	line-height: 22px;
+	@include border-radius(12px);
+	font-size: 18px;
+	line-height: 18px;
 	color: $base;
 	background-color: $linkColor;
-	opacity: 0;
-	@include border-radius(15px);
 	border: 3px solid $bodyTrans;
-	margin: -2px 0 0 0;
+	opacity: 0;
+	margin: -2px 5px 0 0;
 	&:hover {
-		border: 3px solid $errorColor;
+		border: 3px solid $errorColor;	
 		background-color: $base;
 		color: $body;
 	}
@@ -748,23 +767,23 @@ header {
 	}
 }
 
-.removeFeed {
-	width: 30px; height: 30px;
-	@include inline-block;
-	font-size: 22px;
-	color: $base;
-	background-color: $linkColor;
-	opacity: 0;
-	@include border-radius(15px);
-	border: 3px solid $bodyTrans;
-	margin: -2px 0 0 0;
-	&:hover {
-		border: 3px solid $errorColor;
-		background-color: $base;
-		color: $body;
-	}
-	i { margin: 0 0 0 -2px;	}
-}
+// .removeFeed {
+// 	width: 30px; height: 30px;
+// 	@include inline-block;
+// 	font-size: 22px;
+// 	color: $base;
+// 	background-color: $linkColor;
+// 	opacity: 0;
+// 	@include border-radius(15px);
+// 	border: 3px solid $bodyTrans;
+// 	margin: -2px 0 0 0;
+// 	&:hover {
+// 		border: 3px solid $errorColor;
+// 		background-color: $base;
+// 		color: $body;
+// 	}
+// 	i { margin: 0 0 0 -2px;	}
+// }
 
 div.podcastDescription {
 	display: none;

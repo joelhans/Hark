@@ -7,62 +7,70 @@ module.exports = function(app, express, loadUser, Users, Feeds, req){
 //  Order of functions:
 //    * Function to get, return all a user's feeds/subscriptions.
 //    * Editing feeds
+//    * Get all of a user's feeds/podcasts.
 
-  function getAllFeeds() {
-    Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-      getFeeds(result['email'], result['username'], function(error, feeds, podcastList) {
-        res.partial('partials/podcasts', { feeds: feeds, podcasts: podcastList });
+  // function getAllFeeds(req, getFeeds) {
+  //   Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
+  //     getFeeds(result['email'], result['username'], function(error, feeds, podcastList) {
+  //       res.partial('partials/podcasts', { feeds: feeds, podcasts: podcastList });
+  //     });
+  //   });
+  // }
+
+  //
+  //  EDIT A PODCAST SUBSCRIPTION
+  //
+
+  app.post('/listen/edit/:_id', loadUser, function(req, res) {
+    console.log('Oh, yeah!');
+
+    var id = req.param('id')
+    , newTitle = req.param('feedName');
+
+    Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, user) {
+      Feeds.findAndModify({ $or : [ { 'owner': user['email'] }, { 'owner': user['username'] } ] , 'uuid' : id }, [], { $set: { 'title' : newTitle } }, { new:true }, function(err, result) {
+        getFeeds(user['email'], user['username'], function(error, feeds, podcastList) {
+          res.partial('partials/podcasts', { feeds: feeds, podcasts: podcastList });
+        });
       });
     });
-  }
+
+  });
 
   //
-  //  EDIT A FEED
+  //  GET FEEDS / PODCASTS
   //
-
-  function editFeed() {
-    console.log('Let\'s go!');
-  }
 
   getFeeds = function(email, username, callback) {
 
-    var construction = new Array(),
-      podList = new Array(),
-      unlistened = new Array(),
-      i,
-      j;
+    var construction = new Array()
+      , podcastList = new Array();
 
     Feeds.find( { $or : [ { 'owner': email }, { 'owner': username } ] } ).toArray(function(err, results) {
 
-      // console.log(results);
-
-      if (typeof results[0] == "undefined") {
+      if (typeof results[0] === "undefined") {
         callback(null, [], []);
       } else {
-        var i,
-          j,
-          podcastList = new Array(),
-          construction = new Array();
-
-        for (i = 0; i < results.length; ++i) {
+        
+        for (var i = 0; i < results.length; ++i) {
           data = {
-            feedTitle     : results[i].title,
+            feedTitle       : results[i].title,
             feedDescription : results[i].description,
-            feeduuid    : results[i].uuid
+            feeduuid        : results[i].uuid
           }
           construction.push(data);
         }
 
         construction.sort(function (a , b) {
-            if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
-              return 1;
-            if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
-              return -1;
-            return 0;
-          });
+          if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
+            return 1;
+          if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
+            return -1;
+          return 0;
+        });
 
-        for (i = 0; i < results.length; ++i) {
-          for (j = 0; j < results[i].pods.length; ++j) {
+        for (var i = 0; i < results.length; ++i) {
+          for (var j = 0; j < results[i].pods.length; ++j) {
             var podData = results[i].pods[j];
 
             podData['feedTitle'] = results[i].title;
@@ -74,9 +82,7 @@ module.exports = function(app, express, loadUser, Users, Feeds, req){
           }
         }
 
-        if (typeof podcastList[0] === "undefined") {
-          return;
-        } else {
+        if (typeof podcastList[0] !== "undefined") {
           podcastList.sort(function (a , b) {
             if (a['podDate']['_d'] > b['podDate']['_d'])
               return -1;

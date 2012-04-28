@@ -74,7 +74,7 @@ $(document).ready(function() {
 		play: function(d) {
 			updatePlaying = setInterval(function(){
 				updateStatus();
-			}, 60000);
+			}, 120000);
 		},
 		timeupdate: function(d) {
 			progress = d.jPlayer.status.currentTime;
@@ -200,9 +200,7 @@ $(document).ready(function() {
 
 	$('.removeFeed').live('click', function(e) {
 		e.preventDefault();
-		var data = {
-				id : $(this).attr('href').split('/')[3]
-			};
+		var data = { id : $(this).attr('href').split('/')[3] };
 		$.ajax({
 			type: 'POST',
 			url: '/listen/remove/' + data.id,
@@ -212,6 +210,38 @@ $(document).ready(function() {
 				leftFixHeight();
 			}
 		});
+	});
+
+	//
+	//	Edit a feed.
+	//
+
+	$('.editFeed').live('click', function(e) {
+		e.preventDefault();
+		var data = { id : $(this).attr('href').split('/')[3] };
+		$(this).parent().parent().children('.loadFeed').fadeOut(300).promise().done(function() {
+			$(this).next().fadeIn(300);
+			$(this).next().val($(this).text());
+		});
+	});
+
+	$('.edit-feed-input').live('keypress', function(e){
+		if(e.which == 13){
+			data = {
+				id 	 	 : $(this).prev().attr('href').split('/')[3],
+				feedName : $(this).val()
+			};
+			$.ajax({
+				type: "POST",
+				url: '/listen/edit/' + data.id,
+				data: data,
+				success: function(data) {
+					$('#hark-podcasts').html(data);
+					$('.addFeed').val('');
+					leftFixHeight();
+				}
+			});
+		}
 	});
 
 	//
@@ -482,21 +512,31 @@ jQuery.fn.waveify = function(orientation) {
 function leftFixHeight() {
 	if ( $('.listen').height() <= ( $(window).height() - 132 ) ) {
 		$('.subscriptions').css('height', $(window).height() - ($('header').height() + $('.player').height()) - 52);
+		$('.subscriptions').css('margin-bottom', '0px');
 	} else if ( $('.listen').height() > $(window).height() ) {
 		$('.subscriptions').css('height', $('.listen').height());
-	} else {
+		$('.subscriptions').css('margin-bottom', '0px');
+	} else if ( $('.subscriptions').height() >= ($(window).height() - 340) ) {
 		console.log('Subscriptions is higher!');
-		return;
+		$('.subscriptions').css('height', 'auto');
+		$('.subscriptions').css('margin-bottom', '20px');
 	}
 
 	if ( $('.settings').height() <= $(window).height() - 132 ) {
 		$('.information').css('height', $(window).height() - ($('header').height() + $('.player').height()) - 52);
+		$('.information').css('margin-bottom', '0px');
 	} else if ( $('.settings').height() > $(window).height() ) {
 		$('.information').css('height', $('.listen').height());
-	} else {
+		$('.information').css('margin-bottom', '0px');
+	} else if ( $('.information').height() >= ($(window).height() - 340) ) {
 		console.log('Information is higher!');
-		return;
+		$('.information').css('height', 'auto');
+		$('.information').css('margin-bottom', '20px');
 	}
+}
+
+function fixColumnHeight() {
+	
 }
 
 /*
