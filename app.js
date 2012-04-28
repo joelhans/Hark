@@ -93,7 +93,6 @@ function loadUser(req, res, next, callback) {
       if (user) {
         next();
         console.log(user['email']);
-
       } else {
         res.redirect('/login');
       }
@@ -223,8 +222,6 @@ app.get('/logout', function(req, res) {
 //
 
 app.get('/listen', loadUser, function(req, res, user) {
-
-	console.log(user);
 	Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
 		getFeeds(result['email'], result['username'], function(error, feed, podcastList) {
 			res.render('listen', {
@@ -250,8 +247,6 @@ app.post('/listen', loadUser, function(req, res) {
 		});
 	});
 });
-
-
 
 //
 // ADD A PODCAST SUBSCRIPTION
@@ -730,25 +725,27 @@ app.post('/listen/playing', loadUser, function(req, res) {
 });
 
 //
-//	SETTINGS PAGE / FUNCTIONS
+//	SETTINGS
 //
 
 app.post('/settings', loadUser, function(req, res) {
 	res.partial('partials/settings');
 });
 
+//
+//	SETTINGS VIA DEEP-LINKING/RELOAD
+//
+
 app.get('/settings', loadUser, function(req, res) {
-	getFeeds(req.session.userID, function(error, feed, podcastList) {
-		Users.findOne({ 'username': req.session.userID }, function(err, result) {
-			var playing = result['playing'];
-			res.render('settings', {
-				locals: {
-					username: req.session.userID,
-					feeds: feed,
-					podcasts: podcastList,
-					playing: playing
-				}
-			});
+	Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, user) {
+		var playing = user['playing'];
+		res.render('settings', {
+			locals: {
+				username: req.session.userID,
+				feeds: [],
+				podcasts: [],
+				playing: playing
+			}
 		});
 	});
 });

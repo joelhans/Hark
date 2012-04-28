@@ -510,33 +510,9 @@ jQuery.fn.waveify = function(orientation) {
 };
 
 function leftFixHeight() {
-	if ( $('.listen').height() <= ( $(window).height() - 132 ) ) {
-		$('.subscriptions').css('height', $(window).height() - ($('header').height() + $('.player').height()) - 52);
-		$('.subscriptions').css('margin-bottom', '0px');
-	} else if ( $('.listen').height() > $(window).height() ) {
-		$('.subscriptions').css('height', $('.listen').height());
-		$('.subscriptions').css('margin-bottom', '0px');
-	} else if ( $('.subscriptions').height() >= ($(window).height() - 340) ) {
-		console.log('Subscriptions is higher!');
-		$('.subscriptions').css('height', 'auto');
-		$('.subscriptions').css('margin-bottom', '20px');
-	}
-
-	if ( $('.settings').height() <= $(window).height() - 132 ) {
-		$('.information').css('height', $(window).height() - ($('header').height() + $('.player').height()) - 52);
-		$('.information').css('margin-bottom', '0px');
-	} else if ( $('.settings').height() > $(window).height() ) {
-		$('.information').css('height', $('.listen').height());
-		$('.information').css('margin-bottom', '0px');
-	} else if ( $('.information').height() >= ($(window).height() - 340) ) {
-		console.log('Information is higher!');
-		$('.information').css('height', 'auto');
-		$('.information').css('margin-bottom', '20px');
-	}
-}
-
-function fixColumnHeight() {
-	
+	$('.subscriptions, .listen, .information, .settings').css('height', '');
+	$('.subscriptions, .listen').height(Math.max($('.subscriptions').height(), $('.listen').height()));
+	$('.information, .settings').height(Math.max($('.information').height(), $('.settings').height()));
 }
 
 /*

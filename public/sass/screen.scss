@@ -20,7 +20,7 @@ html {
  	height: 100%;
  	width: 100%;
 	overflow-y: scroll;
-	@include background($base);
+	@include background(image-url("/img/grainy.png"), $base);
 }
 
 body {
@@ -45,7 +45,6 @@ body {
 }
 
 #hark-podcasts {
-	height: 100%;
 	min-height: 100%;
 	padding: 0 20px 0 0;
 	@include clearfix;
@@ -648,10 +647,9 @@ header {
 ----------------------------------------- */
 .listen {
 	float: left;
-	width: 75%; height: auto;
+	width: 75%;
 	padding: 0;
 	margin: 0 0 20px 0;
-	border-bottom: 1px solid $borderColor;
 	h1 {
 		font-size: 22px;
 		text-transform: uppercase;
@@ -678,9 +676,6 @@ header {
 	div {
 		@include inline-block;
 		margin: 0; padding: 0;
-	}
-	&:last-of-type {
-		border-bottom: 0px;
 	}
 	&:hover {
 		background-color: rgba(33, 33, 33, 0.05);
