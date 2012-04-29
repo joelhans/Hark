@@ -90,15 +90,21 @@ process.on('uncaughtException', function (error) {
 function loadUser(req, res, next, callback) {
   if (req.session.userID) {
     Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, user) {
-      if (user) {
-        next();
-        console.log(user['email']);
-      } else {
+    	if (user && req.url === '/' ) {
+    		res.redirect('/listen');
+    	} else if ( user && req.url === '/login' ) {
+    		console.log('login');
+    		res.redirect('/listen');
+    	} else if ( user ) {
+    		next();
+    	} else {
         res.redirect('/login');
       }
     });
+  } else if ( !req.session.userID && req.url === '/login' ) {
+		next();
   } else {
-    res.redirect('/login');
+  	res.redirect('/login');
   }
 }
 
@@ -113,13 +119,12 @@ app.get('/', loadUser, function(req, res) {
   res.redirect('/login'); // Let's just redirect ourselves to the login page.
 });
 
-app.get('/login', function(req, res) {
+app.get('/login', loadUser, function(req, res) {
   res.render('index'); // Where we render the index template. Makes sense, right?
 });
 
 app.post('/login', function(req, res) { 
   Users.findOne({ $or : [ { 'username': req.body.username }, { 'email': req.body.username } ] }, function(err, result) {
-
     if ( result === null ) { // No user found.
       req.flash('errorUser', "That user doesn't exist.");
       res.render('index', {locals: {flash: req.flash()}});
@@ -178,7 +183,6 @@ app.get('/login/reset/:resetToken', function(req, res) {
 	var resetToken = req.param('resetToken');
 
 	Users.find({ 'resetToken': resetToken }).each(function(err, result) {
-		console.log(result);
 		if ( result === null ) {
 			res.redirect('/login');
 		} else {
@@ -278,10 +282,6 @@ app.post('/listen/add', loadUser, function(req, res) {
 					return;
 				}
 
-				//
-				// http://feeds.thisamericanlife.org/talpodcast
-				//
-
 				parser.parseString(body, function (err, result) {
 
 					if (typeof result == "undefined") {
@@ -303,9 +303,6 @@ app.post('/listen/add', loadUser, function(req, res) {
 
 					for ( i = 0; i < 10; ++i ) {
 						podData = {};
-
-						// console.log('ITEM: ' + feed.item.title);
-						// console.log('FEED TITLE: ' + feed.item[i].title);
 						
 						if ( typeof feed.item[i] !== "undefined" ) {
 							if ( typeof feed.item[i].enclosure !== "undefined" ) {
@@ -716,12 +713,9 @@ app.post('/listen/update', loadUser, function(req, res) {
 //
 
 app.post('/listen/playing', loadUser, function(req, res) {
-	var playing = req.body;
-
-	Users.findAndModify({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, [], { $set: { 'playing' : playing } }, { new:true }, function(err, result) {
-		console.log('SYNC: ' + moment().format('dddd, MMMM Do YYYY, h:mm:ss a') + ' : ' + result);
-		res.send(result);
-	});
+  Users.findAndModify({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, [], { $set: { 'playing' : req.body } }, { new:true }, function(err, result) {
+    res.send(result);
+  });
 });
 
 //
@@ -737,17 +731,16 @@ app.post('/settings', loadUser, function(req, res) {
 //
 
 app.get('/settings', loadUser, function(req, res) {
-	Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, user) {
-		var playing = user['playing'];
-		res.render('settings', {
-			locals: {
-				username: req.session.userID,
-				feeds: [],
-				podcasts: [],
-				playing: playing
-			}
-		});
-	});
+  Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, user) {
+    res.render('settings', {
+      locals: {
+        username: req.session.userID,
+        feeds: [],
+        podcasts: [],
+        playing: user['playing']
+      }
+    });
+  });
 });
 
 app.post('/settings/update-password', loadUser, function(req, res) {

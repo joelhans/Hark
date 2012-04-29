@@ -10,7 +10,7 @@ ROADMAP
   [x] --  Add the ability to edit the name of feeds.
   [x] --  Download, link-through buttons for each feed.
   [x] --  A functional description section for each podcast.
-  [ ] --  Functioning cookies/session management.
+  [x] --  Functioning cookies/session management.
             * Mostly, this requires a way to route logged-in users from /login 
               to /listen.
           Bug fixes.
@@ -22,6 +22,8 @@ ROADMAP
   [ ] --  Sync reset when the user is done listening to a feed.
   [ ] --  Better responsiveness in UI.
             * Will mostly entail more catches for small/mobile screens.
+          Bug fixes.
+            [x] --  Listen syncing doesn't appear to work all that well.
 
   1.0
   ----------
@@ -33,9 +35,8 @@ ROADMAP
 
 BUGS
 
-[ ] --  Listen syncing doesn't appear to work all that well.
 [ ] --  Account deletion doesn't route the user back home once it's done.
-[ ] --  Rapid-click on "mark as listened" causes some to not have successful POSTs.
+[ ] --  Rapid-click on "mark as listened" causes some to not have successful POSTs. (Web sockets?)
 
 
 
