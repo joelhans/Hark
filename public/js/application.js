@@ -7,9 +7,6 @@ $(document).ready(function() {
 	var mediaData,
 		progress;
 
-	var myDate = new Date();
-	console.log(myDate.getFullYear());
-
 	//
 	// 	HTML5 History implementation via History.js: https://github.com/balupton/History.js/
 	//
@@ -88,7 +85,7 @@ $(document).ready(function() {
 		},
 		ended: function(d) {
 			clearInterval(updatePlaying);
-			$('li[data-uuid="' + mediaData.id + '"]')
+			$('[data-uuid="' + mediaData.id + '"]')
 				.animate(
 					{ opacity: '0' },
 					{ duration: 600
@@ -98,17 +95,14 @@ $(document).ready(function() {
 					{ duration: 600,
 					complete: function() {
 						$(this).remove();
-						progress = '';
-						mediaData = {};
-						playStatus(progress, mediaData);
-						updateStatus();
+						
 					}
 			});
 			$.ajax({
 				type: 'POST',
 				url: '/listen/' + mediaData.feed + '/listened/' + mediaData.id,
 				data: mediaData,
-				success: function() {  },
+				success: function() {},
 				error: function() {
 					console.log('jPlayer had an error.');
 				}
@@ -490,8 +484,6 @@ $(document).ready(function() {
 		});
 	});
 
-	// Instead of all this nonsense, just completely flip all the li elements. They're already in order.
-
 	$(document).delegate('.sort-date', 'click', function(e) {
 		e.preventDefault();
 
@@ -504,8 +496,6 @@ $(document).ready(function() {
 			}
 			feedSortMe.push(sortData);
 		});
-
-		console.log(feedSortMe);
 
 		if ( $('.sort-date').hasClass('descending') !== true ) {
 			feedSortMe.sort(function (a,b) {

@@ -1,7 +1,7 @@
 //
 //	HARK!
 //
-//	Current version: 0.0.2
+//	Current version: 0.1.3
 //
 //	Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //	Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -571,7 +571,7 @@ app.post('/listen/:feed/listened/:_id', loadUser, function(req, res) {
 
 	var id = req.param('id');
 
-	Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
+	Users.findAndModify({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, [], { $set: { 'playing' : {} } }, { new:true }, function(err, result) {
 		Feeds.findAndModify({ $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ] , 'pods.podUUID' : id }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
 			if(err) { throw err; }
 			res.send(result);
