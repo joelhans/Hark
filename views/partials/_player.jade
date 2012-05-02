@@ -31,5 +31,5 @@ div.podcast-player
 					div.jp-current-time
 					div.jp-duration
 				div.jp-playing
-					if playing
+					- if (typeof(playing.podTitle) == 'undefined')
 						!=partial('partials/player-playing')

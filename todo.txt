@@ -18,8 +18,12 @@ ROADMAP
 
   0.2
   ----------
-  [ ] --  Sorting abilities for podcasts (date, feed, etc).
-  [ ] --  Sync reset when the user is done listening to a feed.
+  [x] --  Sorting abilities for podcasts (date, feed, etc).
+            [x] --  By date.
+            [x] --  By feed.
+            [x] --  By podcast name.
+            [x] --  Ascending/descending arrows.
+  [x] --  Sync reset when the user is done listening to a feed.
   [ ] --  Better responsiveness in UI.
             * Will mostly entail more catches for small/mobile screens.
           Bug fixes.
@@ -37,10 +41,13 @@ BUGS
 
 [ ] --  Account deletion doesn't route the user back home once it's done.
 [ ] --  Rapid-click on "mark as listened" causes some to not have successful POSTs. (Web sockets?)
+[ ] --  Columns for individual podcasts don't line up upon resizing.
+          * (Column height - 24px) / 2 = amount of padding above/below paragraph element.
 
 
+OTHER FEATURES
 
-ORPHANED FEATURES
+Allow people to "bookmark" various points in a podcast and append them with notes, etc.
 
 When listening to a podcast, make some kind of "pulse" on its feed in the left column.
 

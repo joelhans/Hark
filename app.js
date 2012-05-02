@@ -260,7 +260,9 @@ app.post('/listen/add', loadUser, function(req, res) {
 
 	var feedURL = req.body.url;
 
-	Feeds.findOne({ 'href': feedURL }, function(err, result) {
+  console.log(feedURL);
+
+	Feeds.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ], 'href': feedURL }, function(err, result) {
 		if ( result !== null ) {
 			req.flash('errorAddFeed', "You already added that feed!");
 			Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {

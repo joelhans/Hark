@@ -1,0 +1,1487 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/usr/bin/npm', 'install', 'express@3.0' ]
+info using npm@1.1.18
+info using node@v0.6.16
+verbose config file /home/panopticoff/.npmrc
+verbose config file /usr/etc/npmrc
+verbose config file /usr/lib/node_modules/npm/npmrc
+verbose caching /home/panopticoff/web/Hark/package.json
+verbose loadDefaults Hark@0.0.1
+verbose from cache /home/panopticoff/web/Hark/package.json
+verbose readDependencies: using package.json deps
+verbose cache add [ 'express@3.0', null ]
+silly cache add: name, spec, args [ undefined, 'express@3.0', [ 'express@3.0', null ] ]
+verbose parsed url { pathname: 'express@3.0',
+verbose parsed url   path: 'express@3.0',
+verbose parsed url   href: 'express@3.0' }
+silly cache add: name, spec, args [ 'express', '3.0', [ 'express', '3.0' ] ]
+verbose parsed url { pathname: '3.0', path: '3.0', href: '3.0' }
+verbose addNamed [ 'express', '3.0' ]
+verbose addNamed [ null, '>=3.0.0- <3.1.0-' ]
+silly name, range, hasData [ 'express', '>=3.0.0- <3.1.0-', false ]
+verbose raw, before any munging express
+verbose url resolving [ 'https://registry.npmjs.org/', './express' ]
+verbose url resolved https://registry.npmjs.org/express
+verbose etag "AXYOLXJ5G938N1XTY73YJW65V"
+http GET https://registry.npmjs.org/express
+http 304 https://registry.npmjs.org/express
+silly get cb [ 304,
+silly get cb   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+silly get cb     etag: '"AXYOLXJ5G938N1XTY73YJW65V"',
+silly get cb     date: 'Tue, 01 May 2012 15:03:49 GMT',
+silly get cb     'content-length': '0' } ]
+verbose etag express from cache
+silly name, range, hasData 2 [ 'express', '>=3.0.0- <3.1.0-', true ]
+silly versions [ 'express',
+silly versions   [ '0.14.0',
+silly versions     '0.14.1',
+silly versions     '1.0.0beta',
+silly versions     '1.0.0beta2',
+silly versions     '1.0.0rc',
+silly versions     '1.0.0rc2',
+silly versions     '1.0.0rc3',
+silly versions     '1.0.0rc4',
+silly versions     '1.0.0',
+silly versions     '1.0.1',
+silly versions     '1.0.2',
+silly versions     '1.0.3',
+silly versions     '1.0.4',
+silly versions     '1.0.5',
+silly versions     '1.0.6',
+silly versions     '1.0.7',
+silly versions     '2.5.0',
+silly versions     '2.5.1',
+silly versions     '2.5.2',
+silly versions     '2.5.3',
+silly versions     '2.5.4',
+silly versions     '2.5.5',
+silly versions     '2.5.6',
+silly versions     '2.5.7',
+silly versions     '2.5.8',
+silly versions     '2.5.9',
+silly versions     '3.0.0alpha1',
+silly versions     '3.0.0alpha2' ] ]
+verbose bin dist [ '0.6-ares1.7.5-DEV-evundefined-openssl1.0.1b-v83.6.6.25-linux-ia32-3.3.2-1-ARCH',
+verbose bin dist   { shasum: 'e82f7ba6b2c3e678c44343d0ba4fe339ca928e6c',
+verbose bin dist     tarball: 'http://registry.npmjs.org/express/-/express-3.0.0alpha2.tgz' } ]
+verbose caching /home/panopticoff/.npm/express/3.0.0alpha2/package/package.json
+verbose loadDefaults express@3.0.0alpha2
+silly resolved [ { name: 'express',
+silly resolved     description: 'Sinatra inspired web development framework',
+silly resolved     version: '3.0.0alpha2',
+silly resolved     author: { name: 'TJ Holowaychuk', email: 'tj@vision-media.ca' },
+silly resolved     contributors: 
+silly resolved      [ { name: 'TJ Holowaychuk', email: 'tj@vision-media.ca' },
+silly resolved        { name: 'Aaron Heckmann',
+silly resolved          email: 'aaron.heckmann+github@gmail.com' },
+silly resolved        { name: 'Ciaran Jessup', email: 'ciaranj@gmail.com' },
+silly resolved        { name: 'Guillermo Rauch', email: 'rauchg@gmail.com' } ],
+silly resolved     dependencies: 
+silly resolved      { connect: '2.2.1',
+silly resolved        commander: '0.5.2',
+silly resolved        mime: '1.2.5',
+silly resolved        mkdirp: '0.3.1',
+silly resolved        crc: '0.1.0',
+silly resolved        debug: '*' },
+silly resolved     devDependencies: 
+silly resolved      { ejs: '*',
+silly resolved        mocha: '*',
+silly resolved        jade: '*',
+silly resolved        stylus: '*',
+silly resolved        should: '*',
+silly resolved        'connect-redis': '*',
+silly resolved        'github-flavored-markdown': '*' },
+silly resolved     publishConfig: { tag: '3.0' },
+silly resolved     keywords: 
+silly resolved      [ 'express',
+silly resolved        'framework',
+silly resolved        'sinatra',
+silly resolved        'web',
+silly resolved        'rest',
+silly resolved        'restful',
+silly resolved        'router' ],
+silly resolved     repository: { type: 'git', url: 'git://github.com/visionmedia/express.git' },
+silly resolved     main: 'index',
+silly resolved     bin: { express: './bin/express' },
+silly resolved     scripts: { prepublish: 'npm prune', test: 'make test' },
+silly resolved     engines: { node: '>= 0.5.0 < 0.7.0' },
+silly resolved     _id: 'express@3.0.0alpha2',
+silly resolved     optionalDependencies: {},
+silly resolved     _engineSupported: true,
+silly resolved     _npmVersion: '1.1.18',
+silly resolved     _nodeVersion: 'v0.6.16',
+silly resolved     _defaultsLoaded: true,
+silly resolved     _from: 'express@3.0' } ]
+info into /home/panopticoff/web/Hark express@3.0.0alpha2
+info installOne express@3.0.0alpha2
+verbose from cache /home/panopticoff/.npm/express/3.0.0alpha2/package/package.json
+info unbuild /home/panopticoff/web/Hark/node_modules/express
+verbose unpack /home/panopticoff/.npm/express/3.0.0alpha2/package.tgz
+silly gunzTarPerm modes [ '755', '644' ]
+silly extracting entry test.js
+silly extracting entry Readme.md
+silly extracting entry package.json
+silly extracting entry Makefile
+silly extracting entry LICENSE
+silly extracting entry lib/
+silly extracting entry lib/view.js
+silly extracting entry lib/utils.js
+silly extracting entry lib/router/
+silly extracting entry lib/router/route.js
+silly extracting entry lib/router/methods.js
+silly extracting entry lib/router/index.js
+silly extracting entry lib/response.js
+silly extracting entry lib/request.js
+silly extracting entry lib/middleware.js
+silly extracting entry lib/express.js
+silly extracting entry lib/application.js
+silly extracting entry index.js
+silly extracting entry History.md
+silly extracting entry client.js
+silly extracting entry bin/
+silly extracting entry bin/express
+silly extracting entry app.pid
+silly extracting entry .travis.yml
+silly extracting entry .npmignore
+verbose caching /home/panopticoff/web/Hark/node_modules/express/package.json
+verbose loadDefaults express@3.0.0alpha2
+info preinstall express@3.0.0alpha2
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/package.json
+verbose readDependencies: using package.json deps
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/package.json
+verbose readDependencies: using package.json deps
+verbose cache add [ 'connect@2.2.1', null ]
+silly cache add: name, spec, args [ undefined, 'connect@2.2.1', [ 'connect@2.2.1', null ] ]
+verbose parsed url { pathname: 'connect@2.2.1',
+verbose parsed url   path: 'connect@2.2.1',
+verbose parsed url   href: 'connect@2.2.1' }
+silly cache add: name, spec, args [ 'connect', '2.2.1', [ 'connect', '2.2.1' ] ]
+verbose parsed url { pathname: '2.2.1', path: '2.2.1', href: '2.2.1' }
+verbose addNamed [ 'connect', '2.2.1' ]
+verbose addNamed [ '2.2.1', '2.2.1' ]
+verbose cache add [ 'commander@0.5.2', null ]
+silly cache add: name, spec, args [ undefined, 'commander@0.5.2', [ 'commander@0.5.2', null ] ]
+verbose parsed url { pathname: 'commander@0.5.2',
+verbose parsed url   path: 'commander@0.5.2',
+verbose parsed url   href: 'commander@0.5.2' }
+silly cache add: name, spec, args [ 'commander', '0.5.2', [ 'commander', '0.5.2' ] ]
+verbose parsed url { pathname: '0.5.2', path: '0.5.2', href: '0.5.2' }
+verbose addNamed [ 'commander', '0.5.2' ]
+verbose addNamed [ '0.5.2', '0.5.2' ]
+verbose raw, before any munging connect/2.2.1
+verbose url resolving [ 'https://registry.npmjs.org/', './connect/2.2.1' ]
+verbose url resolved https://registry.npmjs.org/connect/2.2.1
+http GET https://registry.npmjs.org/connect/2.2.1
+verbose raw, before any munging commander/0.5.2
+verbose url resolving [ 'https://registry.npmjs.org/', './commander/0.5.2' ]
+verbose url resolved https://registry.npmjs.org/commander/0.5.2
+verbose etag "I6G8UAWXE4G4ANQW9M0K6II6"
+http GET https://registry.npmjs.org/commander/0.5.2
+verbose cache add [ 'mime@1.2.5', null ]
+silly cache add: name, spec, args [ undefined, 'mime@1.2.5', [ 'mime@1.2.5', null ] ]
+verbose parsed url { pathname: 'mime@1.2.5',
+verbose parsed url   path: 'mime@1.2.5',
+verbose parsed url   href: 'mime@1.2.5' }
+silly cache add: name, spec, args [ 'mime', '1.2.5', [ 'mime', '1.2.5' ] ]
+verbose parsed url { pathname: '1.2.5', path: '1.2.5', href: '1.2.5' }
+verbose addNamed [ 'mime', '1.2.5' ]
+verbose addNamed [ '1.2.5', '1.2.5' ]
+verbose cache add [ 'mkdirp@0.3.1', null ]
+silly cache add: name, spec, args [ undefined, 'mkdirp@0.3.1', [ 'mkdirp@0.3.1', null ] ]
+verbose parsed url { pathname: 'mkdirp@0.3.1',
+verbose parsed url   path: 'mkdirp@0.3.1',
+verbose parsed url   href: 'mkdirp@0.3.1' }
+silly cache add: name, spec, args [ 'mkdirp', '0.3.1', [ 'mkdirp', '0.3.1' ] ]
+verbose parsed url { pathname: '0.3.1', path: '0.3.1', href: '0.3.1' }
+verbose addNamed [ 'mkdirp', '0.3.1' ]
+verbose addNamed [ '0.3.1', '0.3.1' ]
+verbose cache add [ 'crc@0.1.0', null ]
+silly cache add: name, spec, args [ undefined, 'crc@0.1.0', [ 'crc@0.1.0', null ] ]
+verbose parsed url { pathname: 'crc@0.1.0', path: 'crc@0.1.0', href: 'crc@0.1.0' }
+silly cache add: name, spec, args [ 'crc', '0.1.0', [ 'crc', '0.1.0' ] ]
+verbose parsed url { pathname: '0.1.0', path: '0.1.0', href: '0.1.0' }
+verbose addNamed [ 'crc', '0.1.0' ]
+verbose addNamed [ '0.1.0', '0.1.0' ]
+verbose raw, before any munging mime/1.2.5
+verbose url resolving [ 'https://registry.npmjs.org/', './mime/1.2.5' ]
+verbose url resolved https://registry.npmjs.org/mime/1.2.5
+verbose etag "7WLVRUYMHID3S4PH9UYQWSPCG"
+http GET https://registry.npmjs.org/mime/1.2.5
+verbose raw, before any munging mkdirp/0.3.1
+verbose url resolving [ 'https://registry.npmjs.org/', './mkdirp/0.3.1' ]
+verbose url resolved https://registry.npmjs.org/mkdirp/0.3.1
+verbose etag "1WKQ8PA9A1ZLBK3X1KLCULN0K"
+http GET https://registry.npmjs.org/mkdirp/0.3.1
+verbose raw, before any munging crc/0.1.0
+verbose url resolving [ 'https://registry.npmjs.org/', './crc/0.1.0' ]
+verbose url resolved https://registry.npmjs.org/crc/0.1.0
+verbose etag "1FWU5Y31PMX4L9URMIEQ7683N"
+http GET https://registry.npmjs.org/crc/0.1.0
+verbose cache add [ 'debug@*', null ]
+silly cache add: name, spec, args [ undefined, 'debug@*', [ 'debug@*', null ] ]
+verbose parsed url { pathname: 'debug@*', path: 'debug@*', href: 'debug@*' }
+silly cache add: name, spec, args [ 'debug', '*', [ 'debug', '*' ] ]
+verbose parsed url { pathname: '*', path: '*', href: '*' }
+verbose addNamed [ 'debug', '*' ]
+verbose addNamed [ null, '' ]
+silly name, range, hasData [ 'debug', '', false ]
+verbose raw, before any munging debug
+verbose url resolving [ 'https://registry.npmjs.org/', './debug' ]
+verbose url resolved https://registry.npmjs.org/debug
+verbose etag "92X6MV3X72Q32PS39ITCKXUTH"
+http GET https://registry.npmjs.org/debug
+http 304 https://registry.npmjs.org/commander/0.5.2
+silly get cb [ 304,
+silly get cb   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+silly get cb     etag: '"I6G8UAWXE4G4ANQW9M0K6II6"',
+silly get cb     date: 'Tue, 01 May 2012 15:03:50 GMT',
+silly get cb     'content-length': '0' } ]
+verbose etag commander/0.5.2 from cache
+verbose bin dist [ '0.6-ares1.7.5-DEV-evundefined-openssl1.0.1b-v83.6.6.25-linux-ia32-3.3.2-1-ARCH',
+verbose bin dist   { shasum: '0cc59302bc1daa1ddc92e1f7ffb82599581a79b6',
+verbose bin dist     tarball: 'http://registry.npmjs.org/commander/-/commander-0.5.2.tgz' } ]
+verbose caching /home/panopticoff/.npm/commander/0.5.2/package/package.json
+verbose loadDefaults commander@0.5.2
+http 304 https://registry.npmjs.org/crc/0.1.0
+silly get cb [ 304,
+silly get cb   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+silly get cb     etag: '"1FWU5Y31PMX4L9URMIEQ7683N"',
+silly get cb     date: 'Tue, 01 May 2012 15:03:50 GMT',
+silly get cb     'content-length': '0' } ]
+verbose etag crc/0.1.0 from cache
+verbose bin dist [ '0.6-ares1.7.5-DEV-evundefined-openssl1.0.1b-v83.6.6.25-linux-ia32-3.3.2-1-ARCH',
+verbose bin dist   { tarball: 'http://registry.npmjs.org/crc/-/crc@0.1.0.tgz' } ]
+verbose caching /home/panopticoff/.npm/crc/0.1.0/package/package.json
+verbose loadDefaults crc@0.1.0
+http 304 https://registry.npmjs.org/mkdirp/0.3.1
+silly get cb [ 304,
+silly get cb   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+silly get cb     etag: '"1WKQ8PA9A1ZLBK3X1KLCULN0K"',
+silly get cb     date: 'Tue, 01 May 2012 15:03:50 GMT',
+silly get cb     'content-length': '0' } ]
+verbose etag mkdirp/0.3.1 from cache
+verbose bin dist [ '0.6-ares1.7.5-DEV-evundefined-openssl1.0.1b-v83.6.6.25-linux-ia32-3.3.2-1-ARCH',
+verbose bin dist   { shasum: 'bee3db22a2aa1c81d4b4c0db39c7da9888799593',
+verbose bin dist     tarball: 'http://registry.npmjs.org/mkdirp/-/mkdirp-0.3.1.tgz' } ]
+verbose caching /home/panopticoff/.npm/mkdirp/0.3.1/package/package.json
+verbose loadDefaults mkdirp@0.3.1
+http 304 https://registry.npmjs.org/mime/1.2.5
+silly get cb [ 304,
+silly get cb   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+silly get cb     etag: '"7WLVRUYMHID3S4PH9UYQWSPCG"',
+silly get cb     date: 'Tue, 01 May 2012 15:03:50 GMT',
+silly get cb     'content-length': '0' } ]
+verbose etag mime/1.2.5 from cache
+verbose bin dist [ '0.6-ares1.7.5-DEV-evundefined-openssl1.0.1b-v83.6.6.25-linux-ia32-3.3.2-1-ARCH',
+verbose bin dist   { shasum: '9eed073022a8bf5e16c8566c6867b8832bfbfa13',
+verbose bin dist     tarball: 'http://registry.npmjs.org/mime/-/mime-1.2.5.tgz' } ]
+verbose caching /home/panopticoff/.npm/mime/1.2.5/package/package.json
+verbose loadDefaults mime@1.2.5
+http 200 https://registry.npmjs.org/connect/2.2.1
+silly get cb [ 200,
+silly get cb   { vary: 'Accept',
+silly get cb     server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+silly get cb     etag: '"2PW2H5W73WA023OZTBYBYO5L4"',
+silly get cb     date: 'Tue, 01 May 2012 15:03:50 GMT',
+silly get cb     'content-type': 'application/json',
+silly get cb     'content-length': '1020' } ]
+verbose bin dist [ '0.6-ares1.7.5-DEV-evundefined-openssl1.0.1b-v83.6.6.25-linux-ia32-3.3.2-1-ARCH',
+verbose bin dist   { shasum: '54b4405ae8ed4777c62a0ad9f9c1de68066ec381',
+verbose bin dist     tarball: 'http://registry.npmjs.org/connect/-/connect-2.2.1.tgz' } ]
+verbose addRemoteTarball [ 'https://registry.npmjs.org/connect/-/connect-2.2.1.tgz',
+verbose addRemoteTarball   '54b4405ae8ed4777c62a0ad9f9c1de68066ec381' ]
+verbose fetch to /tmp/npm-1335884527850/1335884527850-0.008154252311214805/tmp.tgz
+http GET https://registry.npmjs.org/connect/-/connect-2.2.1.tgz
+http 304 https://registry.npmjs.org/debug
+silly get cb [ 304,
+silly get cb   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+silly get cb     etag: '"92X6MV3X72Q32PS39ITCKXUTH"',
+silly get cb     date: 'Tue, 01 May 2012 15:03:50 GMT',
+silly get cb     'content-length': '0' } ]
+verbose etag debug from cache
+silly name, range, hasData 2 [ 'debug', '', true ]
+silly versions [ 'debug',
+silly versions   [ '0.0.1',
+silly versions     '0.1.0',
+silly versions     '0.2.0',
+silly versions     '0.3.0',
+silly versions     '0.4.0',
+silly versions     '0.4.1',
+silly versions     '0.5.0',
+silly versions     '0.6.0' ] ]
+verbose bin dist [ '0.6-ares1.7.5-DEV-evundefined-openssl1.0.1b-v83.6.6.25-linux-ia32-3.3.2-1-ARCH',
+verbose bin dist   { shasum: 'ce9d5d025d5294b3f0748a494bebaf3c9fd8734f',
+verbose bin dist     tarball: 'http://registry.npmjs.org/debug/-/debug-0.6.0.tgz' } ]
+verbose caching /home/panopticoff/.npm/debug/0.6.0/package/package.json
+verbose loadDefaults debug@0.6.0
+http 200 https://registry.npmjs.org/connect/-/connect-2.2.1.tgz
+silly updated sha bytes 40960
+silly updated sha bytes 35125
+info shasum 54b4405ae8ed4777c62a0ad9f9c1de68066ec381
+info shasum /tmp/npm-1335884527850/1335884527850-0.008154252311214805/tmp.tgz
+verbose unpack /tmp/npm-1335884527850/1335884527850-0.008154252311214805/tmp.tgz
+silly gunzTarPerm modes [ '755', '644' ]
+silly extracting entry .npmignore
+silly extracting entry index.js
+silly extracting entry lib/
+silly extracting entry lib/cache.js
+silly extracting entry lib/connect.js
+silly extracting entry lib/index.js
+silly extracting entry lib/middleware/
+silly extracting entry lib/middleware/basicAuth.js
+silly extracting entry lib/middleware/bodyParser.js
+silly extracting entry lib/middleware/compress.js
+silly extracting entry lib/middleware/cookieParser.js
+silly extracting entry lib/middleware/cookieSession.js
+silly extracting entry lib/middleware/csrf.js
+silly extracting entry lib/middleware/directory.js
+silly extracting entry lib/middleware/errorHandler.js
+silly extracting entry lib/middleware/favicon.js
+silly extracting entry lib/middleware/json.js
+silly extracting entry lib/middleware/limit.js
+silly extracting entry lib/middleware/logger.js
+silly extracting entry lib/middleware/methodOverride.js
+silly extracting entry lib/middleware/multipart.js
+silly extracting entry lib/middleware/query.js
+silly extracting entry lib/middleware/responseTime.js
+silly extracting entry lib/middleware/session/
+silly extracting entry lib/middleware/session/cookie.js
+silly extracting entry lib/middleware/session/memory.js
+silly extracting entry lib/middleware/session/session.js
+silly extracting entry lib/middleware/session/store.js
+silly extracting entry lib/middleware/session.js
+silly extracting entry lib/middleware/static.js
+silly extracting entry lib/middleware/staticCache.js
+silly extracting entry lib/middleware/urlencoded.js
+silly extracting entry lib/middleware/vhost.js
+silly extracting entry lib/patch.js
+silly extracting entry lib/proto.js
+silly extracting entry lib/public/
+silly extracting entry lib/public/directory.html
+silly extracting entry lib/public/error.html
+silly extracting entry lib/public/favicon.ico
+silly extracting entry lib/public/icons/
+silly extracting entry lib/public/icons/page.png
+silly extracting entry lib/public/icons/page_add.png
+silly extracting entry lib/public/icons/page_attach.png
+silly extracting entry lib/public/icons/page_code.png
+silly extracting entry lib/public/icons/page_copy.png
+silly extracting entry lib/public/icons/page_delete.png
+silly extracting entry lib/public/icons/page_edit.png
+silly extracting entry lib/public/icons/page_error.png
+silly extracting entry lib/public/icons/page_excel.png
+silly extracting entry lib/public/icons/page_find.png
+silly extracting entry lib/public/icons/page_gear.png
+silly extracting entry lib/public/icons/page_go.png
+silly extracting entry lib/public/icons/page_green.png
+silly extracting entry lib/public/icons/page_key.png
+silly extracting entry lib/public/icons/page_lightning.png
+silly extracting entry lib/public/icons/page_link.png
+silly extracting entry lib/public/icons/page_paintbrush.png
+silly extracting entry lib/public/icons/page_paste.png
+silly extracting entry lib/public/icons/page_red.png
+silly extracting entry lib/public/icons/page_refresh.png
+silly extracting entry lib/public/icons/page_save.png
+silly extracting entry lib/public/icons/page_white.png
+silly extracting entry lib/public/icons/page_white_acrobat.png
+silly extracting entry lib/public/icons/page_white_actionscript.png
+silly extracting entry lib/public/icons/page_white_add.png
+silly extracting entry lib/public/icons/page_white_c.png
+silly extracting entry lib/public/icons/page_white_camera.png
+silly extracting entry lib/public/icons/page_white_cd.png
+silly extracting entry lib/public/icons/page_white_code.png
+silly extracting entry lib/public/icons/page_white_code_red.png
+silly extracting entry lib/public/icons/page_white_coldfusion.png
+silly extracting entry lib/public/icons/page_white_compressed.png
+silly extracting entry lib/public/icons/page_white_copy.png
+silly extracting entry lib/public/icons/page_white_cplusplus.png
+silly extracting entry lib/public/icons/page_white_csharp.png
+silly extracting entry lib/public/icons/page_white_cup.png
+silly extracting entry lib/public/icons/page_white_database.png
+silly extracting entry lib/public/icons/page_white_delete.png
+silly extracting entry lib/public/icons/page_white_dvd.png
+silly extracting entry lib/public/icons/page_white_edit.png
+silly extracting entry lib/public/icons/page_white_error.png
+silly extracting entry lib/public/icons/page_white_excel.png
+silly extracting entry lib/public/icons/page_white_find.png
+silly extracting entry lib/public/icons/page_white_flash.png
+silly extracting entry lib/public/icons/page_white_freehand.png
+silly extracting entry lib/public/icons/page_white_gear.png
+silly extracting entry lib/public/icons/page_white_get.png
+silly extracting entry lib/public/icons/page_white_go.png
+silly extracting entry lib/public/icons/page_white_h.png
+silly extracting entry lib/public/icons/page_white_horizontal.png
+silly extracting entry lib/public/icons/page_white_key.png
+silly extracting entry lib/public/icons/page_white_lightning.png
+silly extracting entry lib/public/icons/page_white_link.png
+silly extracting entry lib/public/icons/page_white_magnify.png
+silly extracting entry lib/public/icons/page_white_medal.png
+silly extracting entry lib/public/icons/page_white_office.png
+silly extracting entry lib/public/icons/page_white_paint.png
+silly extracting entry lib/public/icons/page_white_paintbrush.png
+silly extracting entry lib/public/icons/page_white_paste.png
+silly extracting entry lib/public/icons/page_white_php.png
+silly extracting entry lib/public/icons/page_white_picture.png
+silly extracting entry lib/public/icons/page_white_powerpoint.png
+silly extracting entry lib/public/icons/page_white_put.png
+silly extracting entry lib/public/icons/page_white_ruby.png
+silly extracting entry lib/public/icons/page_white_stack.png
+silly extracting entry lib/public/icons/page_white_star.png
+silly extracting entry lib/public/icons/page_white_swoosh.png
+silly extracting entry lib/public/icons/page_white_text.png
+silly extracting entry lib/public/icons/page_white_text_width.png
+silly extracting entry lib/public/icons/page_white_tux.png
+silly extracting entry lib/public/icons/page_white_vector.png
+silly extracting entry lib/public/icons/page_white_visualstudio.png
+silly extracting entry lib/public/icons/page_white_width.png
+silly extracting entry lib/public/icons/page_white_word.png
+silly extracting entry lib/public/icons/page_white_world.png
+silly extracting entry lib/public/icons/page_white_wrench.png
+silly extracting entry lib/public/icons/page_white_zip.png
+silly extracting entry lib/public/icons/page_word.png
+silly extracting entry lib/public/icons/page_world.png
+silly extracting entry lib/public/style.css
+silly extracting entry lib/utils.js
+silly extracting entry LICENSE
+silly extracting entry package.json
+silly extracting entry test/
+silly extracting entry test/fixtures/
+silly extracting entry test/fixtures/.hidden
+silly extracting entry test.js
+verbose caching /tmp/npm-1335884527850/1335884527850-0.008154252311214805/package/package.json
+verbose loadDefaults connect@2.2.1
+verbose from cache /tmp/npm-1335884527850/1335884527850-0.008154252311214805/package/package.json
+verbose tar.pack [ '/home/panopticoff/.npm/connect/2.2.1/package.tgz',
+verbose tar.pack   '/tmp/npm-1335884527850/1335884527850-0.008154252311214805/package' ]
+verbose tarball /home/panopticoff/.npm/connect/2.2.1/package.tgz
+verbose folder /tmp/npm-1335884527850/1335884527850-0.008154252311214805/package
+verbose unpack /home/panopticoff/.npm/connect/2.2.1/package.tgz
+silly gunzTarPerm modes [ '755', '644' ]
+silly extracting entry package.json
+silly extracting entry .npmignore
+silly extracting entry LICENSE
+silly extracting entry test.js
+silly extracting entry index.js
+silly extracting entry lib/utils.js
+silly extracting entry lib/proto.js
+silly extracting entry lib/patch.js
+silly extracting entry lib/index.js
+silly extracting entry lib/connect.js
+silly extracting entry lib/cache.js
+silly extracting entry lib/public/style.css
+silly extracting entry lib/public/icons/page_white_edit.png
+silly extracting entry lib/public/icons/page_world.png
+silly extracting entry lib/public/icons/page_white_zip.png
+silly extracting entry lib/public/icons/page_white_wrench.png
+silly extracting entry lib/public/icons/page_white_world.png
+silly extracting entry lib/public/icons/page_white_word.png
+silly extracting entry lib/public/icons/page_white_width.png
+silly extracting entry lib/public/icons/page_white_visualstudio.png
+silly extracting entry lib/public/icons/page_white_vector.png
+silly extracting entry lib/public/icons/page_white_tux.png
+silly extracting entry lib/public/icons/page_white_text_width.png
+silly extracting entry lib/public/icons/page_white_text.png
+silly extracting entry lib/public/icons/page_white_swoosh.png
+silly extracting entry lib/public/icons/page_white_star.png
+silly extracting entry lib/public/icons/page_white_stack.png
+silly extracting entry lib/public/icons/page_white_ruby.png
+silly extracting entry lib/public/icons/page_white_put.png
+silly extracting entry lib/public/icons/page_white_powerpoint.png
+silly extracting entry lib/public/icons/page_white_picture.png
+silly extracting entry lib/public/icons/page_white_php.png
+silly extracting entry lib/public/icons/page_white_paste.png
+silly extracting entry lib/public/icons/page_white_paintbrush.png
+silly extracting entry lib/public/icons/page_white_paint.png
+silly extracting entry lib/public/icons/page_white_office.png
+silly extracting entry lib/public/icons/page_white_medal.png
+silly extracting entry lib/public/icons/page_white_magnify.png
+silly extracting entry lib/public/icons/page_white_link.png
+silly extracting entry lib/public/icons/page_white_lightning.png
+silly extracting entry lib/public/icons/page_white_key.png
+silly extracting entry lib/public/icons/page_white_horizontal.png
+silly extracting entry lib/public/icons/page_white_h.png
+silly extracting entry lib/public/icons/page_white_go.png
+silly extracting entry lib/public/icons/page_white_get.png
+silly extracting entry lib/public/icons/page_white_gear.png
+silly extracting entry lib/public/icons/page_white_freehand.png
+silly extracting entry lib/public/icons/page_white_flash.png
+silly extracting entry lib/public/icons/page_white_find.png
+silly extracting entry lib/public/icons/page_white_excel.png
+silly extracting entry lib/public/icons/page_white_error.png
+silly extracting entry lib/public/icons/page_word.png
+silly extracting entry lib/public/icons/page_white_dvd.png
+silly extracting entry lib/public/icons/page_white_delete.png
+silly extracting entry lib/public/icons/page_white_database.png
+silly extracting entry lib/public/icons/page_white_cup.png
+silly extracting entry lib/public/icons/page_white_csharp.png
+silly extracting entry lib/public/icons/page_white_cplusplus.png
+silly extracting entry lib/public/icons/page_white_copy.png
+silly extracting entry lib/public/icons/page_white_compressed.png
+silly extracting entry lib/public/icons/page_white_coldfusion.png
+silly extracting entry lib/public/icons/page_white_code_red.png
+silly extracting entry lib/public/icons/page_white_code.png
+silly extracting entry lib/public/icons/page_white_cd.png
+silly extracting entry lib/public/icons/page_white_camera.png
+silly extracting entry lib/public/icons/page_white_c.png
+silly extracting entry lib/public/icons/page_white_add.png
+silly extracting entry lib/public/icons/page_white_actionscript.png
+silly extracting entry lib/public/icons/page_white_acrobat.png
+silly extracting entry lib/public/icons/page_white.png
+silly extracting entry lib/public/icons/page_save.png
+silly extracting entry lib/public/icons/page_refresh.png
+silly extracting entry lib/public/icons/page_red.png
+silly extracting entry lib/public/icons/page_paste.png
+silly extracting entry lib/public/icons/page_paintbrush.png
+silly extracting entry lib/public/icons/page_link.png
+silly extracting entry lib/public/icons/page_lightning.png
+silly extracting entry lib/public/icons/page_key.png
+silly extracting entry lib/public/icons/page_green.png
+silly extracting entry lib/public/icons/page_go.png
+silly extracting entry lib/public/icons/page_gear.png
+silly extracting entry lib/public/icons/page_find.png
+silly extracting entry lib/public/icons/page_excel.png
+silly extracting entry lib/public/icons/page_error.png
+silly extracting entry lib/public/icons/page_edit.png
+silly extracting entry lib/public/icons/page_delete.png
+silly extracting entry lib/public/icons/page_copy.png
+silly extracting entry lib/public/icons/page_code.png
+silly extracting entry lib/public/icons/page_attach.png
+silly extracting entry lib/public/icons/page_add.png
+silly extracting entry lib/public/icons/page.png
+silly extracting entry lib/public/favicon.ico
+silly extracting entry lib/public/error.html
+silly extracting entry lib/public/directory.html
+silly extracting entry lib/middleware/vhost.js
+silly extracting entry lib/middleware/query.js
+silly extracting entry lib/middleware/multipart.js
+silly extracting entry lib/middleware/methodOverride.js
+silly extracting entry lib/middleware/responseTime.js
+silly extracting entry lib/middleware/urlencoded.js
+silly extracting entry lib/middleware/json.js
+silly extracting entry lib/middleware/favicon.js
+silly extracting entry lib/middleware/errorHandler.js
+silly extracting entry lib/middleware/directory.js
+silly extracting entry lib/middleware/bodyParser.js
+silly extracting entry lib/middleware/csrf.js
+silly extracting entry lib/middleware/session.js
+silly extracting entry lib/middleware/cookieSession.js
+silly extracting entry lib/middleware/static.js
+silly extracting entry lib/middleware/cookieParser.js
+silly extracting entry lib/middleware/staticCache.js
+silly extracting entry lib/middleware/compress.js
+silly extracting entry lib/middleware/logger.js
+silly extracting entry lib/middleware/basicAuth.js
+silly extracting entry lib/middleware/limit.js
+silly extracting entry lib/middleware/session/store.js
+silly extracting entry lib/middleware/session/session.js
+silly extracting entry lib/middleware/session/memory.js
+silly extracting entry lib/middleware/session/cookie.js
+verbose caching /home/panopticoff/.npm/connect/2.2.1/package/package.json
+verbose loadDefaults connect@2.2.1
+silly updated sha bytes 40960
+silly updated sha bytes 33992
+info shasum 901a6dca4948900fe3942feac5e87cae938648be
+info shasum /home/panopticoff/.npm/connect/2.2.1/package.tgz
+verbose from cache /home/panopticoff/.npm/connect/2.2.1/package/package.json
+verbose chmod /home/panopticoff/.npm/connect/2.2.1/package.tgz 644
+verbose chown [ '/home/panopticoff/.npm/connect/2.2.1/package.tgz', 1000, 100 ]
+silly resolved [ { name: 'commander',
+silly resolved     version: '0.5.2',
+silly resolved     description: 'the complete solution for node.js command-line programs',
+silly resolved     keywords: [ 'command', 'option', 'parser', 'prompt', 'stdin' ],
+silly resolved     author: { name: 'TJ Holowaychuk', email: 'tj@vision-media.ca' },
+silly resolved     repository: 
+silly resolved      { type: 'git',
+silly resolved        url: 'git://github.com/visionmedia/commander.js.git' },
+silly resolved     dependencies: {},
+silly resolved     devDependencies: { should: '>= 0.0.1' },
+silly resolved     scripts: { test: 'make test' },
+silly resolved     main: 'index',
+silly resolved     engines: { node: '>= 0.4.x < 0.8.0' },
+silly resolved     _id: 'commander@0.5.2',
+silly resolved     optionalDependencies: {},
+silly resolved     _engineSupported: true,
+silly resolved     _npmVersion: '1.1.18',
+silly resolved     _nodeVersion: 'v0.6.16',
+silly resolved     _defaultsLoaded: true,
+silly resolved     _from: 'commander@0.5.2' },
+silly resolved   { name: 'crc',
+silly resolved     version: '0.1.0',
+silly resolved     description: 'CRC JavaScript implementation',
+silly resolved     author: { name: 'Alex Gorbatchev', email: 'alex.gorbatchev@gmail.com' },
+silly resolved     contributors: [],
+silly resolved     main: './lib/crc.js',
+silly resolved     scripts: {},
+silly resolved     directories: {},
+silly resolved     repository: 
+silly resolved      { type: 'git',
+silly resolved        url: 'git://github.com/alexgorbatchev/node-crc.git' },
+silly resolved     _id: 'crc@0.1.0',
+silly resolved     dependencies: {},
+silly resolved     devDependencies: {},
+silly resolved     optionalDependencies: {},
+silly resolved     engines: { node: '*' },
+silly resolved     _engineSupported: true,
+silly resolved     _npmVersion: '1.1.18',
+silly resolved     _nodeVersion: 'v0.6.16',
+silly resolved     _defaultsLoaded: true,
+silly resolved     _from: 'crc@0.1.0' },
+silly resolved   { name: 'mkdirp',
+silly resolved     description: 'Recursively mkdir, like `mkdir -p`',
+silly resolved     version: '0.3.1',
+silly resolved     author: 
+silly resolved      { name: 'James Halliday',
+silly resolved        email: 'mail@substack.net',
+silly resolved        url: 'http://substack.net' },
+silly resolved     main: './index',
+silly resolved     keywords: [ 'mkdir', 'directory' ],
+silly resolved     repository: 
+silly resolved      { type: 'git',
+silly resolved        url: 'git://github.com/substack/node-mkdirp.git' },
+silly resolved     scripts: { test: 'tap test/*.js' },
+silly resolved     devDependencies: { tap: '~0.2.4' },
+silly resolved     license: 'MIT/X11',
+silly resolved     engines: { node: '*' },
+silly resolved     _id: 'mkdirp@0.3.1',
+silly resolved     dependencies: {},
+silly resolved     optionalDependencies: {},
+silly resolved     _engineSupported: true,
+silly resolved     _npmVersion: '1.1.18',
+silly resolved     _nodeVersion: 'v0.6.16',
+silly resolved     _defaultsLoaded: true,
+silly resolved     _from: 'mkdirp@0.3.1' },
+silly resolved   { author: 
+silly resolved      { name: 'Robert Kieffer',
+silly resolved        email: 'robert@broofa.com',
+silly resolved        url: 'http://github.com/broofa' },
+silly resolved     contributors: 
+silly resolved      [ { name: 'Benjamin Thomas',
+silly resolved          email: 'benjamin@benjaminthomas.org',
+silly resolved          url: 'http://github.com/bentomas' } ],
+silly resolved     dependencies: {},
+silly resolved     description: 'A comprehensive library for mime-type mapping',
+silly resolved     devDependencies: {},
+silly resolved     keywords: [ 'util', 'mime' ],
+silly resolved     main: 'mime.js',
+silly resolved     name: 'mime',
+silly resolved     repository: { url: 'git://github.com/bentomas/node-mime.git', type: 'git' },
+silly resolved     version: '1.2.5',
+silly resolved     _id: 'mime@1.2.5',
+silly resolved     optionalDependencies: {},
+silly resolved     engines: { node: '*' },
+silly resolved     _engineSupported: true,
+silly resolved     _npmVersion: '1.1.18',
+silly resolved     _nodeVersion: 'v0.6.16',
+silly resolved     _defaultsLoaded: true,
+silly resolved     _from: 'mime@1.2.5',
+silly resolved     scripts: {} },
+silly resolved   { name: 'debug',
+silly resolved     version: '0.6.0',
+silly resolved     description: 'small debugging utility',
+silly resolved     keywords: [ 'debug', 'log', 'debugger' ],
+silly resolved     author: { name: 'TJ Holowaychuk', email: 'tj@vision-media.ca' },
+silly resolved     dependencies: {},
+silly resolved     devDependencies: { mocha: '*' },
+silly resolved     main: 'index',
+silly resolved     engines: { node: '*' },
+silly resolved     _id: 'debug@0.6.0',
+silly resolved     optionalDependencies: {},
+silly resolved     _engineSupported: true,
+silly resolved     _npmVersion: '1.1.18',
+silly resolved     _nodeVersion: 'v0.6.16',
+silly resolved     _defaultsLoaded: true,
+silly resolved     _from: 'debug@*',
+silly resolved     scripts: {} },
+silly resolved   { name: 'connect',
+silly resolved     version: '2.2.1',
+silly resolved     description: 'High performance middleware framework',
+silly resolved     keywords: [ 'framework', 'web', 'middleware', 'connect', 'rack' ],
+silly resolved     repository: { type: 'git', url: 'git://github.com/senchalabs/connect.git' },
+silly resolved     author: 
+silly resolved      { name: 'TJ Holowaychuk',
+silly resolved        email: 'tj@vision-media.ca',
+silly resolved        url: 'http://tjholowaychuk.com' },
+silly resolved     dependencies: 
+silly resolved      { qs: '0.4.2',
+silly resolved        mime: '1.2.4',
+silly resolved        formidable: '1.0.9',
+silly resolved        crc: '0.1.0',
+silly resolved        debug: '*' },
+silly resolved     devDependencies: { should: '*', mocha: '*', jade: '*', dox: '*' },
+silly resolved     main: 'index',
+silly resolved     engines: { node: '>= 0.5.0 < 0.7.0' },
+silly resolved     _id: 'connect@2.2.1',
+silly resolved     optionalDependencies: {},
+silly resolved     _engineSupported: true,
+silly resolved     _npmVersion: '1.1.18',
+silly resolved     _nodeVersion: 'v0.6.16',
+silly resolved     _defaultsLoaded: true,
+silly resolved     dist: { shasum: '901a6dca4948900fe3942feac5e87cae938648be' },
+silly resolved     _from: 'connect@2.2.1',
+silly resolved     scripts: {} } ]
+info into /home/panopticoff/web/Hark/node_modules/express commander@0.5.2
+info into /home/panopticoff/web/Hark/node_modules/express crc@0.1.0
+info into /home/panopticoff/web/Hark/node_modules/express mkdirp@0.3.1
+info into /home/panopticoff/web/Hark/node_modules/express mime@1.2.5
+info into /home/panopticoff/web/Hark/node_modules/express debug@0.6.0
+info into /home/panopticoff/web/Hark/node_modules/express connect@2.2.1
+info installOne commander@0.5.2
+info installOne crc@0.1.0
+info installOne mkdirp@0.3.1
+info installOne mime@1.2.5
+info installOne debug@0.6.0
+info installOne connect@2.2.1
+verbose from cache /home/panopticoff/.npm/commander/0.5.2/package/package.json
+info unbuild /home/panopticoff/web/Hark/node_modules/express/node_modules/commander
+verbose from cache /home/panopticoff/.npm/crc/0.1.0/package/package.json
+info unbuild /home/panopticoff/web/Hark/node_modules/express/node_modules/crc
+verbose from cache /home/panopticoff/.npm/mkdirp/0.3.1/package/package.json
+info unbuild /home/panopticoff/web/Hark/node_modules/express/node_modules/mkdirp
+verbose from cache /home/panopticoff/.npm/mime/1.2.5/package/package.json
+info unbuild /home/panopticoff/web/Hark/node_modules/express/node_modules/mime
+verbose from cache /home/panopticoff/.npm/debug/0.6.0/package/package.json
+info unbuild /home/panopticoff/web/Hark/node_modules/express/node_modules/debug
+verbose from cache /home/panopticoff/.npm/connect/2.2.1/package/package.json
+info unbuild /home/panopticoff/web/Hark/node_modules/express/node_modules/connect
+verbose unpack /home/panopticoff/.npm/commander/0.5.2/package.tgz
+verbose unpack /home/panopticoff/.npm/crc/0.1.0/package.tgz
+verbose unpack /home/panopticoff/.npm/mkdirp/0.3.1/package.tgz
+verbose unpack /home/panopticoff/.npm/mime/1.2.5/package.tgz
+verbose unpack /home/panopticoff/.npm/debug/0.6.0/package.tgz
+verbose unpack /home/panopticoff/.npm/connect/2.2.1/package.tgz
+silly gunzTarPerm modes [ '755', '644' ]
+silly gunzTarPerm modes [ '755', '644' ]
+silly gunzTarPerm modes [ '755', '644' ]
+silly gunzTarPerm modes [ '755', '644' ]
+silly gunzTarPerm modes [ '755', '644' ]
+silly gunzTarPerm modes [ '755', '644' ]
+silly extracting entry Readme.md
+silly extracting entry tests/
+silly extracting entry LICENSE
+silly extracting entry types/
+silly extracting entry Readme.md
+silly extracting entry package.json
+silly extracting entry Makefile
+silly extracting entry package.json
+silly extracting entry README.markdown
+silly extracting entry .gitignore.orig
+silly extracting entry tests/nodeunit/
+silly extracting entry tests/nodeunit/test/
+silly extracting entry types/node.types
+silly extracting entry types/mime.types
+silly extracting entry lib/
+silly extracting entry package.json
+silly extracting entry Makefile
+silly extracting entry .gitignore.rej
+silly extracting entry .npmignore
+silly extracting entry LICENSE
+silly extracting entry lib/commander.js
+silly extracting entry index.js
+silly extracting entry lib/
+silly extracting entry History.md
+silly extracting entry lib/debug.js
+silly extracting entry .travis.yml
+silly extracting entry index.js
+silly extracting entry README.md
+silly extracting entry mime.js
+silly extracting entry tests/nodeunit/test/test.html
+silly extracting entry tests/nodeunit/test/test-testcase.js
+silly extracting entry .npmignore
+silly extracting entry History.md
+silly extracting entry example/
+silly extracting entry LICENSE
+silly extracting entry example/worker.js
+silly extracting entry example/wildcards.js
+silly extracting entry .travis.yml
+silly extracting entry package.json
+silly extracting entry example/browser.html
+silly extracting entry test.js
+silly extracting entry index.js
+silly extracting entry tests/nodeunit/test/test-sandbox.js
+silly extracting entry tests/nodeunit/test/test-runtest.js
+silly extracting entry .npmignore
+silly extracting entry package.json
+silly extracting entry test.js
+silly extracting entry tests/nodeunit/test/test-runmodule.js
+silly extracting entry tests/nodeunit/test/test-runfiles.js
+silly extracting entry example/app.js
+silly extracting entry debug.js
+silly extracting entry lib/utils.js
+silly extracting entry lib/proto.js
+silly extracting entry test/
+silly extracting entry test/return_sync.js
+silly extracting entry lib/patch.js
+silly extracting entry .npmignore
+silly extracting entry tests/nodeunit/test/test-httputil.js
+silly extracting entry tests/nodeunit/test/test-failing-callbacks.js
+silly extracting entry test/chmod.js
+silly extracting entry test/sync.js
+silly extracting entry lib/index.js
+silly extracting entry lib/connect.js
+silly extracting entry tests/nodeunit/test/test-base.js
+silly extracting entry tests/nodeunit/test/fixtures/
+silly extracting entry tests/nodeunit/test/fixtures/raw_jscode3.js
+silly extracting entry tests/nodeunit/test/fixtures/raw_jscode2.js
+silly extracting entry tests/nodeunit/test/fixtures/raw_jscode1.js
+silly extracting entry tests/nodeunit/test/fixtures/mock_module2.js
+silly extracting entry tests/nodeunit/test/fixtures/mock_module1.js
+silly extracting entry test/umask.js
+silly extracting entry test/clobber.js
+silly extracting entry tests/nodeunit/test/fixtures/dir/
+silly extracting entry tests/nodeunit/test/fixtures/dir/mock_module4.js
+silly extracting entry lib/cache.js
+silly extracting entry lib/public/style.css
+silly extracting entry tests/nodeunit/test/fixtures/dir/mock_module3.js
+silly extracting entry tests/nodeunit/test/fixtures/coffee/
+silly extracting entry test/mkdirp.js
+silly extracting entry test/rel.js
+silly extracting entry lib/public/icons/page_white_edit.png
+silly extracting entry lib/public/icons/page_world.png
+silly extracting entry tests/nodeunit/test/fixtures/coffee/mock_coffee_module.coffee
+silly extracting entry tests/nodeunit/share/
+silly extracting entry lib/public/icons/page_white_zip.png
+silly extracting entry lib/public/icons/page_white_wrench.png
+silly extracting entry lib/public/icons/page_white_world.png
+silly extracting entry lib/public/icons/page_white_word.png
+silly extracting entry lib/public/icons/page_white_width.png
+silly extracting entry lib/public/icons/page_white_visualstudio.png
+silly extracting entry lib/public/icons/page_white_vector.png
+silly extracting entry test/race.js
+silly extracting entry test/perm_sync.js
+silly extracting entry lib/public/icons/page_white_tux.png
+silly extracting entry lib/public/icons/page_white_text_width.png
+silly extracting entry lib/public/icons/page_white_text.png
+silly extracting entry tests/nodeunit/share/nodeunit.css
+silly extracting entry tests/nodeunit/share/license.js
+silly extracting entry lib/public/icons/page_white_swoosh.png
+silly extracting entry lib/public/icons/page_white_star.png
+silly extracting entry tests/nodeunit/share/junit.xml.ejs
+silly extracting entry lib/public/icons/page_white_stack.png
+silly extracting entry tests/nodeunit/README.md
+silly extracting entry lib/public/icons/page_white_ruby.png
+silly extracting entry lib/public/icons/page_white_put.png
+silly extracting entry lib/public/icons/page_white_powerpoint.png
+silly extracting entry test/return.js
+silly extracting entry test/umask_sync.js
+silly extracting entry lib/public/icons/page_white_picture.png
+silly extracting entry lib/public/icons/page_white_php.png
+silly extracting entry tests/nodeunit/package.json
+silly extracting entry tests/nodeunit/nodelint.cfg
+silly extracting entry test/perm.js
+silly extracting entry index.js
+silly extracting entry tests/nodeunit/man1/
+silly extracting entry tests/nodeunit/man1/nodeunit.1
+silly extracting entry tests/nodeunit/Makefile
+silly extracting entry tests/nodeunit/LICENSE
+silly extracting entry tests/nodeunit/lib/
+silly extracting entry lib/public/icons/page_white_paste.png
+silly extracting entry lib/public/icons/page_white_paintbrush.png
+silly extracting entry tests/nodeunit/lib/utils.js
+silly extracting entry tests/nodeunit/lib/types.js
+silly extracting entry lib/public/icons/page_white_paint.png
+silly extracting entry lib/public/icons/page_white_office.png
+silly extracting entry examples/
+silly extracting entry examples/pow.js
+silly extracting entry lib/public/icons/page_white_medal.png
+silly extracting entry lib/public/icons/page_white_magnify.png
+silly extracting entry examples/pow.js.rej
+silly extracting entry lib/public/icons/page_white_link.png
+silly extracting entry lib/public/icons/page_white_lightning.png
+silly extracting entry lib/public/icons/page_white_key.png
+silly extracting entry lib/public/icons/page_white_horizontal.png
+silly extracting entry lib/public/icons/page_white_h.png
+silly extracting entry tests/nodeunit/lib/reporters/
+silly extracting entry tests/nodeunit/lib/reporters/skip_passed.js
+silly extracting entry lib/public/icons/page_white_go.png
+silly extracting entry tests/nodeunit/lib/reporters/minimal.js
+silly extracting entry examples/pow.js.orig
+silly extracting entry tests/nodeunit/lib/reporters/junit.js
+silly extracting entry tests/nodeunit/lib/reporters/index.js
+silly extracting entry tests/nodeunit/lib/reporters/html.js
+silly extracting entry tests/nodeunit/lib/reporters/default.js
+silly extracting entry tests/nodeunit/lib/reporters/browser.js
+silly extracting entry tests/nodeunit/lib/nodeunit.js
+silly extracting entry lib/public/icons/page_white_get.png
+silly extracting entry lib/public/icons/page_white_gear.png
+silly extracting entry tests/nodeunit/lib/core.js
+silly extracting entry tests/nodeunit/lib/assert.js
+silly extracting entry lib/public/icons/page_white_freehand.png
+silly extracting entry tests/nodeunit/index.js
+silly extracting entry lib/public/icons/page_white_flash.png
+silly extracting entry tests/nodeunit/img/
+silly extracting entry lib/public/icons/page_white_find.png
+silly extracting entry lib/public/icons/page_white_excel.png
+silly extracting entry tests/nodeunit/img/example_pass.png
+silly extracting entry tests/nodeunit/img/example_fail.png
+silly extracting entry lib/public/icons/page_white_error.png
+silly extracting entry lib/public/icons/page_word.png
+silly extracting entry lib/public/icons/page_white_dvd.png
+silly extracting entry tests/nodeunit/examples/
+silly extracting entry tests/nodeunit/examples/browser/
+silly extracting entry tests/nodeunit/examples/browser/test.html
+silly extracting entry lib/public/icons/page_white_delete.png
+silly extracting entry lib/public/icons/page_white_database.png
+silly extracting entry tests/nodeunit/examples/browser/suite2.js
+silly extracting entry lib/public/icons/page_white_cup.png
+silly extracting entry tests/nodeunit/examples/browser/suite1.js
+silly extracting entry tests/nodeunit/examples/browser/nodeunit.js
+silly extracting entry tests/nodeunit/doc/
+silly extracting entry lib/public/icons/page_white_csharp.png
+silly extracting entry lib/public/icons/page_white_cplusplus.png
+silly extracting entry lib/public/icons/page_white_copy.png
+verbose caching /home/panopticoff/web/Hark/node_modules/express/node_modules/commander/package.json
+verbose loadDefaults commander@0.5.2
+silly extracting entry tests/nodeunit/doc/nodeunit.md
+silly extracting entry tests/nodeunit/deps/
+info preinstall commander@0.5.2
+silly extracting entry tests/nodeunit/deps/json2.js
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/commander/package.json
+silly extracting entry tests/nodeunit/deps/ejs.js
+verbose caching /home/panopticoff/web/Hark/node_modules/express/node_modules/debug/package.json
+verbose loadDefaults debug@0.6.0
+verbose readDependencies: using package.json deps
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/commander/package.json
+silly extracting entry tests/nodeunit/deps/async.js
+verbose readDependencies: using package.json deps
+silly resolved []
+verbose about to build /home/panopticoff/web/Hark/node_modules/express/node_modules/commander
+info build /home/panopticoff/web/Hark/node_modules/express/node_modules/commander
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/commander/package.json
+verbose linkStuff [ false,
+verbose linkStuff   false,
+verbose linkStuff   false,
+verbose linkStuff   '/home/panopticoff/web/Hark/node_modules/express/node_modules' ]
+info linkStuff commander@0.5.2
+verbose linkBins commander@0.5.2
+verbose linkMans commander@0.5.2
+verbose rebuildBundles commander@0.5.2
+silly extracting entry lib/public/icons/page_white_compressed.png
+silly extracting entry lib/public/icons/page_white_coldfusion.png
+silly extracting entry tests/nodeunit/CONTRIBUTORS.md
+info install commander@0.5.2
+silly extracting entry tests/nodeunit/bin/
+info preinstall debug@0.6.0
+silly extracting entry lib/public/icons/page_white_code_red.png
+info postinstall commander@0.5.2
+silly extracting entry tests/nodeunit/bin/nodeunit.json
+silly extracting entry lib/public/icons/page_white_code.png
+silly extracting entry tests/nodeunit/bin/nodeunit
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/debug/package.json
+silly extracting entry lib/public/icons/page_white_cd.png
+silly extracting entry tests/nodeunit/.npmignore
+verbose readDependencies: using package.json deps
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/debug/package.json
+silly extracting entry lib/public/icons/page_white_camera.png
+silly extracting entry tests/crc_tests.js
+verbose readDependencies: using package.json deps
+silly resolved []
+verbose about to build /home/panopticoff/web/Hark/node_modules/express/node_modules/debug
+info build /home/panopticoff/web/Hark/node_modules/express/node_modules/debug
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/debug/package.json
+verbose linkStuff [ false,
+verbose linkStuff   false,
+verbose linkStuff   false,
+verbose linkStuff   '/home/panopticoff/web/Hark/node_modules/express/node_modules' ]
+info linkStuff debug@0.6.0
+verbose linkBins debug@0.6.0
+verbose linkMans debug@0.6.0
+verbose rebuildBundles debug@0.6.0
+silly extracting entry README.md
+info install debug@0.6.0
+silly extracting entry package.json
+info postinstall debug@0.6.0
+silly extracting entry lib/public/icons/page_white_c.png
+silly extracting entry lib/public/icons/page_white_add.png
+silly extracting entry lib/
+silly extracting entry lib/crc.js
+silly extracting entry .gitmodules
+silly extracting entry lib/public/icons/page_white_actionscript.png
+silly extracting entry lib/public/icons/page_white_acrobat.png
+silly extracting entry lib/public/icons/page_white.png
+silly extracting entry lib/public/icons/page_save.png
+verbose caching /home/panopticoff/web/Hark/node_modules/express/node_modules/mime/package.json
+verbose loadDefaults mime@1.2.5
+info preinstall mime@1.2.5
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/mime/package.json
+verbose readDependencies: using package.json deps
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/mime/package.json
+verbose readDependencies: using package.json deps
+silly resolved []
+verbose about to build /home/panopticoff/web/Hark/node_modules/express/node_modules/mime
+info build /home/panopticoff/web/Hark/node_modules/express/node_modules/mime
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/mime/package.json
+verbose linkStuff [ false,
+verbose linkStuff   false,
+verbose linkStuff   false,
+verbose linkStuff   '/home/panopticoff/web/Hark/node_modules/express/node_modules' ]
+info linkStuff mime@1.2.5
+verbose linkBins mime@1.2.5
+verbose linkMans mime@1.2.5
+verbose rebuildBundles mime@1.2.5
+silly extracting entry lib/public/icons/page_refresh.png
+silly extracting entry lib/public/icons/page_red.png
+info install mime@1.2.5
+info postinstall mime@1.2.5
+silly extracting entry lib/public/icons/page_paste.png
+silly extracting entry lib/public/icons/page_paintbrush.png
+silly extracting entry lib/public/icons/page_link.png
+silly extracting entry lib/public/icons/page_lightning.png
+silly extracting entry lib/public/icons/page_key.png
+silly extracting entry lib/public/icons/page_green.png
+silly extracting entry lib/public/icons/page_go.png
+silly extracting entry lib/public/icons/page_gear.png
+silly extracting entry lib/public/icons/page_find.png
+silly extracting entry lib/public/icons/page_excel.png
+verbose caching /home/panopticoff/web/Hark/node_modules/express/node_modules/mkdirp/package.json
+verbose loadDefaults mkdirp@0.3.1
+info preinstall mkdirp@0.3.1
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/mkdirp/package.json
+verbose readDependencies: using package.json deps
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/mkdirp/package.json
+verbose readDependencies: using package.json deps
+silly resolved []
+verbose about to build /home/panopticoff/web/Hark/node_modules/express/node_modules/mkdirp
+info build /home/panopticoff/web/Hark/node_modules/express/node_modules/mkdirp
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/mkdirp/package.json
+verbose linkStuff [ false,
+verbose linkStuff   false,
+verbose linkStuff   false,
+verbose linkStuff   '/home/panopticoff/web/Hark/node_modules/express/node_modules' ]
+info linkStuff mkdirp@0.3.1
+verbose linkBins mkdirp@0.3.1
+verbose linkMans mkdirp@0.3.1
+verbose rebuildBundles mkdirp@0.3.1
+info install mkdirp@0.3.1
+silly extracting entry lib/public/icons/page_error.png
+silly extracting entry lib/public/icons/page_edit.png
+info postinstall mkdirp@0.3.1
+silly extracting entry lib/public/icons/page_delete.png
+silly extracting entry lib/public/icons/page_copy.png
+silly extracting entry lib/public/icons/page_code.png
+silly extracting entry lib/public/icons/page_attach.png
+silly extracting entry lib/public/icons/page_add.png
+silly extracting entry lib/public/icons/page.png
+silly extracting entry lib/public/favicon.ico
+silly extracting entry lib/public/error.html
+silly extracting entry lib/public/directory.html
+silly extracting entry lib/middleware/vhost.js
+silly extracting entry lib/middleware/query.js
+silly extracting entry lib/middleware/multipart.js
+silly extracting entry lib/middleware/methodOverride.js
+silly extracting entry lib/middleware/responseTime.js
+silly extracting entry lib/middleware/urlencoded.js
+silly extracting entry lib/middleware/json.js
+silly extracting entry lib/middleware/favicon.js
+silly extracting entry lib/middleware/errorHandler.js
+silly extracting entry lib/middleware/directory.js
+silly extracting entry lib/middleware/bodyParser.js
+silly extracting entry lib/middleware/csrf.js
+silly extracting entry lib/middleware/session.js
+silly extracting entry lib/middleware/cookieSession.js
+silly extracting entry lib/middleware/static.js
+silly extracting entry lib/middleware/cookieParser.js
+silly extracting entry lib/middleware/staticCache.js
+silly extracting entry lib/middleware/compress.js
+silly extracting entry lib/middleware/logger.js
+silly extracting entry lib/middleware/basicAuth.js
+silly extracting entry lib/middleware/limit.js
+silly extracting entry lib/middleware/session/store.js
+silly extracting entry lib/middleware/session/session.js
+silly extracting entry lib/middleware/session/memory.js
+silly extracting entry lib/middleware/session/cookie.js
+verbose caching /home/panopticoff/web/Hark/node_modules/express/node_modules/crc/package.json
+verbose loadDefaults crc@0.1.0
+info preinstall crc@0.1.0
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/crc/package.json
+verbose readDependencies: using package.json deps
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/crc/package.json
+verbose readDependencies: using package.json deps
+silly resolved []
+verbose about to build /home/panopticoff/web/Hark/node_modules/express/node_modules/crc
+info build /home/panopticoff/web/Hark/node_modules/express/node_modules/crc
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/crc/package.json
+verbose linkStuff [ false,
+verbose linkStuff   false,
+verbose linkStuff   false,
+verbose linkStuff   '/home/panopticoff/web/Hark/node_modules/express/node_modules' ]
+info linkStuff crc@0.1.0
+verbose linkBins crc@0.1.0
+verbose linkMans crc@0.1.0
+verbose rebuildBundles crc@0.1.0
+info install crc@0.1.0
+info postinstall crc@0.1.0
+verbose caching /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/package.json
+verbose loadDefaults connect@2.2.1
+info preinstall connect@2.2.1
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/package.json
+verbose readDependencies: using package.json deps
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/package.json
+verbose readDependencies: using package.json deps
+verbose cache add [ 'qs@0.4.2', null ]
+silly cache add: name, spec, args [ undefined, 'qs@0.4.2', [ 'qs@0.4.2', null ] ]
+verbose parsed url { pathname: 'qs@0.4.2', path: 'qs@0.4.2', href: 'qs@0.4.2' }
+silly cache add: name, spec, args [ 'qs', '0.4.2', [ 'qs', '0.4.2' ] ]
+verbose parsed url { pathname: '0.4.2', path: '0.4.2', href: '0.4.2' }
+verbose addNamed [ 'qs', '0.4.2' ]
+verbose addNamed [ '0.4.2', '0.4.2' ]
+verbose cache add [ 'mime@1.2.4', null ]
+silly cache add: name, spec, args [ undefined, 'mime@1.2.4', [ 'mime@1.2.4', null ] ]
+verbose parsed url { pathname: 'mime@1.2.4',
+verbose parsed url   path: 'mime@1.2.4',
+verbose parsed url   href: 'mime@1.2.4' }
+silly cache add: name, spec, args [ 'mime', '1.2.4', [ 'mime', '1.2.4' ] ]
+verbose parsed url { pathname: '1.2.4', path: '1.2.4', href: '1.2.4' }
+verbose addNamed [ 'mime', '1.2.4' ]
+verbose addNamed [ '1.2.4', '1.2.4' ]
+verbose raw, before any munging qs/0.4.2
+verbose url resolving [ 'https://registry.npmjs.org/', './qs/0.4.2' ]
+verbose url resolved https://registry.npmjs.org/qs/0.4.2
+verbose etag "ELF7MKLFV9XAN77IIAD18PB6E"
+http GET https://registry.npmjs.org/qs/0.4.2
+verbose raw, before any munging mime/1.2.4
+verbose url resolving [ 'https://registry.npmjs.org/', './mime/1.2.4' ]
+verbose url resolved https://registry.npmjs.org/mime/1.2.4
+verbose etag "7WLVRUYMHID3S4PH9UYQWSPCG"
+http GET https://registry.npmjs.org/mime/1.2.4
+verbose cache add [ 'formidable@1.0.9', null ]
+silly cache add: name, spec, args [ undefined, 'formidable@1.0.9', [ 'formidable@1.0.9', null ] ]
+verbose parsed url { pathname: 'formidable@1.0.9',
+verbose parsed url   path: 'formidable@1.0.9',
+verbose parsed url   href: 'formidable@1.0.9' }
+silly cache add: name, spec, args [ 'formidable', '1.0.9', [ 'formidable', '1.0.9' ] ]
+verbose parsed url { pathname: '1.0.9', path: '1.0.9', href: '1.0.9' }
+verbose addNamed [ 'formidable', '1.0.9' ]
+verbose addNamed [ '1.0.9', '1.0.9' ]
+verbose raw, before any munging formidable/1.0.9
+verbose url resolving [ 'https://registry.npmjs.org/', './formidable/1.0.9' ]
+verbose url resolved https://registry.npmjs.org/formidable/1.0.9
+verbose etag "CO7TD56CJDDHNYEWG7YCFBYEE"
+http GET https://registry.npmjs.org/formidable/1.0.9
+http 304 https://registry.npmjs.org/mime/1.2.4
+silly get cb [ 304,
+silly get cb   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+silly get cb     etag: '"7WLVRUYMHID3S4PH9UYQWSPCG"',
+silly get cb     date: 'Tue, 01 May 2012 15:03:57 GMT',
+silly get cb     'content-length': '0' } ]
+verbose etag mime/1.2.4 from cache
+verbose bin dist [ '0.6-ares1.7.5-DEV-evundefined-openssl1.0.1b-v83.6.6.25-linux-ia32-3.3.2-1-ARCH',
+verbose bin dist   { shasum: '11b5fdaf29c2509255176b80ad520294f5de92b7',
+verbose bin dist     tarball: 'http://registry.npmjs.org/mime/-/mime-1.2.4.tgz' } ]
+verbose caching /home/panopticoff/.npm/mime/1.2.4/package/package.json
+verbose loadDefaults mime@1.2.4
+http 304 https://registry.npmjs.org/qs/0.4.2
+silly get cb [ 304,
+silly get cb   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+silly get cb     etag: '"ELF7MKLFV9XAN77IIAD18PB6E"',
+silly get cb     date: 'Tue, 01 May 2012 15:03:57 GMT',
+silly get cb     'content-length': '0' } ]
+verbose etag qs/0.4.2 from cache
+verbose bin dist [ '0.6-ares1.7.5-DEV-evundefined-openssl1.0.1b-v83.6.6.25-linux-ia32-3.3.2-1-ARCH',
+verbose bin dist   { shasum: '3cac4c861e371a8c9c4770ac23cda8de639b8e5f',
+verbose bin dist     tarball: 'http://registry.npmjs.org/qs/-/qs-0.4.2.tgz' } ]
+http 304 https://registry.npmjs.org/formidable/1.0.9
+silly get cb [ 304,
+silly get cb   { server: 'CouchDB/1.2.0 (Erlang OTP/R15B)',
+silly get cb     etag: '"CO7TD56CJDDHNYEWG7YCFBYEE"',
+silly get cb     date: 'Tue, 01 May 2012 15:03:57 GMT',
+silly get cb     'content-length': '0' } ]
+verbose etag formidable/1.0.9 from cache
+verbose caching /home/panopticoff/.npm/qs/0.4.2/package/package.json
+verbose loadDefaults qs@0.4.2
+verbose bin dist [ '0.6-ares1.7.5-DEV-evundefined-openssl1.0.1b-v83.6.6.25-linux-ia32-3.3.2-1-ARCH',
+verbose bin dist   { shasum: '419e3bccead3e8874d539f5b3e72a4c503b31a98',
+verbose bin dist     tarball: 'http://registry.npmjs.org/formidable/-/formidable-1.0.9.tgz' } ]
+verbose caching /home/panopticoff/.npm/formidable/1.0.9/package/package.json
+verbose loadDefaults formidable@1.0.9
+silly resolved [ { author: 
+silly resolved      { name: 'Robert Kieffer',
+silly resolved        email: 'robert@broofa.com',
+silly resolved        url: 'http://github.com/broofa' },
+silly resolved     contributors: 
+silly resolved      [ { name: 'Benjamin Thomas',
+silly resolved          email: 'benjamin@benjaminthomas.org',
+silly resolved          url: 'http://github.com/bentomas' } ],
+silly resolved     dependencies: {},
+silly resolved     description: 'A comprehensive library for mime-type mapping',
+silly resolved     devDependencies: { async_testing: '' },
+silly resolved     keywords: [ 'util', 'mime' ],
+silly resolved     main: 'mime.js',
+silly resolved     name: 'mime',
+silly resolved     repository: { url: 'git://github.com/bentomas/node-mime.git', type: 'git' },
+silly resolved     version: '1.2.4',
+silly resolved     _id: 'mime@1.2.4',
+silly resolved     optionalDependencies: {},
+silly resolved     engines: { node: '*' },
+silly resolved     _engineSupported: true,
+silly resolved     _npmVersion: '1.1.18',
+silly resolved     _nodeVersion: 'v0.6.16',
+silly resolved     _defaultsLoaded: true,
+silly resolved     _from: 'mime@1.2.4',
+silly resolved     scripts: {} },
+silly resolved   { name: 'qs',
+silly resolved     description: 'querystring parser',
+silly resolved     version: '0.4.2',
+silly resolved     repository: 
+silly resolved      { type: 'git',
+silly resolved        url: 'git://github.com/visionmedia/node-querystring.git' },
+silly resolved     devDependencies: { mocha: '*', should: '*' },
+silly resolved     author: 
+silly resolved      { name: 'TJ Holowaychuk',
+silly resolved        email: 'tj@vision-media.ca',
+silly resolved        url: 'http://tjholowaychuk.com' },
+silly resolved     main: 'index',
+silly resolved     engines: { node: '*' },
+silly resolved     _id: 'qs@0.4.2',
+silly resolved     dependencies: {},
+silly resolved     optionalDependencies: {},
+silly resolved     _engineSupported: true,
+silly resolved     _npmVersion: '1.1.18',
+silly resolved     _nodeVersion: 'v0.6.16',
+silly resolved     _defaultsLoaded: true,
+silly resolved     _from: 'qs@0.4.2',
+silly resolved     scripts: {} },
+silly resolved   { name: 'formidable',
+silly resolved     version: '1.0.9',
+silly resolved     dependencies: {},
+silly resolved     devDependencies: 
+silly resolved      { gently: '0.8.0',
+silly resolved        findit: '0.1.1',
+silly resolved        hashish: '0.0.4',
+silly resolved        urun: '0.0.4',
+silly resolved        utest: '0.0.3' },
+silly resolved     directories: { lib: './lib' },
+silly resolved     main: './lib/index',
+silly resolved     scripts: { test: 'make test' },
+silly resolved     engines: { node: '*' },
+silly resolved     _id: 'formidable@1.0.9',
+silly resolved     optionalDependencies: {},
+silly resolved     _engineSupported: true,
+silly resolved     _npmVersion: '1.1.18',
+silly resolved     _nodeVersion: 'v0.6.16',
+silly resolved     _defaultsLoaded: true,
+silly resolved     _from: 'formidable@1.0.9' } ]
+info into /home/panopticoff/web/Hark/node_modules/express/node_modules/connect mime@1.2.4
+info into /home/panopticoff/web/Hark/node_modules/express/node_modules/connect qs@0.4.2
+info into /home/panopticoff/web/Hark/node_modules/express/node_modules/connect formidable@1.0.9
+info installOne mime@1.2.4
+info installOne qs@0.4.2
+info installOne formidable@1.0.9
+verbose from cache /home/panopticoff/.npm/mime/1.2.4/package/package.json
+info unbuild /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/mime
+verbose from cache /home/panopticoff/.npm/qs/0.4.2/package/package.json
+info unbuild /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/qs
+verbose from cache /home/panopticoff/.npm/formidable/1.0.9/package/package.json
+info unbuild /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/formidable
+verbose unpack /home/panopticoff/.npm/mime/1.2.4/package.tgz
+verbose unpack /home/panopticoff/.npm/qs/0.4.2/package.tgz
+verbose unpack /home/panopticoff/.npm/formidable/1.0.9/package.tgz
+silly gunzTarPerm modes [ '755', '644' ]
+silly gunzTarPerm modes [ '755', '644' ]
+silly gunzTarPerm modes [ '755', '644' ]
+silly extracting entry types/
+silly extracting entry test/
+silly extracting entry tool/
+silly extracting entry types/node.types
+silly extracting entry types/mime.types
+silly extracting entry tool/record.js
+silly extracting entry TODO
+silly extracting entry test/stringify.js
+silly extracting entry test/parse.js
+silly extracting entry test.js
+silly extracting entry package.json
+silly extracting entry test/
+silly extracting entry test/unit/
+silly extracting entry test/mocha.opts
+silly extracting entry lib/
+silly extracting entry LICENSE
+silly extracting entry test/unit/test-incoming-form.js
+silly extracting entry lib/querystring.js
+silly extracting entry Readme.md
+silly extracting entry package.json
+silly extracting entry Makefile
+silly extracting entry index.js
+silly extracting entry README.md
+silly extracting entry mime.js
+silly extracting entry test/unit/.test-incoming-form.js.un~
+silly extracting entry test/tmp/
+silly extracting entry History.md
+silly extracting entry examples.js
+silly extracting entry benchmark.js
+silly extracting entry .travis.yml
+silly extracting entry .gitmodules
+silly extracting entry .npmignore
+silly extracting entry test/tmp/.empty
+silly extracting entry test/system/
+silly extracting entry test/system/.test-mail-fixture.js.un~
+silly extracting entry test/run.js
+silly extracting entry test/legacy/
+silly extracting entry test/legacy/system/
+silly extracting entry test/legacy/system/test-multi-video-upload.js
+silly extracting entry test/legacy/system/.test-multi-video-upload.js.un~
+silly extracting entry test/legacy/simple/
+silly extracting entry test/legacy/simple/test-querystring-parser.js
+silly extracting entry test/legacy/simple/test-multipart-parser.js
+silly extracting entry test/legacy/simple/test-incoming-form.js
+silly extracting entry test/legacy/simple/test-file.js
+silly extracting entry test/legacy/simple/.test-incoming-form.js.un~
+silly extracting entry test/legacy/integration/
+silly extracting entry test/legacy/integration/test-multipart-parser.js
+silly extracting entry test/legacy/common.js
+silly extracting entry test/integration/
+silly extracting entry test/integration/test-fixtures.js
+silly extracting entry test/integration/.test-fixtures.js.un~
+silly extracting entry test/fixture/
+silly extracting entry test/fixture/multipart.js
+silly extracting entry test/fixture/js/
+silly extracting entry test/fixture/js/special-chars-in-filename.js
+silly extracting entry test/fixture/js/no-filename.js
+silly extracting entry test/fixture/js/.special-chars-in-filename.js.un~
+silly extracting entry test/fixture/js/.no-filename.js.un~
+silly extracting entry test/fixture/http/
+silly extracting entry test/fixture/http/special-chars-in-filename/
+silly extracting entry test/fixture/http/special-chars-in-filename/info.md
+silly extracting entry test/fixture/http/no-filename/
+silly extracting entry test/fixture/http/no-filename/.generic.http.un~
+silly extracting entry test/fixture/file/
+silly extracting entry test/fixture/file/plain.txt
+silly extracting entry test/fixture/file/funkyfilename.txt
+silly extracting entry test/common.js
+silly extracting entry test/.run.js.un~
+silly extracting entry test/.common.js.un~
+silly extracting entry Readme.md
+silly extracting entry package.json
+silly extracting entry Makefile
+silly extracting entry lib/
+silly extracting entry lib/util.js
+silly extracting entry lib/querystring_parser.js
+silly extracting entry lib/multipart_parser.js
+silly extracting entry lib/index.js
+silly extracting entry lib/incoming_form.js
+silly extracting entry lib/file.js
+silly extracting entry lib/.incoming_form.js.un~
+silly extracting entry index.js
+silly extracting entry example/
+silly extracting entry example/upload.js
+silly extracting entry example/post.js
+silly extracting entry benchmark/
+silly extracting entry benchmark/bench-multipart-parser.js
+silly extracting entry .travis.yml
+silly extracting entry .Readme.md.un~
+silly extracting entry .package.json.un~
+silly extracting entry .npmignore
+silly extracting entry ..travis.yml.un~
+verbose caching /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/qs/package.json
+verbose loadDefaults qs@0.4.2
+info preinstall qs@0.4.2
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/qs/package.json
+verbose readDependencies: using package.json deps
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/qs/package.json
+verbose readDependencies: using package.json deps
+silly resolved []
+verbose about to build /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/qs
+info build /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/qs
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/qs/package.json
+verbose linkStuff [ false,
+verbose linkStuff   false,
+verbose linkStuff   false,
+verbose linkStuff   '/home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules' ]
+info linkStuff qs@0.4.2
+verbose linkBins qs@0.4.2
+verbose linkMans qs@0.4.2
+verbose rebuildBundles qs@0.4.2
+info install qs@0.4.2
+info postinstall qs@0.4.2
+verbose caching /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/mime/package.json
+verbose loadDefaults mime@1.2.4
+info preinstall mime@1.2.4
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/mime/package.json
+verbose readDependencies: using package.json deps
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/mime/package.json
+verbose readDependencies: using package.json deps
+silly resolved []
+verbose about to build /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/mime
+info build /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/mime
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/mime/package.json
+verbose linkStuff [ false,
+verbose linkStuff   false,
+verbose linkStuff   false,
+verbose linkStuff   '/home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules' ]
+info linkStuff mime@1.2.4
+verbose linkBins mime@1.2.4
+verbose linkMans mime@1.2.4
+verbose rebuildBundles mime@1.2.4
+info install mime@1.2.4
+info postinstall mime@1.2.4
+verbose caching /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/formidable/package.json
+verbose loadDefaults formidable@1.0.9
+info preinstall formidable@1.0.9
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/formidable/package.json
+verbose readDependencies: using package.json deps
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/formidable/package.json
+verbose readDependencies: using package.json deps
+silly resolved []
+verbose about to build /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/formidable
+info build /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/formidable
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules/formidable/package.json
+verbose linkStuff [ false,
+verbose linkStuff   false,
+verbose linkStuff   false,
+verbose linkStuff   '/home/panopticoff/web/Hark/node_modules/express/node_modules/connect/node_modules' ]
+info linkStuff formidable@1.0.9
+verbose linkBins formidable@1.0.9
+verbose linkMans formidable@1.0.9
+verbose rebuildBundles formidable@1.0.9
+info install formidable@1.0.9
+info postinstall formidable@1.0.9
+verbose about to build /home/panopticoff/web/Hark/node_modules/express/node_modules/connect
+info build /home/panopticoff/web/Hark/node_modules/express/node_modules/connect
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/node_modules/connect/package.json
+verbose linkStuff [ false,
+verbose linkStuff   false,
+verbose linkStuff   false,
+verbose linkStuff   '/home/panopticoff/web/Hark/node_modules/express/node_modules' ]
+info linkStuff connect@2.2.1
+verbose linkBins connect@2.2.1
+verbose linkMans connect@2.2.1
+verbose rebuildBundles connect@2.2.1
+verbose rebuildBundles [ 'formidable', 'mime', 'qs' ]
+info install connect@2.2.1
+info postinstall connect@2.2.1
+verbose about to build /home/panopticoff/web/Hark/node_modules/express
+info build /home/panopticoff/web/Hark/node_modules/express
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/package.json
+verbose linkStuff [ false, false, false, '/home/panopticoff/web/Hark/node_modules' ]
+info linkStuff express@3.0.0alpha2
+verbose linkBins express@3.0.0alpha2
+verbose bins linking [ { express: './bin/express' },
+verbose bins linking   '/home/panopticoff/web/Hark/node_modules/.bin',
+verbose bins linking   false ]
+verbose linkMans express@3.0.0alpha2
+verbose rebuildBundles express@3.0.0alpha2
+verbose rebuildBundles [ 'commander', 'connect', 'crc', 'debug', 'mime', 'mkdirp' ]
+info unbuild /home/panopticoff/web/Hark/node_modules/express
+verbose from cache /home/panopticoff/web/Hark/node_modules/express/package.json
+info preuninstall express@3.0.0alpha2
+info uninstall express@3.0.0alpha2
+verbose unbuild express@3.0.0alpha2 [ true,
+verbose unbuild express@3.0.0alpha2   '/home/panopticoff/web/Hark/node_modules',
+verbose unbuild express@3.0.0alpha2   '/home/panopticoff/web/Hark/node_modules' ]
+verbose binRoot [ '/home/panopticoff/web/Hark/node_modules/.bin',
+verbose binRoot   { express: './bin/express' } ]
+info postuninstall express@3.0.0alpha2
+ERR! Error: UNKNOWN, symlink '../express/bin/express'
+ERR! You may report this log at:
+ERR!     <http://github.com/isaacs/npm/issues>
+ERR! or email it to:
+ERR!     <npm-@googlegroups.com>
+ERR! 
+ERR! System Linux 3.3.2-1-ARCH
+ERR! command "node" "/usr/bin/npm" "install" "express@3.0"
+ERR! cwd /home/panopticoff/web/Hark
+ERR! node -v v0.6.16
+ERR! npm -v 1.1.18
+ERR! path ../express/bin/express
+ERR! code UNKNOWN
+ERR! message UNKNOWN, symlink '../express/bin/express'
+ERR! errno {}
+verbose exit [ 1, true ]

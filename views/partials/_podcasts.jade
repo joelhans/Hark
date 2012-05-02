@@ -6,7 +6,7 @@ div.subscriptions.left-column
 		span.updateAction Update
 	span.add-subscription
 		h2 Add:
-		input(type='text', class='addFeed', placeholder='Copy a RSS feed here and hit <Enter>.')
+		input(type='text', class='addFeed', placeholder='Copy an RSS feed here and hit <Enter>.')
 	if feeds
 		ul
 			li
@@ -25,12 +25,25 @@ div.subscriptions.left-column
 
 div.listen
 	h1 Listen
+	div.podcast-header
+		div.podcast-header-date
+			p 
+				a(href='#', class='sort-date') Sort by date &nbsp;
+					i
+		div.podcast-header-title
+			p 
+				a(href='#', class='sort-title') Sort by podcast &nbsp;
+					i
+		div.podcast-header-feed
+			p 
+				a(href='#', class='sort-feed') Sort by feed title &nbsp;
+					i
 	if podcasts
 		ul.podcastList
 			for podcast in podcasts
 				li.podcastItem(data-uuid='' + podcast.podUUID)
 					div.podcastDate
-						p #{podcast.prettyMonth} #{podcast.prettyDay}, #{podcast.prettyYear}
+						p(data-date='' + podcast.podDate._d) #{podcast.prettyMonth} #{podcast.prettyDay}, #{podcast.prettyYear}
 					div.podcastTitle
 						p
 							a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen #{podcast.listened}', data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
