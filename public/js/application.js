@@ -95,7 +95,7 @@ $(document).ready(function() {
 					{ duration: 600,
 					complete: function() {
 						$(this).remove();
-						
+						$('.jp-playing').fadeOut(300).html('');
 					}
 			});
 			$.ajax({

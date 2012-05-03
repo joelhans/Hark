@@ -14,7 +14,7 @@ ul.podcastList
 				p
 					a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen', title='Listen to this podcast.', data-file='' + podcast.podFile, id='' + podcast.podUUID, data-feed='' + podcast.feedTitle)
 						i.icon-headphones
-					a(href='/listen/' + podcast.feedUUID + '/listened/' + podcast.podUUID, class='podcastListened all', title='Mark this podcast as listened.')
+					a(href='/listen/' + podcast.feedUUID + '/listened/' + podcast.podUUID, class='podcastListened single', title='Mark this podcast as listened.')
 						i.icon-ok
 					a(href='#', class='podcastRead', title='Read the description of this podcast.')
 						i.icon-book

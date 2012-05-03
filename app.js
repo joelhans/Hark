@@ -19,7 +19,7 @@
 //  ---------------------------------------
 
 var express = require('express')
-  , connect = require('connect')
+  // , connect = require('connect')
   , http = require('http')
   , url = require('url')
   , crypto = require('crypto')
@@ -56,14 +56,19 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.set("view options", { layout: false });
-  app.use(express.bodyParser());
-  app.use(express.cookieParser());
+  app.use(express.cookieParser("thissecretrocks"));
   app.use(express.session({
-      maxAge: new Date(Date.now() + 3600000)
-    , secret: 'this is a big secret!!!'
+    secret: 'this is a big secret!!!'
     , store: new mongoStore({db: db})
-    })
-  );
+    , cookie: {  
+	    path     : '/',  
+	    domain   : 'harkhq.com',  
+	    httpOnly : true,  
+	    maxAge   : 1000*60*60*24*30*12    //one year(ish)  
+	  }
+    }
+  ));
+  app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
@@ -98,8 +103,8 @@ function loadUser(req, res, next, callback) {
     	} else if ( user ) {
     		next();
     	} else {
-        res.redirect('/login');
-      }
+	        res.redirect('/login');
+	    }
     });
   } else if ( !req.session.userID && req.url === '/login' ) {
 		next();
@@ -119,7 +124,7 @@ app.get('/', loadUser, function(req, res) {
   res.redirect('/login'); // Let's just redirect ourselves to the login page.
 });
 
-app.get('/login', loadUser, function(req, res) {
+app.get('/login', function(req, res) {
   res.render('index'); // Where we render the index template. Makes sense, right?
 });
 
@@ -132,6 +137,7 @@ app.post('/login', function(req, res) {
       bcrypt.compare(req.param('password'), result.password, function(err, result) {
         if (result === true) {
           req.session.userID = req.body.username;
+          console.log(req.session.userID);
           res.redirect('/listen');
         } else {
           req.flash('errorPass', "Incorrect password. Try again.");
@@ -258,7 +264,7 @@ app.post('/listen', loadUser, function(req, res) {
 
 app.post('/listen/add', loadUser, function(req, res) {
 
-	var feedURL = req.body.url;
+  var feedURL = req.body.url;
 
   console.log(feedURL);
 
@@ -411,7 +417,7 @@ app.post('/listen/remove/:_id', loadUser, function(req, res) {
 //	VIEW THE FULL LISTIING OF ONLY A SINGLE PODCAST
 //
 
-app.post('/listen/podcast/:_id' ,loadUser, function(req, res) {
+app.post('/listen/podcast/:_id', loadUser, function(req, res) {
 
 	Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
 		Feeds.find( { $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ], uuid: req.param('feed') }).toArray(function(err, results) {
@@ -568,16 +574,12 @@ app.post('/listen/:feed/:_id', loadUser, function(req, res) {
 //
 
 app.post('/listen/:feed/listened/:_id', loadUser, function(req, res) {
-
-	var id = req.param('id');
-
 	Users.findAndModify({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, [], { $set: { 'playing' : {} } }, { new:true }, function(err, result) {
-		Feeds.findAndModify({ $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ] , 'pods.podUUID' : id }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
+		Feeds.findAndModify({ $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ] , 'pods.podUUID' : req.param('id') }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
 			if(err) { throw err; }
 			res.send(result);
 		});
 	});
-
 });
 
 //
@@ -797,4 +799,4 @@ app.use(function(req, res){
 //  ---------------------------------------
 
 app.listen(3000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+// console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);

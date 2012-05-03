@@ -86,7 +86,7 @@ input {
 		margin: 0 0 0 -150px;
 		z-index: 1;
 		border-radius: 160px;
-		@include box-shadow($linkColor 0px 0px 100px);
+		// @include box-shadow($linkColor 0px 0px 100px);
 		@include inline-block;
 		-webkit-animation: pulse 5s infinite;
 		-moz-animation:    pulse 5s infinite;
@@ -853,6 +853,7 @@ header {
 
 div.podcastDescription {
 	display: none;
+	padding: 0 20px 0 0;
 	p {
 		margin-bottom: 0px;
 		padding-bottom: 12px;
