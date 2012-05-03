@@ -316,7 +316,7 @@ app.post('/listen/add', loadUser, function(req, res) {
 							if ( typeof feed.item[i].enclosure !== "undefined" ) {
 
 								if ( typeof feed.item[i]['pubDate'] == "string" ) {
-									pubDate = moment(feed.item[i]['pubDate'], "dd\, DD MMM YYYY H:mm:ss Z")
+									pubDate = moment(feed.item[i]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
 								} else if ( typeof feed.item[i]['dc:date'] == "string" ) {
 									pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
 								}
@@ -345,7 +345,7 @@ app.post('/listen/add', loadUser, function(req, res) {
 						} else if ( typeof feed.item.title !== "undefined" ) {
 
 							if ( typeof feed.item['pubDate'] == "string" ) {
-								pubDate = moment(feed.item['pubDate'], "dd\, DD MMM YYYY H:mm:ss Z")
+								pubDate = moment(feed.item['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
 							} else if ( typeof feed.item['dc:date'] == "string" ) {
 								pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
 							}
@@ -641,7 +641,7 @@ app.post('/listen/update', loadUser, function(req, res) {
 							if ( typeof feed.item[j].enclosure != "undefined" ) {
 
 								if ( typeof feed.item[j]['pubDate'] == "string" ) {
-									pubDate = moment(feed.item[j]['pubDate'], "dd\, DD MMM YYYY H:mm:ss Z")
+									pubDate = moment(feed.item[j]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
 								} else if ( typeof feed.item[j]['dc:date'] == "string" ) {
 									pubDate = moment(feed.item[j]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
 								}
