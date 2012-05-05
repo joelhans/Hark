@@ -24,4 +24,5 @@ ul.podcastList
 						i.icon-chevron-down
 			div.podcastDescription
 				p.error A note: This feature is new, and isn't working entirely properly yet. Stay tuned for updates.
-				div #{podcast.podDesc}
+				div
+					p!= podcast.podDesc

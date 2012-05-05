@@ -72,6 +72,7 @@ $(document).ready(function() {
 		solution: 'flash, html',
 		errorAlerts: false,
 		play: function(d) {
+			$('.jp-playing').fadeIn(300);
 			updatePlaying = setInterval(function(){
 				updateStatus();
 			}, 120000);
@@ -634,6 +635,16 @@ jQuery.fn.waveify = function(orientation) {
     ctx.closePath();
     ctx.stroke();
     ctx.fill();
+    //
+    var imageObj = new Image();
+    function drawPattern() {
+       var pattern = ctx.createPattern(imageObj, "repeat");
+       ctx.fillStyle = pattern;
+       ctx.fill();
+    }
+    imageObj.onload = drawPattern;
+    imageObj.src = "/public/img/grainy.png";
+    //
   } else {
     return false;
   }

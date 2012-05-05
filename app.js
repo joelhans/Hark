@@ -56,16 +56,19 @@ app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.set("view options", { layout: false });
+});
+
+app.configure('development', function(){
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
   app.use(express.cookieParser("thissecretrocks"));
   app.use(express.session({
     secret: 'this is a big secret!!!'
     , store: new mongoStore({db: db})
     , cookie: {  
-	    path     : '/',  
-	    domain   : 'harkhq.com',  
-	    httpOnly : true,  
-	    maxAge   : 1000*60*60*24*30*12    //one year(ish)  
-	  }
+      path     : '/',  
+      httpOnly : true,  
+      maxAge   : 1000*60*60*24*30*12    //one year(ish)  
+    }
     }
   ));
   app.use(express.bodyParser());
@@ -74,13 +77,24 @@ app.configure(function(){
   app.use(express.static(__dirname + '/public'));
 });
 
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-});
-
 app.configure('production', function(){
   var oneYear = 31557600000;
   app.use(express.errorHandler());
+  app.use(express.cookieParser("thissecretrocks"));
+  app.use(express.session({
+    secret: 'this is a big secret!!!'
+    , store: new mongoStore({db: db})
+    , cookie: {  
+      path     : '/',
+      domain   : 'harkhq.com',
+      httpOnly : true,  
+      maxAge   : 1000*60*60*24*30*12    //one year(ish)  
+    }
+    }
+  ));
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
+  app.use(app.router);
   app.use(express.static(__dirname + '/public', { maxAge: oneYear }));
 });
 
@@ -634,34 +648,97 @@ app.post('/listen/update', loadUser, function(req, res) {
 						podData = new Array(),
 						newList = [];
 
-					for ( j = 0; j < 10; ++j ) {
+					for ( var i = 0; i < 10; ++i ) {
 						podData = {};
 
-						if ( typeof feed.item[j] != "undefined" ) {
-							if ( typeof feed.item[j].enclosure != "undefined" ) {
+						// INCORPORATE THIS.
 
-								if ( typeof feed.item[j]['pubDate'] == "string" ) {
-									pubDate = moment(feed.item[j]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
-								} else if ( typeof feed.item[j]['dc:date'] == "string" ) {
-									pubDate = moment(feed.item[j]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
+						if ( typeof feed.item[i] !== "undefined" ) {
+							if ( typeof feed.item[i].enclosure !== "undefined" ) {
+
+								if ( typeof feed.item[i]['pubDate'] == "string" ) {
+									pubDate = moment(feed.item[i]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
+								} else if ( typeof feed.item[i]['dc:date'] == "string" ) {
+									pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
 								}
 
+								if ( i === 0 ) {
+									listened = 'false';
+								} else {
+									listened = 'true';
+								}
+
+                console.log(feed.item[i].enclosure['@'].url);
+
 								podData = {
-									'podTitle'	: feed.item[j].title,
-									'podLink'	: feed.item[j].link,
-									'podFile'	: feed.item[j].enclosure['@'].url,
-									'podMedia'	: feed.item[j].media,
-									'podDesc'	: feed.item[j].description,
+									'podTitle'	: feed.item[i].title,
+									'podLink'	: feed.item[i].link,
+									'podFile'	: feed.item[i].enclosure['@'].url,
+									'podMedia'	: feed.item[i].media,
+									'podDesc'	: feed.item[i].description,
 									'podUUID'	: Math.round((new Date().valueOf() * Math.random())) + '',
 									'podDate'	: pubDate,
 									'prettyDay' : pubDate.format('D'),
 									'prettyMonth' : pubDate.format('MMMM'),
 									'prettyYear' : pubDate.format('YYYY'),
-									'listened'	: 'false'
+									'listened'	: listened
 								};
 								newList.push(podData);
 							}
+						} else if ( typeof feed.item.title !== "undefined" ) {
+
+							if ( typeof feed.item['pubDate'] == "string" ) {
+								pubDate = moment(feed.item['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
+							} else if ( typeof feed.item['dc:date'] == "string" ) {
+								pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
+							}
+							
+							listened = 'false';
+
+							podData = {
+									'podTitle'	: feed.item.title,
+									'podLink'	: feed.item.link,
+									'podFile'	: feed.item.enclosure['@'].url,
+									'podMedia'	: feed.item.media,
+									'podDesc'	: feed.item.description,
+									'podUUID'	: Math.round((new Date().valueOf() * Math.random())) + '',
+									'podDate'	: 'pubDate',
+									'prettyDay' : pubDate.format('D'),
+									'prettyMonth' : pubDate.format('MMMM'),
+									'prettyYear' : pubDate.format('YYYY'),
+									'listened'	: 'false'
+								};
+							newList.push(podData);
+							break;
+						} else if ( typeof feed.item[i] === "undefined" ) {
+							break;
 						}
+
+						// if ( typeof feed.item[j] != "undefined" ) {
+						// 	if ( typeof feed.item[j].enclosure != "undefined" ) {
+
+						// 		if ( typeof feed.item[j]['pubDate'] == "string" ) {
+						// 			pubDate = moment(feed.item[j]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
+						// 		} else if ( typeof feed.item[j]['dc:date'] == "string" ) {
+						// 			pubDate = moment(feed.item[j]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
+						// 		}
+
+						// 		podData = {
+						// 			'podTitle'	: feed.item[j].title,
+						// 			'podLink'	: feed.item[j].link,
+						// 			'podFile'	: feed.item[j].enclosure['@'].url,
+						// 			'podMedia'	: feed.item[j].media,
+						// 			'podDesc'	: feed.item[j].description,
+						// 			'podUUID'	: Math.round((new Date().valueOf() * Math.random())) + '',
+						// 			'podDate'	: pubDate,
+						// 			'prettyDay' : pubDate.format('D'),
+						// 			'prettyMonth' : pubDate.format('MMMM'),
+						// 			'prettyYear' : pubDate.format('YYYY'),
+						// 			'listened'	: 'false'
+						// 		};
+						// 		newList.push(podData);
+						// 	}
+						// }
 					}
 					counter++;
 					callback(null, feeds, existingList, feedHREF, feedUUID, newList, counter);
