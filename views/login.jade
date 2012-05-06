@@ -1,0 +1,94 @@
+doctype 5
+html(lang="en")
+	head
+		title Hark | Log in.
+
+		!=partial('layout/head')
+
+	body
+
+		header
+			div.container
+				div.row
+					div.hark-listen
+						a(href='/')
+							img(src='/img/hark-logo-small.png')
+						div.pulse
+						&nbsp;
+					nav.column-10.offset-2
+						ul
+							<li><a class='hark-signup' href="/signup">Sign up</a></li>
+							<li><a href="/login">Login</a></li>
+							<li><a href="http://harkhq.com/">HarkHQ</a></li>
+							<li><a href="http://harkhq.com/about/">About</a></li>
+							<li><a href="http://harkhq.com/blog/">Blog</a></li>
+							<li><a href="http://harkhq.com/legal/">Legalese</a></li>
+		canvas#wave(width='1000', height='40')
+
+		div.container
+			div.row
+				section.column-6.offset-3.hark-login
+					h2 Hark is your personal radio station.
+					h3 Podcasts. Radio. Revolutionized.
+					h3 Log in here.
+					- if (typeof(flash) != 'undefined' && typeof(flash.userCreateSuccess) != 'undefined')
+						div.hark-description
+							p.success= flash.userCreateSuccess
+					- if (typeof(flash) == 'undefined')
+						form.login(method='post', action='/login')
+							input.login-username(type='text', name='username', placeholder='Enter your e-mail or username here.')
+							input.login-password(type='password', name='password', placeholder='Enter your password here.')
+							input.login-submit(type='submit', value='Login')
+
+						div.password-forgot
+							a(href='/#') Forgot your password?
+							- if (typeof(flash) == 'undefined')
+								form.forgot(method='POST', action='/login/forgot')
+									p That's all right. I can reset that for you. Just enter your e-mail below.
+									input.forgot-password(type='text', name='email', placeholder='Enter your e-mail here.')
+									input.forgot-submit(type='submit', value='Reset')
+
+							- if (typeof(flash) != 'undefined' && typeof(flash.errorReset) != 'undefined')
+								form.forgot-showme(method='post', action='/login/forgot')
+									p That's all right. I can reset that for you. Just enter your e-mail below.
+									input.reset-error(type='text', name='email', placeholder='Enter your e-mail here.')
+									p.error= flash.errorReset
+									input.forgot-submit(type='submit', value='Reset')
+
+					- if (typeof(flash) != 'undefined')
+						- if (typeof(flash.errorUser) != 'undefined')
+							p.error= flash.errorUser
+							form.login-showme(method='post', action='/login')
+								input.login-error(type='text', name='username', placeholder='Enter your e-mail or username here.')
+								input.login-password(type='password', name='password', placeholder='Enter your password here.')
+								input.login-submit(type='submit', value='Login')
+						- else if (typeof(flash.errorPass) != 'undefined')
+							p.error= flash.errorPass
+							form.login-showme(method='post', action='/login')
+								input.login-username(type='text', name='username', placeholder='Enter your e-mail or username here.')
+								input.login-error(type='password', name='password', placeholder='Enter your password here.')
+								input.login-submit(type='submit', value='Login')
+						- else if (typeof(flash.userCreateSuccess) != 'undefined')
+							form.login-showme(method='post', action='/login')
+								input.login-username(type='text', name='username', placeholder='Enter your e-mail or username here.')
+								input.login-password(type='password', name='password', placeholder='Enter your password here.')
+								input.login-submit(type='submit', value='Login')
+						- else
+							form.login(method='post', action='/login')
+								input.login-username(type='text', name='username', placeholder='Enter your e-mail or username here.')
+								input.login-password(type='password', name='password', placeholder='Enter your password here.')
+								input.login-submit(type='submit', value='Login')
+						
+						div.password-forgot
+							a(href='/#') Forgot your password?
+							- if (typeof(flash) == 'undefined')
+								form.forgot(method='post', action='/login/forgot')
+									p That's all right. I can reset that for you. Just enter your e-mail below.
+									input.forgot-password(type='text', name='email', placeholder='Enter your e-mail here.')
+									input.forgot-submit(type='submit', value='Reset')
+							- if (typeof(flash) != 'undefined' && typeof(flash.errorReset) != 'undefined')
+								form.forgot-showme(method='post', action='/login/forgot')
+									p That's all right. I can reset that for you. Just enter your e-mail below.
+									input.reset-error(type='text', name='email', placeholder='Enter your e-mail here.')
+									p.error= flash.errorReset
+									input.forgot-submit(type='submit', value='Reset')

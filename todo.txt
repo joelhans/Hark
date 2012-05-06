@@ -24,8 +24,7 @@ ROADMAP
             [x] --  By podcast name.
             [x] --  Ascending/descending arrows.
   [x] --  Sync reset when the user is done listening to a feed.
-  [ ] --  Better responsiveness in UI.
-            * Will mostly entail more catches for small/mobile screens.
+  [x] --  Added "HarkHQ" to project.
           Bug fixes.
             [x] --  Listen syncing doesn't appear to work all that well.
             [x] --  Auto-marking as "listened" seems to have broken.
@@ -36,6 +35,8 @@ ROADMAP
 
   0.3
   ----------
+  [ ] --  Better responsiveness in UI.
+            * Will mostly entail more catches for small/mobile screens.
   [ ] --  Categories
             * Users will be able to "tag" podcasts for certain categories (technology, design, etc).
             * Or, they will be able to drag-and-drop them into buckets.

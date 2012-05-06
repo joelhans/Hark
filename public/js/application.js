@@ -643,7 +643,7 @@ jQuery.fn.waveify = function(orientation) {
        ctx.fill();
     }
     imageObj.onload = drawPattern;
-    imageObj.src = "/public/img/grainy.png";
+    imageObj.src = "/img/grainy.png";
     //
   } else {
     return false;

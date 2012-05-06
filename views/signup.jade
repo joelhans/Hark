@@ -1,0 +1,74 @@
+doctype 5
+html(lang="en")
+	head
+		title Hark | Sign up.
+
+		!=partial('layout/head')
+
+	body
+
+		header
+			div.container
+				div.row
+					div.hark-listen
+						a(href='/')
+							img(src='/img/hark-logo-small.png')
+						div.pulse
+						&nbsp;
+					nav.column-10.offset-2
+						ul
+							<li><a class='hark-signup' href="/signup">Sign up</a></li>
+							<li><a href="/login">Login</a></li>
+							<li><a href="http://harkhq.com/">HarkHQ</a></li>
+							<li><a href="http://harkhq.com/about/">About</a></li>
+							<li><a href="http://harkhq.com/blog/">Blog</a></li>
+							<li><a href="http://harkhq.com/legal/">Legalese</a></li>
+		canvas#wave(width='1000', height='40')
+
+		div.container
+			div.row
+				section.column-6.offset-3.hark-login
+					h2 Hark is your personal radio station.
+					h3 Podcasts. Radio. Revolutionized.
+					h3 Sign in here.
+					- if (typeof(flash) == 'undefined')
+						form.create(method='post', action='/users/new')
+							input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
+							input.create-username(type='text', name='username', placeholder='Enter your username here.')
+							input.create-password(type='password', name='password', placeholder='Enter your password here.')
+							input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
+							input.create-submit(type='submit', value='Create')
+
+
+					- if (typeof(flash) != 'undefined')
+						- if (typeof(flash.errorCreateEmail) != 'undefined')
+							p.error= flash.errorCreateEmail
+							form.create-showme(method='post', action='/users/new')
+								input.create-error(type='text', name='email', placeholder='Enter your e-mail here.')
+								input.create-username(type='text', name='username', placeholder='Enter your username here.')
+								input.create-password(type='password', name='password', placeholder='Enter your password here.')
+								input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
+								input.create-submit(type='submit', value='Create')
+						- else if (typeof(flash.errorCreateUsername) != 'undefined')
+							p.error= flash.errorCreateEmail
+							form.create-showme(method='post', action='/users/new')
+								input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
+								input.create-error(type='text', name='username', placeholder='Enter your username here.')
+								input.create-password(type='password', name='password', placeholder='Enter your password here.')
+								input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
+								input.create-submit(type='submit', value='Create')
+						- else if (typeof(flash.errorCreatePass) != 'undefined')
+							p.error= flash.errorCreateEmail
+							form.create-showme(method='post', action='/users/new')
+								input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
+								input.create-username(type='text', name='username', placeholder='Enter your username here.')
+								input.create-error(type='password', name='password', placeholder='Enter your password here.')
+								input.create-error(type='password', name='password-validate', placeholder='Enter your password again.')
+								input.create-submit(type='submit', value='Create')
+						- else 
+							form.create(method='post', action='/users/new')
+								input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
+								input.create-username(type='text', name='username', placeholder='Enter your username here.')
+								input.create-password(type='password', name='password', placeholder='Enter your password here.')
+								input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
+								input.create-submit(type='submit', value='Create')

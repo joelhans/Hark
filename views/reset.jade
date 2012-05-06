@@ -7,15 +7,29 @@ html(lang="en")
 
 	body
 
-		div.container
+		header
+			div.container
+				div.row
+					div.hark-listen
+						a(href='/')
+							img(src='/img/hark-logo-small.png')
+						div.pulse
+						&nbsp;
+					nav.column-10.offset-2
+						ul
+							<li><a class='hark-signup' href="/signup">Sign up</a></li>
+							<li><a href="/login">Login</a></li>
+							<li><a href="http://harkhq.com/">HarkHQ</a></li>
+							<li><a href="http://harkhq.com/about/">About</a></li>
+							<li><a href="http://harkhq.com/blog/">Blog</a></li>
+							<li><a href="http://harkhq.com/legal/">Legalese</a></li>
+		canvas#wave(width='1000', height='40')
 
+		div.container
 			div.row
-				div.column-8.offset-2
-					h1 Hark &mdash; Password Reset
-				div.column-8.offset-2
-			h2 Enter a new password here.
-				form.create(method='post', action='/login/reset/new')
-					input.create-password(type='password', name='password', placeholder='Enter your password here.')
-					input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
-					input(type='hidden', name='resetToken', value='' + token)
-					input.create-submit(type='submit', value='Create')
+				section.column-6.offset-3.hark-login
+					form.create(method='post', action='/login/reset/new')
+						input.create-password(type='password', name='password', placeholder='Enter your password here.')
+						input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
+						input(type='hidden', name='resetToken', value='' + token)
+						input.create-submit(type='submit', value='Create')

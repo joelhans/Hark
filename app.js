@@ -1,7 +1,7 @@
 //
 //	HARK!
 //
-//	Current version: 0.1.4
+//	Current version: 0.2.0
 //
 //	Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //	Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -112,17 +112,20 @@ function loadUser(req, res, next, callback) {
     	if (user && req.url === '/' ) {
     		res.redirect('/listen');
     	} else if ( user && req.url === '/login' ) {
-    		console.log('login');
     		res.redirect('/listen');
     	} else if ( user ) {
     		next();
     	} else {
-	        res.redirect('/login');
+	        res.redirect(req.url);
 	    }
     });
   } else if ( !req.session.userID && req.url === '/login' ) {
 		next();
-  } else {
+  } else if ( !req.session.userID && req.url === '/signup' ) {
+		next();
+  } else if ( !req.session.userID && req.url === '/' ) {
+		next();
+  }else {
   	res.redirect('/login');
   }
 }
@@ -135,18 +138,23 @@ require('./feeds.js')(app, express, loadUser, Users, Feeds);
 //  ---------------------------------------
 
 app.get('/', loadUser, function(req, res) {
-  res.redirect('/login'); // Let's just redirect ourselves to the login page.
+  res.render('index'); // Let's just redirect ourselves to the login page.
 });
 
-app.get('/login', function(req, res) {
-  res.render('index'); // Where we render the index template. Makes sense, right?
+app.get('/login', loadUser, function(req, res) {
+  res.render('login');
 });
 
-app.post('/login', function(req, res) { 
+app.get('/signup', loadUser, function(req, res) {
+  res.render('signup');
+});
+
+app.post('/login', function(req, res) {
+  console.log();
   Users.findOne({ $or : [ { 'username': req.body.username }, { 'email': req.body.username } ] }, function(err, result) {
     if ( result === null ) { // No user found.
       req.flash('errorUser', "That user doesn't exist.");
-      res.render('index', {locals: {flash: req.flash()}});
+      res.render(req.url.split('/')[1], {locals: {flash: req.flash()}});
     } else { // User found.
       bcrypt.compare(req.param('password'), result.password, function(err, result) {
         if (result === true) {
@@ -155,7 +163,7 @@ app.post('/login', function(req, res) {
           res.redirect('/listen');
         } else {
           req.flash('errorPass', "Incorrect password. Try again.");
-          res.render('index', {locals: {flash: req.flash(), errorType: 'login'}});
+          res.render(req.url.split('/')[1], {locals: {flash: req.flash(), errorType: 'login'}});
         }
       });
     }
@@ -163,11 +171,10 @@ app.post('/login', function(req, res) {
 });
 
 app.post('/login/forgot', function(req, res) {
-	var userEmail = req.param('email')
-		, salt = Math.round((new Date().valueOf() * Math.random())) + '';
+	var salt = Math.round((new Date().valueOf() * Math.random())) + '';
 	var resetToken = crypto.createHmac('sha1', salt).update(userEmail).digest('hex');
 
-	Users.findOne({ 'email': userEmail }, function(err, result) {
+	Users.findOne({ 'email': req.param('email') }, function(err, result) {
 
 		if ( result === null ) {
 			req.flash('errorReset', "An account with that e-mail doesn't exist.");
@@ -176,11 +183,11 @@ app.post('/login/forgot', function(req, res) {
 			var smtpTransport = nodemailer.createTransport("Sendmail", "/usr/sbin/sendmail"); // I use sendmail. Others may have to find a different solution.
 
 			var mailOptions = { // Creating the email.
-				from: "Hark! <admin@harkapp.com>",
+				from: "Hark <admin@harkapp.com>",
 				to: userEmail,
-				subject: "Hark! - Password reset.",
+				subject: "Hark - Password reset.",
 				generateTextFromHTML: true,
-				html: '<h1>Hark! wants to help you reset your password.</h1><p>So, you forgot it. That\'s all right. I\'ll help you get a new one.</p><p>To reset your password, click the link: <a href="http://localhost:3000/login/reset/' + resetToken + '">http://localhost:3000/login/reset/' + resetToken + '</a></p>'
+				html: '<h1>Hark wants to help you reset your password.</h1><p>So, you forgot it. That\'s all right. I\'ll help you get a new one.</p><p>To reset your password, click the link: <a href="http://localhost:3000/login/reset/' + resetToken + '">http://localhost:3000/login/reset/' + resetToken + '</a></p>'
 			}
 			
 			smtpTransport.sendMail(mailOptions, function(error, response){
@@ -234,15 +241,17 @@ app.post('/login/reset/new', function(req, res) {
 	}
 });
 
-
+//
+//	LOGOUT
+//
 
 app.get('/logout', function(req, res) {
 	if (req.session) { req.session.destroy(function() {}); } // Destroy the session so that they have to login again.
-	res.redirect('/login'); // And then redirect them to the login.
+	res.redirect('/'); // And then redirect them to the login.
 })
 
 //
-// THE DEFAULT VIEW
+//	THE DEFAULT VIEW
 //
 
 app.get('/listen', loadUser, function(req, res, user) {
