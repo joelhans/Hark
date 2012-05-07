@@ -110,7 +110,7 @@ $(document).ready(function() {
 			});
 		},
 		error:function(d) {
-			console.log("Error Event: type = " + event.jPlayer.error.type);
+			// console.log("Error Event: type = " + event.jPlayer.error.type);
 			console.log(d);
 		},
 		ready:function(d) {
