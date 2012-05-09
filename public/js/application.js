@@ -12,7 +12,6 @@ $(document).ready(function() {
 	//
 
 	var siteUrl = "http://" + top.location.host.toString();
-	// var siteUrl = 'http://'+(document.location.hostname||document.location.host);
 
 	$(document).delegate('a[href="/listen"], a[href="/settings"], a[href^="/listen/podcast/"]', "click", function(e) {
 		e.preventDefault();
@@ -57,9 +56,14 @@ $(document).ready(function() {
 
 	});	
 
+	columnFixHeight();
 	leftFixHeight();
+	
 
-	window.onresize = function(event) { leftFixHeight(); }
+	window.onresize = function(event) { 
+		columnFixHeight();
+		leftFixHeight();
+	}
 
 	//
 	// 	jPlayer initialization.
@@ -654,6 +658,12 @@ function leftFixHeight() {
 	$('.subscriptions, .listen, .information, .settings').css('height', '');
 	$('.subscriptions, .listen').height(Math.max($('.subscriptions').height(), $('.listen').height()) + 40);
 	$('.information, .settings').height(Math.max($('.information').height(), $('.settings').height()) + 40);
+}
+
+function columnFixHeight() {
+	var current;
+	var tallest = $('.podcastList li').first().children('.podcastActions').height();
+	$('.podcastDate, .podcastTitle, .podcastFeed').css({'height': tallest}).children('p').css({'padding-top': (tallest - 24) / 2});
 }
 
 /*

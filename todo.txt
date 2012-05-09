@@ -40,6 +40,7 @@ ROADMAP
   [ ] --  SSL encryption.
           Bug fixes.
             [x] --  Added sorting features to single feed view.
+            [x] --  Columns for individual podcasts don't line up upon resizing.
 
   0.4
   ----------
@@ -70,8 +71,6 @@ BUGS
   ***
   ----------
   [ ] --  When reading podcast descriptions, the left column height doesn't get reset properly.
-  [ ] --  Columns for individual podcasts don't line up upon resizing.
-            * (Column height - 24px) / 2 = amount of padding above/below paragraph element.
 
   **
   ----------
