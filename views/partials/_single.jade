@@ -1,4 +1,17 @@
-h1 Listen: #{feed.feedTitle} 
+h1 Listen: #{feed.feedTitle}
+div.podcast-header
+	div.podcast-header-date
+		p 
+			a(href='#', class='sort-date') Sort by date &nbsp;
+				i
+	div.podcast-header-title
+		p 
+			a(href='#', class='sort-title') Sort by podcast &nbsp;
+				i
+	div.podcast-header-feed
+		p 
+			a(href='#', class='sort-feed') Sort by feed title &nbsp;
+				i
 ul.podcastList
 	for podcast in podcasts
 		li.podcastItem(data-uuid='' + podcast.podUUID)

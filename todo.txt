@@ -37,6 +37,12 @@ ROADMAP
   ----------
   [ ] --  Better responsiveness in UI.
             * Will mostly entail more catches for small/mobile screens.
+  [ ] --  SSL encryption.
+          Bug fixes.
+            [x] --  Added sorting features to single feed view.
+
+  0.4
+  ----------
   [ ] --  Categories
             * Users will be able to "tag" podcasts for certain categories (technology, design, etc).
             * Or, they will be able to drag-and-drop them into buckets.
