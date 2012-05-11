@@ -1,7 +1,7 @@
 //
 //	HARK!
 //
-//	Current version: 0.2.1
+//	Current version: 0.3.0
 //
 //	Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //	Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -19,7 +19,6 @@
 //  ---------------------------------------
 
 var express = require('express')
-  // , connect = require('connect')
   , http = require('http')
   , url = require('url')
   , crypto = require('crypto')

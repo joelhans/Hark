@@ -16,7 +16,7 @@ ROADMAP
           Bug fixes.
             [x] --  Left column doesn't get tall enough to accomodate many many feeds.
 
-  0.2
+  0.2 // CURRENT LIVE VERSION ON HARKHQ.COM
   ----------
   [x] --  Sorting abilities for podcasts (date, feed, etc).
             [x] --  By date.
@@ -35,19 +35,13 @@ ROADMAP
 
   0.3
   ----------
-  [ ] --  Better responsiveness in UI.
+  [x] --  Better responsiveness in UI.
             * Will mostly entail more catches for small/mobile screens.
-  [ ] --  SSL encryption.
+  [-] --  SSL encryption.
           Bug fixes.
             [x] --  Added sorting features to single feed view.
             [x] --  Columns for individual podcasts don't line up upon resizing.
-
-  0.4
-  ----------
-  [ ] --  Categories
-            * Users will be able to "tag" podcasts for certain categories (technology, design, etc).
-            * Or, they will be able to drag-and-drop them into buckets.
-            * Maybe both.
+            [x] --  Canvas-based waves look a little nicer now, save for resizing.
 
   1.0
   ----------
@@ -55,10 +49,19 @@ ROADMAP
             * This will be a central location for feeds.
             * I will be able to add new feeds to this database, and users will 
               be able to browse/search for items that they're interested in.
+  [ ] --  Manual sync
+            * I'll add a button that allows users to manually sync their current listening status with the server, rather than the every-two-minutes ping.
 
+  1.1
+  ----------
+  [ ] --  Categories
+            * Users will be able to "tag" podcasts for certain categories (technology, design, etc).
+            * Or, they will be able to drag-and-drop them into buckets.
+            * Maybe both.
+  
   2.0
   ----------
-  [ ] --  "Harks": Personalized podcast streams.
+  [ ] --  "Harks": Personalized podcast streams/playlists.
             * Users will be able to select certain feeds they want to bundle together, maybe share them.
             * Someone can make a "best comedy podcasts" Hark, others can subscribe to that.
 
@@ -81,9 +84,10 @@ BUGS
   ----------
 
 
-OTHER FEATURES
+OTHER POSSIBLE FEATURES
 
 Allow people to "bookmark" various points in a podcast and append them with notes, etc.
+  * Use something similar to YouTube's timestamp?
 
 When listening to a podcast, make some kind of "pulse" on its feed in the left column.
 

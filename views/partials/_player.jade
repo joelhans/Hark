@@ -9,7 +9,16 @@ div.podcast-player
 							i.icon-play
 						a.jp-pause(href='javascript:;', tabindex='1')
 							i.icon-pause
-						
+				div.jp-progress-control
+					div.jp-progress-bar
+						div.jp-seek-bar
+							div.jp-play-bar
+								span.jp-play-tracker
+					div.jp-current-time
+					div.jp-duration
+				div.jp-playing
+					- if ( typeof(playing) !== 'undefined' )
+						!=partial('partials/player-playing')		
 				div.jp-volume-control
 					div.jp-volume-bar
 						div.jp-volume-bar-value
@@ -23,13 +32,4 @@ div.podcast-player
 								i.icon-volume-off
 							a.jp-unmute(href='javascript:;', tabindex='1')
 								i.icon-volume-down
-				div.jp-progress-control
-					div.jp-progress-bar
-						div.jp-seek-bar
-							div.jp-play-bar
-								span.jp-play-tracker
-					div.jp-current-time
-					div.jp-duration
-				div.jp-playing
-					- if ( typeof(playing) !== 'undefined' )
-						!=partial('partials/player-playing')
+				

@@ -47,7 +47,6 @@ body {
 #hark-podcasts {
 	min-height: 100%;
 	padding: 0 20px 0 0;
-	@include clearfix;
 	position: relative;
 	margin-top: -40px;
 }
@@ -296,15 +295,17 @@ header {
 }
 
 .header-settings {
-	margin: 22px 0 0 50%;
+	width: 40%;
+	margin: 22px 0 0 60%;
 	@include bodyFont;
 	a {
-		width: auto; height: 30px;
+		width: 30px; height: 30px;
 		font-size: 14px;
 		line-height: 21px;
 		text-transform: uppercase;
 		color: $base;
-		display: inline-block;
+		@include inline-block;
+		// float: right;
 		margin: 0 10px 0 0;
 		position: relative;
 		border: 1px solid rgba(0,0,0,0);
@@ -321,6 +322,7 @@ header {
 .podcast-player {
 	float: left;
 	width: 75%;
+	padding-right: 20px;
 }
 
 .jp-controls, .jp-play-container { margin-bottom: 0px; }
@@ -337,6 +339,7 @@ header {
 	@include inline-block;
 	overflow: hidden;
 	border: 1px solid $body;
+	outline: 0;
 	@include transition(all, 0s);
 	&:hover { margin: 14px 0 12px 14px; }
 }
@@ -384,7 +387,7 @@ header {
 
 .jp-volume-control {
 	position: absolute;
-	top: 45px; left: 140px;
+	top: 45px; right: 45px;
 }
 
 .jp-volume-bar {
@@ -453,12 +456,13 @@ header {
 }
 
 .jp-progress-control {
+	width: 60%;
 	position: absolute;
-	top: 45px; left: 340px;
+	top: 45px; left: 105px;
 }
 
 .jp-progress-bar {
-	width: 400px; height: 12px;
+	width: 100%; height: 12px;
 	position: relative;
 	background-color: $base;
 	@include border-radius(6px);
@@ -505,7 +509,7 @@ header {
 .jp-playing {
 	width: 400px;
 	position: absolute;
-	top: 16px; left: 340px;
+	top: 16px; left: 105px;
 	p {
 		color: $base;
 		white-space: nowrap;
@@ -542,6 +546,7 @@ header {
 .updateButton {
 	width: 42px; height: 42px;
 	border: 0px;
+	display: block;
 	position: absolute; top: 56px; right: 0px;
 	a, a:visited {
 		border: 0px;
@@ -749,7 +754,7 @@ header {
 }
 
 .podcast-header-feed {
-	width: 30%; height: 100%;
+	width: 40%; height: 100%;
 	border-left: 1px solid $borderColor;
 	p {
 		font-size: 12px;
@@ -845,7 +850,7 @@ header {
 	border-left: 1px solid $borderColor;
 	p {
 		margin: 0;
-		padding: 8px 10px 8px 10px;
+		padding: 10px 10px 10px 10px;
 		text-align: center;
 		a {
 			width: 24px; height: 24px;
@@ -865,28 +870,13 @@ header {
 				color: $body;
 			}
 			i { margin: 1px 0 0 -1px; }
-			i.icon-headphones { font-size: 15px; }
+			i.icon-headphones { 
+				font-size: 15px;
+				margin: 1px 0 0 -2px;
+			}
 		}
 	}
 }
-
-// .removeFeed {
-// 	width: 30px; height: 30px;
-// 	@include inline-block;
-// 	font-size: 22px;
-// 	color: $base;
-// 	background-color: $linkColor;
-// 	opacity: 0;
-// 	@include border-radius(15px);
-// 	border: 3px solid $bodyTrans;
-// 	margin: -2px 0 0 0;
-// 	&:hover {
-// 		border: 3px solid $errorColor;
-// 		background-color: $base;
-// 		color: $body;
-// 	}
-// 	i { margin: 0 0 0 -2px;	}
-// }
 
 div.podcastDescription {
 	display: none;
@@ -1074,7 +1064,7 @@ a.delete, a.delete:visited {
 ----------------------------------------- */
 
 @media only screen and (max-width: 767px) {
-  header {
+  header.login-page {
     height: auto;
     .row { margin-bottom: 0px; }
   }
@@ -1123,6 +1113,126 @@ a.delete, a.delete:visited {
     }
   }
 }
+
+/* -----------------------------------------
+  Media queries for main view.
+----------------------------------------- */
+@media only screen and (max-width: 1200px) {
+	.header-settings a { margin: 0; }
+}
+
+@media only screen and (max-width: 990px) {
+	.header-settings a i { margin: 0 5px 0 0; }
+	.addFeed { width: 50%; }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 990px) {
+	.jp-volume-control { right: 35px; }
+	.jp-mute { left: -32px; }
+	.jp-volume-bar { width: 70px; }
+	.jp-volume-max { left: 70px; }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 850px) {
+	.jp-progress-control { width: 55%; }
+}
+
+@media only screen and (max-width: 900px) {
+	.header-settings a { width: 24px; }
+	.header-settings a i { margin: 0; }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+	.updateButton {
+		position: relative;
+		margin: 0 auto;
+		top: 0px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	header { height: 224px; }
+
+	.logo, .podcast-player { width: 100%; }
+
+	.header-settings {
+		width: 5%;
+		margin: -8px 0 0 70%;
+	}
+
+	.header-settings a i.icon-home { margin: 0 0 0 -2px; }
+	.header-settings a i.icon-cog { margin: 0 0 0 -1px; }
+
+	.jp-progress-control { 
+		width: 80%;
+		left: 20%;
+	}
+
+	.jp-volume-control {
+		top: 85px;
+		left: 50%;
+		margin-left: -40px;
+	}
+
+	.jp-playing {
+		width: 80%;
+		left: 20%;
+	}
+
+	// .listen, .subscriptions { float: right; }
+
+	.listen { 
+		width: 100%;
+		margin: 0 10px 0 10px;
+	}
+
+	.podcast-header {
+		border-right: 0px;
+	}
+
+	.podcastItem {
+		border-right: 0px;
+	}
+
+	.subscriptions {
+		width: 100%;
+		margin: 20px 10px 0 10px;
+		border-right: 0px;
+		// padding-top: 0px;
+	}
+
+	// .updateButton {
+	// 	top: 78px;
+	// }
+
+	.settings { 
+		width: 100%;
+		margin: 0 10px 0 10px;
+	}
+
+	.information {
+		width: 100%;
+		margin: 20px 10px 0 10px;
+		border-right: 0px;
+		// padding-top: 0px;
+	}
+
+}
+
+@media only screen and (max-width: 480px) {
+	.jp-progress-control {
+		width: 75%;
+		left: 25%;
+	}
+
+	.jp-playing {
+		width: 75%;
+		left: 25%;
+	}
+
+}
+
+
 
 /*******************************************
 *
