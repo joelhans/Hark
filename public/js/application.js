@@ -5,7 +5,7 @@ window.JSON||(window.JSON={}),function(){function f(a){return a<10?"0"+a:a}funct
 $(document).ready(function() {
 
   var mediaData,
-    progress;
+      progress;
 
   var State = History.getState();
 
@@ -123,17 +123,27 @@ $(document).ready(function() {
       });
     },
     error:function(d) {
-      // console.log("Error Event: type = " + event.jPlayer.error.type);
       console.log(d);
     },
     ready:function(d) {
       if (typeof(playing) !== 'undefined') {
-        mediaData = {};
+        mediaData = playing;
+        playStatus(playing.progress, playing);
         $('#jquery_jplayer_1').jPlayer("setMedia", {
           mp3: playing.podcast
         }).jPlayer('pause', Math.round(playing.progress));
       }
     }
+  });
+
+  //
+  //  Manual synchronization.
+  //
+
+  $('.manual-sync').click(function(e) {
+    progress = $('#jquery_jplayer_1').data("jPlayer").status.currentTime;
+    playStatus(progress, mediaData);
+    updateStatus();
   });
 
   //
@@ -157,7 +167,7 @@ $(document).ready(function() {
   //  Add a feed.
   //
 
-  $('.addFeed').live('keypress', function(e){
+  $(document).delegate('.addFeed', 'click', function(e) {
     if(e.which == 13){
       data = { url : $(this).val() };
       $.ajax({
@@ -177,7 +187,7 @@ $(document).ready(function() {
   //  Remove a feed.
   //
 
-  $('.removeFeed').live('click', function(e) {
+  $(document).delegate('.removeFeed', 'click', function(e) {
     e.preventDefault();
     var data = { id : $(this).attr('href').split('/')[3] };
     $.ajax({
@@ -195,7 +205,7 @@ $(document).ready(function() {
   //  Edit a feed.
   //
 
-  $('.editFeed').live('click', function(e) {
+  $(document).delegate('.editFeed', 'click', function(e) {
     e.preventDefault();
     var data = { id : $(this).attr('href').split('/')[3] };
     $(this).parent().parent().children('.loadFeed').fadeOut(300).promise().done(function() {
@@ -285,17 +295,17 @@ $(document).ready(function() {
   // Listen to a podcast.
   //
 
-  $('.podcastListen').live('click', function(e) {
+  $(document).delegate('.podcastListen', 'click', function(e) {
     e.preventDefault();
     mediaData = {
-      file: $(this).attr("data-file"),
-      title: $(this).attr("data-title"),
-      id: $(this).attr('href').split('/')[3],
-      feed: $(this).attr('href').split('/')[2],
+      podcast: $(this).attr("data-file"),
+      podcastTitle: $(this).attr("data-title"),
+      podcastID: $(this).attr('href').split('/')[3],
+      feedUUID: $(this).attr('href').split('/')[2],
       feedTitle: $(this).attr("data-feed")
     }
     $('#jquery_jplayer_1').jPlayer("setMedia", {
-      mp3: mediaData.file
+      mp3: mediaData.podcast
     }).jPlayer('play');
     $.ajax({
       type: 'POST',
@@ -305,7 +315,6 @@ $(document).ready(function() {
         $('.jp-playing').html(data);
       }
     });
-    
   });
 
   //
@@ -313,7 +322,10 @@ $(document).ready(function() {
   //
 
   $(document).delegate('.podcastRead', 'click', function(e) {
-    $(this).parent().parent().parent().children('.podcastDescription').toggle(500);
+    $(this).parent().parent().parent().children('.podcastDescription').toggle(500).promise().done(function() {
+      leftFixHeight();
+    });
+    return false;
   });
 
   //
@@ -361,7 +373,7 @@ $(document).ready(function() {
   //  Update all feeds.
   //
 
-  $('.feedUpdate').live('click', function(e) {
+  $(document).delegate('.feedUpdate', 'click', function(e) {
     e.preventDefault();
     $('.updateAction').html('Updating...').fadeIn(300);
     $.ajax({
@@ -550,11 +562,11 @@ $(document).ready(function() {
   //
 
   function playStatus(progress, mediaData) {
-    sessionStorage.setItem("podcast", mediaData.file);
-    sessionStorage.setItem("podcastID", mediaData.id);
-    sessionStorage.setItem("podcastFeed", mediaData.feed);
+    sessionStorage.setItem("podcast", mediaData.podcast);
+    sessionStorage.setItem("podcastID", mediaData.podcastID);
+    sessionStorage.setItem("podcastFeed", mediaData.feedUUID);
     sessionStorage.setItem("feedTitle", mediaData.feedTitle);
-    sessionStorage.setItem("podcastTitle", mediaData.title);
+    sessionStorage.setItem("podcastTitle", mediaData.podcastTitle);
     sessionStorage.setItem("progress", progress);
   }
 
@@ -599,7 +611,7 @@ jQuery.fn.waveify = function(orientation) {
 
       ctx.beginPath();
       ctx.moveTo(0, 20);
-      var freq = Math.random()*0.1+0.01;
+      var freq = Math.random() * 0.01 + 0.01;
       for ( var i = 0; i <= $(window).width(); i++ ) {
         x = i;
         y = 10 * Math.sin(freq * x) + 20;
@@ -617,7 +629,6 @@ jQuery.fn.waveify = function(orientation) {
         ctx.closePath();
         ctx.stroke();
         ctx.fill();
-        //
         var imageObj = new Image();
         function drawPattern() {
            var pattern = ctx.createPattern(imageObj, "repeat");
@@ -626,7 +637,6 @@ jQuery.fn.waveify = function(orientation) {
         }
         imageObj.onload = drawPattern;
         imageObj.src = "/img/grainy.png";
-        //
     } else {
       return false;
     }

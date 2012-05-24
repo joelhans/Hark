@@ -312,6 +312,7 @@ header {
 		i {
 			font-size: 24px;
 			margin: 0 10px 0 0;
+			&:hover { @include text-shadow($linkColorHover 0 0 20px); }
 		}
 	}
 }
@@ -385,6 +386,32 @@ header {
 	}
 }
 
+.manual-sync {
+    position: absolute;
+    top: 39px;
+    right: 240px;
+    &:hover { cursor: pointer; }
+    &:hover > .manual-sync-popup { opacity: 100; top: 28px; }
+    i {
+    	color: $base;
+    	font-size: 24px;
+    	&:hover { @include text-shadow($linkColorHover 0 0 20px); }
+    }
+    .manual-sync-popup {
+    	opacity: 0;
+    	width: 140px;
+		position: absolute; top: 18px; left: -60px;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 14px;
+		color: $base;
+		padding: 2px 6px 2px 6px;
+		@include background(image-url("/img/grainy.png"), $linkColorHover);
+		@include border-radius(4px);
+		@include transition(all, 0.5s);
+	}
+}
+
 .jp-volume-control {
 	position: absolute;
 	top: 45px; right: 45px;
@@ -419,39 +446,42 @@ header {
 }
 
 .jp-mute {
-	position: absolute; top: -6px; left: -45px;
+	position: absolute; top: -7px; left: -35px;
 	border: 0px;
 	&:hover { border: 0px; }
-	&:focus { outline: 0px; top: -6px; left: -45px; }
+	&:focus { outline: 0px; top: -7px; left: -35px; }
 	i {
 		color: $base;
-		font-size: 32px;
+		font-size: 24px;
 		z-index: 10;
+		&:hover { @include text-shadow($linkColorHover 0 0 20px); }
 	}
 }
 
 .jp-unmute {
-	position: absolute; top: -6px; left: -43px;
+	position: absolute; top: -7px; left: -35px;
 	border: 0px;
 	&:hover { border: 0px; }
-	&:focus { outline: 0px; top: -6px; left: -43px; }
+	&:focus { outline: 0px; top: -7px; left: -35px; }
 	i {
 		color: $base;
-		font-size: 32px;
+		font-size: 24px;
 		z-index: 10;
+		&:hover { @include text-shadow($linkColorHover 0 0 20px); }
 	}
 }
 
 .jp-volume-max {
-	position: absolute; top: -6px; left: 110px;
+	position: absolute; top: -7px; left: 110px;
 	border: 0px;
 	&:hover { border: 0px; }
-	&:focus { outline: 0px; top: -6px; left: 110px; }
+	&:focus { outline: 0px; top: -7px; left: 110px; }
 	i {
 		color: $base;
-		font-size: 32px;
+		font-size: 24px;
 		z-index: 10;
 		&:active { outline: 0; border: 0px; }
+		&:hover { @include text-shadow($linkColorHover 0 0 20px); }
 	}
 }
 
@@ -507,7 +537,7 @@ header {
 }
 
 .jp-playing {
-	width: 400px;
+	width: 60%;
 	position: absolute;
 	top: 16px; left: 105px;
 	p {

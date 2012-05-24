@@ -16,7 +16,7 @@ ROADMAP
           Bug fixes.
             [x] --  Left column doesn't get tall enough to accomodate many many feeds.
 
-  0.2 // CURRENT LIVE VERSION ON HARKHQ.COM
+  0.2
   ----------
   [x] --  Sorting abilities for podcasts (date, feed, etc).
             [x] --  By date.
@@ -42,6 +42,20 @@ ROADMAP
             [x] --  Added sorting features to single feed view.
             [x] --  Columns for individual podcasts don't line up upon resizing.
             [x] --  Canvas-based waves look a little nicer now, save for resizing.
+            [x] --  Updating feeds with multiple new items causes some problems, notably only marking all but the newest one unlistened, or none at all.
+
+  0.4 // CURRENT LIVE VERSION ON HARKHQ.COM
+  ----------
+  [x] --  Migrate application.js from use of "live" click handlers to "delegate."
+  [x] --  Adding feeds now inserts up to 50 items.
+  [x] --  Manual sync.
+          Bug fixes.
+            [x] --  Updating feeds with multiple new items causes some problems, notably only marking all but the newest one unlistened, or none at all.
+            [x] --  If you resume a podcast via syncing, it won't properly get marked as "listened" upon completion.
+
+  0.5
+  ----------
+  [ ] --  New planned interface for manipulating podcasts (Gmail-esque).
 
   1.0
   ----------
@@ -49,9 +63,7 @@ ROADMAP
             * This will be a central location for feeds.
             * I will be able to add new feeds to this database, and users will 
               be able to browse/search for items that they're interested in.
-  [ ] --  Manual sync
-            * I'll add a button that allows users to manually sync their current listening status with the server, rather than the every-two-minutes ping.
-
+  
   1.1
   ----------
   [ ] --  Categories
@@ -96,7 +108,3 @@ Turn the getFeeds function into a cursor.each one like the updateFeeds one. Shou
 Sanitize inputs.
   * Login -- user e-mails.
   * Feeds -- How to prevent maliciousness?
-
-Add being able to load in older, non-databased feeds from the individual feed view.
-
-Migrate application.js from use of "live" click handlers to "delegate."

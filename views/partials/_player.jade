@@ -18,7 +18,10 @@ div.podcast-player
 					div.jp-duration
 				div.jp-playing
 					- if ( typeof(playing) !== 'undefined' )
-						!=partial('partials/player-playing')		
+						!=partial('partials/player-playing')
+				div.manual-sync
+					i.icon-retweet
+					span.manual-sync-popup Sync progress
 				div.jp-volume-control
 					div.jp-volume-bar
 						div.jp-volume-bar-value
@@ -31,5 +34,5 @@ div.podcast-player
 							a.jp-mute(href='javascript:;', tabindex='1')
 								i.icon-volume-off
 							a.jp-unmute(href='javascript:;', tabindex='1')
-								i.icon-volume-down
+								i.icon-volume-off
 				
