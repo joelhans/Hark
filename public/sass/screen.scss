@@ -369,7 +369,7 @@ header {
 .jp-pause {
 	@include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
 	i {
-		position: absolute; top: 16px; left: 3px;
+		position: absolute; top: 16px; left: 4px;
 		color: $base;
 		font-size: 50px;
 	}
@@ -388,8 +388,8 @@ header {
 
 .manual-sync {
     position: absolute;
-    top: 39px;
-    right: 240px;
+    top: -5px;
+    right: -30px;
     &:hover { cursor: pointer; }
     &:hover > .manual-sync-popup { opacity: 100; top: 28px; }
     i {
@@ -400,7 +400,7 @@ header {
     .manual-sync-popup {
     	opacity: 0;
     	width: 140px;
-		position: absolute; top: -5px; right: -40px;
+		position: absolute; top: -5px; right: -60px;
 		text-align: center;
 		text-transform: uppercase;
 		font-size: 14px;
@@ -1031,6 +1031,7 @@ a.delete, a.delete:visited {
 	width: 100%; height: 100%; min-height: 100%;
 	position: fixed; left: 0px; top: 0px;
 	@include background(rgba(33, 33, 33, 0.6));
+	z-index: 1000;
 }
 
 .settings-mask { display: none; }

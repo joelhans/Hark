@@ -315,7 +315,7 @@ app.post('/listen/add', loadUser, function(req, res) {
 
         parser.parseString(body, function (err, result) {
 
-          if (typeof result == "undefined") {
+          if (typeof result === "undefined") {
             req.flash('errorAddFeed', "An error occured when adding that feed. Check the URL and try again.");
             Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
               getFeeds(result['email'], result['username'], function(error, feeds, podcastList) {
@@ -325,14 +325,13 @@ app.post('/listen/add', loadUser, function(req, res) {
           }
 
           var feed = result.channel,
-            i,
             mediaType,
             pubDate,
             listened,
             construction = new Array(),
             podData = new Array();
 
-          for ( i = 0; i < 50; ++i ) {
+          for (var i = 0; i < 50; ++i ) {
             podData = {};
             
             if ( typeof feed.item[i] !== "undefined" ) {
@@ -385,11 +384,11 @@ app.post('/listen/add', loadUser, function(req, res) {
                   'prettyDay' : pubDate.format('D'),
                   'prettyMonth' : pubDate.format('MMMM'),
                   'prettyYear' : pubDate.format('YYYY'),
-                  'listened'  : 'false'
+                  'listened'  : listened
                 };
               construction.push(podData);
               break;
-            } else if ( typeof feed.item[i] === "undefined" ) {
+            } else {
               break;
             }
           }

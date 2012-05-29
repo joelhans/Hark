@@ -167,7 +167,7 @@ $(document).ready(function() {
   //  Add a feed.
   //
 
-  $(document).delegate('.addFeed', 'click', function(e) {
+  $('.addFeed').live('keypress', function(e){
     if(e.which == 13){
       data = { url : $(this).val() };
       $.ajax({

@@ -56,6 +56,9 @@ ROADMAP
   0.5
   ----------
   [ ] --  New planned interface for manipulating podcasts (Gmail-esque).
+          Bug fixes.
+            [x] --  Squashed a bug relating to updating of feeds with only a single item.
+            [x] --  Fixed a rather embarassing bug that prevented users from adding podcasts.
 
   1.0
   ----------
