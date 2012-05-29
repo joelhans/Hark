@@ -85,6 +85,8 @@ BUGS
 
   ***
   ----------
+  [ ] --  Auto-hiding of listened podcasts is broken. I'm guessing it has to do with recent changes in mediaData's structure.
+  [ ] --  Playing data for a sync-ed podcast doesn't show. Same reason as above˙.
   [ ] --  When reading podcast descriptions, the left column height doesn't get reset properly.
 
   **

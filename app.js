@@ -698,7 +698,7 @@ app.post('/listen/update', loadUser, function(req, res) {
                   'podMedia'  : feed.item.media,
                   'podDesc' : feed.item.description,
                   'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
-                  'podDate' : 'pubDate',
+                  'podDate' : pubDate,
                   'prettyDay' : pubDate.format('D'),
                   'prettyMonth' : pubDate.format('MMMM'),
                   'prettyYear' : pubDate.format('YYYY'),

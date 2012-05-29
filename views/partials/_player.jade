@@ -16,12 +16,12 @@ div.podcast-player
 								span.jp-play-tracker
 					div.jp-current-time
 					div.jp-duration
+					div.manual-sync
+						i.icon-retweet
+						span.manual-sync-popup Sync progress
 				div.jp-playing
 					- if ( typeof(playing) !== 'undefined' )
 						!=partial('partials/player-playing')
-				div.manual-sync
-					i.icon-retweet
-					span.manual-sync-popup Sync progress
 				div.jp-volume-control
 					div.jp-volume-bar
 						div.jp-volume-bar-value
