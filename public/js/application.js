@@ -99,7 +99,7 @@ $(document).ready(function() {
     },
     ended: function(d) {
       clearInterval(updatePlaying);
-      $('[data-uuid="' + mediaData.id + '"]')
+      $('[data-uuid="' + mediaData.podcastID + '"]')
         .animate(
           { opacity: '0' },
           { duration: 600
@@ -114,7 +114,7 @@ $(document).ready(function() {
       });
       $.ajax({
         type: 'POST',
-        url: '/listen/' + mediaData.feed + '/listened/' + mediaData.id,
+        url: '/listen/' + mediaData.feedUUID + '/listened/' + mediaData.podcastID,
         data: mediaData,
         success: function() {},
         error: function() {
@@ -309,7 +309,7 @@ $(document).ready(function() {
     }).jPlayer('play');
     $.ajax({
       type: 'POST',
-      url: '/listen/' + mediaData.feed + '/' + mediaData.id,
+      url: '/listen/' + mediaData.feedUUID + '/' + mediaData.podcastID,
       data: mediaData,
       success: function(data) {
         $('.jp-playing').html(data);
