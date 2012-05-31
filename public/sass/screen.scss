@@ -45,10 +45,8 @@ body {
 }
 
 #hark-podcasts {
-	min-height: 100%;
 	padding: 0 20px 0 0;
 	position: relative;
-	margin-top: -40px;
 }
 
 .left-column {
@@ -60,6 +58,12 @@ input {
 	font-size: 14px;
 	line-height: 21px;
 	border-radius: 4px;
+	::-webkit-input-placeholder {
+	    color: $base;
+	}
+	:-moz-placeholder {
+	    color: $base;
+	}
 }
 
 nav {
@@ -265,10 +269,11 @@ header {
 }
 
 .hark-listen {
-  width: 200px;
-  margin-left: 20px;
+  width: 50%;
+  float: left;
   a {
     width: 100px; height: 100px;
+    margin-left: 20px;
     font-size: 24px;
     color: $linkColor;
     text-align: center;
@@ -280,6 +285,7 @@ header {
   }
   .pulse {
     width: 100px; height: 100px;
+    margin-left: 20px;
     background-color: $base;
     position: absolute;
     z-index: 25;
@@ -295,11 +301,13 @@ header {
 }
 
 .header-settings {
-	width: 40%;
-	margin: 22px 0 0 60%;
+	width: 50%;
+	float: left;
+	text-align: right;
 	@include bodyFont;
+	margin-bottom: 0px;
 	a {
-		width: 30px; height: 30px;
+		width: 100%;
 		font-size: 14px;
 		line-height: 21px;
 		text-transform: uppercase;
@@ -486,9 +494,8 @@ header {
 }
 
 .jp-progress-control {
-	width: 60%;
 	position: absolute;
-	top: 45px; left: 105px;
+	top: 45px; left: 105px; right: 220px;
 }
 
 .jp-progress-bar {
@@ -555,6 +562,65 @@ header {
 }
 
 /* -----------------------------------------
+	Action buttons.
+----------------------------------------- */
+#actions {
+	width: 100%;
+	padding: 10px 20px 10px 20px;
+	@include background(image-url("/img/grainy.png"), $base);
+	z-index: 900;
+}
+
+.actions {
+	padding: 0 0 0 0;
+	position: relative;
+	ul li.action {
+		@include inline-block;
+		color: $base;
+		font-size: 14px;
+		line-height: 14px;
+		text-transform: uppercase;
+		@include background($errorColor);
+		margin: 10px 40px 0 0;
+		padding: 10px 20px 10px 20px;
+		@include transition(all, 0.5s);
+	}
+	ul li.action.active {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+	ul li.action.inactive {
+		color: $body;
+		background-color: rgba(33, 33, 33, 0.05);
+	}
+}
+
+.actions.right-column {
+	float: left;
+	width: 75%;
+	padding: 0;
+	ul { margin-left: 5px; }
+}
+
+.actions-fixed {
+	position: fixed;
+	top: 0px; left: 0px;
+	border-bottom: 1px solid $errorColor;
+}
+
+.add-feed-container {
+	// opacity: 0;
+	display: none;
+	position: absolute; top: 35px; left: 0px;
+	width: 90%;
+	padding: 10px 20px 10px 20px;
+	@include background($errorColor);
+	z-index: 900;
+	@include transition(all, 0.5s, ease-in-out);
+}
+
+/* -----------------------------------------
 	Sidebar / subscription list.
 ----------------------------------------- */
 .subscriptions {
@@ -562,7 +628,6 @@ header {
 	height: 100%;
 	width: 25%;
 	border-right: 1px solid $borderColor;
-	padding-top: 40px;
 	margin-bottom: 20px;
 	z-index: 1;
 	h1 {
@@ -573,54 +638,24 @@ header {
 	}
 }
 
-.updateButton {
-	width: 42px; height: 42px;
-	border: 0px;
-	display: block;
-	position: absolute; top: 56px; right: 0px;
-	a, a:visited {
-		border: 0px;
-		&:hover { border: 0px; }
-		i {
-			font-size: 28px;
-			color: darken($linkColor, 25%);
-		}
-	}
-	.updateAction {
-		display: none;
-		font-size: 14px;
-		text-transform: uppercase;
-		margin: 0;
-		position: absolute; top: 5px; left: -90px;
-	}
-}
-
-.add-subscription {
+.add-feed {
+	margin: 0 0 0 1px;
 	width: 100%;
-	display: block;
-	border-top: 1px solid $borderColor;
-	padding-top: 12px;
-	h2 {
-		font-size: 18px;
-		text-transform: uppercase;
-		margin: 0;
-		padding: 0 0 0 20px;
-		@include inline-block;
+	font-family: $baseFontFamily;
+	color: $base;
+	padding: 2px 4px 2px 4px;
+	border: 0px;
+	@include transition(all, 0.5s, ease-in-out);
+	@include background($errorColor);
+	border-radius: 0px;
+	&:hover {
+		border-bottom: 1px solid $base;
+		// @include box-shadow($base 0px 0px 10px);
 	}
-	input {
-		@include inline-block;
-		margin: 1px 0px 0 10px;
-		width: 70%;
-		font-family: $baseFontFamily;
-		border: 1px solid $base;
-		@include transition(all, 0.5s, ease-in-out);
-		&:hover {
-			@include box-shadow($linkColor 0px 0px 10px);
-		}
-		&:focus {
-			outline: 0;
-			@include box-shadow($linkColor 0px 0px 20px);
-		}
+	&:focus {
+		outline: 0;
+		border-bottom: 2px solid $base;
+		// @include box-shadow($base 0px 0px 20px);
 	}
 }
 
@@ -725,7 +760,7 @@ header {
 .listen {
 	float: left;
 	width: 75%;
-	padding: 40px 0 0 0;
+	padding: 0;
 	margin: 0 0 20px 0;
 	h1 {
 		font-size: 22px;
@@ -767,7 +802,7 @@ header {
 }
 
 .podcast-header-title {
-	width: 40%;
+	width: 55%;
 	border-left: 1px solid $borderColor;
 	p {
 		font-size: 12px;
@@ -784,7 +819,7 @@ header {
 }
 
 .podcast-header-feed {
-	width: 40%; height: 100%;
+	width: 30%; height: 100%;
 	border-left: 1px solid $borderColor;
 	p {
 		font-size: 12px;
@@ -834,8 +869,9 @@ header {
 }
 
 .podcastTitle {
-	width: 40%;
+	width: 55%;
 	border-left: 1px solid $borderColor;
+	position: relative;
 	p {
 		font-size: 16px;
 		white-space: nowrap;
@@ -875,39 +911,6 @@ header {
 	}
 }
 
-.podcastActions {
-	width: 15%;
-	border-left: 1px solid $borderColor;
-	p {
-		margin: 0;
-		padding: 10px 10px 10px 10px;
-		text-align: center;
-		a {
-			width: 24px; height: 24px;
-			@include inline-block;
-			@include border-radius(12px);
-			font-size: 16px;
-			line-height: 16px;
-			color: $base;
-			background-color: $linkColor;
-			border: 3px solid $bodyTrans;
-			margin-right: 6px;
-			padding: 0 0 2px 0;
-			&:last-of-type { margin-right: 0px; }
-			&:hover {
-				border: 3px solid $errorColor;
-				background-color: $base;
-				color: $body;
-			}
-			i { margin: 1px 0 0 -1px; }
-			i.icon-headphones { 
-				font-size: 15px;
-				margin: 1px 0 0 -2px;
-			}
-		}
-	}
-}
-
 div.podcastDescription {
 	display: none;
 	padding: 0 20px 0 0;
@@ -915,6 +918,10 @@ div.podcastDescription {
 		margin-bottom: 0px;
 		padding-bottom: 12px;
 	}
+}
+
+.podcastItem.selected {
+	background-color: rgba($errorColor, 0.1);
 }
 
 /* -----------------------------------------
@@ -1027,7 +1034,9 @@ a.delete, a.delete:visited {
 
 .success { color: $successColor; }
 
-.mask, .settings-mask {
+#error-mask, .js-modal-error { display: none; }
+
+.mask, #error-mask, .settings-mask {
 	width: 100%; height: 100%; min-height: 100%;
 	position: fixed; left: 0px; top: 0px;
 	@include background(rgba(33, 33, 33, 0.6));
@@ -1036,7 +1045,7 @@ a.delete, a.delete:visited {
 
 .settings-mask { display: none; }
 
-.modal-error, .settings-modal-error {
+.modal-error, .js-modal-error, .settings-modal-error {
 	width: 400px;
 	position: fixed; top: 40%; left: 50%;
 	margin-left: -200px;
@@ -1149,12 +1158,12 @@ a.delete, a.delete:visited {
   Media queries for main view.
 ----------------------------------------- */
 @media only screen and (max-width: 1200px) {
-	.header-settings a { margin: 0; }
+	// .header-settings a { margin: 0; }
 }
 
 @media only screen and (max-width: 990px) {
-	.header-settings a i { margin: 0 5px 0 0; }
-	.addFeed { width: 50%; }
+	// .header-settings a i { margin: 0 5px 0 0; }
+	// .addFeed { width: 50%; }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 990px) {
@@ -1165,12 +1174,12 @@ a.delete, a.delete:visited {
 }
 
 @media only screen and (min-width: 768px) and (max-width: 850px) {
-	.jp-progress-control { width: 55%; }
+	// .jp-progress-control { width: 55%; }
 }
 
 @media only screen and (max-width: 900px) {
-	.header-settings a { width: 24px; }
-	.header-settings a i { margin: 0; }
+	// .header-settings a { width: 24px; }
+	// .header-settings a i { margin: 0; }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 959px) {
@@ -1186,17 +1195,16 @@ a.delete, a.delete:visited {
 
 	.logo, .podcast-player { width: 100%; }
 
-	.header-settings {
-		width: 5%;
-		margin: -8px 0 0 70%;
-	}
+	// .header-settings {
+	// 	width: 5%;
+	// 	margin: -8px 0 0 70%;
+	// }
 
-	.header-settings a i.icon-home { margin: 0 0 0 -2px; }
-	.header-settings a i.icon-cog { margin: 0 0 0 -1px; }
+	// .header-settings a i.icon-home { margin: 0 0 0 -2px; }
+	// .header-settings a i.icon-cog { margin: 0 0 0 -1px; }
 
 	.jp-progress-control { 
-		width: 80%;
-		left: 20%;
+		left: 110px; right: 20px;
 	}
 
 	.jp-volume-control {
@@ -1304,4 +1312,19 @@ a.delete, a.delete:visited {
 @-ms-keyframes input-pulse {
 	0% { box-shadow: $linkColor 0px 0px 0px; }
 	100% { box-shadow: $linkColor 0px 0px 20px; }
+}
+
+
+
+.clearfix:before,
+.clearfix:after {
+    content:"";
+    display:table;
+}
+.clearfix:after {
+    clear:both;
+}
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix {
+    zoom:1;
 }

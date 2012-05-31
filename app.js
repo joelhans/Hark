@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 0.4.1
+//  Current version: 0.5.0
 //
 //  Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -597,7 +597,7 @@ app.post('/listen/:feed/:_id', loadUser, function(req, res) {
 
 app.post('/listen/:feed/listened/:_id', loadUser, function(req, res) {
   Users.findAndModify({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, [], { $set: { 'playing' : {} } }, { new:true }, function(err, result) {
-    Feeds.findAndModify({ $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ] , 'pods.podUUID' : req.param('id') }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
+    Feeds.findAndModify({ $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ] , 'pods.podUUID' : req.param('podcastID') }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
       if(err) { throw err; }
       res.send(result);
     });
@@ -649,94 +649,79 @@ app.post('/listen/update', loadUser, function(req, res) {
       request({uri: feedHREF}, function(err, response, body){
         parser.parseString(body, function (err, xml) {
 
-          var feed = xml.channel,
-            j,
-            pubDate,
-            podData = new Array(),
+          if (typeof(xml) === 'undefined') {
+            req.flash('errorAddFeed', "There was an error with one of your feeds. Maybe the site is currently down. The affected podcast is at: " + feedHREF + '. The rest of your podcasts will update normally.');
+            Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
+              getFeeds(result['email'], result['username'], function(error, feeds, podcastList) {
+                res.partial('partials/podcasts', { feeds: feeds, podcasts: podcastList, flash: req.flash() });    
+              });
+            });
             newList = [];
+            callback(null, feeds, existingList, feedHREF, feedUUID, newList, counter);
+          } else {
+            var feed = xml.channel,
+              j,
+              pubDate,
+              podData = new Array(),
+              newList = [];
 
-          for ( var i = 0; i < 10; ++i ) {
-            podData = {};
+            for ( var i = 0; i < 10; ++i ) {
+              podData = {};
 
-            if ( typeof feed.item[i] !== "undefined" ) {
-              if ( typeof feed.item[i].enclosure !== "undefined" ) {
+              if ( typeof feed.item[i] !== "undefined" ) {
+                if ( typeof feed.item[i].enclosure !== "undefined" ) {
 
-                if ( typeof feed.item[i]['pubDate'] == "string" ) {
-                  pubDate = moment(feed.item[i]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
-                } else if ( typeof feed.item[i]['dc:date'] == "string" ) {
-                  pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
+                  if ( typeof feed.item[i]['pubDate'] == "string" ) {
+                    pubDate = moment(feed.item[i]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
+                  } else if ( typeof feed.item[i]['dc:date'] == "string" ) {
+                    pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
+                  }
+
+                  podData = {
+                    'podTitle'  : feed.item[i].title,
+                    'podLink' : feed.item[i].link,
+                    'podFile' : feed.item[i].enclosure['@'].url,
+                    'podMedia'  : feed.item[i].media,
+                    'podDesc' : feed.item[i].description,
+                    'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
+                    'podDate' : pubDate,
+                    'prettyDay' : pubDate.format('D'),
+                    'prettyMonth' : pubDate.format('MMMM'),
+                    'prettyYear' : pubDate.format('YYYY'),
+                    'listened'  : 'false'
+                  };
+                  newList.push(podData);
+                }
+              } else if ( typeof feed.item.title !== "undefined" ) {
+
+                if ( typeof feed.item['pubDate'] == "string" ) {
+                  pubDate = moment(feed.item['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
+                } else if ( typeof feed.item['dc:date'] == "string" ) {
+                  pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
                 }
 
                 podData = {
-                  'podTitle'  : feed.item[i].title,
-                  'podLink' : feed.item[i].link,
-                  'podFile' : feed.item[i].enclosure['@'].url,
-                  'podMedia'  : feed.item[i].media,
-                  'podDesc' : feed.item[i].description,
-                  'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
-                  'podDate' : pubDate,
-                  'prettyDay' : pubDate.format('D'),
-                  'prettyMonth' : pubDate.format('MMMM'),
-                  'prettyYear' : pubDate.format('YYYY'),
-                  'listened'  : 'false'
-                };
+                    'podTitle'  : feed.item.title,
+                    'podLink' : feed.item.link,
+                    'podFile' : feed.item.enclosure['@'].url,
+                    'podMedia'  : feed.item.media,
+                    'podDesc' : feed.item.description,
+                    'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
+                    'podDate' : pubDate,
+                    'prettyDay' : pubDate.format('D'),
+                    'prettyMonth' : pubDate.format('MMMM'),
+                    'prettyYear' : pubDate.format('YYYY'),
+                    'listened'  : 'false'
+                  };
                 newList.push(podData);
+                break;
+              } else if ( typeof feed.item[i] === "undefined" ) {
+                break;
               }
-            } else if ( typeof feed.item.title !== "undefined" ) {
-
-              if ( typeof feed.item['pubDate'] == "string" ) {
-                pubDate = moment(feed.item['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
-              } else if ( typeof feed.item['dc:date'] == "string" ) {
-                pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
-              }
-
-              podData = {
-                  'podTitle'  : feed.item.title,
-                  'podLink' : feed.item.link,
-                  'podFile' : feed.item.enclosure['@'].url,
-                  'podMedia'  : feed.item.media,
-                  'podDesc' : feed.item.description,
-                  'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
-                  'podDate' : pubDate,
-                  'prettyDay' : pubDate.format('D'),
-                  'prettyMonth' : pubDate.format('MMMM'),
-                  'prettyYear' : pubDate.format('YYYY'),
-                  'listened'  : 'false'
-                };
-              newList.push(podData);
-              break;
-            } else if ( typeof feed.item[i] === "undefined" ) {
-              break;
             }
-
-            // if ( typeof feed.item[j] != "undefined" ) {
-            //  if ( typeof feed.item[j].enclosure != "undefined" ) {
-
-            //    if ( typeof feed.item[j]['pubDate'] == "string" ) {
-            //      pubDate = moment(feed.item[j]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
-            //    } else if ( typeof feed.item[j]['dc:date'] == "string" ) {
-            //      pubDate = moment(feed.item[j]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
-            //    }
-
-            //    podData = {
-            //      'podTitle'  : feed.item[j].title,
-            //      'podLink' : feed.item[j].link,
-            //      'podFile' : feed.item[j].enclosure['@'].url,
-            //      'podMedia'  : feed.item[j].media,
-            //      'podDesc' : feed.item[j].description,
-            //      'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
-            //      'podDate' : pubDate,
-            //      'prettyDay' : pubDate.format('D'),
-            //      'prettyMonth' : pubDate.format('MMMM'),
-            //      'prettyYear' : pubDate.format('YYYY'),
-            //      'listened'  : 'false'
-            //    };
-            //    newList.push(podData);
-            //  }
-            // }
+            counter++;
+            callback(null, feeds, existingList, feedHREF, feedUUID, newList, counter);
           }
-          counter++;
-          callback(null, feeds, existingList, feedHREF, feedUUID, newList, counter);
         });
       });
     }, function ( feeds, existingList, feedHREF, feedUUID, newList, counter, callback ) {

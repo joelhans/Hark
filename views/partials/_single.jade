@@ -14,7 +14,7 @@ div.podcast-header
 				i
 ul.podcastList
 	for podcast in podcasts
-		li.podcastItem(data-uuid='' + podcast.podUUID)
+		li.podcastItem.single(data-uuid='' + podcast.podUUID)
 			div.podcastDate
 				p #{podcast.prettyMonth} #{podcast.prettyDay}, #{podcast.prettyYear}
 			div.podcastTitle
@@ -36,6 +36,6 @@ ul.podcastList
 					a(href="" + podcast.podFile, title='Download this podcast to your device.')
 						i.icon-chevron-down
 			div.podcastDescription
-				p.error A note: This feature is new, and isn't working entirely properly yet. Stay tuned for updates.
+				p.error A note: Don't blame me for poorly-sourced descriptions. Tell your favorite podcast to make a proper RSS feed!
 				div
 					p!= podcast.podDesc

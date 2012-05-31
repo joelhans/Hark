@@ -55,10 +55,22 @@ ROADMAP
 
   0.5
   ----------
-  [ ] --  New planned interface for manipulating podcasts (Gmail-esque).
+  [x] --  New planned interface for manipulating podcasts (Gmail-esque).
           Bug fixes.
             [x] --  Squashed a bug relating to updating of feeds with only a single item.
             [x] --  Fixed a rather embarassing bug that prevented users from adding podcasts.
+            [x] --  Auto-hiding of listened podcasts is broken. I'm guessing it has to do with recent changes in mediaData's structure.
+            [x] --  Playing data for a sync-ed podcast doesn't show. Same reason as above.
+            [x] --  An RSS source that is down will no longer bring the updating process to a halt.
+
+  0.6
+  ----------
+  [ ] --  A help/FAQ section.
+
+  0.7
+  ----------
+  [ ] --  Make an RSS feed that takes all the unlistened podcasts so people can sync it to other services.
+  [ ] --  Allow user to save listening progress in one podcast, listen to another one, and resume where they left off.
 
   1.0
   ----------
@@ -88,8 +100,6 @@ BUGS
 
   ***
   ----------
-  [ ] --  Auto-hiding of listened podcasts is broken. I'm guessing it has to do with recent changes in mediaData's structure.
-  [ ] --  Playing data for a sync-ed podcast doesn't show. Same reason as above˙.
   [ ] --  When reading podcast descriptions, the left column height doesn't get reset properly.
 
   **
@@ -102,6 +112,8 @@ BUGS
 
 
 OTHER POSSIBLE FEATURES
+
+
 
 Allow people to "bookmark" various points in a podcast and append them with notes, etc.
   * Use something similar to YouTube's timestamp?
