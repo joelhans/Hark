@@ -75,7 +75,7 @@ ROADMAP
     0.5.3
     ----------
     [x] -- Bug fix -- Sadly enough, this will take a third try. Single pages = working.
-    [ ] -- Feature -- Some moving around of views in preparation for the 0.6 release.
+    [x] -- Feature -- Some moving around of views in preparation for the 0.6 release.
 
   0.6
   ----------
