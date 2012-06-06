@@ -2,3 +2,4 @@ node_modules/
 *.sass-cache
 about/
 npm-debug.log
+conf.js
