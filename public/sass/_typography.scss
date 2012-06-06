@@ -38,9 +38,6 @@ $baseHeaderFont:		$baseFont * 2.2;
 }
 
 p, aside, span { @include bodyFont; }
-p + p { text-indent: $baseLine; }
-ul + p { text-indent: $baseLine; }
-blockquote + p { text-indent: $baseLine; }
 
 dt, dd {
 	@include bodyFont;
