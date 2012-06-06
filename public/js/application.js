@@ -15,7 +15,7 @@ $(document).ready(function() {
 
   var siteUrl = "http://" + top.location.host.toString();
 
-  $(document).delegate('a[href="/listen"], a[href="/settings"], a[href^="/listen/podcast/"]', "click", function(e) {
+  $(document).delegate('a[href="/listen"], a[href="/settings"], a[href="/help"], a[href^="/listen/podcast/"]', "click", function(e) {
     e.preventDefault();
     History.pushState({}, "", this.pathname);
   });
@@ -29,9 +29,7 @@ $(document).ready(function() {
         url: '/listen',
         success: function(data) {
           $('#hark-podcasts').html(data);
-          columnFixHeight();
           leftFixHeight();
-          listenSwitch(State, siteUrl);
         }
       });
     } else if (State.url == siteUrl + '/settings') {
@@ -40,9 +38,16 @@ $(document).ready(function() {
         url: '/settings',
         success: function(data) {
           $('#hark-podcasts').html(data);
-          columnFixHeight();
           leftFixHeight();
-          listenSwitch(State, siteUrl);
+        }
+      });
+    } else if (State.url == siteUrl + '/help') {
+      $.ajax({
+        type: 'POST',
+        url: '/help',
+        success: function(data) {
+          $('#hark-podcasts').html(data);
+          leftFixHeight();
         }
       });
     } else if (State.url == siteUrl + '/logout') {
@@ -55,9 +60,7 @@ $(document).ready(function() {
         data: data,
         success: function(data) {
           $('.listen').html(data);
-          columnFixHeight();
           leftFixHeight();
-          listenSwitch(State, siteUrl);
         }
       });
     }
@@ -259,6 +262,15 @@ $(document).ready(function() {
   });
 
   //
+  // De-select a podcast.
+  // 
+
+  $(document).delegate('.selected', 'click', function(e) {
+    $($this).removeClass('selected');
+    $('.act-listen, .act-mark, .act-read, .act-source, .act-download').removeClass('active').addClass('inactive');
+  });
+
+  //
   //  Mark a podcast as "listened."
   //
 
@@ -335,7 +347,7 @@ $(document).ready(function() {
           { duration: 600,
           complete: function() {
             $(this).remove();
-			columnFixHeight();
+			
 			leftFixHeight();
           }
         });
@@ -491,22 +503,6 @@ $(document).ready(function() {
   //
   //  Update all feeds.
   //
-
-  // ANTIQUATED
-  $(document).delegate('.feedUpdate', 'click', function(e) {
-    e.preventDefault();
-    $('.updateAction').html('Updating...').fadeIn(300);
-    $.ajax({
-      type: 'POST',
-      url: '/listen/update',
-      success: function(data) {
-        $('.updateAction').html('Update').fadeOut(300);
-        $('#hark-podcasts').html(data);
-        leftFixHeight();
-      }
-    });
-  });
-  // END ANTIQUATED
 
   $(document).delegate('.act-update', 'click', function(e) {
     e.preventDefault();

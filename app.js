@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 0.5.0
+//  Current version: 0.5.3
 //
 //  Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -472,7 +472,7 @@ app.post('/listen/podcast/:_id', loadUser, function(req, res) {
         });
       }
 
-      res.partial('partials/single', { feed: feed, podcasts: podcastList });
+      res.partial('partials/single', { feeds: feed, podcasts: podcastList });
     });
   });
 });
@@ -794,6 +794,31 @@ app.post('/settings', loadUser, function(req, res) {
 app.get('/settings', loadUser, function(req, res) {
   Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, user) {
     res.render('settings', {
+      locals: {
+        username: req.session.userID,
+        feeds: [],
+        podcasts: [],
+        playing: user['playing']
+      }
+    });
+  });
+});
+
+//
+//  HELP
+//
+
+app.post('/help', loadUser, function(req, res) {
+  res.partial('partials/help');
+});
+
+//
+//  HELP VIA DEEP-LINKING/RELOAD
+//
+
+app.get('/help', loadUser, function(req, res) {
+  Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, user) {
+    res.render('help', {
       locals: {
         username: req.session.userID,
         feeds: [],

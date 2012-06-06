@@ -63,9 +63,24 @@ ROADMAP
             [x] --  Playing data for a sync-ed podcast doesn't show. Same reason as above.
             [x] --  An RSS source that is down will no longer bring the updating process to a halt.
 
+    0.5.1
+    ----------
+    [x] -- Feature -- Ability to de-select feeds by clicking on them again.
+    [x] -- Bug fix -- Single pages now function properly again.
+
+    0.5.2
+    ----------
+    [x] -- Bug fix -- Single pages now *actually* function properly again.
+
+    0.5.3
+    ----------
+    [x] -- Bug fix -- Sadly enough, this will take a third try. Single pages = working.
+    [ ] -- Feature -- Some moving around of views in preparation for the 0.6 release.
+
   0.6
   ----------
   [ ] --  A help/FAQ section.
+  [ ] --  OAuth/Twitter/Facebook/Google/etc support for signups, logins.
 
   0.7
   ----------

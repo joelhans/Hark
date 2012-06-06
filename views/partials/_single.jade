@@ -1,4 +1,3 @@
-h1 Listen: #{feed.feedTitle}
 div.podcast-header
 	div.podcast-header-date
 		p 
@@ -12,30 +11,27 @@ div.podcast-header
 		p 
 			a(href='#', class='sort-feed') Sort by feed title &nbsp;
 				i
-ul.podcastList
-	for podcast in podcasts
-		li.podcastItem.single(data-uuid='' + podcast.podUUID)
-			div.podcastDate
-				p #{podcast.prettyMonth} #{podcast.prettyDay}, #{podcast.prettyYear}
-			div.podcastTitle
-				p
-					a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen #{podcast.listened}', data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
-			div.podcastFeed
-				p 
-					a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
-			div.podcastActions
-				p
-					a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen', title='Listen to this podcast.', data-file='' + podcast.podFile, id='' + podcast.podUUID, data-feed='' + podcast.feedTitle)
-						i.icon-headphones
-					a(href='/listen/' + podcast.feedUUID + '/listened/' + podcast.podUUID, class='podcastListened single', title='Mark this podcast as listened.')
-						i.icon-ok
-					a(href='#', class='podcastRead', title='Read the description of this podcast.')
-						i.icon-book
-					a(href='' + podcast.podLink, title='Link to the podcast\'s site.')
-						i.icon-external-link
-					a(href="" + podcast.podFile, title='Download this podcast to your device.')
-						i.icon-chevron-down
-			div.podcastDescription
-				p.error A note: Don't blame me for poorly-sourced descriptions. Tell your favorite podcast to make a proper RSS feed!
-				div
-					p!= podcast.podDesc
+if podcasts
+	ul.podcastList
+		for podcast in podcasts
+			li.podcastItem.single(data-uuid='' + podcast.podUUID, data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, data-feedUUID='' + podcast.feedUUID, data-source='' + podcast.podLink)
+				div.podcastDate
+					p(data-date='' + podcast.podDate._d) #{podcast.prettyMonth} #{podcast.prettyDay}, #{podcast.prettyYear}
+				div.podcastTitle
+					p
+						a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen #{podcast.listened}', data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
+				div.podcastFeed
+					p 
+						a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
+							
+				div.podcastDescription
+					p.error A note: Don't blame me for poorly-sourced descriptions. Tell your favorite podcast to make a proper RSS feed!
+					div
+						p!= podcast.podDesc
+
+- if (typeof(flash) != 'undefined')
+	div.mask
+		div.modal-error
+			span.modal-error-close x
+			- if (typeof(flash.errorAddFeed) != 'undefined')
+				p.error= flash.errorAddFeed

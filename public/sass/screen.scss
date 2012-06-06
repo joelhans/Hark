@@ -932,7 +932,6 @@ div.podcastDescription {
 	height: auto;
 	width: 25%;
 	border-right: 1px solid $borderColor;
-	padding-top: 40px;
 	h1 {
 		font-size: 22px;
 		text-transform: uppercase;
@@ -948,7 +947,7 @@ div.podcastDescription {
 	float: left;
 	width: 75%;
 	// border-left: 1px solid $borderColor;
-	padding: 40px 0 0 20px;
+	padding: 0 0 0 20px;
 	h1 {
 		font-size: 22px;
 		text-transform: uppercase;
@@ -1006,6 +1005,48 @@ a.delete, a.delete:visited {
 		color: $base;
 		border: 1px solid $borderColor;
 		@include box-shadow($errorColor 0px 0px 10px);
+	}
+}
+
+/*******************************************
+*
+*	FAQ/Help
+*
+*******************************************/
+.questions {
+	position: relative;
+	height: auto;
+	width: 25%;
+	border-right: 1px solid $borderColor;
+	h1 {
+		font-size: 22px;
+		text-transform: uppercase;
+		margin: 6px 0 6px 0;
+		padding: 0 0 0 20px;
+	}
+	p { padding: 0 20px 0 20px; }
+	p + p { text-indent: 0px; }
+	a { color: darken($linkColor, 25%); }
+}
+
+.answers {
+	float: left;
+	width: 75%;
+	// border-left: 1px solid $borderColor;
+	padding: 0 0 0 20px;
+	h1 {
+		font-size: 22px;
+		text-transform: uppercase;
+		margin: 6px 0 6px 0;
+	}
+	h2 {
+		font-size: 18px;
+		text-transform: uppercase;
+		margin-bottom: 0px;
+	}
+	h3 {
+		font-size: 14px;
+		margin-bottom: 0px;
 	}
 }
 

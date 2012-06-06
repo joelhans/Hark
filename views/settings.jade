@@ -19,19 +19,15 @@ html(lang="en")
 	body
 
 		header#hark-header
-			div.logo.left-column
-				div.hark-listen
-					a(href="/listen")
-						img(src='/img/hark-logo-small.png')
-					div.pulse
-					&nbsp;
-				div.header-settings
-					<a href="/listen" class="go-home" title="Go home."><i class="icon-home"></i></a>
-					<a href="/settings" class="go-settings" title="Go to your settings."><i class="icon-cog"></i></a>
-					<a href="/logout" class="logout" title="Bye bye!"><i class="icon-signout"></i></a>
-			!=partial('partials/player')
+			!=partial('layout/navigation')
+			!=partial('layout/player')
 				
-		canvas#header-wave(width='1000', height='40')
+		canvas#header-wave(width='1200', height='40')
 
-		section#hark-podcasts
+		section#hark-podcasts.clearfix
 			!=partial('partials/settings')
+
+		section#error-mask
+			div.js-modal-error
+				span.modal-error-close x
+				p.error-text
