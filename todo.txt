@@ -77,6 +77,10 @@ ROADMAP
     [x] -- Bug fix -- Sadly enough, this will take a third try. Single pages = working.
     [x] -- Feature -- Some moving around of views in preparation for the 0.6 release.
 
+    0.5.4
+    ----------
+    [x] -- Bug fix -- Better support for complex podcast descriptions.
+
   0.6
   ----------
   [ ] --  A help/FAQ section.
