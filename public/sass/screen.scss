@@ -846,11 +846,10 @@ header {
 	border-bottom: 1px solid $borderColor;
 	border-right: 1px solid $borderColor;
 	margin-bottom: 0px;
-	line-height: 0px;
 	overflow: auto;
 	@include transition-property(background-color);
 	@include transition-duration(0.5s);
-	div {
+	> div {
 		@include inline-block;
 		margin: 0; padding: 0;
 	}
