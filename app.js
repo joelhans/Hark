@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 0.5.3
+//  Current version: 0.5.4
 //
 //  Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -28,7 +28,9 @@ var express = require('express')
   , nodemailer = require('nodemailer')
   , bcrypt = require('bcrypt')
   , moment = require('moment')
-  , mongodb = require('mongodb');
+  , mongodb = require('mongodb')
+  , conf = require('./conf');
+
 var parser = new xml2js.Parser();
 
 //  ---------------------------------------
@@ -59,9 +61,9 @@ app.configure(function(){
 
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  app.use(express.cookieParser("thissecretrocks"));
+  app.use(express.cookieParser(conf.session.cookieParser));
   app.use(express.session({
-    secret: 'this is a big secret!!!'
+    secret: conf.session.secret
     , store: new mongoStore({db: db})
     , cookie: {  
       path     : '/',  
@@ -79,9 +81,9 @@ app.configure('development', function(){
 app.configure('production', function(){
   var oneYear = 31557600000;
   app.use(express.errorHandler());
-  app.use(express.cookieParser("thissecretrocks"));
+  app.use(express.cookieParser(conf.session.cookieParser));
   app.use(express.session({
-    secret: 'this is a big secret!!!'
+    secret: conf.session.secret
     , store: new mongoStore({db: db})
     , cookie: {  
       path     : '/',
