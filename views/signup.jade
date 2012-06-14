@@ -18,7 +18,7 @@ html(lang="en")
 					nav.column-10.offset-2
 						ul
 							<li><a class='hark-signup' href="/signup">Sign up</a></li>
-							<li><a href="/login">Login</a></li>
+							<li><a href="/">Login</a></li>
 							<li><a href="http://harkhq.com/">HarkHQ</a></li>
 							<li><a href="http://harkhq.com/about/">About</a></li>
 							<li><a href="http://harkhq.com/blog/">Blog</a></li>
@@ -27,48 +27,74 @@ html(lang="en")
 
 		div.container
 			div.row
-				section.column-6.offset-3.hark-login
-					h2 Hark is your personal radio station.
-					h3 Podcasts. Radio. Revolutionized.
-					h3 Sign in here.
-					- if (typeof(flash) == 'undefined')
+				section.column-12.signup-intro
+					h1 Hark is your personal radio station.
+					h2 Create an account here.
+
+			- if (typeof(flash) !== 'undefined')
+				div.row.create-error
+					div.column-12
+						p.error #{flash.createError}
+
+			div.row
+				form.column-12.create-account(method='post', action='/users/new')
+					input.column-4.offset-1.create-email(type='text', name='email', placeholder="Enter your e-mail.")
+					input.column-4.offset-2.create-password(type='password', name='password', placeholder="Enter your password.")
+					input.column-4.offset-4.create-submit(type='submit', value='Create your account.')
+
+			div.row
+				div.column-4.offset-4.existing-account
+					a(href='/') Already have an account?
+			div.row
+				section.column-12.signup-intro
+					h2 Or use a single-click sign-in service.
+
+			div.row
+				div.login-service.column-4
+					a.facebook(href='/auth/facebook/')
+						<i class="icon-facebook"></i> Log in with Facebook
+
+				div.login-service.column-4
+					a.google(href='/auth/google')
+						<i class="icon-google-plus"></i> Log in with Google
+					p <em>A note about these one-click services: The only information I log is a username/e-mail address, and a display-friendly name (e.g. Joel Hans), if one is available.</em>
+					p <em>I will <strong>never</strong> post updates or tweets to these accounts, or store any more information than I need to.</em>
+
+				div.login-service.column-4
+					a.twitter(href='/auth/twitter')
+						<i class="icon-twitter"></i> Log in with Twitter
+
+
+
+				- if (typeof(flash) != 'undefined')
+					- if (typeof(flash.errorCreateEmail) != 'undefined')
+						p.error= flash.errorCreateEmail
+						form.create-showme(method='post', action='/users/new')
+							input.create-error(type='text', name='email', placeholder='Enter your e-mail here.')
+							input.create-username(type='text', name='username', placeholder='Enter your username here.')
+							input.create-password(type='password', name='password', placeholder='Enter your password here.')
+							input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
+							input.create-submit(type='submit', value='Create')
+					- else if (typeof(flash.errorCreateUsername) != 'undefined')
+						p.error= flash.errorCreateEmail
+						form.create-showme(method='post', action='/users/new')
+							input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
+							input.create-error(type='text', name='username', placeholder='Enter your username here.')
+							input.create-password(type='password', name='password', placeholder='Enter your password here.')
+							input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
+							input.create-submit(type='submit', value='Create')
+					- else if (typeof(flash.errorCreatePass) != 'undefined')
+						p.error= flash.errorCreateEmail
+						form.create-showme(method='post', action='/users/new')
+							input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
+							input.create-username(type='text', name='username', placeholder='Enter your username here.')
+							input.create-error(type='password', name='password', placeholder='Enter your password here.')
+							input.create-error(type='password', name='password-validate', placeholder='Enter your password again.')
+							input.create-submit(type='submit', value='Create')
+					- else 
 						form.create(method='post', action='/users/new')
 							input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
 							input.create-username(type='text', name='username', placeholder='Enter your username here.')
 							input.create-password(type='password', name='password', placeholder='Enter your password here.')
 							input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
 							input.create-submit(type='submit', value='Create')
-
-
-					- if (typeof(flash) != 'undefined')
-						- if (typeof(flash.errorCreateEmail) != 'undefined')
-							p.error= flash.errorCreateEmail
-							form.create-showme(method='post', action='/users/new')
-								input.create-error(type='text', name='email', placeholder='Enter your e-mail here.')
-								input.create-username(type='text', name='username', placeholder='Enter your username here.')
-								input.create-password(type='password', name='password', placeholder='Enter your password here.')
-								input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
-								input.create-submit(type='submit', value='Create')
-						- else if (typeof(flash.errorCreateUsername) != 'undefined')
-							p.error= flash.errorCreateEmail
-							form.create-showme(method='post', action='/users/new')
-								input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
-								input.create-error(type='text', name='username', placeholder='Enter your username here.')
-								input.create-password(type='password', name='password', placeholder='Enter your password here.')
-								input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
-								input.create-submit(type='submit', value='Create')
-						- else if (typeof(flash.errorCreatePass) != 'undefined')
-							p.error= flash.errorCreateEmail
-							form.create-showme(method='post', action='/users/new')
-								input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
-								input.create-username(type='text', name='username', placeholder='Enter your username here.')
-								input.create-error(type='password', name='password', placeholder='Enter your password here.')
-								input.create-error(type='password', name='password-validate', placeholder='Enter your password again.')
-								input.create-submit(type='submit', value='Create')
-						- else 
-							form.create(method='post', action='/users/new')
-								input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
-								input.create-username(type='text', name='username', placeholder='Enter your username here.')
-								input.create-password(type='password', name='password', placeholder='Enter your password here.')
-								input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
-								input.create-submit(type='submit', value='Create')

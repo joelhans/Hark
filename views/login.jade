@@ -5,9 +5,9 @@ html(lang="en")
 
 		!=partial('layout/head')
 
-	body
+	body.hark-login
 
-		header.login-page
+		header
 			div.container
 				div.row
 					div.hark-listen
@@ -18,7 +18,7 @@ html(lang="en")
 					nav.column-10.offset-2
 						ul
 							<li><a class='hark-signup' href="/signup">Sign up</a></li>
-							<li><a href="/login">Login</a></li>
+							<li><a href="/">Login</a></li>
 							<li><a href="http://harkhq.com/">HarkHQ</a></li>
 							<li><a href="http://harkhq.com/about/">About</a></li>
 							<li><a href="http://harkhq.com/blog/">Blog</a></li>
@@ -27,68 +27,48 @@ html(lang="en")
 
 		div.container
 			div.row
-				section.column-6.offset-3.hark-login
-					h2 Hark is your personal radio station.
-					h3 Podcasts. Radio. Revolutionized.
-					h3 Log in here.
-					- if (typeof(flash) != 'undefined' && typeof(flash.userCreateSuccess) != 'undefined')
-						div.hark-description
-							p.success= flash.userCreateSuccess
-					- if (typeof(flash) == 'undefined')
-						form.login(method='post', action='/login')
-							input.login-username(type='text', name='username', placeholder='Enter your e-mail or username here.')
-							input.login-password(type='password', name='password', placeholder='Enter your password here.')
-							input.login-submit(type='submit', value='Login')
+				section.column-12.signup-intro
+					h1 Hark is your personal radio station.
+					h2 Log in to your Hark account.
 
-						div.password-forgot
-							a(href='/#') Forgot your password?
-							- if (typeof(flash) == 'undefined')
-								form.forgot(method='POST', action='/login/forgot')
-									p That's all right. I can reset that for you. Just enter your e-mail below.
-									input.forgot-password(type='text', name='email', placeholder='Enter your e-mail here.')
-									input.forgot-submit(type='submit', value='Reset')
+			- if (typeof(flash) !== 'undefined')
+				div.row.login-error
+					div.column-12
+						- if (typeof(flash.createSuccess) !== 'undefined')
+							p.success #{flash.createSuccess}
+						- if (typeof(flash.loginError) !== 'undefined')
+							p.error #{flash.loginError}
+			
+			- if (message)
+				div.row.login-error
+					div.column-12
+						p.error #{message}
 
-							- if (typeof(flash) != 'undefined' && typeof(flash.errorReset) != 'undefined')
-								form.forgot-showme(method='post', action='/login/forgot')
-									p That's all right. I can reset that for you. Just enter your e-mail below.
-									input.reset-error(type='text', name='email', placeholder='Enter your e-mail here.')
-									p.error= flash.errorReset
-									input.forgot-submit(type='submit', value='Reset')
+			div.row
+				form.column-12.login-account(method='post', action='/login')
+					input.column-4.offset-1.login-email(type='text', name='email', placeholder='Enter your e-mail.')
+					input.column-4.offset-2.login-password(type='password', name='password', placeholder='Enter your password.')
+					input.column-4.offset-4.login-submit(type='submit', value='Login to Hark.')
 
-					- if (typeof(flash) != 'undefined')
-						- if (typeof(flash.errorUser) != 'undefined')
-							p.error= flash.errorUser
-							form.login-showme(method='post', action='/login')
-								input.login-error(type='text', name='username', placeholder='Enter your e-mail or username here.')
-								input.login-password(type='password', name='password', placeholder='Enter your password here.')
-								input.login-submit(type='submit', value='Login')
-						- else if (typeof(flash.errorPass) != 'undefined')
-							p.error= flash.errorPass
-							form.login-showme(method='post', action='/login')
-								input.login-username(type='text', name='username', placeholder='Enter your e-mail or username here.')
-								input.login-error(type='password', name='password', placeholder='Enter your password here.')
-								input.login-submit(type='submit', value='Login')
-						- else if (typeof(flash.userCreateSuccess) != 'undefined')
-							form.login-showme(method='post', action='/login')
-								input.login-username(type='text', name='username', placeholder='Enter your e-mail or username here.')
-								input.login-password(type='password', name='password', placeholder='Enter your password here.')
-								input.login-submit(type='submit', value='Login')
-						- else
-							form.login(method='post', action='/login')
-								input.login-username(type='text', name='username', placeholder='Enter your e-mail or username here.')
-								input.login-password(type='password', name='password', placeholder='Enter your password here.')
-								input.login-submit(type='submit', value='Login')
-						
-						div.password-forgot
-							a(href='/#') Forgot your password?
-							- if (typeof(flash) == 'undefined')
-								form.forgot(method='post', action='/login/forgot')
-									p That's all right. I can reset that for you. Just enter your e-mail below.
-									input.forgot-password(type='text', name='email', placeholder='Enter your e-mail here.')
-									input.forgot-submit(type='submit', value='Reset')
-							- if (typeof(flash) != 'undefined' && typeof(flash.errorReset) != 'undefined')
-								form.forgot-showme(method='post', action='/login/forgot')
-									p That's all right. I can reset that for you. Just enter your e-mail below.
-									input.reset-error(type='text', name='email', placeholder='Enter your e-mail here.')
-									p.error= flash.errorReset
-									input.forgot-submit(type='submit', value='Reset')
+			div.row
+				div.column-4.offset-4.login-forgot
+					a(href='/forgot') Forgot your password?
+
+			div.row
+				section.column-12.signup-intro
+					h2 Or use a single-click sign-in service.
+
+			div.row
+				div.login-service.column-4
+					a.facebook(href='/auth/facebook/')
+						<i class="icon-facebook"></i> Log in with Facebook
+
+				div.login-service.column-4
+					a.google(href='/auth/google')
+						<i class="icon-google-plus"></i> Log in with Google
+					p <em>A note about these one-click services: The only information I log is a username/e-mail address, and a display-friendly name (e.g. Joel Hans), if one is available.</em>
+					p <em>I will <strong>never</strong> post updates or tweets to these accounts, or store any more information than described above.</em>
+
+				div.login-service.column-4
+					a.twitter(href='/auth/twitter')
+						<i class="icon-twitter"></i> Log in with Twitter
