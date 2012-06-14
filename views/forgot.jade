@@ -1,0 +1,73 @@
+doctype 5
+html(lang="en")
+	head
+		title Hark | Log in.
+
+		!=partial('layout/head')
+
+	body.hark-login
+
+		header
+			div.container
+				div.row
+					div.hark-listen
+						a(href='/')
+							img(src='/img/hark-logo-small.png')
+						div.pulse
+						&nbsp;
+					nav.column-10.offset-2
+						ul
+							<li><a class='hark-signup' href="/signup">Sign up</a></li>
+							<li><a href="/">Login</a></li>
+							<li><a href="http://harkhq.com/">HarkHQ</a></li>
+							<li><a href="http://harkhq.com/about/">About</a></li>
+							<li><a href="http://harkhq.com/blog/">Blog</a></li>
+							<li><a href="http://harkhq.com/legal/">Legalese</a></li>
+		canvas#wave(width='1000', height='40')
+
+		div.container
+			div.row
+				section.column-12.signup-intro
+					h1 Hark is your personal radio station.
+					h2 Recover a forgotten password.
+
+			- if (typeof(flash) !== 'undefined')
+				div.row.login-error
+					div.column-12
+						p.error #{flash.forgotError}
+	
+
+			div.row
+				form.forgot(method='post', action='/login/forgot')
+					p That's all right. I can reset that for you. Just enter your e-mail below.
+					input.forgot-password(type='text', name='email', placeholder='Enter your e-mail here.')
+					input.forgot-submit(type='submit', value='Reset')
+
+										
+				form.column-12.login-account(method='post', action='/login')
+					input.column-4.offset-1.login-email(type='text', name='email', placeholder='Enter your e-mail.')
+					input.column-4.offset-2.login-password(type='password', name='password', placeholder='Enter your password.')
+					input.column-4.offset-4.login-submit(type='submit', value='Login to Hark.')
+
+			div.row
+				div.column-4.offset-4.login-forgot
+					a(href='/forgot') Forgot your password?
+
+			div.row
+				section.column-12.signup-intro
+					h2 Or use a single-click sign-in service.
+
+			div.row
+				div.login-service.column-4
+					a.facebook(href='/auth/facebook/')
+						<i class="icon-facebook"></i> Log in with Facebook
+
+				div.login-service.column-4
+					a.google(href='/auth/google')
+						<i class="icon-google-plus"></i> Log in with Google
+					p <em>A note about these one-click services: The only information I log is a username/e-mail address, and a display-friendly name (e.g. Joel Hans), if one is available.</em>
+					p <em>I will <strong>never</strong> post updates or tweets to these accounts, or store any more information than described above.</em>
+
+				div.login-service.column-4
+					a.twitter(href='/auth/twitter')
+						<i class="icon-twitter"></i> Log in with Twitter
