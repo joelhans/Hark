@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 0.5.3
+//  Current version: 0.6.0
 //
 //  Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -75,16 +75,13 @@ passport.use(new LocalStrategy({
     Users.findOne({ email: username }, function(err, user) {
       if (err) { return done(err); }
       if (!user) {
-        console.log('Unknown user.');
         return done(null, false, { message: 'That account doesn\'t exist.' });
       }
       else {
         bcrypt.compare(password, user.password, function(err, result) {
           if (result === true) {
-            console.log('Correct username/password!');
             return done(null, user);
           } else {
-            console.log('Invalid password.');
             return done(null, false, { message: 'Wrong password.' });
           }
         });
@@ -107,7 +104,6 @@ passport.use(new TwitterStrategy({
           username   : profile.displayName
         }
         Users.insert(twitterUser, {safe:true}, function(err, newUser) {
-          console.log(newUser);
           return done(null, newUser);
         });
       }
@@ -154,7 +150,6 @@ passport.use(new GoogleStrategy({
           userID     : profile.emails[0].value,
           username   : profile.displayName
         };
-        console.log(googleUser);
         Users.insert(googleUser, {safe:true}, function(err, newUser) {
           return done(null, newUser);
         });
@@ -207,6 +202,7 @@ function loadUser(req, res, next) {
   //
   // After setting "harkUser," we let the route continue. If there is no user, we redirect to the
   // login page.
+
   if (typeof(req.user) !== 'undefined') {
     if (typeof(req.user[0]) !== 'undefined') {
       harkUser = req.user[0];
@@ -231,7 +227,7 @@ require('./directory.js')(app, express, loadUser, Users, Feeds);
 //  ---------------------------------------
 
 app.get('/', loadUser, function(req, res) {
-  res.render('login', { message: req.flash('error') }); // Let's just redirect ourselves to the login page.
+  res.render('login', { message: req.flash('error') });
 });
 
 app.get('/signup', loadUser, function(req, res) {
@@ -247,7 +243,7 @@ app.post('/login',
 app.get('/auth/twitter', passport.authenticate('twitter'));
 
 app.get('/auth/twitter/callback', 
-  passport.authenticate('twitter', { failureRedirect: '/' }),
+  passport.authenticate('twitter', { failureRedirect: '/', failureFlash: true }),
   function(req, res) {
     res.redirect('/listen');
   });
@@ -255,7 +251,7 @@ app.get('/auth/twitter/callback',
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback', 
-  passport.authenticate('facebook', { failureRedirect: '/' }),
+  passport.authenticate('facebook', { failureRedirect: '/', failureFlash: true }),
   function(req, res) {
     res.redirect('/listen');
   });
@@ -263,10 +259,14 @@ app.get('/auth/facebook/callback',
 app.get('/auth/google', passport.authenticate('google'));
 
 app.get('/auth/google/return', 
-  passport.authenticate('google', { failureRedirect: '/' }),
+  passport.authenticate('google', { failureRedirect: '/', failureFlash: true }),
   function(req, res) {
     res.redirect('/listen');
   });
+
+app.get('/forgot', function(req, res) {
+  res.render('forgot');
+});
 
 //
 //  LOGOUT
