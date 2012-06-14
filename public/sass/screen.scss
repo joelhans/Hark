@@ -5,71 +5,66 @@
 @import "colonnade";
 @import "font-awesome";
 
-/* 	-----------------------------------------
-	-----------------------------------------
-	
-	Layout.
-	
-	-----------------------------------------
+/*  -----------------------------------------
+  -----------------------------------------
+  
+  Layout.
+  
+  -----------------------------------------
 -----------------------------------------  */
 
 /* -----------------------------------------
-	Body.
+  Body.
 ----------------------------------------- */
 html {
- 	height: 100%;
- 	width: 100%;
-	overflow-y: scroll;
-	@include background(image-url("/img/grainy.png"), $base);
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+  @include background(image-url("/img/grainy.png"), $base);
 }
 
 body {
-	width: 100%;
-	@include background(image-url("/img/grainy.png"), $base);
+  width: 100%;
+  @include background(image-url("/img/grainy.png"), $base);
 }
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 /* -----------------------------------------
-	Layout.
+  Layout.
 ----------------------------------------- */
 .player {
-	padding: 0 20px 0 0;
-	@include clearfix;
+  padding: 0 20px 0 0;
+  @include clearfix;
 }
 
 #hark-listen, .settings-container {
-	width: 100%;
-	margin: 0 auto;
-	background-color: $base;
+  width: 100%;
+  margin: 0 auto;
+  background-color: $base;
 }
 
 #hark-podcasts {
-	padding: 0 20px 0 0;
-	position: relative;
+  padding: 0 20px 0 0;
+  position: relative;
 }
 
 .left-column {
-	float: left;
-	width: 25%;
+  float: left;
+  width: 25%;
 }
 
-input {
-	font-size: 14px;
-	line-height: 21px;
-	border-radius: 4px;
-	::-webkit-input-placeholder {
-	    color: $base;
-	}
-	:-moz-placeholder {
-	    color: $base;
-	}
+::-webkit-input-placeholder {
+    color:    $body;
+}
+:-moz-placeholder {
+    color:    $body;
 }
 
 nav {
   ul {
     text-align: right;
-    margin: 22px 0 0 0;
+    margin: 0;
     li {
       @include inline-block;
       margin: 0 0 0 30px;
@@ -96,176 +91,276 @@ a.hark-signup, a.hark-signup:visited {
 }
 
 /* -----------------------------------------
-	Login.
+  Signup/login.
 ----------------------------------------- */
-#hark-login { margin-top: 140px; }
-
-#hark-login, #hark-not-found {
-	.hark { height: 300px; }
-	img {
-		width: 300px; height: 300px;
-		@include background(image-url("/img/grainy.png"), $base);
-		position: absolute; top: 0px; left: 50%;
-		margin: 0 0 0 -150px;
-		z-index: 2;
-		border-radius: 150px;
-		@include inline-block;
-	}
-	.pulse {
-		width: 300px; height: 300px;
-		background-color: $linkColor;
-		position: absolute; top: 0px; left: 50%;
-		margin: 0 0 0 -150px;
-		z-index: 1;
-		border-radius: 160px;
-		// @include box-shadow($linkColor 0px 0px 100px);
-		@include inline-block;
-		-webkit-animation: pulse 5s infinite;
-		-moz-animation:    pulse 5s infinite;
-		-ms-animation:     pulse 5s infinite;
-		-webkit-animation-timing-function: 	linear;
-		-moz-animation-timing-function: 	linear;
-		-ms-animation-timing-function:		linear;
-	}
+.signup-intro {
+  margin-top: 40px;
+  text-align: center;
 }
 
-.hark-right { text-align: center; }
-
-a.create-show, a.login-show {
-	color: $linkColor;
-	@include bodyFont;
-	text-transform: uppercase;
-	text-align: center;
-	padding: 8px 0 10px 40px;
-	margin: 12px 0 20px 0;
-	border: 0;
-	position: relative;
-	@include inline-block;
-	@include transition(all, 0.5s, ease-in-out);
-	&:hover { color: $linkColorHover; }
-	.input-pulse {
-		width: 30px; height: 30px;
-		border: 5px solid $linkColor;
-		position: absolute; top: 4px; left: 0px;
-		@include background(image-url("/img/grainy.png"), $base);
-		@include border-radius(15px);
-		@include inline-block;
-	}
-	&:hover > .input-pulse {
-		-webkit-animation: input-pulse 2s infinite;
-		-moz-animation:    input-pulse 2s infinite;
-		-ms-animation:     input-pulse 2s infinite;
-		-webkit-animation-timing-function: 	linear;
-		-moz-animation-timing-function: 	linear;
-		-ms-animation-timing-function:		linear;
-	}
+.create-account, .login-account {
+  .create-email, .create-password, .create-submit, .login-email, .login-password, .login-submit {
+    padding: 16px 40px 16px 40px;
+    border: 0px; outline: 0px;
+    border-radius: 10px;
+    @include transition(all, 0.5s);
+    @include box-shadow($linkColor 0px 0px 20px, $linkColor 0px 0px 20px inset);
+    &:hover {
+     @include box-shadow($linkColor 0px 0px 40px, $linkColor 0px 0px 20px inset);
+    }
+    &:focus {
+      @include box-shadow($errorColor 0px 0px 40px, $errorColor 0px 0px 20px inset);
+    }
+  }
+  .create-submit, .login-submit {
+    margin-top: 40px;
+    background-color: $linkColor;
+    color: $base;
+    &:focus {
+      background-color: $errorColor;
+    }
+  }
 }
 
-a.create-show { margin: 12px 120px 20px 0; }
+.login-forgot, .existing-account { text-align: center; }
 
-.hark-login {
-	margin-top: 80px;
-	h2, h3, p { text-align: center; }
+.login-error, .create-error {
+  p {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+  }
 }
 
-.login-actions {
-	margin-top: 40px;
-	display: block;
-	height: 200px;
-	form.login, form.create { display: none; }
-	form.login-showme, form.create-showme { display: block; }
+.login-service {
+  position: relative;
+  text-align: center;
+    a {
+      @include background($errorColor);
+      display: block;
+      position: relative;
+      width: 240px; height: 50px;
+      margin: 0 auto 20px auto;
+      padding: 2px 20px 8px 60px;
+      border: 0px;
+      color: $base;
+      line-height: 50px;
+      &:hover {
+        border: 0px;
+        // @include background(linear-gradient(darken($base, 0%), darken($base, 0%)));
+      }
+    }
 }
 
-.login, .forgot, .create, .login-showme, .create-showme, .forgot-showme {
-	text-align: center;
-	input { 
-		// font-family: $baseFontFamily;
-		// &:nth-of-type(2n-1) { margin-right: 4%; }
-		margin: 30px auto 0 auto;
-	}
-}
+// #hark-login { margin-top: 140px; }
 
-.login-password, .login-username, .forgot-password, .create-email, .create-username, .create-password, .login-error, .reset-error, .create-error {
-	width: 50%; height: 40px;
-	// @include inline-block;
-	display: block;
-	padding: 0px 10px 0px 10px;
-	margin-bottom: 20px;
-	border: 1px solid $linkColor;
-	@include transition(all, 0.5s, ease-in-out);
-	&:hover {
-		@include box-shadow($linkColor 0px 0px 2px);
-	}
-	&:focus {
-		outline: 0;
-		@include box-shadow($linkColor 0px 0px 10px);
-	}
-}
+// #hark-login, #hark-not-found {
+//   .hark { height: 300px; }
+//   img {
+//     width: 300px; height: 300px;
+//     @include background(image-url("/img/grainy.png"), $base);
+//     position: absolute; top: 0px; left: 50%;
+//     margin: 0 0 0 -150px;
+//     z-index: 2;
+//     border-radius: 150px;
+//     @include inline-block;
+//   }
+//   .pulse {
+//     width: 300px; height: 300px;
+//     background-color: $linkColor;
+//     position: absolute; top: 0px; left: 50%;
+//     margin: 0 0 0 -150px;
+//     z-index: 1;
+//     border-radius: 160px;
+//     // @include box-shadow($linkColor 0px 0px 100px);
+//     @include inline-block;
+//     -webkit-animation: pulse 5s infinite;
+//     -moz-animation:    pulse 5s infinite;
+//     -ms-animation:     pulse 5s infinite;
+//     -webkit-animation-timing-function:  linear;
+//     -moz-animation-timing-function:   linear;
+//     -ms-animation-timing-function:    linear;
+//   }
+// }
 
-.login-error, .reset-error, .create-error {
-	border: 1px solid $errorColor;
-	@include box-shadow($errorColor 0px 0px 2px);
-	&:hover { @include box-shadow($errorColor 0px 0px 2px);	}
-	&:focus {
-		outline: 0;
-		@include box-shadow($errorColor 0px 0px 10px);
-	}
-}
+// .hark-right { text-align: center; }
 
-.login-submit, .forgot-submit, .create-submit {
-	width: 20%; height: 30px;
-	display: block;
-	margin: 30px auto 0 auto !important;
-	border: 1px solid $linkColor;
-	background-color: white;
-	@include transition(all, 0.5s, ease-in-out);
-	&:hover { @include box-shadow($linkColor 0px 0px 2px); }
-	&:focus {
-		outline: 0;
-		@include box-shadow($linkColor 0px 0px 10px);
-	}
-}
+// a.create-show, a.login-show {
+//   color: $linkColor;
+//   @include bodyFont;
+//   text-transform: uppercase;
+//   text-align: center;
+//   padding: 8px 0 10px 40px;
+//   margin: 12px 0 20px 0;
+//   border: 0;
+//   position: relative;
+//   @include inline-block;
+//   @include transition(all, 0.5s, ease-in-out);
+//   &:hover { color: $linkColorHover; }
+//   .input-pulse {
+//     width: 30px; height: 30px;
+//     border: 5px solid $linkColor;
+//     position: absolute; top: 4px; left: 0px;
+//     @include background(image-url("/img/grainy.png"), $base);
+//     @include border-radius(15px);
+//     @include inline-block;
+//   }
+//   &:hover > .input-pulse {
+//     -webkit-animation: input-pulse 2s infinite;
+//     -moz-animation:    input-pulse 2s infinite;
+//     -ms-animation:     input-pulse 2s infinite;
+//     -webkit-animation-timing-function:  linear;
+//     -moz-animation-timing-function:   linear;
+//     -ms-animation-timing-function:    linear;
+//   }
+// }
 
-.password-forgot { 
-	font-size: 14px;
-	text-align: center;
-	margin-bottom: 0px;
-	// display: none;
-	padding-top: 12px;
-	a { margin-bottom: 12px; }
-}
+// a.create-show { margin: 12px 120px 20px 0; }
 
-.forgot {
-	display: none;
-	margin-bottom: 40px;
-	p { font-size: 14px; }
-}
+// .hark-login {
+//   margin-top: 80px;
+//   h2, h3, p { text-align: center; }
+// }
 
-.forgot-showme {
-	display: block;
-	margin-bottom: 40px;
-	p { font-size: 14px; }
-}
+// .login-actions {
+//   margin-top: 40px;
+//   display: block;
+//   height: 200px;
+//   form.login, form.create { display: none; }
+//   form.login-showme, form.create-showme { display: block; }
+// }
 
-#hark-about {
-	margin: -5px 0 0 0;
-	padding: 40px 0 100px 0;
-	@include background(image-url("/img/grainy.png"), $linkColor);
-	h3, p {
-		color: $base;
-	}
+// .login, .forgot, .create, .login-showme, .create-showme, .forgot-showme {
+//   text-align: center;
+//   margin-bottom: 40px;
+//   input { 
+//     // font-family: $baseFontFamily;
+//     // &:nth-of-type(2n-1) { margin-right: 4%; }
+//     margin: 30px auto 0 auto;
+//   }
+// }
+
+// .login-password, .login-username, .forgot-password, .create-email, .create-username, .create-password, .login-error, .reset-error, .create-error {
+//   width: 50%; height: 40px;
+//   // @include inline-block;
+//   display: block;
+//   padding: 0px 10px 0px 10px;
+//   margin-bottom: 20px;
+//   border: 1px solid $linkColor;
+//   @include transition(all, 0.5s, ease-in-out);
+//   &:hover {
+//     @include box-shadow($linkColor 0px 0px 2px);
+//   }
+//   &:focus {
+//     outline: 0;
+//     @include box-shadow($linkColor 0px 0px 10px);
+//   }
+// }
+
+// .login-error, .reset-error, .create-error {
+//   border: 1px solid $errorColor;
+//   @include box-shadow($errorColor 0px 0px 2px);
+//   &:hover { @include box-shadow($errorColor 0px 0px 2px); }
+//   &:focus {
+//     outline: 0;
+//     @include box-shadow($errorColor 0px 0px 10px);
+//   }
+// }
+
+// .login-submit, .forgot-submit, .create-submit {
+//   width: 20%; height: 30px;
+//   display: block;
+//   margin: 30px auto 0 auto !important;
+//   border: 1px solid $linkColor;
+//   background-color: white;
+//   @include transition(all, 0.5s, ease-in-out);
+//   &:hover { @include box-shadow($linkColor 0px 0px 2px); }
+//   &:focus {
+//     outline: 0;
+//     @include box-shadow($linkColor 0px 0px 10px);
+//   }
+// }
+
+// .password-forgot { 
+//   font-size: 14px;
+//   text-align: center;
+//   margin-bottom: 0px;
+//   // display: none;
+//   padding-top: 12px;
+//   a { margin-bottom: 12px; }
+// }
+
+// .forgot {
+//   display: none;
+//   margin-bottom: 40px;
+//   p { font-size: 14px; }
+// }
+
+// .forgot-showme {
+//   display: block;
+//   margin-bottom: 40px;
+//   p { font-size: 14px; }
+// }
+
+// #hark-about {
+//   margin: -5px 0 0 0;
+//   padding: 40px 0 100px 0;
+//   @include background(image-url("/img/grainy.png"), $linkColor);
+//   h3, p {
+//     color: $base;
+//   }
+// }
+
+// .login-service {
+//   position: relative;
+//   width: 240px;
+//   margin: 0 auto;
+//   text-align: center;
+//   &:first-of-type { margin-top: 60px; }
+//   a {
+//     @include background(linear-gradient($base, darken($base, 5%)));
+//     display: block;
+//     position: relative;
+//     width: 240px; height: 50px;
+//     margin: 0 0 36px 0;
+//     padding: 2px 0 0 20px;
+//     border: 0px;
+//     text-align: center;
+//     line-height: 50px;
+//     border-radius: 20px;
+//     box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
+//     &:hover {
+//       border: 0px;
+//       @include background(linear-gradient(darken($base, 0%), darken($base, 0%)));
+//     }
+//   }
+//   a:before {
+//     content: "";
+//     display: block;
+//     position: absolute; top: -10px; left: -10px; bottom: -10px; right: -10px;
+//     z-index: -1;
+//     background: #fff;
+//     border-top: 2px solid #ddd;
+//     border-radius: 20px;
+//     box-shadow: inset 0px 8px 48px #ddd;
+//   }
+// }
+
+.facebook i, .twitter i, .google i {
+  position: absolute; top: 1px; left: 20px;
+  font-size: 30px;
 }
 
 /* -----------------------------------------
-	Header.
+  Header.
 ----------------------------------------- */
 header {
-	width: 100%; height: 120px;
-	padding-top: 10px;
-	@include background(image-url("/img/grainy.png"), $linkColor);
-	// @include clearfix;
-	position: relative;
-	z-index: 20;
+  width: 100%; height: 120px;
+  padding-top: 10px;
+  @include background(image-url("/img/grainy.png"), $linkColor);
+  // @include clearfix;
+  position: relative;
+  z-index: 20;
 }
 
 .hark-listen {
@@ -301,37 +396,37 @@ header {
 }
 
 .header-settings {
-	width: 50%;
-	float: left;
-	text-align: right;
-	@include bodyFont;
-	margin-bottom: 0px;
-	a {
-		width: 100%;
-		font-size: 14px;
-		line-height: 21px;
-		text-transform: uppercase;
-		color: $base;
-		@include inline-block;
-		// float: right;
-		margin: 0 10px 0 0;
-		position: relative;
-		border: 1px solid rgba(0,0,0,0);
-		i {
-			font-size: 24px;
-			margin: 0 10px 0 0;
-			&:hover { @include text-shadow($linkColorHover 0 0 20px); }
-		}
-	}
+  width: 50%;
+  float: left;
+  text-align: right;
+  @include bodyFont;
+  margin-bottom: 0px;
+  a {
+    width: 100%;
+    font-size: 14px;
+    line-height: 21px;
+    text-transform: uppercase;
+    color: $base;
+    @include inline-block;
+    // float: right;
+    margin: 0 10px 0 0;
+    position: relative;
+    border: 1px solid rgba(0,0,0,0);
+    i {
+      font-size: 24px;
+      margin: 0 10px 0 0;
+      &:hover { @include text-shadow($linkColorHover 0 0 20px); }
+    }
+  }
 }
 
 /* -----------------------------------------
-	jPlayer.
+  jPlayer.
 ----------------------------------------- */
 .podcast-player {
-	float: left;
-	width: 75%;
-	padding-right: 20px;
+  float: left;
+  width: 75%;
+  padding-right: 20px;
 }
 
 .jp-controls, .jp-play-container { margin-bottom: 0px; }
@@ -341,57 +436,57 @@ header {
 .jp-interface { position: relative; }
 
 .jp-play, .jp-pause {
-	width: 70px; height: 70px;
-	@include border-radius(35px);
-	position: relative;
-	margin: 14px 0 12px 14px;
-	@include inline-block;
-	overflow: hidden;
-	border: 1px solid $body;
-	outline: 0;
-	@include transition(all, 0s);
-	&:hover { margin: 14px 0 12px 14px; }
+  width: 70px; height: 70px;
+  @include border-radius(35px);
+  position: relative;
+  margin: 14px 0 12px 14px;
+  @include inline-block;
+  overflow: hidden;
+  border: 1px solid $body;
+  outline: 0;
+  @include transition(all, 0s);
+  &:hover { margin: 14px 0 12px 14px; }
 }
 
 .jp-play {
-	@include background( $linkColor );
-	@include box-shadow( rgba(242, 242, 242, 0.5) 0px 1px 0px );
-	i {
-		position: absolute; top: 16px; left: 5px;
-		color: $base;
-		font-size: 50px;
-	}
-	&:hover {
-		border: 1px solid $body;
-		@include background( darken($linkColor, 25%) );
-	}
-	&:active, &:visited:active {
-		margin: 14px 0 12px 14px;
-		top: 0;
-		outline: 0px;
-		@include box-shadow($base 0px 1px 0px, $body 0px 0px 10px inset);
-		@include background( darken($linkColor, 25%) );
-	}
+  @include background( $linkColor );
+  @include box-shadow( rgba(242, 242, 242, 0.5) 0px 1px 0px );
+  i {
+    position: absolute; top: 16px; left: 5px;
+    color: $base;
+    font-size: 50px;
+  }
+  &:hover {
+    border: 1px solid $body;
+    @include background( darken($linkColor, 25%) );
+  }
+  &:active, &:visited:active {
+    margin: 14px 0 12px 14px;
+    top: 0;
+    outline: 0px;
+    @include box-shadow($base 0px 1px 0px, $body 0px 0px 10px inset);
+    @include background( darken($linkColor, 25%) );
+  }
 }
 
 .jp-pause {
-	@include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
-	i {
-		position: absolute; top: 16px; left: 4px;
-		color: $base;
-		font-size: 50px;
-	}
-	&:hover {
-		border: 1px solid $body;
-		@include background( darken($linkColor, 25%) );
-	}
-	&:active, &:visited:active {
-		margin: 14px 0 12px 14px;
-		top: 0;
-		outline: 0px;
-		@include box-shadow($base 0px 1px 0px, $body 0px 0px 10px inset);
-		@include background( darken($linkColor, 25%) );
-	}
+  @include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
+  i {
+    position: absolute; top: 16px; left: 4px;
+    color: $base;
+    font-size: 50px;
+  }
+  &:hover {
+    border: 1px solid $body;
+    @include background( darken($linkColor, 25%) );
+  }
+  &:active, &:visited:active {
+    margin: 14px 0 12px 14px;
+    top: 0;
+    outline: 0px;
+    @include box-shadow($base 0px 1px 0px, $body 0px 0px 10px inset);
+    @include background( darken($linkColor, 25%) );
+  }
 }
 
 .manual-sync {
@@ -401,675 +496,675 @@ header {
     &:hover { cursor: pointer; }
     &:hover > .manual-sync-popup { opacity: 100; top: 28px; }
     i {
-    	color: $base;
-    	font-size: 24px;
-    	&:hover { @include text-shadow($linkColorHover 0 0 20px); }
+      color: $base;
+      font-size: 24px;
+      &:hover { @include text-shadow($linkColorHover 0 0 20px); }
     }
     .manual-sync-popup {
-    	opacity: 0;
-    	width: 140px;
-		position: absolute; top: -5px; right: -60px;
-		text-align: center;
-		text-transform: uppercase;
-		font-size: 14px;
-		color: $base;
-		padding: 2px 6px 2px 6px;
-		@include background(image-url("/img/grainy.png"), $linkColorHover);
-		@include border-radius(4px);
-		@include transition(all, 0.5s);
-	}
+      opacity: 0;
+      width: 140px;
+    position: absolute; top: -5px; right: -60px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: $base;
+    padding: 2px 6px 2px 6px;
+    @include background(image-url("/img/grainy.png"), $linkColorHover);
+    @include border-radius(4px);
+    @include transition(all, 0.5s);
+  }
 }
 
 .jp-volume-control {
-	position: absolute;
-	top: 45px; right: 45px;
+  position: absolute;
+  top: 45px; right: 45px;
 }
 
 .jp-volume-bar {
-	width: 100px; height: 12px;
-	position: relative;
-	background-color: $base;
-	@include border-radius(6px);
-	border: 1px solid $body;
-	@include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
+  width: 100px; height: 12px;
+  position: relative;
+  background-color: $base;
+  @include border-radius(6px);
+  border: 1px solid $body;
+  @include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
 }
 
 .jp-volume-bar-value {
-	height: 10px;
-	position: relative;
-	@include border-radius(5px);
-	@include background-image( linear-gradient($base, darken($base, 25%)) );
+  height: 10px;
+  position: relative;
+  @include border-radius(5px);
+  @include background-image( linear-gradient($base, darken($base, 25%)) );
 }
 
 .jp-volume-tracker {
-	width: 16px; height: 16px;
-	@include border-radius(8px);
-	margin: -3px -6px 0 0;
-	background-color: $base;
-	border: 1px solid $body;
-	display: block;
-	float: right;
-	@include background-image(radial-gradient(7px 7px, $base 1px, $linkColor 8px));
-	@include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
+  width: 16px; height: 16px;
+  @include border-radius(8px);
+  margin: -3px -6px 0 0;
+  background-color: $base;
+  border: 1px solid $body;
+  display: block;
+  float: right;
+  @include background-image(radial-gradient(7px 7px, $base 1px, $linkColor 8px));
+  @include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
 }
 
 .jp-mute {
-	position: absolute; top: -7px; left: -35px;
-	border: 0px;
-	&:hover { border: 0px; }
-	&:focus { outline: 0px; top: -7px; left: -35px; }
-	i {
-		color: $base;
-		font-size: 24px;
-		z-index: 10;
-		&:hover { @include text-shadow($linkColorHover 0 0 20px); }
-	}
+  position: absolute; top: -7px; left: -35px;
+  border: 0px;
+  &:hover { border: 0px; }
+  &:focus { outline: 0px; top: -7px; left: -35px; }
+  i {
+    color: $base;
+    font-size: 24px;
+    z-index: 10;
+    &:hover { @include text-shadow($linkColorHover 0 0 20px); }
+  }
 }
 
 .jp-unmute {
-	position: absolute; top: -7px; left: -35px;
-	border: 0px;
-	&:hover { border: 0px; }
-	&:focus { outline: 0px; top: -7px; left: -35px; }
-	i {
-		color: $base;
-		font-size: 24px;
-		z-index: 10;
-		&:hover { @include text-shadow($linkColorHover 0 0 20px); }
-	}
+  position: absolute; top: -7px; left: -35px;
+  border: 0px;
+  &:hover { border: 0px; }
+  &:focus { outline: 0px; top: -7px; left: -35px; }
+  i {
+    color: $base;
+    font-size: 24px;
+    z-index: 10;
+    &:hover { @include text-shadow($linkColorHover 0 0 20px); }
+  }
 }
 
 .jp-volume-max {
-	position: absolute; top: -7px; left: 110px;
-	border: 0px;
-	&:hover { border: 0px; }
-	&:focus { outline: 0px; top: -7px; left: 110px; }
-	i {
-		color: $base;
-		font-size: 24px;
-		z-index: 10;
-		&:active { outline: 0; border: 0px; }
-		&:hover { @include text-shadow($linkColorHover 0 0 20px); }
-	}
+  position: absolute; top: -7px; left: 110px;
+  border: 0px;
+  &:hover { border: 0px; }
+  &:focus { outline: 0px; top: -7px; left: 110px; }
+  i {
+    color: $base;
+    font-size: 24px;
+    z-index: 10;
+    &:active { outline: 0; border: 0px; }
+    &:hover { @include text-shadow($linkColorHover 0 0 20px); }
+  }
 }
 
 .jp-progress-control {
-	position: absolute;
-	top: 45px; left: 105px; right: 220px;
+  position: absolute;
+  top: 45px; left: 105px; right: 220px;
 }
 
 .jp-progress-bar {
-	width: 100%; height: 12px;
-	position: relative;
-	background-color: $base;
-	@include border-radius(6px);
-	border: 1px solid $body;
-	@include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
+  width: 100%; height: 12px;
+  position: relative;
+  background-color: $base;
+  @include border-radius(6px);
+  border: 1px solid $body;
+  @include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
 }
 
 .jp-seek-bar {
-	height: 10px;
-	@include border-radius(5px);
-	@include background-image( linear-gradient(rgba(0, 144, 205, 0.3), darken(rgba(0, 144, 205, 0.3), 25%)) );
+  height: 10px;
+  @include border-radius(5px);
+  @include background-image( linear-gradient(rgba(0, 144, 205, 0.3), darken(rgba(0, 144, 205, 0.3), 25%)) );
 }
 
 .jp-play-bar {
-	height: 10px;
-	position: relative;
-	@include border-radius(5px);
-	@include background-image( linear-gradient($base, darken($base, 25%)) );
+  height: 10px;
+  position: relative;
+  @include border-radius(5px);
+  @include background-image( linear-gradient($base, darken($base, 25%)) );
 }
 
 .jp-play-tracker {
-	width: 16px; height: 16px;
-	@include border-radius(8px);
-	margin: -3px -6px 0 0;
-	background-color: $base;
-	border: 1px solid $body;
-	display: block;
-	float: right;
-	@include background-image(radial-gradient(7px 7px, $base 1px, $linkColor 8px));
-	@include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
+  width: 16px; height: 16px;
+  @include border-radius(8px);
+  margin: -3px -6px 0 0;
+  background-color: $base;
+  border: 1px solid $body;
+  display: block;
+  float: right;
+  @include background-image(radial-gradient(7px 7px, $base 1px, $linkColor 8px));
+  @include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
 }
 
 .jp-current-time, .jp-duration {
-	@include bodyFont;
-	margin-bottom: 0px;
-	color: $base;
-	position: absolute;
+  @include bodyFont;
+  margin-bottom: 0px;
+  color: $base;
+  position: absolute;
 }
 
 .jp-duration {
-	right: 0px;
+  right: 0px;
 }
 
 .jp-playing {
-	width: 60%;
-	position: absolute;
-	top: 16px; left: 105px;
-	p {
-		color: $base;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		margin-bottom: 0px;
-		span {
-			font-size: 16px;
-			text-transform: uppercase;
-			color: $base;
-		}
-	}
+  width: 60%;
+  position: absolute;
+  top: 16px; left: 105px;
+  p {
+    color: $base;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0px;
+    span {
+      font-size: 16px;
+      text-transform: uppercase;
+      color: $base;
+    }
+  }
 }
 
 /* -----------------------------------------
-	Action buttons.
+  Action buttons.
 ----------------------------------------- */
 #actions {
-	width: 100%;
-	padding: 10px 20px 10px 20px;
-	@include background(image-url("/img/grainy.png"), $base);
-	z-index: 900;
+  width: 100%;
+  padding: 10px 20px 10px 20px;
+  @include background(image-url("/img/grainy.png"), $base);
+  z-index: 900;
 }
 
 .actions {
-	padding: 0 0 0 0;
-	position: relative;
-	ul li.action {
-		@include inline-block;
-		color: $base;
-		font-size: 14px;
-		line-height: 14px;
-		text-transform: uppercase;
-		@include background($errorColor);
-		margin: 10px 40px 0 0;
-		padding: 10px 20px 10px 20px;
-		@include transition(all, 0.5s);
-	}
-	ul li.action.active {
-		&:hover {
-			cursor: pointer;
-		}
-	}
-	ul li.action.inactive {
-		color: $body;
-		background-color: rgba(33, 33, 33, 0.05);
-	}
+  padding: 0 0 0 0;
+  position: relative;
+  ul li.action {
+    @include inline-block;
+    color: $base;
+    font-size: 14px;
+    line-height: 14px;
+    text-transform: uppercase;
+    @include background($errorColor);
+    margin: 10px 40px 0 0;
+    padding: 10px 20px 10px 20px;
+    @include transition(all, 0.5s);
+  }
+  ul li.action.active {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  ul li.action.inactive {
+    color: $body;
+    background-color: rgba(33, 33, 33, 0.05);
+  }
 }
 
 .actions.right-column {
-	float: left;
-	width: 75%;
-	padding: 0;
-	ul { margin-left: 5px; }
+  float: left;
+  width: 75%;
+  padding: 0;
+  ul { margin-left: 5px; }
 }
 
 .actions-fixed {
-	position: fixed;
-	top: 0px; left: 0px;
-	border-bottom: 1px solid $errorColor;
+  position: fixed;
+  top: 0px; left: 0px;
+  border-bottom: 1px solid $errorColor;
 }
 
 .add-feed-container {
-	// opacity: 0;
-	display: none;
-	position: absolute; top: 35px; left: 0px;
-	width: 90%;
-	padding: 10px 20px 10px 20px;
-	@include background($errorColor);
-	z-index: 900;
-	@include transition(all, 0.5s, ease-in-out);
+  // opacity: 0;
+  display: none;
+  position: absolute; top: 45px; left: 0px;
+  width: 90%;
+  padding: 10px 20px 10px 20px;
+  @include background($errorColor);
+  z-index: 900;
+  @include transition(all, 0.5s, ease-in-out);
 }
 
 /* -----------------------------------------
-	Sidebar / subscription list.
+  Sidebar / subscription list.
 ----------------------------------------- */
 .subscriptions {
-	position: relative;
-	height: 100%;
-	width: 25%;
-	border-right: 1px solid $borderColor;
-	margin-bottom: 20px;
-	z-index: 1;
-	h1 {
-		font-size: 22px;
-		text-transform: uppercase;
-		margin: 6px 0 6px 0;
-		padding: 0 0 0 20px;
-	}
+  position: relative;
+  height: 100%;
+  width: 25%;
+  border-right: 1px solid $borderColor;
+  margin-bottom: 20px;
+  z-index: 1;
+  h1 {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 6px 0 6px 0;
+    padding: 0 0 0 20px;
+  }
 }
 
 .add-feed {
-	margin: 0 0 0 1px;
-	width: 100%;
-	font-family: $baseFontFamily;
-	color: $base;
-	padding: 2px 4px 2px 4px;
-	border: 0px;
-	@include transition(all, 0.5s, ease-in-out);
-	@include background($errorColor);
-	border-radius: 0px;
-	&:hover {
-		border-bottom: 1px solid $base;
-		// @include box-shadow($base 0px 0px 10px);
-	}
-	&:focus {
-		outline: 0;
-		border-bottom: 2px solid $base;
-		// @include box-shadow($base 0px 0px 20px);
-	}
+  margin: 0 0 0 1px;
+  width: 100%;
+  font-family: $baseFontFamily;
+  color: $base;
+  padding: 2px 4px 2px 4px;
+  border: 0px;
+  @include transition(all, 0.5s, ease-in-out);
+  @include background($errorColor);
+  border-radius: 0px;
+  &:hover {
+    border-bottom: 1px solid $base;
+    // @include box-shadow($base 0px 0px 10px);
+  }
+  &:focus {
+    outline: 0;
+    border-bottom: 2px solid $base;
+    // @include box-shadow($base 0px 0px 20px);
+  }
 }
 
 .subscriptions ul {
-	margin-bottom: 0px;
-	border-top: 1px solid $borderColor;
+  margin-bottom: 0px;
+  border-top: 1px solid $borderColor;
 }
 
 .subscriptions ul li {
-	width: 100%;
-	position: relative;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	font-size: 12px;
-	text-transform: uppercase;
-	border-bottom: 1px solid $borderColor;
-	padding: 0 0 0 0;
-	margin: 0 20px 0 0;
-	@include transition-property(background-color);
-	@include transition-duration(0.5s);
-	div {
-		@include inline-block;
-		margin: 4px 0 4px 0; padding: 0 0 0 20px;
-	}
-	&:hover {
-		background-color: rgba(33, 33, 33, 0.05);
-	}
-	&:hover > div .feedActions {
-		background-color: rgba(33, 33, 33, 0.0025);
-	}
-	&:hover > div .feedActions .removeFeed {
-		opacity: 100;
-	}
-	&:hover > div .feedActions .editFeed {
-		opacity: 100;
-	}
+  width: 100%;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  text-transform: uppercase;
+  border-bottom: 1px solid $borderColor;
+  padding: 0 0 0 0;
+  margin: 0 20px 0 0;
+  @include transition-property(background-color);
+  @include transition-duration(0.5s);
+  div {
+    @include inline-block;
+    margin: 4px 0 4px 0; padding: 0 0 0 20px;
+  }
+  &:hover {
+    background-color: rgba(33, 33, 33, 0.05);
+  }
+  &:hover > div .feedActions {
+    background-color: rgba(33, 33, 33, 0.0025);
+  }
+  &:hover > div .feedActions .removeFeed {
+    opacity: 100;
+  }
+  &:hover > div .feedActions .editFeed {
+    opacity: 100;
+  }
 }
 
 .loadFeed, .loadFeed:visited {
-	float: left;
-	color: darken($linkColor, 25%);
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	border: 0px; padding: 0;
-	&:hover {
-		border: 0px;
-		padding: 0 0 0 5px;
-	}
+  float: left;
+  color: darken($linkColor, 25%);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 0px; padding: 0;
+  &:hover {
+    border: 0px;
+    padding: 0 0 0 5px;
+  }
 }
 
 .edit-feed-input {
-	float: left;
-	display: none;
-	margin: 0px;
-	font-family: $baseFontFamily;
-	border: 1px solid $base;
-	@include transition(all, 0.5s, ease-in-out);
-	&:hover {
-		@include box-shadow($linkColor 0px 0px 10px);
-	}
-	&:focus {
-		outline: 0;
-		@include box-shadow($linkColor 0px 0px 20px);
-	}
+  float: left;
+  display: none;
+  margin: 0px;
+  font-family: $baseFontFamily;
+  border: 1px solid $base;
+  @include transition(all, 0.5s, ease-in-out);
+  &:hover {
+    @include box-shadow($linkColor 0px 0px 10px);
+  }
+  &:focus {
+    outline: 0;
+    @include box-shadow($linkColor 0px 0px 20px);
+  }
 }
 
 .allFeeds, .allFeeds:visited {
-	color: $errorColor !important;
+  color: $errorColor !important;
 }
 
 .feedActions {
-	width: 46px; height: 30px;
-	background-color: transparent;
-	position: absolute; right: 15px;
-	margin: 0;
+  width: 46px; height: 30px;
+  background-color: transparent;
+  position: absolute; right: 15px;
+  margin: 0;
 }
 
 .removeFeed, .editFeed, .removeFeed:visited, .editFeed:visited {
-	width: 24px; height: 24px;
-	@include inline-block;
-	@include border-radius(12px);
-	font-size: 16px;
-	line-height: 16px;
-	color: $base;
-	background-color: $linkColor;
-	border: 3px solid $bodyTrans;
-	opacity: 0;
-	margin: -2px 5px 0 0;
-	&:hover {
-		border: 3px solid $errorColor;	
-		background-color: $base;
-		color: $body;
-	}
-	i { margin: 1px 0 0 -1px; }
+  width: 24px; height: 24px;
+  @include inline-block;
+  @include border-radius(12px);
+  font-size: 16px;
+  line-height: 16px;
+  color: $base;
+  background-color: $linkColor;
+  border: 3px solid $bodyTrans;
+  opacity: 0;
+  margin: -2px 5px 0 0;
+  &:hover {
+    border: 3px solid $errorColor;  
+    background-color: $base;
+    color: $body;
+  }
+  i { margin: 1px 0 0 -1px; }
 }
 
 /* -----------------------------------------
-	Podcast list.
+  Podcast list.
 ----------------------------------------- */
 .listen {
-	float: left;
-	width: 75%;
-	padding: 0;
-	margin: 0 0 20px 0;
-	h1 {
-		font-size: 22px;
-		text-transform: uppercase;
-		margin: 6px 0 6px 0;
-		padding: 0 0 0 20px;
-	}
-	
+  float: left;
+  width: 75%;
+  padding: 0;
+  margin: 0 0 20px 0;
+  h1 {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 6px 0 6px 0;
+    padding: 0 0 0 20px;
+  }
+  
 }
 
 .podcast-header {
-	padding: 0 0 0 20px;
-	border-top: 1px solid $borderColor;
-	border-right: 1px solid $borderColor;
-	margin-bottom: 0px;
-	line-height: 0px;
-	overflow: auto;
-	@include transition-property(background-color);
-	@include transition-duration(0.5s);
-	div {
-		@include inline-block;
-		margin: 0; padding: 0;
-	}
+  padding: 0 0 0 20px;
+  border-top: 1px solid $borderColor;
+  border-right: 1px solid $borderColor;
+  margin-bottom: 0px;
+  line-height: 0px;
+  overflow: auto;
+  @include transition-property(background-color);
+  @include transition-duration(0.5s);
+  div {
+    @include inline-block;
+    margin: 0; padding: 0;
+  }
 }
 
 .podcast-header-date {
-	width: 15%; min-height: 100%;
-	p {
-		font-size: 12px;
-		line-height: 18px;
-		text-transform: uppercase;
-		margin: 0;
-		a {	border: 0px; }
-		a i {
-			font-size: 14px;
-			line-height: 18px;
-		}
-	}
+  width: 15%; min-height: 100%;
+  p {
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+    margin: 0;
+    a { border: 0px; }
+    a i {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
 }
 
 .podcast-header-title {
-	width: 55%;
-	border-left: 1px solid $borderColor;
-	p {
-		font-size: 12px;
-		line-height: 18px;
-		text-transform: uppercase;
-		margin: 0;
-		padding: 11px 10px 11px 10px;
-		a {	border: 0px; }
-		a i {
-			font-size: 14px;
-			line-height: 18px;
-		}
-	}
+  width: 55%;
+  border-left: 1px solid $borderColor;
+  p {
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 11px 10px 11px 10px;
+    a { border: 0px; }
+    a i {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
 }
 
 .podcast-header-feed {
-	width: 30%; height: 100%;
-	border-left: 1px solid $borderColor;
-	p {
-		font-size: 12px;
-		line-height: 18px;
-		text-transform: uppercase;
-		margin: 0;
-		padding: 11px 10px 11px 10px;
-		a {	border: 0px; }
-		a i {
-			font-size: 14px;
-			line-height: 18px;
-		}
+  width: 30%; height: 100%;
+  border-left: 1px solid $borderColor;
+  p {
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 11px 10px 11px 10px;
+    a { border: 0px; }
+    a i {
+      font-size: 14px;
+      line-height: 18px;
+    }
 
-	}
+  }
 }
 
 .podcastList {
-	margin-bottom: 0px;
-	border-top: 1px solid $borderColor;
+  margin-bottom: 0px;
+  border-top: 1px solid $borderColor;
 }
 
 .podcastItem {
-	padding: 0 0 0 20px;
-	border-bottom: 1px solid $borderColor;
-	border-right: 1px solid $borderColor;
-	margin-bottom: 0px;
-	overflow: auto;
-	@include transition-property(background-color);
-	@include transition-duration(0.5s);
-	> div {
-		@include inline-block;
-		margin: 0; padding: 0;
-	}
-	&:hover {
-		background-color: rgba(33, 33, 33, 0.05);
-	}
+  padding: 0 0 0 20px;
+  border-bottom: 1px solid $borderColor;
+  border-right: 1px solid $borderColor;
+  margin-bottom: 0px;
+  overflow: auto;
+  @include transition-property(background-color);
+  @include transition-duration(0.5s);
+  > div {
+    @include inline-block;
+    margin: 0; padding: 0;
+  }
+  &:hover {
+    background-color: rgba(33, 33, 33, 0.05);
+  }
 }
 
 .podcastDate {
-	width: 15%; min-height: 100%;
-	p {
-		font-size: 14px;
-		margin: 0;
-		display: block;
-	}
+  width: 15%; min-height: 100%;
+  p {
+    font-size: 14px;
+    margin: 0;
+    display: block;
+  }
 }
 
 .podcastTitle {
-	width: 55%;
-	border-left: 1px solid $borderColor;
-	position: relative;
-	p {
-		font-size: 16px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		margin: 0;
-		padding: 11px 10px 11px 10px;
-		a {
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			border: 0px;
-		}
-		a.false {
-			font-weight: 700;
-		}
-	}
+  width: 55%;
+  border-left: 1px solid $borderColor;
+  position: relative;
+  p {
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    padding: 11px 10px 11px 10px;
+    a {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border: 0px;
+    }
+    a.false {
+      font-weight: 700;
+    }
+  }
 }
 
 .podcastFeed {
-	width: 30%; height: 100%;
-	border-left: 1px solid $borderColor;
-	p {
-		font-size: 12px;
-		text-transform: uppercase;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		margin: 0;
-		padding: 11px 10px 11px 10px;
-		a {
-			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			border: 0px;
-		}
-	}
+  width: 30%; height: 100%;
+  border-left: 1px solid $borderColor;
+  p {
+    font-size: 12px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    padding: 11px 10px 11px 10px;
+    a {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border: 0px;
+    }
+  }
 }
 
 div.podcastDescription {
-	display: none;
-	padding: 0 20px 0 0;
-	p {
-		margin-bottom: 0px;
-		padding-bottom: 12px;
-	}
+  display: none;
+  padding: 0 20px 0 0;
+  p {
+    margin-bottom: 0px;
+    padding-bottom: 12px;
+  }
 }
 
 .podcastItem.selected {
-	background-color: rgba($errorColor, 0.1);
+  background-color: rgba($errorColor, 0.1);
 }
 
 /* -----------------------------------------
-	Settings.
+  Settings.
 ----------------------------------------- */
 .information {
-	position: relative;
-	height: auto;
-	width: 25%;
-	border-right: 1px solid $borderColor;
-	h1 {
-		font-size: 22px;
-		text-transform: uppercase;
-		margin: 6px 0 6px 0;
-		padding: 0 0 0 20px;
-	}
-	p { padding: 0 20px 0 20px; }
-	p + p { text-indent: 0px; }
-	a { color: darken($linkColor, 25%); }
+  position: relative;
+  height: auto;
+  width: 25%;
+  border-right: 1px solid $borderColor;
+  h1 {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 6px 0 6px 0;
+    padding: 0 0 0 20px;
+  }
+  p { padding: 0 20px 0 20px; }
+  p + p { text-indent: 0px; }
+  a { color: darken($linkColor, 25%); }
 }
 
 .settings {
-	float: left;
-	width: 75%;
-	// border-left: 1px solid $borderColor;
-	padding: 0 0 0 20px;
-	h1 {
-		font-size: 22px;
-		text-transform: uppercase;
-		margin: 6px 0 6px 0;
-	}
-	h2 {
-		font-size: 18px;
-		text-transform: uppercase;
-		margin-bottom: 0px;
-	}
-	h3 {
-		font-size: 14px;
-		margin-bottom: 0px;
-	}
+  float: left;
+  width: 75%;
+  // border-left: 1px solid $borderColor;
+  padding: 0 0 0 20px;
+  h1 {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 6px 0 6px 0;
+  }
+  h2 {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+  }
+  h3 {
+    font-size: 14px;
+    margin-bottom: 0px;
+  }
 }
 
 .update-password {
-	h3 {
-		width: 20%;
-		@include inline-block;
-	}
-	input {
-		width: 400px; height: 40px;
-		display: block;
-		margin: 20px 0 0 0;
-		padding: 0px 10px 0px 10px;
-		background-color: white;
-		border: 1px solid $linkColor;
-		@include transition(all, 0.5s, ease-in-out);
-		&:hover {
-			@include box-shadow($linkColor 0px 0px 2px);
-		}
-		&:focus {
-			outline: 0;
-			@include box-shadow($linkColor 0px 0px 10px);
-		}
-		&:last-of-type {
-			width: 70px;
-			margin: 20px 0 20px 165px;
-		}
-	}
+  h3 {
+    width: 20%;
+    @include inline-block;
+  }
+  input {
+    width: 400px; height: 40px;
+    display: block;
+    margin: 20px 0 0 0;
+    padding: 0px 10px 0px 10px;
+    background-color: white;
+    border: 1px solid $linkColor;
+    @include transition(all, 0.5s, ease-in-out);
+    &:hover {
+      @include box-shadow($linkColor 0px 0px 2px);
+    }
+    &:focus {
+      outline: 0;
+      @include box-shadow($linkColor 0px 0px 10px);
+    }
+    &:last-of-type {
+      width: 70px;
+      margin: 20px 0 20px 165px;
+    }
+  }
 }
 
 a.delete, a.delete:visited {
-	color: $base;
-	font-size: 14px;
-	background-color: $errorColor;
-	border: 1px solid $borderColor;
-	padding: 12px 16px 12px 16px;
-	margin: 0 0 40px 0;
-	border-radius: 4px;
-	@include inline-block;
-	@include transition(all, 0.5s, ease-in-out);
-	&:hover {
-		color: $base;
-		border: 1px solid $borderColor;
-		@include box-shadow($errorColor 0px 0px 10px);
-	}
+  color: $base;
+  font-size: 14px;
+  background-color: $errorColor;
+  border: 1px solid $borderColor;
+  padding: 12px 16px 12px 16px;
+  margin: 0 0 40px 0;
+  border-radius: 4px;
+  @include inline-block;
+  @include transition(all, 0.5s, ease-in-out);
+  &:hover {
+    color: $base;
+    border: 1px solid $borderColor;
+    @include box-shadow($errorColor 0px 0px 10px);
+  }
 }
 
 /*******************************************
 *
-*	FAQ/Help
+* FAQ/Help
 *
 *******************************************/
 .questions {
-	position: relative;
-	height: auto;
-	width: 25%;
-	border-right: 1px solid $borderColor;
-	h1 {
-		font-size: 22px;
-		text-transform: uppercase;
-		margin: 6px 0 6px 0;
-		padding: 0 0 0 20px;
-	}
-	p { padding: 0 20px 0 20px; }
-	p + p { text-indent: 0px; }
-	a { color: darken($linkColor, 25%); }
+  position: relative;
+  height: auto;
+  width: 25%;
+  border-right: 1px solid $borderColor;
+  h1 {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 6px 0 6px 0;
+    padding: 0 0 0 20px;
+  }
+  p { padding: 0 20px 0 20px; }
+  p + p { text-indent: 0px; }
+  a { color: darken($linkColor, 25%); }
 }
 
 .answers {
-	float: left;
-	width: 75%;
-	// border-left: 1px solid $borderColor;
-	padding: 0 0 0 20px;
-	h1 {
-		font-size: 22px;
-		text-transform: uppercase;
-		margin: 6px 0 6px 0;
-	}
-	h2 {
-		font-size: 18px;
-		text-transform: uppercase;
-		margin-bottom: 0px;
-	}
-	h3 {
-		font-size: 14px;
-		margin-bottom: 0px;
-	}
+  float: left;
+  width: 75%;
+  // border-left: 1px solid $borderColor;
+  padding: 0 0 0 20px;
+  h1 {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 6px 0 6px 0;
+  }
+  h2 {
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 0px;
+  }
+  h3 {
+    font-size: 14px;
+    margin-bottom: 0px;
+  }
 }
 
 /*******************************************
 *
-*	404 error
+* 404 error
 *
 *******************************************/
 #hark-not-found { padding: 80px 0 40px 0; }
 
 .not-found {
-	h1, h2 { text-align: center; }
-	.column-8 { margin-bottom: 100px; }
+  h1, h2 { text-align: center; }
+  .column-8 { margin-bottom: 100px; }
 }
 
 /*******************************************
 *
-*	Other errors
+* Other errors
 *
 *******************************************/
 .error {
-	font-size: 14px;
-	line-height: 21px;
-	color: $errorColor;
+  font-size: 14px;
+  line-height: 21px;
+  color: $errorColor;
 }
 
 .success { color: $successColor; }
@@ -1077,66 +1172,66 @@ a.delete, a.delete:visited {
 #error-mask, .js-modal-error { display: none; }
 
 .mask, #error-mask, .settings-mask {
-	width: 100%; height: 100%; min-height: 100%;
-	position: fixed; left: 0px; top: 0px;
-	@include background(rgba(33, 33, 33, 0.6));
-	z-index: 1000;
+  width: 100%; height: 100%; min-height: 100%;
+  position: fixed; left: 0px; top: 0px;
+  @include background(rgba(33, 33, 33, 0.6));
+  z-index: 1000;
 }
 
 .settings-mask { display: none; }
 
 .modal-error, .js-modal-error, .settings-modal-error {
-	width: 400px;
-	position: fixed; top: 40%; left: 50%;
-	margin-left: -200px;
-	padding: 20px;
-	@include border-radius(5px);
-	background-color: $errorColor;
-	p {
-		color: $base;
-		margin-bottom: 0px;
-	}
-	.modal-error-close {
-		position: absolute; top: -6px; right: -6px;
-		width: 36px; height: 36px;
-		font-size: 14px;
-		line-height: 14px;
-		color: $body;
-		background-color: $base;
-		@include border-radius(18px);
-		border: 5px solid $errorColor;
-		margin: 0px 0 0 20px;
-		padding: 4px 0 0 9px;
-		@include transition-property(all);
-		@include transition-duration(0.5s);
-		&:hover {
-			border: 5px solid $body;
-			background-color: $base;
-			color: $errorColor;
-			cursor: pointer;
-		}
-	}
+  width: 400px;
+  position: fixed; top: 40%; left: 50%;
+  margin-left: -200px;
+  padding: 20px;
+  @include border-radius(5px);
+  background-color: $errorColor;
+  p {
+    color: $base;
+    margin-bottom: 0px;
+  }
+  .modal-error-close {
+    position: absolute; top: -6px; right: -6px;
+    width: 36px; height: 36px;
+    font-size: 14px;
+    line-height: 14px;
+    color: $body;
+    background-color: $base;
+    @include border-radius(18px);
+    border: 5px solid $errorColor;
+    margin: 0px 0 0 20px;
+    padding: 4px 0 0 9px;
+    @include transition-property(all);
+    @include transition-duration(0.5s);
+    &:hover {
+      border: 5px solid $body;
+      background-color: $base;
+      color: $errorColor;
+      cursor: pointer;
+    }
+  }
 }
 
 .settings-modal-error {
-	a {
-		margin: 30px auto 0 auto;
-		text-align: center;
-		display: block;
-		border: 0px;
-		&:hover { border: 0px; }
-		i {
-			@include transition-property(all);
-			@include transition-duration(0.5s);
-			font-size: 80px;
-			color: $base;
-			&:hover { color: $body; }
-		}
-	}
+  a {
+    margin: 30px auto 0 auto;
+    text-align: center;
+    display: block;
+    border: 0px;
+    &:hover { border: 0px; }
+    i {
+      @include transition-property(all);
+      @include transition-duration(0.5s);
+      font-size: 80px;
+      color: $base;
+      &:hover { color: $body; }
+    }
+  }
 }
 
 .modal-error-feed {
-	position: absolute; top: 100px; left: 40px;
+  position: absolute; top: 100px; left: 40px;
 }
 
 /* -----------------------------------------
@@ -1144,7 +1239,7 @@ a.delete, a.delete:visited {
 ----------------------------------------- */
 
 @media only screen and (max-width: 767px) {
-  header.login-page {
+  body.login-page header {
     height: auto;
     .row { margin-bottom: 0px; }
   }
@@ -1198,116 +1293,116 @@ a.delete, a.delete:visited {
   Media queries for main view.
 ----------------------------------------- */
 @media only screen and (max-width: 1200px) {
-	// .header-settings a { margin: 0; }
+  // .header-settings a { margin: 0; }
 }
 
 @media only screen and (max-width: 990px) {
-	// .header-settings a i { margin: 0 5px 0 0; }
-	// .addFeed { width: 50%; }
+  // .header-settings a i { margin: 0 5px 0 0; }
+  // .addFeed { width: 50%; }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 990px) {
-	.jp-volume-control { right: 35px; }
-	.jp-mute { left: -32px; }
-	.jp-volume-bar { width: 70px; }
-	.jp-volume-max { left: 70px; }
+  .jp-volume-control { right: 35px; }
+  .jp-mute { left: -32px; }
+  .jp-volume-bar { width: 70px; }
+  .jp-volume-max { left: 70px; }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 850px) {
-	// .jp-progress-control { width: 55%; }
+  // .jp-progress-control { width: 55%; }
 }
 
 @media only screen and (max-width: 900px) {
-	// .header-settings a { width: 24px; }
-	// .header-settings a i { margin: 0; }
+  // .header-settings a { width: 24px; }
+  // .header-settings a i { margin: 0; }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 959px) {
-	.updateButton {
-		position: relative;
-		margin: 0 auto;
-		top: 0px;
-	}
+  .updateButton {
+    position: relative;
+    margin: 0 auto;
+    top: 0px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
-	header { height: 224px; }
+  header { height: 224px; }
 
-	.logo, .podcast-player { width: 100%; }
+  .logo, .podcast-player { width: 100%; }
 
-	// .header-settings {
-	// 	width: 5%;
-	// 	margin: -8px 0 0 70%;
-	// }
+  // .header-settings {
+  //  width: 5%;
+  //  margin: -8px 0 0 70%;
+  // }
 
-	// .header-settings a i.icon-home { margin: 0 0 0 -2px; }
-	// .header-settings a i.icon-cog { margin: 0 0 0 -1px; }
+  // .header-settings a i.icon-home { margin: 0 0 0 -2px; }
+  // .header-settings a i.icon-cog { margin: 0 0 0 -1px; }
 
-	.jp-progress-control { 
-		left: 110px; right: 20px;
-	}
+  .jp-progress-control { 
+    left: 110px; right: 20px;
+  }
 
-	.jp-volume-control {
-		top: 85px;
-		left: 50%;
-		margin-left: -40px;
-	}
+  .jp-volume-control {
+    top: 85px;
+    left: 50%;
+    margin-left: -40px;
+  }
 
-	.jp-playing {
-		width: 80%;
-		left: 20%;
-	}
+  .jp-playing {
+    width: 80%;
+    left: 20%;
+  }
 
-	// .listen, .subscriptions { float: right; }
+  // .listen, .subscriptions { float: right; }
 
-	.listen { 
-		width: 100%;
-		margin: 0 10px 0 10px;
-	}
+  .listen { 
+    width: 100%;
+    margin: 0 10px 0 10px;
+  }
 
-	.podcast-header {
-		border-right: 0px;
-	}
+  .podcast-header {
+    border-right: 0px;
+  }
 
-	.podcastItem {
-		border-right: 0px;
-	}
+  .podcastItem {
+    border-right: 0px;
+  }
 
-	.subscriptions {
-		width: 100%;
-		margin: 20px 10px 0 10px;
-		border-right: 0px;
-		// padding-top: 0px;
-	}
+  .subscriptions {
+    width: 100%;
+    margin: 20px 10px 0 10px;
+    border-right: 0px;
+    // padding-top: 0px;
+  }
 
-	// .updateButton {
-	// 	top: 78px;
-	// }
+  // .updateButton {
+  //  top: 78px;
+  // }
 
-	.settings { 
-		width: 100%;
-		margin: 0 10px 0 10px;
-	}
+  .settings { 
+    width: 100%;
+    margin: 0 10px 0 10px;
+  }
 
-	.information {
-		width: 100%;
-		margin: 20px 10px 0 10px;
-		border-right: 0px;
-		// padding-top: 0px;
-	}
+  .information {
+    width: 100%;
+    margin: 20px 10px 0 10px;
+    border-right: 0px;
+    // padding-top: 0px;
+  }
 
 }
 
 @media only screen and (max-width: 480px) {
-	.jp-progress-control {
-		width: 75%;
-		left: 25%;
-	}
+  .jp-progress-control {
+    width: 75%;
+    left: 25%;
+  }
 
-	.jp-playing {
-		width: 75%;
-		left: 25%;
-	}
+  .jp-playing {
+    width: 75%;
+    left: 25%;
+  }
 
 }
 
@@ -1315,43 +1410,43 @@ a.delete, a.delete:visited {
 
 /*******************************************
 *
-*	Canvas
+* Canvas
 *
 *******************************************/
 #wave, #about-wave, #header-wave {
-	width: 100%;
-	height: 40px;
-	position: relative;
-	z-index: 10;
+  width: 100%;
+  height: 40px;
+  position: relative;
+  z-index: 10;
 }
 
 @-webkit-keyframes pulse {
-	0% { opacity: 0; }
-	50%  { opacity: 0.3; -webkit-transform:scale(1.2) }
-	100% { opacity: 0; -webkit-transform:scale(1.4); }
+  0% { opacity: 0; }
+  50%  { opacity: 0.3; -webkit-transform:scale(1.2) }
+  100% { opacity: 0; -webkit-transform:scale(1.4); }
 }
 @-moz-keyframes pulse {
-	0% { opacity: 0; }
-	50%  { opacity: 0.3; -moz-transform:scale(1.2) }
-	100% { opacity: 0; -moz-transform:scale(1.4); }
+  0% { opacity: 0; }
+  50%  { opacity: 0.3; -moz-transform:scale(1.2) }
+  100% { opacity: 0; -moz-transform:scale(1.4); }
 }
 @-ms-keyframes pulse {
-	0% { opacity: 0; }
-	50%  { opacity: 0.3; -ms-transform:scale(1.2) }
-	100% { opacity: 0; -ms-transform:scale(1.4); }
+  0% { opacity: 0; }
+  50%  { opacity: 0.3; -ms-transform:scale(1.2) }
+  100% { opacity: 0; -ms-transform:scale(1.4); }
 }
 
 @-webkit-keyframes input-pulse {
-	0% { box-shadow: $linkColor 0px 0px 0px; }
-	100% { box-shadow: $linkColor 0px 0px 20px; }
+  0% { box-shadow: $linkColor 0px 0px 0px; }
+  100% { box-shadow: $linkColor 0px 0px 20px; }
 }
 @-moz-keyframes input-pulse {
-	0% { box-shadow: $linkColor 0px 0px 0px; }
-	100% { box-shadow: $linkColor 0px 0px 20px; }
+  0% { box-shadow: $linkColor 0px 0px 0px; }
+  100% { box-shadow: $linkColor 0px 0px 20px; }
 }
 @-ms-keyframes input-pulse {
-	0% { box-shadow: $linkColor 0px 0px 0px; }
-	100% { box-shadow: $linkColor 0px 0px 20px; }
+  0% { box-shadow: $linkColor 0px 0px 0px; }
+  100% { box-shadow: $linkColor 0px 0px 20px; }
 }
 
 
