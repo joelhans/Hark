@@ -73,7 +73,7 @@ module.exports = function(app, express, loadUser, Users, Feeds, db, bcrypt, node
           to: req.param('email'),
           subject: "Hark - Password reset.",
           generateTextFromHTML: true,
-          html: '<h1>Hark wants to help you reset your password.</h1><p>So, you forgot it. That\'s all right. I\'ll help you get a new one.</p><p>To reset your password, click the link: <a href="http://localhost:3000/login/reset/' + resetToken + '">http://localhost:3000/login/reset/' + resetToken + '</a></p>'
+          html: '<h1>Hark wants to help you reset your password.</h1><p>So, you forgot it. That\'s all right. I\'ll help you get a new one.</p><p>To reset your password, click the link: <a href="http://listen.harkhq.com/reset/' + resetToken + '">http://llisten.harkhq.com/reset/' + resetToken + '</a></p>'
         }
         
         smtpTransport.sendMail(mailOptions, function(error, response){

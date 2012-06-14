@@ -40,7 +40,7 @@ html(lang="en")
 							p.error #{flash.loginError}
 			
 			- if (typeof(message) !== 'undefined')
-				div.row.login-error
+				div.row.login-error.passport
 					div.column-12
 						p.error #{message}
 
