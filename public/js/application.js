@@ -159,13 +159,6 @@ $(document).ready(function() {
     updateStatus();
   });
 
-  $(document).delegate('.password-forgot a', 'click', function(e) {
-    e.preventDefault();
-    $('.login, .login-showme, .password-forgot a').fadeOut(300).promise().done(function() {
-      $('.forgot').fadeIn(300);
-    });
-  });
-
   //
   //  Add a feed.
   //
