@@ -83,12 +83,19 @@ ROADMAP
 
   0.6
   ----------
-  [ ] --  A help/FAQ section.
-  [ ] --  OAuth/Twitter/Facebook/Google/etc support for signups, logins.
+  [x] --  OAuth/Twitter/Facebook/Google/etc support for signups, logins.
 
   0.7
   ----------
   [ ] --  Make an RSS feed that takes all the unlistened podcasts so people can sync it to other services.
+  [ ] --  A help/FAQ section.
+
+  0.8
+  ----------
+  [ ] --  Have a variety of keyboard shortcuts for various important functions.
+
+  0.9
+  ----------
   [ ] --  Allow user to save listening progress in one podcast, listen to another one, and resume where they left off.
 
   1.0
