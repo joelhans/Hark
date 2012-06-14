@@ -98,33 +98,35 @@ a.hark-signup, a.hark-signup:visited {
   text-align: center;
 }
 
-.create-account, .login-account {
-  .create-email, .create-password, .create-submit, .login-email, .login-password, .login-submit {
-    padding: 16px 40px 16px 40px;
-    border: 0px; outline: 0px;
-    border-radius: 10px;
-    @include transition(all, 0.5s);
-    @include box-shadow($linkColor 0px 0px 20px, $linkColor 0px 0px 20px inset);
-    &:hover {
-     @include box-shadow($linkColor 0px 0px 40px, $linkColor 0px 0px 20px inset);
-    }
-    &:focus {
-      @include box-shadow($errorColor 0px 0px 40px, $errorColor 0px 0px 20px inset);
-    }
+.create-email, .create-password, .create-submit, .login-email, .login-password, .login-submit, .forgot-email, .forgot-submit, .reset-email, .reset-password, .reset-submit {
+  padding: 16px 40px 16px 40px;
+  border: 0px; outline: 0px;
+  border-radius: 10px;
+  @include transition(all, 0.5s);
+  @include box-shadow($linkColor 0px 0px 20px, $linkColor 0px 0px 20px inset);
+  &:hover {
+   @include box-shadow($linkColor 0px 0px 40px, $linkColor 0px 0px 20px inset);
   }
-  .create-submit, .login-submit {
-    margin-top: 40px;
-    background-color: $linkColor;
-    color: $base;
-    &:focus {
-      background-color: $errorColor;
-    }
+  &:focus {
+    @include box-shadow($errorColor 0px 0px 40px, $errorColor 0px 0px 20px inset);
   }
 }
 
-.login-forgot, .existing-account { text-align: center; }
+.create-submit, .login-submit, .forgot-submit, .reset-submit {
+  margin-top: 40px;
+  background-color: $linkColor;
+  color: $base;
+  &:focus {
+    background-color: $errorColor;
+  }
+}
 
-.login-error, .create-error {
+.login-forgot, .existing-account {
+  text-align: center;
+  a { margin-left: 20px; }
+}
+
+.login-error, .create-error, .forgot-error {
   p {
     text-align: center;
     font-size: 22px;
@@ -147,204 +149,12 @@ a.hark-signup, a.hark-signup:visited {
       line-height: 50px;
       &:hover {
         border: 0px;
-        // @include background(linear-gradient(darken($base, 0%), darken($base, 0%)));
+        @include background(darken($errorColor, 5%));
       }
     }
 }
 
-// #hark-login { margin-top: 140px; }
-
-// #hark-login, #hark-not-found {
-//   .hark { height: 300px; }
-//   img {
-//     width: 300px; height: 300px;
-//     @include background(image-url("/img/grainy.png"), $base);
-//     position: absolute; top: 0px; left: 50%;
-//     margin: 0 0 0 -150px;
-//     z-index: 2;
-//     border-radius: 150px;
-//     @include inline-block;
-//   }
-//   .pulse {
-//     width: 300px; height: 300px;
-//     background-color: $linkColor;
-//     position: absolute; top: 0px; left: 50%;
-//     margin: 0 0 0 -150px;
-//     z-index: 1;
-//     border-radius: 160px;
-//     // @include box-shadow($linkColor 0px 0px 100px);
-//     @include inline-block;
-//     -webkit-animation: pulse 5s infinite;
-//     -moz-animation:    pulse 5s infinite;
-//     -ms-animation:     pulse 5s infinite;
-//     -webkit-animation-timing-function:  linear;
-//     -moz-animation-timing-function:   linear;
-//     -ms-animation-timing-function:    linear;
-//   }
-// }
-
-// .hark-right { text-align: center; }
-
-// a.create-show, a.login-show {
-//   color: $linkColor;
-//   @include bodyFont;
-//   text-transform: uppercase;
-//   text-align: center;
-//   padding: 8px 0 10px 40px;
-//   margin: 12px 0 20px 0;
-//   border: 0;
-//   position: relative;
-//   @include inline-block;
-//   @include transition(all, 0.5s, ease-in-out);
-//   &:hover { color: $linkColorHover; }
-//   .input-pulse {
-//     width: 30px; height: 30px;
-//     border: 5px solid $linkColor;
-//     position: absolute; top: 4px; left: 0px;
-//     @include background(image-url("/img/grainy.png"), $base);
-//     @include border-radius(15px);
-//     @include inline-block;
-//   }
-//   &:hover > .input-pulse {
-//     -webkit-animation: input-pulse 2s infinite;
-//     -moz-animation:    input-pulse 2s infinite;
-//     -ms-animation:     input-pulse 2s infinite;
-//     -webkit-animation-timing-function:  linear;
-//     -moz-animation-timing-function:   linear;
-//     -ms-animation-timing-function:    linear;
-//   }
-// }
-
-// a.create-show { margin: 12px 120px 20px 0; }
-
-// .hark-login {
-//   margin-top: 80px;
-//   h2, h3, p { text-align: center; }
-// }
-
-// .login-actions {
-//   margin-top: 40px;
-//   display: block;
-//   height: 200px;
-//   form.login, form.create { display: none; }
-//   form.login-showme, form.create-showme { display: block; }
-// }
-
-// .login, .forgot, .create, .login-showme, .create-showme, .forgot-showme {
-//   text-align: center;
-//   margin-bottom: 40px;
-//   input { 
-//     // font-family: $baseFontFamily;
-//     // &:nth-of-type(2n-1) { margin-right: 4%; }
-//     margin: 30px auto 0 auto;
-//   }
-// }
-
-// .login-password, .login-username, .forgot-password, .create-email, .create-username, .create-password, .login-error, .reset-error, .create-error {
-//   width: 50%; height: 40px;
-//   // @include inline-block;
-//   display: block;
-//   padding: 0px 10px 0px 10px;
-//   margin-bottom: 20px;
-//   border: 1px solid $linkColor;
-//   @include transition(all, 0.5s, ease-in-out);
-//   &:hover {
-//     @include box-shadow($linkColor 0px 0px 2px);
-//   }
-//   &:focus {
-//     outline: 0;
-//     @include box-shadow($linkColor 0px 0px 10px);
-//   }
-// }
-
-// .login-error, .reset-error, .create-error {
-//   border: 1px solid $errorColor;
-//   @include box-shadow($errorColor 0px 0px 2px);
-//   &:hover { @include box-shadow($errorColor 0px 0px 2px); }
-//   &:focus {
-//     outline: 0;
-//     @include box-shadow($errorColor 0px 0px 10px);
-//   }
-// }
-
-// .login-submit, .forgot-submit, .create-submit {
-//   width: 20%; height: 30px;
-//   display: block;
-//   margin: 30px auto 0 auto !important;
-//   border: 1px solid $linkColor;
-//   background-color: white;
-//   @include transition(all, 0.5s, ease-in-out);
-//   &:hover { @include box-shadow($linkColor 0px 0px 2px); }
-//   &:focus {
-//     outline: 0;
-//     @include box-shadow($linkColor 0px 0px 10px);
-//   }
-// }
-
-// .password-forgot { 
-//   font-size: 14px;
-//   text-align: center;
-//   margin-bottom: 0px;
-//   // display: none;
-//   padding-top: 12px;
-//   a { margin-bottom: 12px; }
-// }
-
-// .forgot {
-//   display: none;
-//   margin-bottom: 40px;
-//   p { font-size: 14px; }
-// }
-
-// .forgot-showme {
-//   display: block;
-//   margin-bottom: 40px;
-//   p { font-size: 14px; }
-// }
-
-// #hark-about {
-//   margin: -5px 0 0 0;
-//   padding: 40px 0 100px 0;
-//   @include background(image-url("/img/grainy.png"), $linkColor);
-//   h3, p {
-//     color: $base;
-//   }
-// }
-
-// .login-service {
-//   position: relative;
-//   width: 240px;
-//   margin: 0 auto;
-//   text-align: center;
-//   &:first-of-type { margin-top: 60px; }
-//   a {
-//     @include background(linear-gradient($base, darken($base, 5%)));
-//     display: block;
-//     position: relative;
-//     width: 240px; height: 50px;
-//     margin: 0 0 36px 0;
-//     padding: 2px 0 0 20px;
-//     border: 0px;
-//     text-align: center;
-//     line-height: 50px;
-//     border-radius: 20px;
-//     box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
-//     &:hover {
-//       border: 0px;
-//       @include background(linear-gradient(darken($base, 0%), darken($base, 0%)));
-//     }
-//   }
-//   a:before {
-//     content: "";
-//     display: block;
-//     position: absolute; top: -10px; left: -10px; bottom: -10px; right: -10px;
-//     z-index: -1;
-//     background: #fff;
-//     border-top: 2px solid #ddd;
-//     border-radius: 20px;
-//     box-shadow: inset 0px 8px 48px #ddd;
-//   }
-// }
+// 194 to 59
 
 .facebook i, .twitter i, .google i {
   position: absolute; top: 1px; left: 20px;
@@ -363,6 +173,8 @@ header {
   z-index: 20;
 }
 
+.logo { margin-bottom: 0px; }
+
 .hark-listen {
   width: 50%;
   float: left;
@@ -380,7 +192,7 @@ header {
   }
   .pulse {
     width: 100px; height: 100px;
-    margin-left: 20px;
+    margin: 0 0 0 20px;
     background-color: $base;
     position: absolute;
     z-index: 25;
@@ -427,13 +239,20 @@ header {
   float: left;
   width: 75%;
   padding-right: 20px;
+  margin: 0;
+  div { margin-bottom: 0px; }
 }
+
+#jp_container_1 { margin: 0; }
 
 .jp-controls, .jp-play-container { margin-bottom: 0px; }
 
 .jp-controls li { @include inline-block; }
 
-.jp-interface { position: relative; }
+.jp-interface { 
+  position: relative;
+  margin: 0px;
+}
 
 .jp-play, .jp-pause {
   width: 70px; height: 70px;
@@ -452,7 +271,7 @@ header {
   @include background( $linkColor );
   @include box-shadow( rgba(242, 242, 242, 0.5) 0px 1px 0px );
   i {
-    position: absolute; top: 16px; left: 5px;
+    position: absolute; top: 24px; left: 5px;
     color: $base;
     font-size: 50px;
   }
@@ -793,6 +612,8 @@ header {
 .loadFeed, .loadFeed:visited {
   float: left;
   color: darken($linkColor, 25%);
+  font-size: 14px;
+  line-height: 14px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
