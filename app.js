@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 0.5.4
+//  Current version: 0.5.3
 //
 //  Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -29,7 +29,8 @@ var express = require('express')
   , bcrypt = require('bcrypt')
   , moment = require('moment')
   , mongodb = require('mongodb')
-  , conf = require('./conf');
+  , conf = require('./conf')
+  , connect = require('connect');
 
 var parser = new xml2js.Parser();
 
@@ -48,20 +49,137 @@ var Users = new mongodb.Collection(db, 'Users')
   , Feeds = new mongodb.Collection(db, 'Feeds');
 
 //  ---------------------------------------
+//  PASSPORT CONFIGURATION
+//  ---------------------------------------
+
+var passport = require('passport')
+  , LocalStrategy = require('passport-local').Strategy
+  , TwitterStrategy = require('passport-twitter').Strategy
+  , FacebookStrategy = require('passport-facebook').Strategy
+  , GoogleStrategy = require('passport-google').Strategy;
+
+passport.serializeUser(function(user, done) {
+  console.log(user['_id']);
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  console.log(obj);
+  done(null, obj);
+});
+
+passport.use(new LocalStrategy({
+    usernameField: 'email'
+  },
+  function(username, password, done) {
+    Users.findOne({ email: username }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        console.log('Unknown user.');
+        return done(null, false, { message: 'That account doesn\'t exist.' });
+      }
+      else {
+        bcrypt.compare(password, user.password, function(err, result) {
+          if (result === true) {
+            console.log('Correct username/password!');
+            return done(null, user);
+          } else {
+            console.log('Invalid password.');
+            return done(null, false, { message: 'Wrong password.' });
+          }
+        });
+      }
+    });
+  }
+));
+
+passport.use(new TwitterStrategy({
+    consumerKey: conf.twitter.consumerKey,
+    consumerSecret: conf.twitter.consumerSecret,
+    callbackURL: "http://hark-development.com:3000/auth/twitter/callback"
+  },
+  function(token, tokenSecret, profile, done) {
+    Users.findOne({ 'userID': profile.id }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        var twitterUser = {
+          userID     : profile.id,
+          username   : profile.displayName
+        }
+        Users.insert(twitterUser, {safe:true}, function(err, newUser) {
+          console.log(newUser);
+          return done(null, newUser);
+        });
+      }
+      else {
+        return done(null, user);
+      }
+    });
+  }
+));
+
+passport.use(new FacebookStrategy({
+    clientID: conf.facebook.appId,
+    clientSecret: conf.facebook.appSecret,
+    callbackURL: "http://hark-development.com:3000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, done) {
+    Users.findOne({ 'userID': profile.id }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        var facebookUser = {
+          userID     : profile.id,
+          username   : profile.displayName
+        };
+        Users.insert(facebookUser, {safe:true}, function(err, newUser) {
+          return done(null, newUser);
+        });
+      }
+      else {
+        return done(null, user);
+      }
+    });
+  }
+));
+
+passport.use(new GoogleStrategy({
+    returnURL: 'http://hark-development.com:3000/auth/google/return',
+    realm: 'http://*.hark-development.com:3000'
+  },
+  function(identifier, profile, done) {
+    Users.findOne({ 'userID': profile.id }, function(err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        var googleUser = {
+          userID     : profile.emails[0].value,
+          username   : profile.displayName
+        };
+        console.log(googleUser);
+        Users.insert(googleUser, {safe:true}, function(err, newUser) {
+          return done(null, newUser);
+        });
+      }
+      else {
+        return done(null, user);
+      }
+    });
+  }
+));
+
+//  ---------------------------------------
 //  EXPRESS CONFIGURATION
 //  ---------------------------------------
 
 var app = module.exports = express.createServer();
 
-app.configure(function(){
+app.configure(function() {
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.set("view options", { layout: false });
-});
-
-app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  app.use(express.cookieParser(conf.session.cookieParser));
+  // app.use(express.logger());
+  app.use(express.cookieParser());
+  app.use(express.bodyParser());
+  app.use(express.methodOverride());
   app.use(express.session({
     secret: conf.session.secret
     , store: new mongoStore({db: db})
@@ -72,67 +190,40 @@ app.configure('development', function(){
     }
     }
   ));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
+  app.use(passport.initialize());
+  app.use(passport.session());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-});
-
-app.configure('production', function(){
-  var oneYear = 31557600000;
-  app.use(express.errorHandler());
-  app.use(express.cookieParser(conf.session.cookieParser));
-  app.use(express.session({
-    secret: conf.session.secret
-    , store: new mongoStore({db: db})
-    , cookie: {  
-      path     : '/',
-      domain   : 'harkhq.com',
-      httpOnly : true,  
-      maxAge   : 1000*60*60*24*30*12    //one year(ish)  
-    }
-    }
-  ));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(__dirname + '/public', { maxAge: oneYear }));
-});
-
-process.on('uncaughtException', function (error) {
-   console.log('TIME: ' + moment().format('dddd, MMMM Do YYYY, h:mm:ss a') + ' ERROR: ' + error.stack);
 });
 
 //  ---------------------------------------
 //  HELPERS
 //  ---------------------------------------
 
-function loadUser(req, res, next, callback) {
-  if (req.session.userID) {
-    Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, user) {
-      if (user && req.url === '/' ) {
-        res.redirect('/listen');
-      } else if ( user && req.url === '/login' ) {
-        res.redirect('/listen');
-      } else if ( user ) {
-        next();
-      } else {
-          res.redirect(req.url);
-      }
-    });
-  } else if ( !req.session.userID && req.url === '/login' ) {
-    next();
-  } else if ( !req.session.userID && req.url === '/signup' ) {
-    next();
-  } else if ( !req.session.userID && req.url === '/' ) {
-    next();
-  }else {
-    res.redirect('/login');
+function loadUser(req, res, next) {
+  // This little catch standardizes the way Hark uses session data to allow users to move around in
+  // authenticated areas. The "if" statement applies when a new account is created, while the "else"
+  // applies any time after the fact. I don't like it, but it works.
+  //
+  // After setting "harkUser," we let the route continue. If there is no user, we redirect to the
+  // login page.
+  if (typeof(req.user) !== 'undefined') {
+    if (typeof(req.user[0]) !== 'undefined') {
+      harkUser = req.user[0];
+    } else {
+      harkUser = req.user;
+    }
+    return next();
+  } else if ( typeof(req.user) === 'undefined' && req.url === '/signup' ) {
+    return next();
+  } else if ( typeof(req.user) === 'undefined' && req.url === '/' ) {
+    return next();
   }
+  res.redirect('/');
 }
 
-require('./users.js')(app, express, loadUser, Users, Feeds, db, bcrypt);
-require('./feeds.js')(app, express, loadUser, Users, Feeds);
+require('./users.js')(app, express, loadUser, Users, Feeds, db, bcrypt, nodemailer);
+require('./feeds.js')(app, express, loadUser, Users, Feeds, db);
 require('./directory.js')(app, express, loadUser, Users, Feeds);
 
 //  ---------------------------------------
@@ -140,133 +231,65 @@ require('./directory.js')(app, express, loadUser, Users, Feeds);
 //  ---------------------------------------
 
 app.get('/', loadUser, function(req, res) {
-  res.render('index'); // Let's just redirect ourselves to the login page.
-});
-
-app.get('/login', loadUser, function(req, res) {
-  res.render('login');
+  res.render('login', { message: req.flash('error') }); // Let's just redirect ourselves to the login page.
 });
 
 app.get('/signup', loadUser, function(req, res) {
   res.render('signup');
 });
 
-app.post('/login', function(req, res) {
-  console.log();
-  Users.findOne({ $or : [ { 'username': req.body.username }, { 'email': req.body.username } ] }, function(err, result) {
-    if ( result === null ) { // No user found.
-      req.flash('errorUser', "That user doesn't exist.");
-      res.render(req.url.split('/')[1], {locals: {flash: req.flash()}});
-    } else { // User found.
-      bcrypt.compare(req.param('password'), result.password, function(err, result) {
-        if (result === true) {
-          req.session.userID = req.body.username;
-          console.log(req.session.userID);
-          res.redirect('/listen');
-        } else {
-          req.flash('errorPass', "Incorrect password. Try again.");
-          res.render(req.url.split('/')[1], {locals: {flash: req.flash(), errorType: 'login'}});
-        }
-      });
-    }
+app.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/', failureFlash: true }),
+  function(req, res) {
+    res.redirect('/listen');
   });
-});
 
-app.post('/login/forgot', function(req, res) {
-  var salt = Math.round((new Date().valueOf() * Math.random())) + '';
-  var resetToken = crypto.createHmac('sha1', salt).update(userEmail).digest('hex');
+app.get('/auth/twitter', passport.authenticate('twitter'));
 
-  Users.findOne({ 'email': req.param('email') }, function(err, result) {
-
-    if ( result === null ) {
-      req.flash('errorReset', "An account with that e-mail doesn't exist.");
-      res.render('index', {locals: {flash: req.flash()}});
-    } else {
-      var smtpTransport = nodemailer.createTransport("Sendmail", "/usr/sbin/sendmail"); // I use sendmail. Others may have to find a different solution.
-
-      var mailOptions = { // Creating the email.
-        from: "Hark <admin@harkapp.com>",
-        to: userEmail,
-        subject: "Hark - Password reset.",
-        generateTextFromHTML: true,
-        html: '<h1>Hark wants to help you reset your password.</h1><p>So, you forgot it. That\'s all right. I\'ll help you get a new one.</p><p>To reset your password, click the link: <a href="http://localhost:3000/login/reset/' + resetToken + '">http://localhost:3000/login/reset/' + resetToken + '</a></p>'
-      }
-      
-      smtpTransport.sendMail(mailOptions, function(error, response){
-          if(error) {
-              console.log(error);
-              res.redirect('/login');
-          } else{
-              Users.findAndModify({ 'email': userEmail }, [], { $set: { 'resetToken' : resetToken } }, {}, function(err, result) {
-            if (err) { throw err; } // If the e-mail sends correctly, we set a token so that the user can make the reset later.
-            res.redirect('/login');
-          });
-          }
-          smtpTransport.close();
-      });
-    }
+app.get('/auth/twitter/callback', 
+  passport.authenticate('twitter', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/listen');
   });
-});
 
-app.get('/login/reset/:resetToken', function(req, res) {
-  var resetToken = req.param('resetToken');
+app.get('/auth/facebook', passport.authenticate('facebook'));
 
-  Users.find({ 'resetToken': resetToken }).each(function(err, result) {
-    if ( result === null ) {
-      res.redirect('/login');
-    } else {
-      res.render('reset', {
-        locals: {
-          token: resetToken
-        }
-      });
-    }
+app.get('/auth/facebook/callback', 
+  passport.authenticate('facebook', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/listen');
   });
-});
 
-app.post('/login/reset/new', function(req, res) {
-  var password = req.param('password'),
-    validate = req.param('password-validate'),
-    resetToken = req.param('resetToken');
+app.get('/auth/google', passport.authenticate('google'));
 
-  if ( password !== validate ) {
-    res.redirect('/login');
-  } else {
-    bcrypt.genSalt(10, 64, function(err, salt) {
-      bcrypt.hash(password, salt, function(err, hash) {
-        Users.findAndModify({ 'resetToken': resetToken }, [], { $set: { 'password' : hash, 'salt' : salt }, $unset: { 'resetToken' : resetToken } }, { new:true }, function(err, result) {
-          if (err) { throw err; }
-          res.redirect('/login');
-        });
-      });
-    });
-  }
-});
+app.get('/auth/google/return', 
+  passport.authenticate('google', { failureRedirect: '/' }),
+  function(req, res) {
+    res.redirect('/listen');
+  });
 
 //
 //  LOGOUT
 //
 
-app.get('/logout', function(req, res) {
-  if (req.session) { req.session.destroy(function() {}); } // Destroy the session so that they have to login again.
-  res.redirect('/'); // And then redirect them to the login.
-})
+app.get('/logout', function(req, res){
+  req.logOut();
+  res.redirect('/');
+});
 
 //
 //  THE DEFAULT VIEW
 //
 
-app.get('/listen', loadUser, function(req, res, user) {
-  Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-    getFeeds(result['email'], result['username'], function(error, feed, podcastList) {
-      res.render('listen', {
-        locals: {
-          username: result['username'],
-          feeds: feed,
-          podcasts: podcastList,
-          playing: result['playing']
-        }
-      });
+app.get('/listen', loadUser, function(req, res) {
+  getFeeds(harkUser.userID, function(error, feed, podcastList) {
+    res.render('listen', {
+      locals: {
+        username: harkUser.username,
+        feeds: feed,
+        podcasts: podcastList,
+        playing: harkUser.playing
+      }
     });
   });
 });
@@ -276,163 +299,8 @@ app.get('/listen', loadUser, function(req, res, user) {
 //
 
 app.post('/listen', loadUser, function(req, res) {
-  Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-    getFeeds(result['email'], result['username'], function(error, feed, podcastList) {
-      res.partial('partials/podcasts', { feeds: feed, podcasts: podcastList });
-    });
-  });
-});
-
-//
-// ADD A PODCAST SUBSCRIPTION
-//
-
-app.post('/listen/add', loadUser, function(req, res) {
-
-  var feedURL = req.body.url;
-
-  console.log(feedURL);
-
-  Feeds.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ], 'href': feedURL }, function(err, result) {
-    if ( result !== null ) {
-      req.flash('errorAddFeed', "You already added that feed!");
-      Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-        getFeeds(result['email'], result['username'], function(error, feeds, podcastList) {
-          res.partial('partials/podcasts', { feeds: feeds, podcasts: podcastList, flash: req.flash() });    
-        });
-      });
-      return;
-    } else {
-      request({uri: feedURL}, function(error, response, body){
-
-        if ( error ) {
-          req.flash('errorAddFeed', "An error occured.");
-          Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-            getFeeds(result['email'], result['username'], function(error, feeds, podcastList) {
-              res.partial('partials/podcasts', { feeds: feeds, podcasts: podcastList, flash: req.flash() });    
-            });
-          });
-          return;
-        }
-
-        parser.parseString(body, function (err, result) {
-
-          if (typeof result === "undefined") {
-            req.flash('errorAddFeed', "An error occured when adding that feed. Check the URL and try again.");
-            Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-              getFeeds(result['email'], result['username'], function(error, feeds, podcastList) {
-                res.partial('partials/podcasts', { feeds: feeds, podcasts: podcastList, flash: req.flash() });    
-              });
-            });
-          }
-
-          var feed = result.channel,
-            mediaType,
-            pubDate,
-            listened,
-            construction = new Array(),
-            podData = new Array();
-
-          for (var i = 0; i < 50; ++i ) {
-            podData = {};
-            
-            if ( typeof feed.item[i] !== "undefined" ) {
-              if ( typeof feed.item[i].enclosure !== "undefined" ) {
-
-                if ( typeof feed.item[i]['pubDate'] == "string" ) {
-                  pubDate = moment(feed.item[i]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
-                } else if ( typeof feed.item[i]['dc:date'] == "string" ) {
-                  pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
-                }
-
-                if ( i === 0 ) {
-                  listened = 'false';
-                } else {
-                  listened = 'true';
-                }
-
-                podData = {
-                  'podTitle'  : feed.item[i].title,
-                  'podLink' : feed.item[i].link,
-                  'podFile' : feed.item[i].enclosure['@'].url,
-                  'podMedia'  : feed.item[i].media,
-                  'podDesc' : feed.item[i].description,
-                  'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
-                  'podDate' : pubDate,
-                  'prettyDay' : pubDate.format('D'),
-                  'prettyMonth' : pubDate.format('MMMM'),
-                  'prettyYear' : pubDate.format('YYYY'),
-                  'listened'  : listened
-                };
-                construction.push(podData);
-              }
-            } else if ( typeof feed.item.title !== "undefined" ) {
-              if ( typeof feed.item['pubDate'] == "string" ) {
-                pubDate = moment(feed.item['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
-              } else if ( typeof feed.item['dc:date'] == "string" ) {
-                pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
-              }
-              
-              listened = 'false';
-
-              podData = {
-                  'podTitle'  : feed.item.title,
-                  'podLink' : feed.item.link,
-                  'podFile' : feed.item.enclosure['@'].url,
-                  'podMedia'  : feed.item.media,
-                  'podDesc' : feed.item.description,
-                  'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
-                  'podDate' : pubDate,
-                  'prettyDay' : pubDate.format('D'),
-                  'prettyMonth' : pubDate.format('MMMM'),
-                  'prettyYear' : pubDate.format('YYYY'),
-                  'listened'  : listened
-                };
-              construction.push(podData);
-              break;
-            } else {
-              break;
-            }
-          }
-
-          var feedData = function(err, data) {
-            data.insert({
-              title       : feed.title,
-              href      : feedURL,
-              description   : feed.description,
-              pods      : construction,
-              uuid      : Math.round((new Date().valueOf() * Math.random())) + '',
-              owner     : req.session.userID
-            });
-          }
-
-          db.collection('Feeds', feedData);
-
-          Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-            getFeeds(result['email'], result['username'], function(error, feeds, podcastList) {
-              res.partial('partials/podcasts', { feeds: feeds, podcasts: podcastList });      
-            });
-          });
-        });
-      });
-    }
-  });
-});
-
-//
-//  REMOVE A PODCAST SUBSCRIPTION
-//
-
-app.post('/listen/remove/:_id', loadUser, function(req, res) {
-  
-  var uuid = req.param('id');
-
-  Feeds.findAndModify({ $or : [ { 'owner': req.session.userID }, { 'owner': req.session.userID } ], uuid: uuid }, [], {}, { remove:true }, function(err, result) {
-    Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-      getFeeds(result['email'], result['username'], function(error, feeds, podcastList) {
-        res.partial('partials/podcasts', { feeds: feeds, podcasts: podcastList });
-      });
-    });
+  getFeeds(harkUser.userID, function(error, feed, podcastList) {
+    res.partial('partials/podcasts', { feeds: feed, podcasts: podcastList });
   });
 });
 
@@ -441,41 +309,38 @@ app.post('/listen/remove/:_id', loadUser, function(req, res) {
 //
 
 app.post('/listen/podcast/:_id', loadUser, function(req, res) {
+  Feeds.find({ 'owner': harkUser.userID, uuid: req.param('feed') }).toArray(function(err, results) {
+    var feed = new Array(),
+      podcastList = new Array();
 
-  Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-    Feeds.find( { $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ], uuid: req.param('feed') }).toArray(function(err, results) {
-      var feed = new Array(),
-        podcastList = new Array();
+    feed = {
+      feedTitle     : results[0].title,
+      feedDescription : results[0].description,
+      feeduuid    : results[0].uuid
+    }
 
-      feed = {
-        feedTitle     : results[0].title,
-        feedDescription : results[0].description,
-        feeduuid    : results[0].uuid
-      }
+    for ( var i = 0; i < results[0].pods.length; ++i) {
+      var podData = results[0].pods[i];
 
-      for ( var i = 0; i < results[0].pods.length; ++i) {
-        var podData = results[0].pods[i];
+      podData['feedTitle'] = results[0].title;
+      podData['feedUUID'] = results[0].uuid;
 
-        podData['feedTitle'] = results[0].title;
-        podData['feedUUID'] = results[0].uuid;
+      podcastList.push(podData);
+    }
 
-        podcastList.push(podData);
-      }
+    if (typeof podcastList[0].podTitle == "undefined") {
+      return;
+    } else {
+      podcastList.sort(function (a , b) {
+        if (a['podDate']['_d'] > b['podDate']['_d'])
+          return -1;
+        if (a['podDate']['_d'] < b['podDate']['_d'])
+          return 1;
+        return 0;
+      });
+    }
 
-      if (typeof podcastList[0].podTitle == "undefined") {
-        return;
-      } else {
-        podcastList.sort(function (a , b) {
-          if (a['podDate']['_d'] > b['podDate']['_d'])
-            return -1;
-          if (a['podDate']['_d'] < b['podDate']['_d'])
-            return 1;
-          return 0;
-        });
-      }
-
-      res.partial('partials/single', { feeds: feed, podcasts: podcastList });
-    });
+    res.partial('partials/single', { feeds: feed, podcasts: podcastList });
   });
 });
 
@@ -490,81 +355,72 @@ app.get('/listen/podcast/:id', loadUser, function(req, res) {
 
   async.waterfall([
     function ( callback ) {
-      Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-        Feeds.find( { $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ], uuid: req.params.id }).toArray(function(err, results) {
+      Feeds.find({ 'owner': harkUser.userID, uuid: req.params.id }).toArray(function(err, results) {
+        // NOT NECESSARY?
+        var feed = new Array();
 
-          // NOT NECESSARY?
-          var feed = new Array();
+        feed = {
+          feedTitle     : results[0].title,
+          feedDescription : results[0].description,
+          feeduuid    : results[0].uuid
+        }
 
-          feed = {
-            feedTitle     : results[0].title,
-            feedDescription : results[0].description,
-            feeduuid    : results[0].uuid
-          }
+        for ( var i = 0; i < results[0].pods.length; ++i) {
+          var podData = results[0].pods[i];
 
-          for ( var i = 0; i < results[0].pods.length; ++i) {
-            var podData = results[0].pods[i];
+          podData['feedTitle'] = results[0].title;
+          podData['feedUUID'] = results[0].uuid;
 
-            podData['feedTitle'] = results[0].title;
-            podData['feedUUID'] = results[0].uuid;
+          podcastList.push(podData);
+        }
 
-            podcastList.push(podData);
-          }
+        if (typeof podcastList[0].podTitle == "undefined") {
+          return;
+        } else {
+          podcastList.sort(function (a , b) {
+            if (a['podDate']['_d'] > b['podDate']['_d'])
+              return -1;
+            if (a['podDate']['_d'] < b['podDate']['_d'])
+              return 1;
+            return 0;
+          });
+        }
 
-          if (typeof podcastList[0].podTitle == "undefined") {
-            return;
-          } else {
-            podcastList.sort(function (a , b) {
-              if (a['podDate']['_d'] > b['podDate']['_d'])
-                return -1;
-              if (a['podDate']['_d'] < b['podDate']['_d'])
-                return 1;
-              return 0;
-            });
-          }
-
-          callback( null, podcastList );
-        });
+        callback( null, podcastList );
       });
     },
     function ( podcastList, callback ) {
-      Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-        Feeds.find( { $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ] } ).toArray(function(err, results) {
-
-          for (var i = 0; i < results.length; ++i) {
-            data = {
-              feedTitle     : results[i].title,
-              feedDescription : results[i].description,
-              feeduuid    : results[i].uuid
-            }
-            construction.push(data);
+      Feeds.find({ 'owner': harkUser.userID }).toArray(function(err, results) {
+        for (var i = 0; i < results.length; ++i) {
+          data = {
+            feedTitle     : results[i].title,
+            feedDescription : results[i].description,
+            feeduuid    : results[i].uuid
           }
+          construction.push(data);
+        }
 
-          construction.sort(function (a , b) {
-            if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
-              return 1;
-            if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
-              return -1;
-            return 0;
-          });
-
-          callback( null, podcastList, construction );
+        construction.sort(function (a , b) {
+          if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
+            return 1;
+          if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
+            return -1;
+          return 0;
         });
+
+        callback( null, podcastList, construction );
       });
     }
   ], function () {
-    Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-      res.render('listen', {
-        locals: {
-          username: result['username'],
-          feeds: construction,
-          podcasts: podcastList,
-          playing: result['playing']
-        }
-      });
+    res.render('listen', {
+      locals: {
+        username: req.user.username,
+        feeds: construction,
+        podcasts: podcastList,
+        playing: req.user.playing
+      }
     });
   });
-
 });
 
 //
@@ -572,24 +428,15 @@ app.get('/listen/podcast/:id', loadUser, function(req, res) {
 //
 
 app.post('/listen/:feed/:_id', loadUser, function(req, res) {
-
-  var podcastID = req.param('podcastID')
-    , feedUUID = req.param('feedUUID');
-
-  Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-    Feeds.find( { $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ], uuid: feedUUID, 'pods.podUUID': podcastID } ).toArray(function(err, results) {
-
-      console.log(results);
-
-      for (var i = 0; i < results[0].pods.length; ++i) {
-        if ( results[0].pods[i].podUUID === podcastID ) { 
-          var podData = results[0].pods[i];
-          podData['feedTitle'] = results[0].title;
-          podData['feedUUID'] = results[0].uuid;
-          res.partial('partials/player-playing', { playing: podData });
-        }
+  Feeds.find({ 'owner': harkUser.userID, 'uuid': req.param('feedUUID'), 'pods.podUUID': req.param('podcastID') }).toArray(function(err, results) {
+    for (var i = 0; i < results[0].pods.length; ++i) {
+      if ( results[0].pods[i].podUUID === req.param('podcastID') ) { 
+        var podData = results[0].pods[i];
+        podData['feedTitle'] = results[0].title;
+        podData['feedUUID'] = results[0].uuid;
+        res.partial('partials/player-playing', { playing: podData });
       }
-    });
+    }
   });
 });
 
@@ -598,177 +445,11 @@ app.post('/listen/:feed/:_id', loadUser, function(req, res) {
 //
 
 app.post('/listen/:feed/listened/:_id', loadUser, function(req, res) {
-  Users.findAndModify({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, [], { $set: { 'playing' : {} } }, { new:true }, function(err, result) {
-    Feeds.findAndModify({ $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ] , 'pods.podUUID' : req.param('podcastID') }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
-      if(err) { throw err; }
+  harkUser.playing = {};
+  Feeds.findAndModify({ 'owner': harkUser.userID, 'pods.podUUID' : req.param('podcastID') }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
+    if(err) { throw err; }
       res.send(result);
-    });
   });
-});
-
-//
-// UPDATE YOUR PODCASTS
-//
-
-app.post('/listen/update', loadUser, function(req, res) {
-
-  var item,
-    counter = 0,
-    feedUUID,
-    feedHREF,
-    existingList = new Array(),
-    newList = new Array(),
-    newPodcastList = new Array();
-
-  async.waterfall([
-    function ( callback ) {
-      // Step 1: Find all feeds from the user.
-      Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-        Feeds.find( { $or : [ { 'owner': result['email'] }, { 'owner': result['username'] } ] } ).toArray(function(err, result) {
-          feeds = result;
-          callback(null, feeds);
-        });
-      });
-    },
-    function ( feeds, callback ) {
-      // Step 2: Iterate through the feeds, create a list of the existing items. Also, we grab some necessary data (uri, uuid).
-      for ( var i = 0; i < feeds.length; ++i ) {
-        if ( feeds != null ) {
-          feedUUID = feeds[i].uuid,
-          feedHREF = feeds[i].href;
-
-          existingList = [];
-          for ( var j = 0; j < feeds[i].pods.length; j++ ) {
-            podData = { 'podFile' : feeds[i].pods[j].podFile };
-            existingList.push(podData);
-          }
-          callback(null, feeds, existingList, feedHREF, feedUUID);
-        }
-      }     
-    },
-    function ( feeds, existingList, feedHREF, feedUUID, callback ) {
-      // Step 3: Request the XML from the RSS/Atom feed. Parse this for the necessary information, just like I do when adding a new feed.
-      request({uri: feedHREF}, function(err, response, body){
-        parser.parseString(body, function (err, xml) {
-
-          if (typeof(xml) === 'undefined') {
-            req.flash('errorAddFeed', "There was an error with one of your feeds. Maybe the site is currently down. The affected podcast is at: " + feedHREF + '. The rest of your podcasts will update normally.');
-            Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-              getFeeds(result['email'], result['username'], function(error, feeds, podcastList) {
-                res.partial('partials/podcasts', { feeds: feeds, podcasts: podcastList, flash: req.flash() });    
-              });
-            });
-            newList = [];
-            callback(null, feeds, existingList, feedHREF, feedUUID, newList, counter);
-          } else {
-            var feed = xml.channel,
-              j,
-              pubDate,
-              podData = new Array(),
-              newList = [];
-
-            for ( var i = 0; i < 10; ++i ) {
-              podData = {};
-
-              if ( typeof feed.item[i] !== "undefined" ) {
-                if ( typeof feed.item[i].enclosure !== "undefined" ) {
-
-                  if ( typeof feed.item[i]['pubDate'] == "string" ) {
-                    pubDate = moment(feed.item[i]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
-                  } else if ( typeof feed.item[i]['dc:date'] == "string" ) {
-                    pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
-                  }
-
-                  podData = {
-                    'podTitle'  : feed.item[i].title,
-                    'podLink' : feed.item[i].link,
-                    'podFile' : feed.item[i].enclosure['@'].url,
-                    'podMedia'  : feed.item[i].media,
-                    'podDesc' : feed.item[i].description,
-                    'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
-                    'podDate' : pubDate,
-                    'prettyDay' : pubDate.format('D'),
-                    'prettyMonth' : pubDate.format('MMMM'),
-                    'prettyYear' : pubDate.format('YYYY'),
-                    'listened'  : 'false'
-                  };
-                  newList.push(podData);
-                }
-              } else if ( typeof feed.item.title !== "undefined" ) {
-
-                if ( typeof feed.item['pubDate'] == "string" ) {
-                  pubDate = moment(feed.item['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
-                } else if ( typeof feed.item['dc:date'] == "string" ) {
-                  pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
-                }
-
-                podData = {
-                    'podTitle'  : feed.item.title,
-                    'podLink' : feed.item.link,
-                    'podFile' : feed.item.enclosure['@'].url,
-                    'podMedia'  : feed.item.media,
-                    'podDesc' : feed.item.description,
-                    'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
-                    'podDate' : pubDate,
-                    'prettyDay' : pubDate.format('D'),
-                    'prettyMonth' : pubDate.format('MMMM'),
-                    'prettyYear' : pubDate.format('YYYY'),
-                    'listened'  : 'false'
-                  };
-                newList.push(podData);
-                break;
-              } else if ( typeof feed.item[i] === "undefined" ) {
-                break;
-              }
-            }
-            counter++;
-            callback(null, feeds, existingList, feedHREF, feedUUID, newList, counter);
-          }
-        });
-      });
-    }, function ( feeds, existingList, feedHREF, feedUUID, newList, counter, callback ) {
-      // Step 4: Iterate through the new list and the existing list. If items match, cut them. If not, push them to an array of only new podcasts.
-      var newPodcastList = [],
-        match,
-        existingPodDate;
-
-      for ( var k = 0; k < newList.length; ++k ) {
-        match = false;
-        for ( var j = 0; j < existingList.length; ++j ) {
-          if ( newList[k].podFile == existingList[j].podFile ) { 
-            match = true;
-            break;
-          }
-        }
-        
-        if ( match === false ) { newPodcastList.push(newList[k]); }
-      }
-
-      callback(null, feeds, existingList, feedHREF, feedUUID, newList, counter, newPodcastList);
-
-    }, function ( feeds, existingList, feedHREF, feedUUID, newList, counter, newPodcastList, callback ) {
-      // Step 5: We take that list of new podcasts and funnel it into the proper item in the Feeds DB collection.
-      if (  newPodcastList != [] ) {
-        Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-          Feeds.findAndModify({ 'owner': req.session.userID, 'uuid': feedUUID }, [], { $pushAll: { 'pods' : newPodcastList } }, { new:true }, function(err, result) {
-            if (err) { throw err; }
-          });
-        });
-      }
-
-      callback();
-    }
-  ], function () {
-    if ( counter == feeds.length) {
-      // Step 6: We use the counter to ensure that we only update the partial once all of the feeds have been updated.
-      Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-        getFeeds(result['email'], result['username'], function(error, feeds, podcastList) {
-          res.partial('partials/podcasts', { feeds: feeds, podcasts: podcastList });
-        });
-      });
-    }
-  });
-
 });
 
 //
@@ -776,7 +457,8 @@ app.post('/listen/update', loadUser, function(req, res) {
 //
 
 app.post('/listen/playing', loadUser, function(req, res) {
-  Users.findAndModify({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, [], { $set: { 'playing' : req.body } }, { new:true }, function(err, result) {
+  harkUser.playing = req.body;
+  Users.findAndModify({ 'userID':  harkUser.userID }, [], { $set: { 'playing' : req.body } }, { new:true }, function(err, result) {
     res.send(result);
   });
 });
@@ -794,81 +476,38 @@ app.post('/settings', loadUser, function(req, res) {
 //
 
 app.get('/settings', loadUser, function(req, res) {
-  Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, user) {
-    res.render('settings', {
-      locals: {
-        username: req.session.userID,
-        feeds: [],
-        podcasts: [],
-        playing: user['playing']
-      }
-    });
+  res.render('settings', {
+    locals: {
+      username: harkUser.username,
+      feeds: [],
+      podcasts: [],
+      playing: harkUser.playing
+    }
   });
 });
 
 //
-//  HELP
+//  HELP -- DISABLED FOR FUTURE RELEASE
 //
 
-app.post('/help', loadUser, function(req, res) {
-  res.partial('partials/help');
-});
+// app.post('/help', loadUser, function(req, res) {
+//   res.partial('partials/help');
+// });
 
 //
 //  HELP VIA DEEP-LINKING/RELOAD
 //
 
-app.get('/help', loadUser, function(req, res) {
-  Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, user) {
-    res.render('help', {
-      locals: {
-        username: req.session.userID,
-        feeds: [],
-        podcasts: [],
-        playing: user['playing']
-      }
-    });
-  });
-});
-
-app.post('/settings/update-password', loadUser, function(req, res) {
-
-  Users.findOne({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, function(err, result) {
-
-    var currentPassword = req.param('password-current'),
-      newPassword = req.param('password-new'),
-      validatePassword = req.param('password-validate');
-
-    if (err) { throw err; }
-    if (result == null) {
-      console.log('WTF?');
-    } else {
-
-      if ( newPassword === validatePassword ) {
-        bcrypt.compare(currentPassword, result.password, function(err, result) {
-          if (result === true) {
-            bcrypt.genSalt(10, 64, function(err, salt) {
-              bcrypt.hash(newPassword, salt, function(err, hash) {
-                Users.findAndModify({ $or : [ { 'username': req.session.userID }, { 'email': req.session.userID } ] }, [], { $set: { 'password' : hash, 'salt' : salt } }, { new:true }, function(err, result) {
-                  if (err) { throw err; }
-                  res.redirect('/settings');
-                });
-              });
-            });
-
-          } else {
-            req.flash('errorUpdatePassword', "The password you entered did not match your current password.");
-            res.render('settings', { username: req.session.userID, playing: null, flash: req.flash() });
-          }
-        });
-      } else {
-        req.flash('errorUpdatePasswordMatch', "The new passwords you entered do not match.");
-        res.render('settings', { username: req.session.userID, playing: null, flash: req.flash() });
-      }
-    }
-  });
-
-});
+// app.get('/help', loadUser, function(req, res) {
+//   res.render('help', {
+//     locals: {
+//       username: harkUser.username,
+//       feeds: [],
+//       podcasts: [],
+//       playing: harkUser.playing
+//     }
+//   });
+// });
 
 //
 //  404
