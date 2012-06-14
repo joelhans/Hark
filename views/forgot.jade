@@ -1,7 +1,7 @@
 doctype 5
 html(lang="en")
 	head
-		title Hark | Log in.
+		title Hark | Forgot your password?
 
 		!=partial('layout/head')
 
@@ -32,42 +32,22 @@ html(lang="en")
 					h2 Recover a forgotten password.
 
 			- if (typeof(flash) !== 'undefined')
-				div.row.login-error
+				div.row.forgot-error
 					div.column-12
-						p.error #{flash.forgotError}
+						- if (typeof(flash.forgotError) !== 'undefined')
+							p.error #{flash.forgotError}
+						- if (typeof(flash.forgotSuccess) !== 'undefined')
+							p.success #{flash.forgotSuccess}
+						
 	
 
 			div.row
-				form.forgot(method='post', action='/login/forgot')
-					p That's all right. I can reset that for you. Just enter your e-mail below.
-					input.forgot-password(type='text', name='email', placeholder='Enter your e-mail here.')
-					input.forgot-submit(type='submit', value='Reset')
-
-										
-				form.column-12.login-account(method='post', action='/login')
-					input.column-4.offset-1.login-email(type='text', name='email', placeholder='Enter your e-mail.')
-					input.column-4.offset-2.login-password(type='password', name='password', placeholder='Enter your password.')
-					input.column-4.offset-4.login-submit(type='submit', value='Login to Hark.')
+				form.column-12.forgot(method='post', action='/login/forgot')
+					input.column-4.offset-4.forgot-email(type='text', name='email', placeholder='Enter your e-mail here.')
+					input.column-4.offset-4.forgot-submit(type='submit', value='Reset your password.')
 
 			div.row
 				div.column-4.offset-4.login-forgot
-					a(href='/forgot') Forgot your password?
-
-			div.row
-				section.column-12.signup-intro
-					h2 Or use a single-click sign-in service.
-
-			div.row
-				div.login-service.column-4
-					a.facebook(href='/auth/facebook/')
-						<i class="icon-facebook"></i> Log in with Facebook
-
-				div.login-service.column-4
-					a.google(href='/auth/google')
-						<i class="icon-google-plus"></i> Log in with Google
-					p <em>A note about these one-click services: The only information I log is a username/e-mail address, and a display-friendly name (e.g. Joel Hans), if one is available.</em>
-					p <em>I will <strong>never</strong> post updates or tweets to these accounts, or store any more information than described above.</em>
-
-				div.login-service.column-4
-					a.twitter(href='/auth/twitter')
-						<i class="icon-twitter"></i> Log in with Twitter
+					a(href='/') Remembered that pesky password by now?
+					br
+					a(href='/signup') Or do you just need to make an account?

@@ -1,4 +1,4 @@
-module.exports = function(app, express, loadUser, Users, Feeds, db, bcrypt, nodemailer){
+module.exports = function(app, express, loadUser, Users, Feeds, db, bcrypt, nodemailer, crypto){
 
 //  users.js
 // 
@@ -59,20 +59,18 @@ module.exports = function(app, express, loadUser, Users, Feeds, db, bcrypt, node
   //  ---------------------------------------
   
   app.post('/login/forgot', function(req, res) {
-    var salt = Math.round((new Date().valueOf() * Math.random())) + '';
-    var resetToken = crypto.createHmac('sha1', salt).update(userEmail).digest('hex');
+    var resetToken = Math.round((new Date().valueOf() * Math.random())) + ''
 
     Users.findOne({ 'email': req.param('email') }, function(err, result) {
-
       if ( result === null ) {
-        req.flash('errorReset', "An account with that e-mail doesn't exist.");
-        res.render('index', {locals: {flash: req.flash()}});
+        req.flash('forgotError', "An account with that e-mail doesn't exist.");
+        res.render('forgot', {locals: {flash: req.flash()}});
       } else {
         var smtpTransport = nodemailer.createTransport("Sendmail", "/usr/sbin/sendmail"); // I use sendmail. Others may have to find a different solution.
 
         var mailOptions = { // Creating the email.
           from: "Hark <admin@harkapp.com>",
-          to: userEmail,
+          to: req.param('email'),
           subject: "Hark - Password reset.",
           generateTextFromHTML: true,
           html: '<h1>Hark wants to help you reset your password.</h1><p>So, you forgot it. That\'s all right. I\'ll help you get a new one.</p><p>To reset your password, click the link: <a href="http://localhost:3000/login/reset/' + resetToken + '">http://localhost:3000/login/reset/' + resetToken + '</a></p>'
@@ -80,12 +78,13 @@ module.exports = function(app, express, loadUser, Users, Feeds, db, bcrypt, node
         
         smtpTransport.sendMail(mailOptions, function(error, response){
             if(error) {
-                console.log(error);
-                res.redirect('/login');
+                req.flash('forgotError', "Error: " + error);
+                res.redirect('/forot', {locals: {flash: req.flash()}});
             } else{
-                Users.findAndModify({ 'email': userEmail }, [], { $set: { 'resetToken' : resetToken } }, {}, function(err, result) {
+                Users.findAndModify({ 'email': req.param('email') }, [], { $set: { 'resetToken' : resetToken } }, {}, function(err, result) {
               if (err) { throw err; } // If the e-mail sends correctly, we set a token so that the user can make the reset later.
-              res.redirect('/login');
+              req.flash('forgotSuccess', "An e-mail as been sent to you to reset your password. Please click on the link in the e-mail.");
+              res.render('forgot', {locals: {flash: req.flash()}});
             });
             }
             smtpTransport.close();
@@ -94,39 +93,47 @@ module.exports = function(app, express, loadUser, Users, Feeds, db, bcrypt, node
     });
   });
 
-  app.get('/login/reset/:resetToken', function(req, res) {
-    var resetToken = req.param('resetToken');
-
-    Users.find({ 'resetToken': resetToken }).each(function(err, result) {
+  app.get('/reset/:resetToken', function(req, res) {
+    Users.findOne({ 'resetToken': req.param('resetToken') }, function(err, result) {
       if ( result === null ) {
-        res.redirect('/login');
+        res.redirect('/');
       } else {
         res.render('reset', {
           locals: {
-            token: resetToken
+            token: req.param('resetToken')
           }
         });
       }
     });
   });
 
-  app.post('/login/reset/new', function(req, res) {
-    var password = req.param('password'),
-      validate = req.param('password-validate'),
-      resetToken = req.param('resetToken');
+  app.post('/reset/new', function(req, res) {
+    Users.findOne({ 'email': req.param('email') }, function(err, result) {
+      if ( result === null ) {
+        req.flash('forgotError', "An account with that e-mail doesn't exist.");
+        res.render('forgot', {locals: {flash: req.flash()}});
+      } else {
 
-    if ( password !== validate ) {
-      res.redirect('/login');
-    } else {
-      bcrypt.genSalt(10, 64, function(err, salt) {
-        bcrypt.hash(password, salt, function(err, hash) {
-          Users.findAndModify({ 'resetToken': resetToken }, [], { $set: { 'password' : hash, 'salt' : salt }, $unset: { 'resetToken' : resetToken } }, { new:true }, function(err, result) {
-            if (err) { throw err; }
-            res.redirect('/login');
-          });
-        });
-      });
-    }
+      }
+
+
+    // var password = req.param('password'),
+    //   validate = req.param('password-validate'),
+    //   resetToken = req.param('resetToken');
+
+    // if ( password !== validate ) {
+    //   res.redirect('/login');
+    // } else {
+    //   bcrypt.genSalt(10, 64, function(err, salt) {
+    //     bcrypt.hash(password, salt, function(err, hash) {
+    //       Users.findAndModify({ 'resetToken': resetToken }, [], { $set: { 'password' : hash, 'salt' : salt }, $unset: { 'resetToken' : resetToken } }, { new:true }, function(err, result) {
+    //         if (err) { throw err; }
+    //         res.redirect('/login');
+    //       });
+    //     });
+    //   });
+    // }
+    });
   });
 
   //  ---------------------------------------
