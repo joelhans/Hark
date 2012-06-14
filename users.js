@@ -113,26 +113,16 @@ module.exports = function(app, express, loadUser, Users, Feeds, db, bcrypt, node
         req.flash('forgotError', "An account with that e-mail doesn't exist.");
         res.render('forgot', {locals: {flash: req.flash()}});
       } else {
-
+        bcrypt.genSalt(10, 64, function(err, salt) {
+        bcrypt.hash(req.param('password'), salt, function(err, hash) {
+          Users.findAndModify({ 'resetToken': req.param('resetToken') }, [], { $set: { 'password' : hash, 'salt' : salt }, $unset: { 'resetToken' : req.param('resetToken') } }, { new:true }, function(err, result) {
+            if (err) { throw err; }
+            req.flash('createSuccess', "Your password is reset! You can log in now.");
+            res.render('login', {locals: {flash: req.flash()}});
+          });
+        });
+      });
       }
-
-
-    // var password = req.param('password'),
-    //   validate = req.param('password-validate'),
-    //   resetToken = req.param('resetToken');
-
-    // if ( password !== validate ) {
-    //   res.redirect('/login');
-    // } else {
-    //   bcrypt.genSalt(10, 64, function(err, salt) {
-    //     bcrypt.hash(password, salt, function(err, hash) {
-    //       Users.findAndModify({ 'resetToken': resetToken }, [], { $set: { 'password' : hash, 'salt' : salt }, $unset: { 'resetToken' : resetToken } }, { new:true }, function(err, result) {
-    //         if (err) { throw err; }
-    //         res.redirect('/login');
-    //       });
-    //     });
-    //   });
-    // }
     });
   });
 

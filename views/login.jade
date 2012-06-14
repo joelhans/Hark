@@ -39,7 +39,7 @@ html(lang="en")
 						- if (typeof(flash.loginError) !== 'undefined')
 							p.error #{flash.loginError}
 			
-			- if (message)
+			- if (typeof(message) !== 'undefined')
 				div.row.login-error
 					div.column-12
 						p.error #{message}
