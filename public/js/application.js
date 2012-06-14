@@ -159,20 +159,10 @@ $(document).ready(function() {
     updateStatus();
   });
 
-  //
-  //  Go home.
-  //
-
-  $(document).delegate('.home', 'click', function(e) {
+  $(document).delegate('.password-forgot a', 'click', function(e) {
     e.preventDefault();
-    History.pushState({}, "", this);
-    $.ajax({
-      type: 'POST',
-      url: '/listen',
-      success: function(data) {
-        $('#hark-podcasts').html(data);
-        leftFixHeight();
-      }
+    $('.login, .login-showme, .password-forgot a').fadeOut(300).promise().done(function() {
+      $('.forgot').fadeIn(300);
     });
   });
 
@@ -295,7 +285,7 @@ $(document).ready(function() {
           { duration: 600,
           complete: function() {
             $(this).remove();
-			leftFixHeight();
+      leftFixHeight();
           }
         });
       $.ajax({
@@ -347,8 +337,8 @@ $(document).ready(function() {
           { duration: 600,
           complete: function() {
             $(this).remove();
-			
-			leftFixHeight();
+      
+      leftFixHeight();
           }
         });
       $.ajax({
