@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 0.6.0
+//  Current version: 0.6.1
 //
 //  Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -93,7 +93,7 @@ passport.use(new LocalStrategy({
 passport.use(new TwitterStrategy({
     consumerKey: conf.twitter.consumerKey,
     consumerSecret: conf.twitter.consumerSecret,
-    callbackURL: "http://listen.harkhq.com.com:3000/auth/twitter/callback"
+    callbackURL: "http://listen.harkhq.com/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {
     Users.findOne({ 'userID': profile.id }, function(err, user) {
@@ -117,7 +117,7 @@ passport.use(new TwitterStrategy({
 passport.use(new FacebookStrategy({
     clientID: conf.facebook.appId,
     clientSecret: conf.facebook.appSecret,
-    callbackURL: "http://listen.harkhq.com.com:3000/auth/facebook/callback"
+    callbackURL: "http://listen.harkhq.com/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     Users.findOne({ 'userID': profile.id }, function(err, user) {
@@ -139,7 +139,7 @@ passport.use(new FacebookStrategy({
 ));
 
 passport.use(new GoogleStrategy({
-    returnURL: 'http://listen.harkhq.com:3000/auth/google/return',
+    returnURL: 'http://listen.harkhq.com/auth/google/return',
     realm: 'http://*.harkhq.com'
   },
   function(identifier, profile, done) {
@@ -172,7 +172,7 @@ app.configure(function() {
   app.set('view engine', 'jade');
   app.set("view options", { layout: false });
   // app.use(express.logger());
-  app.use(express.cookieParser());
+  app.use(express.cookieParser(conf.session.cookieParser));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.session({
