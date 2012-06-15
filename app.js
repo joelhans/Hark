@@ -93,7 +93,7 @@ passport.use(new LocalStrategy({
 passport.use(new TwitterStrategy({
     consumerKey: conf.twitter.consumerKey,
     consumerSecret: conf.twitter.consumerSecret,
-    callbackURL: "http://hark-development.com:3000/auth/twitter/callback"
+    callbackURL: "http://listen.harkhq.com.com:3000/auth/twitter/callback"
   },
   function(token, tokenSecret, profile, done) {
     Users.findOne({ 'userID': profile.id }, function(err, user) {
@@ -117,7 +117,7 @@ passport.use(new TwitterStrategy({
 passport.use(new FacebookStrategy({
     clientID: conf.facebook.appId,
     clientSecret: conf.facebook.appSecret,
-    callbackURL: "http://hark-development.com:3000/auth/facebook/callback"
+    callbackURL: "http://listen.harkhq.com.com:3000/auth/facebook/callback"
   },
   function(accessToken, refreshToken, profile, done) {
     Users.findOne({ 'userID': profile.id }, function(err, user) {
@@ -139,8 +139,8 @@ passport.use(new FacebookStrategy({
 ));
 
 passport.use(new GoogleStrategy({
-    returnURL: 'http://hark-development.com:3000/auth/google/return',
-    realm: 'http://*.hark-development.com:3000'
+    returnURL: 'http://listen.harkhq.com:3000/auth/google/return',
+    realm: 'http://*.harkhq.com'
   },
   function(identifier, profile, done) {
     Users.findOne({ 'userID': profile.id }, function(err, user) {
