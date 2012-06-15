@@ -271,7 +271,7 @@ header {
   @include background( $linkColor );
   @include box-shadow( rgba(242, 242, 242, 0.5) 0px 1px 0px );
   i {
-    position: absolute; top: 24px; left: 5px;
+    position: absolute; top: 22px; left: 5px;
     color: $base;
     font-size: 50px;
   }
@@ -291,7 +291,7 @@ header {
 .jp-pause {
   @include box-shadow(rgba(242, 242, 242, 0.5) 0px 1px 0px);
   i {
-    position: absolute; top: 16px; left: 4px;
+    position: absolute; top: 22px; left: 4px;
     color: $base;
     font-size: 50px;
   }
@@ -585,6 +585,7 @@ header {
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 12px;
+  line-height: 24px;
   text-transform: uppercase;
   border-bottom: 1px solid $borderColor;
   padding: 0 0 0 0;
@@ -612,8 +613,8 @@ header {
 .loadFeed, .loadFeed:visited {
   float: left;
   color: darken($linkColor, 25%);
-  font-size: 14px;
-  line-height: 14px;
+  font-size: 12px;
+  line-height: 24px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
