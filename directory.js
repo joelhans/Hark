@@ -7,4 +7,13 @@ module.exports = function(app, express, loadUser, Users, Feeds) {
 //  Order of functions:
 //    * Nothing.
 
+app.get('/directory', loadUser, function(req, res) {
+  res.render('directory', {
+      locals: {
+        username: harkUser.username,
+        playing: harkUser.playing
+      }
+    });
+});
+
 };
