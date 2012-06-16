@@ -1,0 +1,32 @@
+div.subscriptions.left-column
+	ul
+		li Comedy
+		li Science
+		li Arts
+		li Business
+		li Music
+		li Sports
+		li TV/Film
+
+div.listen
+	div.podcast-header
+		div.podcast-header-date
+			p 
+				a(href='#', class='sort-date') Sort by date &nbsp;
+					i
+		div.podcast-header-title
+			p 
+				a(href='#', class='sort-title') Sort by podcast &nbsp;
+					i
+		div.podcast-header-feed
+			p 
+				a(href='#', class='sort-feed') Sort by feed title &nbsp;
+					i
+	
+
+- if (typeof(flash) != 'undefined')
+	div.mask
+		div.modal-error
+			span.modal-error-close x
+			- if (typeof(flash.errorAddFeed) != 'undefined')
+				p.error= flash.errorAddFeed
