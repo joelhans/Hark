@@ -84,6 +84,10 @@ ROADMAP
   0.6
   ----------
   [x] --  OAuth/Twitter/Facebook/Google/etc support for signups, logins.
+    
+    0.6.1
+    ----------
+    [x] -- Bug fix -- Users were not able to update feeds due to an improper variable.
 
   0.7
   ----------
