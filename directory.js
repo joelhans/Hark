@@ -1,4 +1,4 @@
-module.exports = function(app, express, loadUser, Users, Feeds) {
+module.exports = function(app, express, loadUser, Directory) {
 
 //  directory.js
 // 
@@ -7,13 +7,18 @@ module.exports = function(app, express, loadUser, Users, Feeds) {
 //  Order of functions:
 //    * Nothing.
 
-app.get('/directory', loadUser, function(req, res) {
-  res.render('directory', {
-      locals: {
-        username: harkUser.username,
-        playing: harkUser.playing
-      }
+  app.get('/directory', loadUser, function(req, res) {
+    Directory.find({}).toArray(function(err, result) {
+      if(err) { throw err; }
+      res.render('directory', {
+        locals: {
+          directory: result,
+          username: harkUser.username,
+          playing: harkUser.playing
+        }
+      });
     });
-});
+    
+  });
 
 };

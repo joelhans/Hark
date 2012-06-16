@@ -9,19 +9,19 @@ div.subscriptions.left-column
 		li TV/Film
 
 div.listen
-	div.podcast-header
-		div.podcast-header-date
-			p 
-				a(href='#', class='sort-date') Sort by date &nbsp;
-					i
-		div.podcast-header-title
-			p 
-				a(href='#', class='sort-title') Sort by podcast &nbsp;
-					i
-		div.podcast-header-feed
-			p 
-				a(href='#', class='sort-feed') Sort by feed title &nbsp;
-					i
+
+	ul
+	for feed in directory
+		li
+			h1 #{feed.title}
+			span URL: #{feed.link}
+			p #{feed.description}
+			span Last updated: #{feed.lastPodcast._d}
+			aside #{feed.language}
+			h2
+				a.directory-subscribe(href='/directory/subscribe') Subscribe to this podcast
+
+
 	
 
 - if (typeof(flash) != 'undefined')
