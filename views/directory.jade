@@ -1,0 +1,33 @@
+doctype 5
+html(lang="en")
+	head
+		title Hark | The Directory
+		
+		!=partial('layout/head')
+
+		if playing
+			script(type='text/javascript')
+				var playing = {
+					podcast: "#{playing.podcast}",
+					podcastTitle: "#{playing.podTitle}",
+					podcastID: "#{playing.podcastID}",
+					progress: "#{playing.progress}",
+					feedUUID: "#{playing.podcastFeed}",
+					feedTitle: "#{playing.feedTitle}"
+				}
+
+	body
+
+		header#hark-header
+			!=partial('layout/navigation')
+			!=partial('layout/player')
+				
+		canvas#header-wave(width='1200', height='40')
+
+		section#hark-podcasts.clearfix
+			!=partial('partials/directory')
+
+		section#error-mask
+			div.js-modal-error
+				span.modal-error-close x
+				p.error-text
