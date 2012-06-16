@@ -46,7 +46,8 @@ var Db = require('mongodb').Db
   , ObjectID = require('mongodb').ObjectID;
 
 var Users = new mongodb.Collection(db, 'Users')
-  , Feeds = new mongodb.Collection(db, 'Feeds');
+  , Feeds = new mongodb.Collection(db, 'Feeds')
+  , Directory = new mongodb.Collection(db, 'Directory');
 
 //  ---------------------------------------
 //  PASSPORT CONFIGURATION
@@ -217,8 +218,8 @@ function loadUser(req, res, next) {
 }
 
 require('./users.js')(app, express, loadUser, Users, Feeds, db, bcrypt, nodemailer);
-require('./feeds.js')(app, express, loadUser, Users, Feeds, db);
-require('./directory.js')(app, express, loadUser, Users, Feeds);
+require('./feeds.js')(app, express, loadUser, Users, Feeds, Directory, db);
+require('./directory.js')(app, express, loadUser, Directory);
 
 //  ---------------------------------------
 //  ROUTES
