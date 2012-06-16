@@ -22,8 +22,6 @@ var parser = new xml2js.Parser();
   //
 
   app.post('/listen/add', loadUser, function(req, res) {
-    console.log(req.user);
-    console.log(harkUser);
     Feeds.findOne({ 'userID': harkUser, 'href': req.body.url }, function(err, result) {
       if ( result !== null ) {
         req.flash('errorAddFeed', "You already added that feed!");
