@@ -2,7 +2,8 @@ module.exports = function(app, express, loadUser, Users, Feeds, db){
 
 var request = require('request')
   , xml2js = require('xml2js')
-  , moment = require('moment');
+  , moment = require('moment')
+  , async = require('async');
 
 var parser = new xml2js.Parser();
 
@@ -242,7 +243,7 @@ var parser = new xml2js.Parser();
     async.waterfall([
       function ( callback ) {
         // Step 1: Find all feeds from the user.
-        Feeds.find({ 'owner': harkUser }).toArray(function(err, results) {
+        Feeds.find({ 'owner': harkUser.userID }).toArray(function(err, results) {
           feeds = results;
           callback(null, feeds);
         });
