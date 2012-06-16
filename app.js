@@ -59,12 +59,10 @@ var passport = require('passport')
   , GoogleStrategy = require('passport-google').Strategy;
 
 passport.serializeUser(function(user, done) {
-  console.log(user['_id']);
   done(null, user);
 });
 
 passport.deserializeUser(function(obj, done) {
-  console.log(obj);
   done(null, obj);
 });
 
