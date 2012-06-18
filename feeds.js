@@ -365,7 +365,7 @@ var parser = new xml2js.Parser();
       }, function ( feeds, existingList, feedHREF, feedUUID, newList, counter, newPodcastList, callback ) {
         // Step 5: We take that list of new podcasts and funnel it into the proper item in the Feeds DB collection.
         if (  newPodcastList != [] ) {
-          Feeds.findAndModify({ 'owner': harkUser, 'uuid': feedUUID }, [], { $pushAll: { 'pods' : newPodcastList } }, { new:true }, function(err, result) {
+          Feeds.findAndModify({ 'owner': harkUser.userID, 'uuid': feedUUID }, [], { $pushAll: { 'pods' : newPodcastList } }, { new:true }, function(err, result) {
             if (err) { throw err; }
           });
         }
