@@ -1,0 +1,55 @@
+// Directory CSS
+
+$brown  : rgba(84,73,66,1);
+$orange : rgba(247,149,84,1);
+$green  : rgba(212,208,89,1);
+$cream  : rgba(241,239,201,1);
+$blue   : rgba(132,186,167,1);
+
+.header-v2 {
+  @include background($brown);
+  height: auto;
+  margin-bottom: 0px;
+}
+
+.hark-logo {
+  color: $green;
+  text-shadow: 0 0 10px lighten($brown, 30%);
+  margin-bottom: 0px;
+  padding: 0 0 10px 0;
+}
+
+.categories {
+  @include background($brown);
+  float: left;
+  width: 200px;
+  ul li {
+    color: $blue;
+  }
+}
+
+.listen-v2 {
+  bottom: 96px;
+  margin-left: 200px;
+  @include background($cream);
+}
+
+.directory-main {
+  padding: 0 0 0 20px;
+}
+
+.directory-item {
+  float: left;
+  width: 30%; height: auto;
+  margin: 0 3.33% 0 0;
+}
+
+.footer-v2 {
+  @include background($brown);
+  position: fixed;
+  left: 0px; bottom: 0px;
+  width: 100%;
+  .podcast-player {
+    
+  }
+}
