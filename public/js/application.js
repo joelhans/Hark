@@ -15,7 +15,7 @@ $(document).ready(function() {
 
   var siteUrl = "http://" + top.location.host.toString();
 
-  $(document).delegate('a[href="/listen"], a[href="/settings"], a[href="/help"], a[href^="/listen/podcast/"]', "click", function(e) {
+  $(document).delegate('a[href="/listen"], a[href="/settings"], a[href="/directory"], a[href="/help"], a[href^="/listen/podcast/"]', "click", function(e) {
     e.preventDefault();
     History.pushState({}, "", this.pathname);
   });
@@ -45,6 +45,15 @@ $(document).ready(function() {
       $.ajax({
         type: 'POST',
         url: '/help',
+        success: function(data) {
+          $('#hark-podcasts').html(data);
+          leftFixHeight();
+        }
+      });
+    } else if (State.url == siteUrl + '/directory') {
+      $.ajax({
+        type: 'POST',
+        url: '/directory',
         success: function(data) {
           $('#hark-podcasts').html(data);
           leftFixHeight();
