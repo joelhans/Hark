@@ -219,7 +219,7 @@ function loadUser(req, res, next) {
 
 require('./users.js')(app, express, loadUser, Users, Feeds, db, bcrypt, nodemailer);
 require('./feeds.js')(app, express, loadUser, Users, Feeds, Directory, db);
-require('./directory.js')(app, express, loadUser, Directory);
+require('./directory.js')(app, express, loadUser, Directory, Feeds);
 
 //  ---------------------------------------
 //  ROUTES
