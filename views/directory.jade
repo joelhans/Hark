@@ -5,6 +5,8 @@ html(lang="en")
 		
 		!=partial('layout/head')
 
+		script(src='/js/directory.js')
+
 		if playing
 			script(type='text/javascript')
 				var playing = {
@@ -18,14 +20,20 @@ html(lang="en")
 
 	body
 
-		header#hark-header
+		// header#hark-header
 			!=partial('layout/navigation')
 			!=partial('layout/player')
 				
-		canvas#header-wave(width='1200', height='40')
+		// canvas#header-wave(width='1200', height='40')
 
-		section#hark-podcasts.clearfix
+		header.header-v2
+			h1.hark-logo Hark
+
+		section#directory
 			!=partial('partials/directory')
+
+		section.footer-v2
+			!=partial('layout/player')
 
 		section#error-mask
 			div.js-modal-error

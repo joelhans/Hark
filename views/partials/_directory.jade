@@ -1,25 +1,35 @@
-div.subscriptions.left-column
+div.categories
 	ul
-		li Comedy
-		li Science
-		li Arts
-		li Business
-		li Music
-		li Sports
-		li TV/Film
-
-div.listen
-
-	ul
-	for feed in directory
 		li
-			h1 #{feed.title}
-			span URL: #{feed.link}
-			p #{feed.description}
-			span Last updated: #{feed.lastPodcast._d}
-			aside #{feed.language}
-			h2
-				a.directory-subscribe(href='/directory/subscribe') Subscribe to this podcast
+			a(href='/directory/category/comedy') Comedy
+		li 
+			a(href='/directory/category/science') Science
+		li
+			a(href='/directory/category/arts') Arts
+		li 
+			a(href='/directory/category/business') Business
+		li 
+			a(href='/directory/category/music') Music
+		li
+			a(href='/directory/category/sports') Sports
+		li
+			a(href='/directory/category/tv-film') TV/Film
+
+div.listen-v2
+	h2 The Directory!!!
+	ul.directory-main
+		for feed in directory
+			li.directory-item
+				h1 #{feed.title}
+				span URL: #{feed.link}
+				p #{feed.description}
+				span Last updated: #{feed.lastPodcast._d}
+				aside #{feed.language}
+				ul
+					for category in feed.categories
+						li #{category}
+				h2
+					a.directory-subscribe(href='/directory/subscribe', data-uuid='' + feed.uuid) Subscribe to this podcast
 
 
 	
