@@ -155,7 +155,7 @@ var parser = new xml2js.Parser();
   //
 
   app.post('/listen/remove/:_id', loadUser, function(req, res) {
-    Feeds.findAndModify({ 'owner': harkUser, 'uuid': req.param('id') }, [], {}, { remove:true }, function(err, result) {
+    Feeds.findAndModify({ 'owner': harkUser.userID, 'uuid': req.param('id') }, [], {}, { remove:true }, function(err, result) {
       getFeeds(harkUser.userID, function(error, feed, podcastList) {
           res.partial('partials/podcasts', { feeds: feed, podcasts: podcastList });    
       });
