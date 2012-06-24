@@ -299,7 +299,7 @@ app.get('/listen', loadUser, function(req, res) {
 
 app.post('/listen', loadUser, function(req, res) {
   getFeeds(harkUser.userID, function(error, feed, podcastList) {
-    res.partial('partials/podcasts', { feeds: feed, podcasts: podcastList });
+    res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList });
   });
 });
 
@@ -339,7 +339,7 @@ app.post('/listen/podcast/:_id', loadUser, function(req, res) {
       });
     }
 
-    res.partial('partials/single', { feeds: feed, podcasts: podcastList });
+    res.partial('listen/listen-single', { feeds: feed, podcasts: podcastList });
   });
 });
 
@@ -433,7 +433,7 @@ app.post('/listen/:feed/:_id', loadUser, function(req, res) {
         var podData = results[0].pods[i];
         podData['feedTitle'] = results[0].title;
         podData['feedUUID'] = results[0].uuid;
-        res.partial('partials/player-playing', { playing: podData });
+        res.partial('player/currently-playing', { playing: podData });
       }
     }
   });
