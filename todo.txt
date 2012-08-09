@@ -143,8 +143,6 @@ BUGS
 
 OTHER POSSIBLE FEATURES
 
-
-
 Allow people to "bookmark" various points in a podcast and append them with notes, etc.
   * Use something similar to YouTube's timestamp?
 
@@ -155,3 +153,15 @@ Turn the getFeeds function into a cursor.each one like the updateFeeds one. Shou
 Sanitize inputs.
   * Login -- user e-mails.
   * Feeds -- How to prevent maliciousness?
+
+
+TESTING
+
+  NAVIGATION
+  [ ] -- All links functioning, loading content.
+
+  LISTEN
+  [ ] -- Add feed via "Add" on the sidebar.
+  [ ] -- Update feeds.
+  [ ] -- Load single feed view based on sidebar links.
+  [ ] -- Load single feed biew based on podcast item link.

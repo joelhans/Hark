@@ -1,26 +1,34 @@
-jQuery ($) ->
+# ------------------------------
+# Link handlers
+# ------------------------------
 
-  # ------------------------------
-  # Link handlers
-  # ------------------------------
+$(document)
+  .delegate '.directory-feed-subscribe', 'click', (e) ->
+    e.preventDefault()
+    console.log $(e.currentTarget).attr 'href'
+    $.ajax
+      type    : 'POST'
+      url     : $(e.currentTarget).attr 'href'
+      success : (data) ->
+        console.log '?'
 
-  $(document)
-    .delegate '.directory-feed-subscribe a', 'click', (e) ->
-      e.preventDefault()
-      $.ajax
-        type    : 'POST'
-        url     : '/directory/subscribe/' + $(this).attr('data-uuid')
-        data    : $(this).attr('data-uuid')
-        success : (data) ->
-          console.log data
+$(document)
+  .delegate '.category a:not(.loadAll)', 'click', (e) ->
+    e.preventDefault()
+    $.ajax
+      type    : 'POST'
+      url     : $(this).attr('href')
+      data    : $(this).attr('href')
+      success : (data) ->
+        $('.directory-main').html(data)
+        ajaxHelpers()
 
-  $(document)
-    .delegate '.category a', 'click', (e) ->
-      e.preventDefault()
-      $.ajax
-        type    : 'POST'
-        url     : $(this).attr('href')
-        data    : $(this).attr('href')
-        success : (data) ->
-          console.log(data)
-          $('.directory-main').html(data)
+  .delegate '.category a.loadAll', 'click', (e) ->
+    e.preventDefault()
+    $.ajax
+      type    : 'POST'
+      url     : $(this).attr('href')
+      data    : $(this).attr('href')
+      success : (data) ->
+        $('.hark-container').html(data)
+        ajaxHelpers()

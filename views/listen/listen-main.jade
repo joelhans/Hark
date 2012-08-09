@@ -1,0 +1,43 @@
+section.actions
+	ul
+		li.action.inactive.act-listen Listen
+		li.action.inactive.act-mark Mark as listened
+		li.action.inactive.act-read Read description
+		li.action.inactive.act-source Go to source
+		li.action.inactive.act-download Download
+		li.action.inactive.act-sorting Sort
+			i.icon-chevron-down
+			ul
+				li
+					a(href='#', class='sort-date') Sort by date &nbsp;
+						i
+				li
+					a(href='#', class='sort-title') Sort by podcast &nbsp;
+						i
+				li
+					a(href='#', class='sort-feed') Sort by feed title &nbsp;
+						i
+
+if podcasts
+	ul.podcastList
+		for podcast in podcasts
+			li.podcast-item.all(data-uuid='' + podcast.podUUID, data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, data-feedUUID='' + podcast.feedUUID, data-source='' + podcast.podLink)
+				div.pulser
+				p.podcast-title
+					a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen #{podcast.listened}', data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
+				p.podcastFeed
+					a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
+				div.podcast-date
+					p.moment #{podcast.podDate._d}
+					
+				div.podcastDescription
+					p.error A note: Don't blame Hark for poorly-sourced descriptions. Tell your favorite podcast to make a proper RSS feed!
+					div
+						p!= podcast.podDesc
+
+- if (typeof(flash) != 'undefined')
+	div.mask
+		div.modal-error
+			span.modal-error-close x
+			- if (typeof(flash.errorAddFeed) != 'undefined')
+				p.error= flash.errorAddFeed

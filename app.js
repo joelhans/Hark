@@ -26,7 +26,8 @@ var express = require('express')
   , async = require('async')
   , xml2js = require('xml2js')
   , nodemailer = require('nodemailer')
-  , bcrypt = require('bcrypt')
+  // , bcrypt = require('bcrypt')
+  , bcrypt = require('node.bcrypt.js')
   , moment = require('moment')
   , mongodb = require('mongodb')
   , conf = require('./conf')
@@ -219,7 +220,7 @@ function loadUser(req, res, next) {
 
 require('./users.js')(app, express, loadUser, Users, Feeds, db, bcrypt, nodemailer);
 require('./feeds.js')(app, express, loadUser, Users, Feeds, Directory, db);
-require('./directory.js')(app, express, loadUser, Directory, Feeds);
+require('./directory.js')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID);
 
 //  ---------------------------------------
 //  ROUTES
@@ -284,7 +285,7 @@ app.get('/listen', loadUser, function(req, res) {
   getFeeds(harkUser.userID, function(error, feed, podcastList) {
     res.render('listen', {
       locals: {
-        username: harkUser.username,
+        user: harkUser,
         feeds: feed,
         podcasts: podcastList,
         playing: harkUser.playing
@@ -299,7 +300,27 @@ app.get('/listen', loadUser, function(req, res) {
 
 app.post('/listen', loadUser, function(req, res) {
   getFeeds(harkUser.userID, function(error, feed, podcastList) {
-    res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList });
+    res.partial('listen/listen-structure', { 
+      user: harkUser,
+      feeds: feed, 
+      podcasts: podcastList,
+      playing: harkUser.playing
+    });
+  });
+});
+
+//
+// THE DEFAULT VIA "ALL" BUTTON
+//
+
+app.post('/listen/podcast/all', loadUser, function(req, res) {
+  getFeeds(harkUser.userID, function(error, feed, podcastList) {
+    res.partial('listen/listen-main', { 
+      user: harkUser,
+      feeds: feed, 
+      podcasts: podcastList,
+      playing: harkUser.playing
+    });
   });
 });
 
@@ -308,14 +329,14 @@ app.post('/listen', loadUser, function(req, res) {
 //
 
 app.post('/listen/podcast/:_id', loadUser, function(req, res) {
-  Feeds.find({ 'owner': harkUser.userID, uuid: req.param('feed') }).toArray(function(err, results) {
+  Feeds.find({ 'owner': harkUser.userID, 'uuid': req.body.feedID }).toArray(function(err, results) {
     var feed = new Array(),
-      podcastList = new Array();
+        podcastList = new Array();
 
     feed = {
-      feedTitle     : results[0].title,
+      feedTitle       : results[0].title,
       feedDescription : results[0].description,
-      feeduuid    : results[0].uuid
+      feeduuid        : results[0].uuid
     }
 
     for ( var i = 0; i < results[0].pods.length; ++i) {
@@ -339,7 +360,12 @@ app.post('/listen/podcast/:_id', loadUser, function(req, res) {
       });
     }
 
-    res.partial('listen/listen-single', { feeds: feed, podcasts: podcastList });
+    res.partial('listen/listen-single', {
+      user: harkUser,
+      feeds: feed,
+      podcasts: podcastList,
+      playing: harkUser.playing
+    });
   });
 });
 
@@ -354,7 +380,7 @@ app.get('/listen/podcast/:id', loadUser, function(req, res) {
 
   async.waterfall([
     function ( callback ) {
-      Feeds.find({ 'owner': harkUser.userID, uuid: req.params.id }).toArray(function(err, results) {
+      Feeds.find({ 'owner': harkUser.userID, 'uuid': req.params.id }).toArray(function(err, results) {
         // NOT NECESSARY?
         var feed = new Array();
 
@@ -413,10 +439,10 @@ app.get('/listen/podcast/:id', loadUser, function(req, res) {
   ], function () {
     res.render('listen', {
       locals: {
-        username: req.user.username,
+        user: harkUser,
         feeds: construction,
         podcasts: podcastList,
-        playing: req.user.playing
+        playing: harkUser.playing
       }
     });
   });
@@ -427,17 +453,12 @@ app.get('/listen/podcast/:id', loadUser, function(req, res) {
 //
 
 app.post('/listen/:feed/:_id', loadUser, function(req, res) {
-  Feeds.find({ 'owner': harkUser.userID, 'uuid': req.param('feedUUID'), 'pods.podUUID': req.param('podcastID') }).toArray(function(err, results) {
-    for (var i = 0; i < results[0].pods.length; ++i) {
-      if ( results[0].pods[i].podUUID === req.param('podcastID') ) { 
-        var podData = results[0].pods[i];
-        podData['feedTitle'] = results[0].title;
-        podData['feedUUID'] = results[0].uuid;
-        res.partial('player/currently-playing', { playing: podData });
-      }
-    }
+  harkUser.playing = req.body;
+  Users.findAndModify({ 'userID':  harkUser.userID }, [], { $set: { 'playing' : req.body } }, { new:true, safe:true }, function(err, result) {
+    res.partial('player/currently-playing', { playing: result.playing });
   });
 });
+  
 
 //
 //  MARK A PODCAST AS "LISTENED"
@@ -467,7 +488,10 @@ app.post('/listen/playing', loadUser, function(req, res) {
 //
 
 app.post('/settings', loadUser, function(req, res) {
-  res.partial('partials/settings');
+  res.partial('settings/settings-structure', {
+    user: harkUser,
+    playing: harkUser.playing
+  });
 });
 
 //
@@ -477,7 +501,7 @@ app.post('/settings', loadUser, function(req, res) {
 app.get('/settings', loadUser, function(req, res) {
   res.render('settings', {
     locals: {
-      username: harkUser.username,
+      user: harkUser,
       feeds: [],
       podcasts: [],
       playing: harkUser.playing
@@ -486,27 +510,30 @@ app.get('/settings', loadUser, function(req, res) {
 });
 
 //
-//  HELP -- DISABLED FOR FUTURE RELEASE
+//  HELP
 //
 
-// app.post('/help', loadUser, function(req, res) {
-//   res.partial('partials/help');
-// });
+app.post('/help', loadUser, function(req, res) {
+  res.partial('help/help-structure', {
+    user: harkUser,
+    playing: harkUser.playing
+  });
+});
 
 //
 //  HELP VIA DEEP-LINKING/RELOAD
 //
 
-// app.get('/help', loadUser, function(req, res) {
-//   res.render('help', {
-//     locals: {
-//       username: harkUser.username,
-//       feeds: [],
-//       podcasts: [],
-//       playing: harkUser.playing
-//     }
-//   });
-// });
+app.get('/help', loadUser, function(req, res) {
+  res.render('help', {
+    locals: {
+      user: harkUser,
+      feeds: [],
+      podcasts: [],
+      playing: harkUser.playing
+    }
+  });
+});
 
 //
 //  404

@@ -1,0 +1,8 @@
+section.hark-container
+	aside.sidebar
+		ul.currently-playing
+			!=partial('player/currently-playing')
+		!=partial('settings/settings-sidebar')
+
+	section.primary.clearfix
+		!=partial('settings/settings-main')

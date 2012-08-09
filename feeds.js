@@ -26,7 +26,7 @@ var parser = new xml2js.Parser();
       if ( result !== null ) {
         req.flash('errorAddFeed', "You already added that feed!");
         getFeeds(harkUser.userID, function(error, feed, podcastList) {
-          res.partial('partials/podcasts', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
+          res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
         });
         return;
       } else {
@@ -35,7 +35,7 @@ var parser = new xml2js.Parser();
           if ( error ) {
             req.flash('errorAddFeed', "An error occured.");
             getFeeds(harkUser.userID, function(error, feed, podcastList) {
-              res.partial('partials/podcasts', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
+              res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
             });
             return;
           }
@@ -45,7 +45,7 @@ var parser = new xml2js.Parser();
             if (typeof result === "undefined") {
               req.flash('errorAddFeed', "An error occured when adding that feed. Check the URL and try again.");
               getFeeds(harkUser.userID, function(error, feed, podcastList) {
-                res.partial('partials/podcasts', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
+                res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
               });
             }
 
@@ -129,7 +129,12 @@ var parser = new xml2js.Parser();
 
             Feeds.insert(feedData, {safe: true}, function() {
               getFeeds(harkUser.userID, function(error, feed, podcastList) {
-                res.partial('partials/podcasts', { feeds: feed, podcasts: podcastList });    
+                res.partial('listen/listen-structure', { 
+                  feeds: feed,
+                  podcasts: podcastList,
+                  user: harkUser,
+                  playing: harkUser.playing
+                });
               });
             });
           });
@@ -143,9 +148,14 @@ var parser = new xml2js.Parser();
   //
 
   app.post('/listen/edit/:_id', loadUser, function(req, res) {
-    Feeds.findAndModify({ 'owner': harkUser, 'uuid': req.param('id') }, [], { $set: { 'title' : req.param('feedName') } }, { new:true }, function(err, result) {
+    Feeds.findAndModify({ 'owner': harkUser.userID, 'uuid': req.body.feedID }, [], { $set: { 'title' : req.body.feedName } }, { new:true }, function(err, result) {
       getFeeds(harkUser.userID, function(error, feed, podcastList) {
-        res.partial('partials/podcasts', { feeds: feed, podcasts: podcastList });    
+        res.partial('listen/listen-structure', { 
+          feeds: feed,
+          podcasts: podcastList,
+          user: harkUser,
+          playing: harkUser.playing
+        });
       });
     });
   });
@@ -155,9 +165,14 @@ var parser = new xml2js.Parser();
   //
 
   app.post('/listen/remove/:_id', loadUser, function(req, res) {
-    Feeds.findAndModify({ 'owner': harkUser.userID, 'uuid': req.param('id') }, [], {}, { remove:true }, function(err, result) {
+    Feeds.findAndModify({ 'owner': harkUser.userID, 'uuid': req.body.feedID }, [], {}, { remove:true }, function(err, result) {
       getFeeds(harkUser.userID, function(error, feed, podcastList) {
-          res.partial('partials/podcasts', { feeds: feed, podcasts: podcastList });    
+          res.partial('listen/listen-structure', { 
+            feeds: feed,
+            podcasts: podcastList,
+            user: harkUser,
+            playing: harkUser.playing
+          });    
       });
     });
   });
@@ -170,8 +185,6 @@ var parser = new xml2js.Parser();
 
     var construction = new Array()
       , podcastList = new Array();
-
-    console.log('Our getFeeds userID: ' + userID);
 
     Feeds.find( { 'owner': userID } ).toArray(function(err, results) {
 
@@ -203,7 +216,7 @@ var parser = new xml2js.Parser();
             podData['feedTitle'] = results[i].title;
             podData['feedUUID'] = results[i].uuid;
 
-            if ( results[i].pods[j].listened != "true" ) {
+            if ( results[i].pods[j].listened !== 'true' ) {
               podcastList.push(podData);
             }
           }
@@ -211,9 +224,9 @@ var parser = new xml2js.Parser();
 
         if (typeof podcastList[0] !== "undefined") {
           podcastList.sort(function (a , b) {
-            if (a['podDate']['_d'] > b['podDate']['_d'])
+            if (moment(a['podDate']['_d']) > moment(b['podDate']['_d']))
               return -1;
-            if (a['podDate']['_d'] < b['podDate']['_d'])
+            if (moment(a['podDate']['_d']) < moment(b['podDate']['_d']))
               return 1;
             return 0;
           });
@@ -229,7 +242,6 @@ var parser = new xml2js.Parser();
   //
 
   app.post('/listen/update', loadUser, function(req, res) {
-
     var item,
       counter = 0,
       feedUUID,
@@ -270,7 +282,7 @@ var parser = new xml2js.Parser();
             if (typeof(xml) === 'undefined') {
               req.flash('errorAddFeed', "There was an error with one of your feeds. Maybe the site is currently down. The affected podcast is at: " + feedHREF + '. The rest of your podcasts will update normally.');
               getFeeds(harkUser.userID, function(error, feed, podcastList) {
-                res.partial('partials/podcasts', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
+                res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
               });
               newList = [];
               callback(null, feeds, existingList, feedHREF, feedUUID, newList, counter);
@@ -288,7 +300,7 @@ var parser = new xml2js.Parser();
                   if ( typeof feed.item[i].enclosure !== "undefined" ) {
 
                     if ( typeof feed.item[i]['pubDate'] == "string" ) {
-                      pubDate = moment(feed.item[i]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
+                      pubDate = moment(feed.item[i]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z");
                     } else if ( typeof feed.item[i]['dc:date'] == "string" ) {
                       pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
                     }
@@ -301,9 +313,6 @@ var parser = new xml2js.Parser();
                       'podDesc' : feed.item[i].description,
                       'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
                       'podDate' : pubDate,
-                      'prettyDay' : pubDate.format('D'),
-                      'prettyMonth' : pubDate.format('MMMM'),
-                      'prettyYear' : pubDate.format('YYYY'),
                       'listened'  : 'false'
                     };
                     newList.push(podData);
@@ -374,7 +383,7 @@ var parser = new xml2js.Parser();
       if ( counter == feeds.length) {
         // Step 6: We use the counter to ensure that we only update the partial once all of the feeds have been updated.
         getFeeds(harkUser.userID, function(error, feed, podcastList) {
-          res.partial('partials/podcasts', { feeds: feed, podcasts: podcastList });
+          res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList });
         });
       }
     });

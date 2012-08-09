@@ -1,19 +1,18 @@
-$base:					rgba(242, 242, 242, 1);
-$body:					rgba(33, 33, 33, 1);
+$base:					 rgba(242, 242, 242, 1);
 
-$linkColor:				rgba(0, 144, 205, 1);
-$linkColorHover: 		darken($linkColor, 20%);
+$linkColor:			 rgba(0, 144, 205, 1);
+$linkColorHover: darken($linkColor, 20%);
 
-$errorColor:			rgba(255, 71, 71, 1);
-$successColor:			rgba(0, 180, 0, 1);
+$errorColor:		 rgba(255, 71, 71, 1);
+$successColor:	 rgba(0, 180, 0, 1);
 
-$bodyTrans:				rgba(33, 33, 33, 0.1);
-$borderColor:			lighten($body, 70%);
+$bodyTrans:			 rgba(33, 33, 33, 0.1);
+$borderColor:		 lighten($body, 70%);
 
-$baseFont:				16px;
-$baseFontFamily:		'Open Sans', sans-serif;
-$headingFontFamily:		'Open Sans', Helvetica, Arial, serif;
-$baseLine:				$baseFont * 1.5;
+$baseFont:				  16px;
+$baseFontFamily:		'Lato', sans-serif;
+$headingFontFamily:	'Open Sans', Helvetica, Arial, serif;
+$baseLine:				  $baseFont * 1.5;
 $baseHeaderFont:		$baseFont * 2.2;
 
 @mixin bodyFont {
@@ -62,16 +61,17 @@ em {font-style: italic; line-height: inherit;}
 strong {font-weight: bold; line-height: inherit;}
 h2 strong { font-weight: 400; }
 
-a, a:visited {
-	color: $linkColor;
-	// @include bodyFont;
+a {
+	@include link-colors($link-color, $link-hover-color, $link-focus-color, $link-active-color, $link-visited-color);
+// 	// color: $linkColor;
+// 	// @include bodyFont;
 	text-decoration: none;
-	border-bottom: 1px solid $bodyTrans;
-	@include transition(all, 0.3s);
-	&:hover {
-		color: $linkColorHover;
-		border-bottom: 1px solid $linkColorHover;
-	}
+// 	// border-bottom: 1px solid $bodyTrans;
+	@include transition(all, 0.5s);
+// 	&:hover {
+// 		color: $linkColorHover;
+// 		border-bottom: 1px solid $linkColorHover;
+// 	}
 }
 
 ul, ol {

@@ -1,0 +1,22 @@
+if feeds
+	ul.subscriptions
+		li.sidebar-item-big.act-add
+			a(href='#') Add
+		li.sidebar-item-big.act-update 
+			a(href='#') Update
+		span.add-feed-container
+			input(type='text', class='add-feed', placeholder='Copy an RSS feed here and hit <Enter>.')
+		li.sidebar-item.allFeeds
+			a(href='/listen') All
+		for feed in feeds
+			li.sidebar-item
+				a(href='/listen/podcast/' + feed.feeduuid, class='loadFeed') #{feed.feedTitle}
+				span.sidebar-expander
+					i.icon-cog
+				div.sidebar-actions
+					a(href='#', class='sidebar-action-edit')
+						<i class="icon-pencil"></i>Edit
+					a(href='/listen/remove/' + feed.feeduuid, class='sidebar-action-remove')
+						<i class="icon-trash"></i>Remove
+					input(type='text', class='sidebar-action-edit-input', placeholder='Type the new feed name.')
+	span.hover-er

@@ -1,55 +1,109 @@
 // Directory CSS
 
-$brown  : rgba(84,73,66,1);
-$orange : rgba(247,149,84,1);
-$green  : rgba(212,208,89,1);
-$cream  : rgba(241,239,201,1);
-$blue   : rgba(132,186,167,1);
+// $light-blue: rgba(57,184,204,1);
 
-.header-v2 {
-  @include background($brown);
-  height: auto;
-  margin-bottom: 0px;
-}
 
-.hark-logo {
-  color: $green;
-  text-shadow: 0 0 10px lighten($brown, 30%);
-  margin-bottom: 0px;
-  padding: 0 0 10px 0;
-}
-
-.categories {
-  @include background($brown);
-  float: left;
-  width: 200px;
-  ul li {
-    color: $blue;
-  }
-}
-
-.listen-v2 {
-  bottom: 96px;
-  margin-left: 200px;
-  @include background($cream);
-}
 
 .directory-main {
-  padding: 0 0 0 20px;
+  padding: 10px 20px 10px 20px;
 }
 
 .directory-item {
+  position: relative;
   float: left;
-  width: 30%; height: auto;
-  margin: 0 3.33% 0 0;
-}
-
-.footer-v2 {
-  @include background($brown);
-  position: fixed;
-  left: 0px; bottom: 0px;
-  width: 100%;
-  .podcast-player {
-    
+  width: 30%; max-width: 350px;
+  margin: 0px 3.33% 40px 0;
+  border: 1px solid transparentize($purple, 1);
+  @include transition(all, 0.5s);
+  &:hover {
+    border: 1px solid $purple;
   }
 }
+
+.directory-feed-title {
+  font-family: 'Cambo';
+  font-size: 22px;
+  line-height: 34px;
+  color: darken($brown, 10%);
+  padding: 26px 20px 0 20px;
+}
+
+.directory-feed-description {
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 22px;
+  color: $brown;
+  padding: 10px 20px 0 20px;
+}
+
+.directory-feed-details {
+  overflow: auto;
+  width: 100%;
+  margin: 26px 0 0 0;
+  padding: 0 20px 0 20px;
+}
+
+.directory-feed-details-left,
+.directory-feed-details-right {
+  float: left;
+  width: 50%;
+  span:first-of-type {
+    display: block;
+    font-weight: 700;
+    color: darken($brown, 10%);
+  }
+  span:last-of-type {
+    font-size: 14px;
+  }
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 22px;
+  color: $brown;
+}
+
+.directory-feed-details-left {
+  padding: 0 20px 0 0;
+  border-right: 1px solid $red;
+}
+
+.directory-feed-details-right {
+  padding: 0 0 0 20px;
+}
+
+.directory-feed-subscribe {
+  display: block;
+  margin: 26px auto 0 auto;
+  padding: 16px 0 16px 0;
+  color: $brown;
+  font-family: 'Lato';
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  text-decoration: none;
+  border-top: 1px solid transparentize($purple, 1);
+  @include transition(all, 0.3s);
+  &:hover {
+    color: $base;
+    @include background($red);
+  }
+}
+
+.directory-item:hover > .directory-feed-subscribe {
+  border-top: 1px solid $purple;
+}
+
+.ddd-box-shadow {
+  color: $light-blue;
+  padding: 4px 12px 4px 12px;
+  border-radius: 8px;
+  @include background(white);
+  box-shadow: inset 0 2px 8px $brown,
+              inset 0 0px 4px $brown,
+              0 0 1px 1px $brown,
+              0 0px 1px 1px lighten($brown, 5%),
+              0 -2px 10px 2px lighten($brown, 15%),
+              0 2px 6px 2px lighten($brown, 5%),
+              0 2px 15px 2px darken($brown, 15%);
+}
+
+
