@@ -1,4 +1,4 @@
-$base:					 rgba(242, 242, 242, 1);
+$base:					 hsl(346, 20%, 96%);
 
 $linkColor:			 rgba(0, 144, 205, 1);
 $linkColorHover: darken($linkColor, 20%);
@@ -67,7 +67,7 @@ a {
 // 	// @include bodyFont;
 	text-decoration: none;
 // 	// border-bottom: 1px solid $bodyTrans;
-	@include transition(all, 0.5s);
+	@include transition(all, 0.3s);
 // 	&:hover {
 // 		color: $linkColorHover;
 // 		border-bottom: 1px solid $linkColorHover;

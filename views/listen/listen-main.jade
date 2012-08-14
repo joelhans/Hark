@@ -23,12 +23,23 @@ if podcasts
 		for podcast in podcasts
 			li.podcast-item.all(data-uuid='' + podcast.podUUID, data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, data-feedUUID='' + podcast.feedUUID, data-source='' + podcast.podLink)
 				div.pulser
-				p.podcast-title
-					a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen #{podcast.listened}', data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
-				p.podcastFeed
-					a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
 				div.podcast-date
 					p.moment #{podcast.podDate._d}
+				p.podcast-title
+					a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen #{podcast.listened}', data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
+				p.podcast-feed
+					a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
+				div.item-actions
+					a.item-actions-listen(href='/listen/podcast/' + podcast.feedUUID)
+						i.icon-headphones
+					a.item-actions-mark
+						i.icon-ok
+					a.item-actions-description
+						i.icon-align-left
+					a.item-actions-source
+						i.icon-external-link
+					a.item-actions-download
+						i.icon-download-alt
 					
 				div.podcastDescription
 					p.error A note: Don't blame Hark for poorly-sourced descriptions. Tell your favorite podcast to make a proper RSS feed!

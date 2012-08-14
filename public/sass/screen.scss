@@ -51,10 +51,10 @@ html, body {
 }
 
 ::-webkit-input-placeholder {
-  color:    $body;
+  color:    $base;
 }
 ::-moz-placeholder {
-  color:    $body;
+  color:    $base;
 }
 
 ::-webkit-scrollbar {
@@ -180,7 +180,7 @@ nav ul {
       color: $purple;
       text-decoration: none;
       border: 0px;
-      @include transition(color, 0.5s);
+      // @include transition(color, 0.5s);
       &:hover {
         color: $copy;
         border: 0px;
@@ -525,31 +525,80 @@ nav ul {
   float: left;
   width: 30%; height: 160px;
   margin: 40px 3% 40px 0;
-  border: 1px solid $purple;
-  border-radius: 5px;
-  box-shadow: 0 0 10px $red;
-  @include transition(all, 0.5s);
+  padding: 10px;
+  @include background(white);
+  // border: 1px solid $purple;
+  // border-radius: 5px;
+  // box-shadow: 0 0 10px $red;
+  // @include transition(all, 0.5s);
   > div {
     @include inline-block;
   }
 }
 
-.pulser {
-  display: block;
-  width: 40px; height: 100%;
-  @include background(transparentize($light-blue, 0.7));
-}
-
 .selected {
-  @include background(transparentize($light-blue, 0.7));
+  @include background(transparentize($purple, 0.8));
 }
 
-.podcast-title a {
-  font-family: 'Cambo';
-  font-size: 32px;
-  line-height: 44px;
-  color: darken($brown, 10%);
+.pulser {
+  position: absolute; left: -10px; top: -10px;
+  display: block;
+  opacity: 0;
+  width: 40px; height: 40px;
+  border-radius: 20px;
+  @include background(transparentize($purple, 0.2));
 }
+
+// Re-enable/design this at some later point in time.
+// .podcast-item:hover > .pulser { opacity: 1; }
+
+.podcast-date {
+  position: absolute; right: -10px; top: -10px;
+  width: 140px; height: 40px;
+  @include background(transparentize($purple, 0.2));
+  p {
+    color: $base;
+    padding: 7px 4px 4px 10px;
+  }
+}
+
+.podcast-title {
+  max-height: 70px;
+  margin-top: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  a {
+    display: block;
+    font-size: 24px;
+    line-height: 34px;
+    color: darken($brown, 10%);
+  }
+}
+
+.podcast-feed {
+  position: absolute; bottom: 10px; left: 10px;
+}
+
+.item-actions {
+  position: absolute; bottom: -44px; left: 0px;
+  opacity: 0;
+  width: 100%; height: 32px;
+  @include background(transparentize($purple, 0.2));
+  @include transition(all, 0.3s);
+  a {
+    @include inline-block;
+    width: 20%;
+    color: $base;
+    font-size: 18px;
+    margin-top: 4px;
+    padding: 0px 12px 0 12px;
+    border-right: 1px solid $base;
+    &:last-of-type { border-right: 0px; }
+    &:hover { color: $purple; }
+  }
+}
+
+.podcast-item:hover > .item-actions { opacity: 1; }
 
 // .podcast-date {
 //   width: 200px; height: 100px;

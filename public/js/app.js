@@ -286,6 +286,20 @@
     return $('.act-sorting ul').toggle();
   });
 
+  $(document).delegate('.podcast-title a', 'hover', function(e) {
+    if (e.type === 'mouseenter') {
+      if ($(e.currentTarget).height() > $(e.currentTarget).parent().height()) {
+        return $(e.currentTarget).animate({
+          'margin-top': $(e.currentTarget).parent().height() - $(e.currentTarget).height()
+        }, 1000);
+      }
+    } else {
+      return $(e.currentTarget).animate({
+        'margin-top': 0
+      }, 1000, "linear");
+    }
+  });
+
   $(document).delegate('.directory-feed-subscribe', 'click', function(e) {
     e.preventDefault();
     console.log($(e.currentTarget).attr('href'));

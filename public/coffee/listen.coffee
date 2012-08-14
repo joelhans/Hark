@@ -177,3 +177,17 @@ $(document)
   .delegate '.act-sorting', 'click', (e) ->
     console.log 'hi'
     $('.act-sorting ul').toggle()
+
+# ------------------------------
+# Podcast tweaks/fixes
+# ------------------------------
+
+# Scrolling effect when hovering over a long title.
+
+$(document)
+  .delegate '.podcast-title a', 'hover', (e) ->
+    if e.type == 'mouseenter'
+      if $(e.currentTarget).height() > $(e.currentTarget).parent().height()
+        $(e.currentTarget).animate({'margin-top': $(e.currentTarget).parent().height() - $(e.currentTarget).height()}, 1000)
+    else
+      $(e.currentTarget).animate({'margin-top': 0}, 1000, "linear")
