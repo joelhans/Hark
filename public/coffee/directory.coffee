@@ -1,7 +1,6 @@
 # ------------------------------
 # Link handlers
 # ------------------------------
-
 $(document)
   .delegate '.directory-feed-subscribe', 'click', (e) ->
     e.preventDefault()
@@ -20,7 +19,8 @@ $(document)
       url     : $(this).attr('href')
       data    : $(this).attr('href')
       success : (data) ->
-        $('.directory-main').html(data)
+        $('.primary').html(data)
+        console.log data
         ajaxHelpers()
 
   .delegate '.category a.loadAll', 'click', (e) ->

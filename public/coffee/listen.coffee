@@ -76,21 +76,27 @@ $(document)
 $(document)
   .delegate '.sidebar-expander', 'click', (e) ->
     if $(e.currentTarget).is('.expanded')
+      $(e.currentTarget).parent().animate({height: '46px'}, 300)
+      $('.hover-er').animate({height: '46px'}, 80)
+      $(e.currentTarget).next().removeClass('undocked').fadeOut(300)
       $(e.currentTarget).parent().removeClass('active')
       $(e.currentTarget).removeClass('expanded')
-      $(e.currentTarget).next().addClass('undocked').fadeOut(300)
     else
+      $('.sidebar-action-edit-input').hide()
+      $(e.currentTarget).parent().animate({height: '112px'}, 300).css('overflow', 'visible'); 
+      $('.hover-er').animate({height: '102px'}, 80)
+      $(e.currentTarget).next().addClass('undocked').fadeIn(300)
       $(e.currentTarget).parent().addClass('active')
       $(e.currentTarget).addClass('expanded')
-      $(e.currentTarget).next().addClass('undocked').fadeIn(300)
 
 # Edit feed
 
 $(document)
   .delegate '.sidebar-action-edit', 'click', (e) ->
     e.preventDefault()
-    $('.sidebar-action-edit-input').css('opacity', '100')
-    $('.sidebar-action-edit-input').val($('.loadFeed').text())
+    $('.sidebar-action-edit-input').val('')
+    $('.sidebar-action-edit-input').fadeIn(300)
+    $('.sidebar-action-edit-input').val($(e.currentTarget).parent().siblings('.loadFeed').text())
 
 $('.sidebar-action-edit-input')
   .live 'keypress', (e) ->
@@ -131,8 +137,9 @@ $(document)
 # Select a podcast
 
 $(document)
-  .delegate '.podcast-item', 'click', (e) ->
-    $('.podcastItem').removeClass('selected')
+  .delegate '.podcast-item:not(.selected)', 'click', (e) ->
+    $('.selected').children('.podcastDescription').fadeOut(500)
+    $('.podcast-item').removeClass('selected')
     $(e.currentTarget).addClass('selected')
     $('.act-listen, .act-mark, .act-read, .act-source, .act-download').removeClass('inactive').addClass('active')
 
@@ -140,12 +147,17 @@ $(document)
 
 $(document)
   .delegate '.selected', 'click', (e) ->
+    $('.selected').children('.podcastDescription').fadeOut(500)
     $(e.currentTarget).removeClass('selected')
     $('.act-listen, .act-mark, .act-read, .act-source, .act-download').removeClass('active').addClass('inactive')
 
 # Listen to a podcast
 ################################
 # CoffeeScript conversion still needed.
+
+$(document)
+  .delegate '.item-actions-listen', 'click', (e) ->
+    console.log 'hi'
 
 # Mark a podcast as "listened."
 ################################
@@ -155,8 +167,8 @@ $(document)
 
 $(document)
   .delegate '.act-read.active', 'click', (e) ->
-    $('.selected').children('.podcastDescription').toggle(500).promise().done () ->
-      ajaxHelpers()
+    $('.selected').children('.podcastDescription').toggle(500)
+      # ajaxHelpers()
     return false
 
 # Go through to external link

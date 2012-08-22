@@ -1,18 +1,18 @@
-$base:					 hsl(346, 20%, 96%);
+$base:					hsl(346, 20%, 96%);
 
-$linkColor:			 rgba(0, 144, 205, 1);
-$linkColorHover: darken($linkColor, 20%);
+$linkColor:			 	rgba(0, 144, 205, 1);
+$linkColorHover: 		darken($linkColor, 20%);
 
-$errorColor:		 rgba(255, 71, 71, 1);
-$successColor:	 rgba(0, 180, 0, 1);
+$errorColor:		 	rgba(255, 71, 71, 1);
+$successColor:	 		rgba(0, 180, 0, 1);
 
-$bodyTrans:			 rgba(33, 33, 33, 0.1);
-$borderColor:		 lighten($body, 70%);
+$bodyTrans:			 	rgba(33, 33, 33, 0.1);
+$borderColor:		 	lighten($body, 70%);
 
-$baseFont:				  16px;
+$baseFont:				16px;
 $baseFontFamily:		'Lato', sans-serif;
-$headingFontFamily:	'Open Sans', Helvetica, Arial, serif;
-$baseLine:				  $baseFont * 1.5;
+$headingFontFamily:		'Lato', Helvetica, Arial, serif;
+$baseLine:				$baseFont * 1.5;
 $baseHeaderFont:		$baseFont * 2.2;
 
 @mixin bodyFont {

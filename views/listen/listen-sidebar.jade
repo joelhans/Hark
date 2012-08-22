@@ -14,9 +14,6 @@ if feeds
 				span.sidebar-expander
 					i.icon-cog
 				div.sidebar-actions
-					a(href='#', class='sidebar-action-edit')
-						<i class="icon-pencil"></i>Edit
-					a(href='/listen/remove/' + feed.feeduuid, class='sidebar-action-remove')
-						<i class="icon-trash"></i>Remove
+					a(href='#', class='sidebar-action-edit') Edit
+					a(href='/listen/remove/' + feed.feeduuid, class='sidebar-action-remove') Remove
 					input(type='text', class='sidebar-action-edit-input', placeholder='Type the new feed name.')
-	span.hover-er

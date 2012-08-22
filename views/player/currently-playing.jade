@@ -1,4 +1,4 @@
-li.heading Now playing
+li.heading.safe Now playing
 li.sidebar-item
 	if (typeof(playing) !== 'undefined')
 		a.current-feed(href='/listen/podcast/' + playing.feedUUID) #{playing.feedTitle}
@@ -6,6 +6,6 @@ li.sidebar-item
 		a.current-feed.blank(href='/listen') Go play something!
 li.sidebar-item
 	if playing
-		a.current-item(href='/listen/podcast/' + playing.feedUUID) #{playing.podcastTitle}
+		p.safe #{playing.podcastTitle}
 	else
 		a.current-item.blank(href='/directory') Need a new podcast?

@@ -89,27 +89,26 @@ ROADMAP
     ----------
     [x] -- Bug fix -- Users were not able to update feeds due to an improper variable.
 
-  0.7
+  1.0
+  ----------
+  [x] --  A "Hark Directory"
+            * This will be a central location for feeds.
+            * I will be able to add new feeds to this database, and users will be able to browse/search for items that they're interested in.
+  
+  1.1
   ----------
   [ ] --  Make an RSS feed that takes all the unlistened podcasts so people can sync it to other services.
-  [ ] --  A help/FAQ section.
+  [ ] --  A full/expanded help/FAQ section.
 
-  0.8
+  1.2
   ----------
   [ ] --  Have a variety of keyboard shortcuts for various important functions.
 
-  0.9
+  1.3
   ----------
   [ ] --  Allow user to save listening progress in one podcast, listen to another one, and resume where they left off.
 
-  1.0
-  ----------
-  [ ] --  A "Hark Directory"
-            * This will be a central location for feeds.
-            * I will be able to add new feeds to this database, and users will 
-              be able to browse/search for items that they're interested in.
-  
-  1.1
+  1.4
   ----------
   [ ] --  Categories
             * Users will be able to "tag" podcasts for certain categories (technology, design, etc).

@@ -127,6 +127,19 @@ module.exports = function(app, express, loadUser, Users, Feeds, db, bcrypt, node
   });
 
   //  ---------------------------------------
+  //  SETTINGS / CLAIM USERNAME
+  //  ---------------------------------------
+  app.post('/settings/claim-username', loadUser, function(req, res) {
+    Users.findOne({ 'username': req.param('claimed-username') }, function(err, result) {
+      if (result === null) {
+        Users.findAndModify({ 'userID':  harkUser.userID }, [], { $push: { 'username' : req.param('claimed-username') } }, { new:true, safe:true }, function(err, result) {
+          console.log(req.user.username)
+        });
+      }
+    });
+  });
+
+  //  ---------------------------------------
   //  SETTINGS / CHANGE PASSWORD
   //  ---------------------------------------
 

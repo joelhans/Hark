@@ -201,20 +201,34 @@
 
   $(document).delegate('.sidebar-expander', 'click', function(e) {
     if ($(e.currentTarget).is('.expanded')) {
+      $(e.currentTarget).parent().animate({
+        height: '46px'
+      }, 300);
+      $('.hover-er').animate({
+        height: '46px'
+      }, 80);
+      $(e.currentTarget).next().removeClass('undocked').fadeOut(300);
       $(e.currentTarget).parent().removeClass('active');
-      $(e.currentTarget).removeClass('expanded');
-      return $(e.currentTarget).next().addClass('undocked').fadeOut(300);
+      return $(e.currentTarget).removeClass('expanded');
     } else {
+      $('.sidebar-action-edit-input').hide();
+      $(e.currentTarget).parent().animate({
+        height: '112px'
+      }, 300).css('overflow', 'visible');
+      $('.hover-er').animate({
+        height: '102px'
+      }, 80);
+      $(e.currentTarget).next().addClass('undocked').fadeIn(300);
       $(e.currentTarget).parent().addClass('active');
-      $(e.currentTarget).addClass('expanded');
-      return $(e.currentTarget).next().addClass('undocked').fadeIn(300);
+      return $(e.currentTarget).addClass('expanded');
     }
   });
 
   $(document).delegate('.sidebar-action-edit', 'click', function(e) {
     e.preventDefault();
-    $('.sidebar-action-edit-input').css('opacity', '100');
-    return $('.sidebar-action-edit-input').val($('.loadFeed').text());
+    $('.sidebar-action-edit-input').val('');
+    $('.sidebar-action-edit-input').fadeIn(300);
+    return $('.sidebar-action-edit-input').val($(e.currentTarget).parent().siblings('.loadFeed').text());
   });
 
   $('.sidebar-action-edit-input').live('keypress', function(e) {
@@ -255,21 +269,25 @@
     });
   });
 
-  $(document).delegate('.podcast-item', 'click', function(e) {
-    $('.podcastItem').removeClass('selected');
+  $(document).delegate('.podcast-item:not(.selected)', 'click', function(e) {
+    $('.selected').children('.podcastDescription').fadeOut(500);
+    $('.podcast-item').removeClass('selected');
     $(e.currentTarget).addClass('selected');
     return $('.act-listen, .act-mark, .act-read, .act-source, .act-download').removeClass('inactive').addClass('active');
   });
 
   $(document).delegate('.selected', 'click', function(e) {
+    $('.selected').children('.podcastDescription').fadeOut(500);
     $(e.currentTarget).removeClass('selected');
     return $('.act-listen, .act-mark, .act-read, .act-source, .act-download').removeClass('active').addClass('inactive');
   });
 
+  $(document).delegate('.item-actions-listen', 'click', function(e) {
+    return console.log('hi');
+  });
+
   $(document).delegate('.act-read.active', 'click', function(e) {
-    $('.selected').children('.podcastDescription').toggle(500).promise().done(function() {
-      return ajaxHelpers();
-    });
+    $('.selected').children('.podcastDescription').toggle(500);
     return false;
   });
 
@@ -319,7 +337,8 @@
       url: $(this).attr('href'),
       data: $(this).attr('href'),
       success: function(data) {
-        $('.directory-main').html(data);
+        $('.primary').html(data);
+        console.log(data);
         return ajaxHelpers();
       }
     });

@@ -1,7 +1,7 @@
 div.settings
-	h2#settings-username Claim your username!
-	p Some day, Hark might use usernames (as in harkhq.com/example-hark-user) to give people ways to interact and talk about their favorite podcasts. Nothing is certain at the moment, but it wouldn't hurt to claim your username right now, would it?
 	- if (typeof(user.username) == 'undefined')
+		h2#settings-username Claim your username!
+		p Some day, Hark might use usernames (as in harkhq.com/example-hark-user) to give people ways to interact and talk about their favorite podcasts. Nothing is certain at the moment, but it wouldn't hurt to claim your username right now, would it?
 		form.claim-username(method='post', action='/settings/claim-username')
 			input(type='text', name='claimed-username', placeholder='Enter your desired username.')
 			input.update-password-submit(type='submit', value='Claim')

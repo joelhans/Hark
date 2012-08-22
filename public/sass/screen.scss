@@ -1,22 +1,28 @@
-$brown:      rgba(89,79,79,1);
-$light-blue: rgba(57,184,204,1);
-$orange:     rgba(238,166,58,1);
-$green:      rgba(209,199,104,1);
+/* COLORS */
+$orange: rgba(243, 151, 83, 1);
+$red: rgba(255, 98, 68, 1);
+$yellow: rgba(237, 239, 121, 1);
 
-$teal:       #53777A;
-$purple:     rgba(130,35,57,1);
-$cream:      rgba(255,213,115,1);
-$new-orange: rgba(255,119,61,1);
-$red:        rgba(247,62,62,1);
+$copy: rgba(33, 33, 33, 1);
+$white: rgba(242, 242, 242, 1);
 
-$link-color:         #C02942;
-$link-hover-color:   #542437;
-$link-active-color:  false;
+$bg: rgba(243, 240, 238, 1);
+
+$link-color: $red;
+$link-hover-color: $orange;
+$link-focus-color: false;
+$link-active-color: false;
 $link-visited-color: false;
-$link-focus-color:   false;
 $link-trans-color:   transparentize($link-color, 0.8);
 
-$copy:       rgba(78,79,75,1);
+/* GRADIENTS */
+$orange-to-red: linear-gradient($orange, $red);
+$red-to-orange: linear-gradient($red, $orange);
+$white-to-orange: linear-gradient($white, $orange);
+$white-to-yellow: linear-gradient($white, $yellow);
+$orange-to-red-trans: linear-gradient(transparentize($orange, 0.9), transparentize($red, 0.9));
+
+
 $body:       rgba(78,79,75,1);
 
 @import "compass/reset";
@@ -41,7 +47,7 @@ $body:       rgba(78,79,75,1);
 html, body {
   height: 100%;
   width: 100%;
-  @include background($base);
+  @include background($bg);
 }
 
 * { 
@@ -68,7 +74,7 @@ html, body {
  
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px $purple; 
+  -webkit-box-shadow: inset 0 0 6px $orange; 
 }
 
 /* -----------------------------------------
@@ -79,26 +85,61 @@ html, body {
   text-align: center;
 }
 
+.signup-intro a {
+  @include inline-block;
+  width: 330px; height: 220px;
+  margin: 0 auto;
+  @include background(image-url('/img/hark-logo-v3-display.svg') no-repeat);
+  background-size: 400px 400px;
+  background-position: -12px -80px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.claim-username,
+.update-password {
+  h3 {
+    width: 20%;
+    @include inline-block;
+  }
+  input {
+    width: 400px; height: 40px;
+    display: block;
+    padding: 2px 4px 2px 4px;
+    border: 0px;
+    &:last-of-type {
+      width: 70px;
+      margin: 20px 0 20px 165px;
+    }
+  }
+}
+
 .create-email, .create-password, .create-submit, .login-email, .login-password, .login-submit, .forgot-email, .forgot-submit, .reset-email, .reset-password, .reset-submit {
+  font-family: $baseFontFamily;
+  color: $base;
   padding: 16px 40px 16px 40px;
   border: 0px; outline: 0px;
-  border-radius: 10px;
   @include transition(all, 0.5s);
-  @include box-shadow($linkColor 0px 0px 20px, $linkColor 0px 0px 20px inset);
+  @include background($orange);
   &:hover {
-   @include box-shadow($linkColor 0px 0px 40px, $linkColor 0px 0px 20px inset);
+    @include background($red);
   }
   &:focus {
-    @include box-shadow($errorColor 0px 0px 40px, $errorColor 0px 0px 20px inset);
+    @include background($red);
+    outline: 1px solid $red;
   }
 }
 
 .create-submit, .login-submit, .forgot-submit, .reset-submit {
   margin-top: 40px;
-  background-color: $linkColor;
+  background-color: $red;
   color: $base;
+  &:hover {
+    cursor: pointer;
+  }
   &:focus {
-    background-color: $errorColor;
+    background-color: $orange;
   }
 }
 
@@ -119,7 +160,7 @@ html, body {
   position: relative;
   text-align: center;
     a {
-      @include background($errorColor);
+      @include background($red);
       display: block;
       position: relative;
       width: 240px; height: 50px;
@@ -130,12 +171,10 @@ html, body {
       line-height: 50px;
       &:hover {
         border: 0px;
-        @include background(darken($errorColor, 5%));
+        @include background($orange);
       }
     }
 }
-
-// 194 to 59
 
 .facebook i, .twitter i, .google i {
   position: absolute; top: 1px; left: 20px;
@@ -148,8 +187,7 @@ html, body {
 header {
   width: 100%; height: 80px;
   padding: 0px;
-  border-bottom: 1px solid transparentize($purple, 0.8);
-  @include background($base);
+  border-bottom: 1px solid transparentize($red, 0.8);
   overflow: hidden;
 }
 
@@ -157,7 +195,9 @@ header {
   float: left;
   width: 150px; height: 60px;
   margin: 14px 0 0 20px;
-  // @include background(image-url('/img/hark-logo-small.png') no-repeat);
+  @include background(image-url('/img/hark-logo-v3-display.svg') no-repeat);
+  background-size: 120px 120px;
+  background-position: -12px -30px;
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -177,14 +217,6 @@ nav ul {
     a {
       display: block;
       width: 100%;
-      color: $purple;
-      text-decoration: none;
-      border: 0px;
-      // @include transition(color, 0.5s);
-      &:hover {
-        color: $copy;
-        border: 0px;
-      }
     }
   }
 }
@@ -200,9 +232,7 @@ nav ul {
 .currently-playing {
   display: block;
   position: relative;
-  width: 220px;
   margin: 0px;
-  // border-bottom: 1px solid transparentize($purple, 0.8);
 }
 
 .currently-playing li {
@@ -213,7 +243,9 @@ nav ul {
   line-height: 22px;
   font-weight: 700;
   margin: 0px;
-  border: 0px;
+  border: 4px solid transparentize($orange, 1);
+  border-radius: 20px;
+  @include transition(all, 0.3s);
   z-index: 2;
   a {
     display: block;
@@ -225,9 +257,11 @@ nav ul {
     border: 0px;
     z-index: 2;
   }
-  &:hover a {
-    color: white;
-    border: 0px;
+  &:hover {
+    border: 4px solid $orange;
+    a {
+      color: $orange;
+    }
   }
 }
 
@@ -236,7 +270,19 @@ nav ul {
   font-weight: 400;
   margin: 0px;
   padding: 16px 20px 14px 20px;
-  // border-bottom: 1px solid transparentize($purple, 0.8);
+  border: 0;
+}
+
+.currently-playing li p.safe {
+  color: $copy;
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 8px 20px 8px 20px;
 }
 
 /* -----------------------------------------
@@ -245,9 +291,9 @@ nav ul {
 .sidebar {
   float: left;
   width: 220px;
-  border-right: 1px solid transparentize($purple, 0.8);
-  // overflow-y: scroll;
-  // overflow-x: hidden;
+  border-right: 1px solid transparentize($red, 0.8);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .subscriptions,
@@ -260,14 +306,16 @@ nav ul {
 .sidebar-item,
 .category {
   position: relative;
+  height: 46px;
   color: $copy;
   font-family: 'Lato';
   font-size: 14px;
   line-height: 22px;
   font-weight: 700;
   margin: 0px;
-  border: 0px;
-  // @include background($base);
+  border: 4px solid transparentize($orange, 1);
+  border-radius: 20px;
+  @include transition(all, 0.3s);
   z-index: 2;
   a {
     display: block;
@@ -282,10 +330,12 @@ nav ul {
     border: 0px;
     z-index: 2;
   }
-  &:hover a {
-    color: $base;
-    border: 0px;
-    // @include background(transparent);
+  &:hover {
+    border: 4px solid $orange;
+    a {
+      color: $orange;
+      // @include background(transparent);
+    }
   }
 }
 
@@ -297,8 +347,9 @@ nav ul {
   line-height: 22px;
   font-weight: 400;
   margin: 0px;
-  border: 0px;
-  // border-bottom: 1px solid transparentize($purple, 0.8);
+  border: 4px solid transparentize($orange, 1);
+  border-radius: 20px;
+  @include transition(all, 0.3s);
   z-index: 2;
   a {
     display: block;
@@ -310,8 +361,12 @@ nav ul {
     border: 0px;
     z-index: 2;
   }
-  &:hover a {
-    color: $base;
+  &:hover {
+    border: 4px solid $orange;
+    a {
+      color: $orange;
+      // @include background(transparent);
+    }
   }
 }
 
@@ -322,27 +377,30 @@ nav ul {
   padding: 16px 20px 14px 20px;
 }
 
-.active {
-  @include background(transparentize($purple, 0.7)); 
-}
+// .active {
+//   @include background(transparentize($red, 0.7)); 
+// }
 
 .hover-er {
+  display: none;
   opacity: 0;
   position: absolute; top: 56px; left: 10px;
-  width: 200px; height: 28px;
+  width: 190px; height: 28px;
   margin: 0;
-  @include background($purple);
-  border-radius: 8px;
+  @include background(transparent);
+  border-radius: 20px;
+  border: 4px solid $red;
   z-index: 1;
   @include transition(all, 0.3s);
 }
 
 .sidebar-expander {
-  position: absolute; right: 10px; top: 50%;
+  position: absolute; right: 10px; top: 20px;
   margin: -12px 0 0 0;
   opacity: 0;
+  @include transition(all, 0.3s);
   i {
-    color: $base;
+    color: $red;
     font-size: 24px;
   }
   :hover {
@@ -353,26 +411,24 @@ nav ul {
 .sidebar-item:hover > .sidebar-expander { opacity: 100; }
 
 .sidebar-actions {
-  position: absolute; top: 0px; right: -116px;
+  position: absolute; top: 40px; left: 10px;
   display: none;
   font-family: 'Lato';
   font-size: 14px;
   line-height: 22px;
   font-weight: 700;
-  color: $copy;
-  @include background($purple);
+  color: $red;
   @include transition(all, 0.5s);
   z-index: 1;
-  .sidebar-action-remove i,
-  .sidebar-action-edit i {
-    margin: 0 10px 0 0;
-  }
   .sidebar-action-edit-input {
-    position: absolute; top: 0px; right: -179px;
-    opacity: 0;
+    position: absolute; top: -4px; left: 8px;
+    display: none;
   }
-  a:hover {
-    color: darken($base, 10%);
+  a {
+    padding: 0 0 10px 12px;
+    &:hover {
+      color: darken($orange, 20%);
+    }
   }
 }
 
@@ -382,7 +438,7 @@ nav ul {
   position: absolute; top: 0px; left: 215px;
   width: 400px;
   padding: 10px 20px 10px 20px;
-  @include background($purple);
+  @include background($red);
   z-index: 900;
   @include transition(all, 0.5s, ease-in-out);
 }
@@ -395,7 +451,7 @@ nav ul {
   padding: 2px 4px 2px 4px;
   border: 0px;
   @include transition(all, 0.5s, ease-in-out);
-  @include background($purple);
+  @include background($red);
   border-radius: 0px;
   &:hover {
     border-bottom: 1px solid $base;
@@ -461,15 +517,15 @@ nav ul {
 .actions {
   position: fixed; left: 220px;  right: 14px;
   padding: 10px 20px 10px 20px;
-  border-bottom: 1px solid transparentize($purple, 0.8);
+  border-bottom: 1px solid transparentize($red, 0.8);
+  @include background($bg);
   z-index: 900;
-  @include background($base);
   ul li.action {
     @include inline-block;
     color: $base;
     font-size: 14px;
     line-height: 14px;
-    @include background($errorColor);
+    @include background($red);
     margin: 10px 20px 0 0;
     padding: 10px 20px 10px 20px;
     @include transition(all, 0.5s);
@@ -487,12 +543,14 @@ nav ul {
 
 .act-sorting {
   position: relative;
+  @include background($red);
+  i { padding: 0 0 0 10px; }
   ul {
     display: none; top: 34px; left: 0px;
     position: absolute;
     width: 160px;
     padding: 10px;
-    @include background($purple);
+    @include background($red);
     a {
       font-family: 'Lato';
       font-size: 14px;
@@ -515,7 +573,7 @@ nav ul {
 }
 
 .podcastList {
-  width: 840px;
+  // width: 840px;
   margin: 80px 0 0 0;
   padding: 20px;
 }
@@ -526,7 +584,7 @@ nav ul {
   width: 30%; height: 160px;
   margin: 40px 3% 40px 0;
   padding: 10px;
-  @include background(white);
+  @include background($orange-to-red-trans);
   // border: 1px solid $purple;
   // border-radius: 5px;
   // box-shadow: 0 0 10px $red;
@@ -537,7 +595,7 @@ nav ul {
 }
 
 .selected {
-  @include background(transparentize($purple, 0.8));
+  @include background(transparentize($red, 0.7));
 }
 
 .pulser {
@@ -546,7 +604,7 @@ nav ul {
   opacity: 0;
   width: 40px; height: 40px;
   border-radius: 20px;
-  @include background(transparentize($purple, 0.2));
+  @include background(transparentize($orange, 0.2));
 }
 
 // Re-enable/design this at some later point in time.
@@ -555,7 +613,7 @@ nav ul {
 .podcast-date {
   position: absolute; right: -10px; top: -10px;
   width: 140px; height: 40px;
-  @include background(transparentize($purple, 0.2));
+  @include background($orange-to-red);
   p {
     color: $base;
     padding: 7px 4px 4px 10px;
@@ -571,7 +629,7 @@ nav ul {
     display: block;
     font-size: 24px;
     line-height: 34px;
-    color: darken($brown, 10%);
+    color: darken($copy, 10%);
   }
 }
 
@@ -583,197 +641,35 @@ nav ul {
   position: absolute; bottom: -44px; left: 0px;
   opacity: 0;
   width: 100%; height: 32px;
-  @include background(transparentize($purple, 0.2));
+  @include background($orange);
   @include transition(all, 0.3s);
   a {
     @include inline-block;
     width: 20%;
-    color: $base;
+    color: $white;
     font-size: 18px;
     margin-top: 4px;
     padding: 0px 12px 0 12px;
-    border-right: 1px solid $base;
+    border-right: 1px solid $white;
     &:last-of-type { border-right: 0px; }
-    &:hover { color: $purple; }
+    &:hover { color: $red; }
   }
 }
 
-.podcast-item:hover > .item-actions { opacity: 1; }
-
-// .podcast-date {
-//   width: 200px; height: 100px;
-//   margin: 0px; padding: 40px;
-// }
-
-// .podcast-title {
-//   width: 50%;
-// }
-
-// .dotted-vertical {
-//   position: absolute; top: 10%; left: 200px;
-//   width: 24px; height: 90%;
-//   @include background(image-url("/img/dotted-vertical.png") repeat);
-//   z-index: 1;
-// }
-
-
-// .listen {
-//   float: left;
-//   width: 75%;
-//   padding: 0;
-//   margin: 0 0 20px 0;
-//   h1 {
-//     font-size: 22px;
-//     text-transform: uppercase;
-//     margin: 6px 0 6px 0;
-//     padding: 0 0 0 20px;
-//   }
-  
-// }
-
-// .podcast-header {
-//   padding: 0 0 0 20px;
-//   border-top: 1px solid $borderColor;
-//   border-right: 1px solid $borderColor;
-//   margin-bottom: 0px;
-//   line-height: 0px;
-//   overflow: auto;
-//   @include transition-property(background-color);
-//   @include transition-duration(0.5s);
-//   div {
-//     @include inline-block;
-//     margin: 0; padding: 0;
-//   }
-// }
-
-// .podcast-header-date {
-//   width: 15%; min-height: 100%;
-//   p {
-//     font-size: 12px;
-//     line-height: 18px;
-//     text-transform: uppercase;
-//     margin: 0;
-//     a { border: 0px; }
-//     a i {
-//       font-size: 14px;
-//       line-height: 18px;
-//     }
-//   }
-// }
-
-// .podcast-header-title {
-//   width: 55%;
-//   border-left: 1px solid $borderColor;
-//   p {
-//     font-size: 12px;
-//     line-height: 18px;
-//     text-transform: uppercase;
-//     margin: 0;
-//     padding: 11px 10px 11px 10px;
-//     a { border: 0px; }
-//     a i {
-//       font-size: 14px;
-//       line-height: 18px;
-//     }
-//   }
-// }
-
-// .podcast-header-feed {
-//   width: 30%; height: 100%;
-//   border-left: 1px solid $borderColor;
-//   p {
-//     font-size: 12px;
-//     line-height: 18px;
-//     text-transform: uppercase;
-//     margin: 0;
-//     padding: 11px 10px 11px 10px;
-//     a { border: 0px; }
-//     a i {
-//       font-size: 14px;
-//       line-height: 18px;
-//     }
-
-//   }
-// }
-
-.podcastItem {
-  padding: 0 0 0 20px;
-  border-bottom: 1px solid $borderColor;
-  border-right: 1px solid $borderColor;
-  margin-bottom: 0px;
-  overflow: auto;
-  @include transition-property(background-color);
-  @include transition-duration(0.5s);
-  > div {
-    @include inline-block;
-    margin: 0; padding: 0;
-  }
-  &:hover {
-    background-color: rgba(33, 33, 33, 0.05);
-  }
-}
-
-.podcastDate {
-  width: 15%; min-height: 100%;
-  p {
-    font-size: 14px;
-    margin: 0;
-    display: block;
-  }
-}
-
-.podcastTitle {
-  width: 55%;
-  border-left: 1px solid $borderColor;
-  position: relative;
-  p {
-    font-size: 16px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 0;
-    padding: 11px 10px 11px 10px;
-    a {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      border: 0px;
-    }
-    a.false {
-      font-weight: 700;
-    }
-  }
-}
-
-.podcastFeed {
-  p {
-    font-size: 12px;
-    text-transform: uppercase;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin: 0;
-    padding: 11px 10px 11px 10px;
-    a {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      border: 0px;
-    }
-  }
-}
+// .podcast-item:hover > .item-actions { opacity: 1; }
 
 div.podcastDescription {
   display: none;
-  padding: 0 20px 0 0;
+  position: absolute; top: 160px; left: 0px;
+  width: 100%;
+  padding: 10px;
+  z-index: 100;
+  @include background($white);
+  // padding: 0 20px 0 0;
   p {
     margin-bottom: 0px;
     padding-bottom: 12px;
   }
-}
-
-.podcastItem.selected {
-  background-color: rgba($errorColor, 0.1);
 }
 
 /* -----------------------------------------
@@ -784,8 +680,6 @@ div.podcastDescription {
   max-width: 840px;
   padding: 20px;
 }
-
-
 
 .information {
   position: relative;
@@ -803,7 +697,7 @@ div.podcastDescription {
   a { color: darken($linkColor, 25%); }
 }
 
-
+.claim-username,
 .update-password {
   h3 {
     width: 20%;
@@ -812,17 +706,23 @@ div.podcastDescription {
   input {
     width: 400px; height: 40px;
     display: block;
-    margin: 20px 0 0 0;
-    padding: 0px 10px 0px 10px;
-    background-color: white;
-    border: 1px solid $linkColor;
-    @include transition(all, 0.5s, ease-in-out);
+    font-family: $baseFontFamily;
+    color: $base;
+    padding: 2px 4px 2px 4px;
+    border: 0px;
+    @include transition(all, 0.5s);
+    @include background($orange);
+    border-radius: 0px;
     &:hover {
-      @include box-shadow($linkColor 0px 0px 2px);
+      @include background($red)
+      // border-bottom: 1px solid $base;
+      // @include box-shadow($base 0px 0px 10px);
     }
     &:focus {
-      outline: 0;
-      @include box-shadow($linkColor 0px 0px 10px);
+      @include background($red);
+      outline: 1px solid $red;
+      // border-bottom: 2px solid $base;
+      // @include box-shadow($base 0px 0px 20px);
     }
     &:last-of-type {
       width: 70px;
@@ -834,17 +734,14 @@ div.podcastDescription {
 a.delete, a.delete:visited {
   color: $base;
   font-size: 14px;
-  background-color: $errorColor;
-  border: 1px solid $borderColor;
   padding: 12px 16px 12px 16px;
   margin: 0 0 40px 0;
   border-radius: 4px;
   @include inline-block;
-  @include transition(all, 0.5s, ease-in-out);
+  @include transition(all, 0.5s);
+  @include background($red);
   &:hover {
-    color: $base;
-    border: 1px solid $borderColor;
-    @include box-shadow($errorColor 0px 0px 10px);
+    @include background($orange);
   }
 }
 
@@ -1153,18 +1050,6 @@ a.delete, a.delete:visited {
 }
 
 
-
-/*******************************************
-*
-* Canvas
-*
-*******************************************/
-#wave, #about-wave, #header-wave {
-  width: 100%;
-  height: 40px;
-  position: relative;
-  z-index: 10;
-}
 
 @-webkit-keyframes pulse {
   0% { opacity: 0; }
