@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 0.6.2
+//  Current version: 1.0
 //
 //  Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -26,8 +26,8 @@ var express = require('express')
   , async = require('async')
   , xml2js = require('xml2js')
   , nodemailer = require('nodemailer')
-  // , bcrypt = require('bcrypt')
-  , bcrypt = require('node.bcrypt.js')
+  , bcrypt = require('bcrypt')
+  // , bcrypt = require('node.bcrypt.js')
   , moment = require('moment')
   , mongodb = require('mongodb')
   , conf = require('./conf')
