@@ -67,7 +67,8 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
   });
 
   app.get('/directory/category/:category', loadUser, function(req, res) {
-    Directory.find({ 'categories' : req.params.category }).toArray(function(err, result) {
+    Directory.find({ 'categories' : { $in : [req.params.category] } }).toArray(function(err, result) {
+      console.log(result);
       if(err) { throw err; }
       res.render('directory', {
         locals: {
@@ -80,7 +81,8 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
   });
 
   app.post('/directory/category/:category', loadUser, function(req, res) {
-    Directory.find({ 'categories' : req.params.category }).toArray(function(err, result) {
+    Directory.find({ 'categories' : { $in : [req.params.category] } }).toArray(function(err, result) {
+      console.log(result);
       if(err) { throw err; }
       res.partial('directory/directory-main', {
         locals: {
