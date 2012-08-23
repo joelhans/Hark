@@ -1,4 +1,15 @@
 # ------------------------------
+# Layout
+# ------------------------------
+wookmark = () ->
+  $('.directory-item').wookmark({
+    container: $('.directory-main'),
+    offset: 20,
+    autoResize: true
+  });
+  console.log 'wookmarking it'
+
+# ------------------------------
 # Link handlers
 # ------------------------------
 $(document)
@@ -22,6 +33,7 @@ $(document)
         $('.primary').html(data)
         console.log data
         ajaxHelpers()
+        wookmark()
 
   .delegate '.category a.loadAll', 'click', (e) ->
     e.preventDefault()
@@ -32,3 +44,4 @@ $(document)
       success : (data) ->
         $('.hark-container').html(data)
         ajaxHelpers()
+        wookmark()

@@ -94,6 +94,9 @@ ROADMAP
   [x] --  A "Hark Directory"
             * This will be a central location for feeds.
             * I will be able to add new feeds to this database, and users will be able to browse/search for items that they're interested in.
+    1.0.1
+    ----------
+    [x] -- Improved organization/styles in the directory.
   
   1.1
   ----------
@@ -126,19 +129,30 @@ BUGS
 
   ****
   ----------
+  [ ] --  1.0B01 -- Volume is automatically set at 0. Set at 50%.
+  [ ] --  1.0B02 -- "Momentize" isn't being properly called upon AJAX loading (for "All" feeds). It's also slow.
+                    * What's up with "Uncaught ReferenceError: SBN is not defined"?
+                    * Something to do with History.JS, I think.
+  [ ] --  1.0B03 -- Incorporate differentiator between listened/not-listened items in single view.
+  [ ] --  1.0B04 -- Scrollbars don't work properly when switching between directory and listen, for example.
+  [ ] --  1.0B11 -- Add feed input is hidden due to overflow-x on the sidebar element.
+  [ ] --  1.0B12 -- Need a new logo!
 
   ***
   ----------
-  [ ] --  When reading podcast descriptions, the left column height doesn't get reset properly.
+  [ ] --  1.0B05 -- Add a hover effect so people know they're hovering over a podcast title link.
+  [ ] --  1.0B06 -- Update the 404 to be styled like the new Hark.
+  [ ] --  1.0B07 -- Title is not updated when navigating via AJAX.
 
   **
   ----------
-  [ ] --  Account deletion doesn't route the user back home once it's done.
-  [ ] --  Rapid-click on "mark as listened" causes some to not have successful POSTs. (Web sockets?)
+  [ ] --  1.0B08 -- Incorporate some kind of loading screen for loading the main screen. It's a bit slow.
+  [ ] --  1.0B09 -- Add in some kind of animation for remaining podcast items when you mark one as "read."
+  [ ] --  1.0B10 -- The "source" links in some feeds don't work. Maybe convert to GUID?
 
   *
   ----------
-
+  [ ] --  Rapid-click on "mark as listened" causes some to not have successful POSTs. (Web sockets?)
 
 OTHER POSSIBLE FEATURES
 
@@ -152,15 +166,3 @@ Turn the getFeeds function into a cursor.each one like the updateFeeds one. Shou
 Sanitize inputs.
   * Login -- user e-mails.
   * Feeds -- How to prevent maliciousness?
-
-
-TESTING
-
-  NAVIGATION
-  [ ] -- All links functioning, loading content.
-
-  LISTEN
-  [ ] -- Add feed via "Add" on the sidebar.
-  [ ] -- Update feeds.
-  [ ] -- Load single feed view based on sidebar links.
-  [ ] -- Load single feed biew based on podcast item link.

@@ -7,6 +7,11 @@ $ = jQuery
 $(document).ready () ->
   ajaxHelpers()
 
+  State = History.getState()
+  console.log State
+
+  wookmark()
+  
 # ------------------------------
 # On window resize
 # ------------------------------
@@ -55,6 +60,7 @@ History.Adapter.bind window, 'statechange', () ->
       success: (data) ->
         $('.hark-container').html(data)
         ajaxHelpers()
+        wookmark()
   else if State.hash == '/settings'
     $.ajax
       type: 'POST'
