@@ -94,9 +94,10 @@ ROADMAP
   [x] --  A "Hark Directory"
             * This will be a central location for feeds.
             * I will be able to add new feeds to this database, and users will be able to browse/search for items that they're interested in.
-    1.0.1
+    1.0.x
     ----------
     [x] -- Improved organization/styles in the directory.
+    [x] --  1.0B01 -- Volume is automatically set at 0. Set at 50%.
   
   1.1
   ----------
@@ -129,20 +130,25 @@ BUGS
 
   ****
   ----------
-  [ ] --  1.0B01 -- Volume is automatically set at 0. Set at 50%.
   [ ] --  1.0B02 -- "Momentize" isn't being properly called upon AJAX loading (for "All" feeds). It's also slow.
                     * What's up with "Uncaught ReferenceError: SBN is not defined"?
                     * Something to do with History.JS, I think.
+                    * Might also want to look into pjax to simplify this.
+                    * https://github.com/defunkt/jquery-pjax
   [ ] --  1.0B03 -- Incorporate differentiator between listened/not-listened items in single view.
   [ ] --  1.0B04 -- Scrollbars don't work properly when switching between directory and listen, for example.
   [ ] --  1.0B11 -- Add feed input is hidden due to overflow-x on the sidebar element.
+                    * Just make it appear under the "Add" item. No position: absolute.
   [ ] --  1.0B12 -- Need a new logo!
+                    * Check the upper-left version, and the log-in, sign-up version. Check in FF, too.
 
   ***
   ----------
   [ ] --  1.0B05 -- Add a hover effect so people know they're hovering over a podcast title link.
   [ ] --  1.0B06 -- Update the 404 to be styled like the new Hark.
   [ ] --  1.0B07 -- Title is not updated when navigating via AJAX.
+                    * Might also want to look into pjax to simplify this.
+                    * https://github.com/defunkt/jquery-pjax
 
   **
   ----------

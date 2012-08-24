@@ -196,8 +196,8 @@ header {
   width: 150px; height: 60px;
   margin: 14px 0 0 20px;
   @include background(image-url('/img/hark-logo-v3-display.svg') no-repeat);
-  background-size: 120px 120px;
-  background-position: -12px -30px;
+  background-size: 100px 60px;
+  background-position: -10px 0px;
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -269,7 +269,7 @@ nav ul {
   font-size: 18px;
   font-weight: 400;
   margin: 0px;
-  padding: 16px 20px 14px 20px;
+  padding: 16px 20px 14px 24px;
   border: 0;
 }
 

@@ -15,7 +15,7 @@ $(document).ready(function() {
     // solution: 'html, flash',
     solution: 'flash, html',
     errorAlerts: false,
-    volume: 0,
+    volume: 0.5,
     play: function(d) {
       $('.jp-playing').fadeIn(300);
       updatePlaying = setInterval(function(){
