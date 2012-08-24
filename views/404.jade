@@ -1,28 +1,22 @@
 doctype 5
 html(lang="en")
 	head
-		title Hark | Log in or sign up.
+		title Hark | Whoops!
 		
 		!=partial('layout/head')
 
 	body
-
 		div.container
-
-			section.row#hark-not-found
-				div.column-6.offset-3.hark
-					img(src='/img/hark-logo-full.png')
-					div.pulse
-					&nbsp;
-
-			section.row.not-found
-				div.column-8.offset-2
+			div.row
+				section.column-12.signup-intro
+					a.hark-logo-big.logo-spin(href="/login")
+						img(src='/img/hark-logo-v3-display.svg')
 					h1 Whoops, you've arrived at a 404 error.
 					h2 That means you either ended up in a place that doesn't exist, or tried to go where you shouldn't. Naughty you.
 
-				div.column-4.offset-1
-					p Were you logged in? If so, let's try to get you back to your podcasts. 
-						a(href='/listen') Get back to listening.
-				div.column-4.offset-2
-					p Need an account? Need to login? Lets tak you back home. 
-						a(href='/login') Go login or get an account.
+			div.column-4.offset-1
+				p Were you logged in? If so, let's try to get you back to your podcasts. 
+					a.history-ignore(href='/listen') Get back to listening.
+			div.column-4.offset-2
+				p Need an account? Need to login? Lets tak you back home. 
+					a.history-ignore(href='/signup') Go login or get an account.

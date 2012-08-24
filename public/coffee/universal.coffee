@@ -37,10 +37,9 @@ History = window.History
 siteUrl = "http://" + top.location.host.toString()
 
 $(document)
-  .delegate 'a[href="/listen"], a[href="/directory"], a[href="/settings"], a[href="/help"]', "click", (e) ->
+  .delegate 'a:not(.history-ignore)[href="/listen"], a[href="/directory"], a[href="/settings"], a[href="/help"]', "click", (e) ->
     e.preventDefault()
     State = History.getState()
-    console.log State
     History.pushState {}, "", $(e.currentTarget).attr 'href'
 
 History.Adapter.bind window, 'statechange', () ->

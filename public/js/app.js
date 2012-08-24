@@ -27,11 +27,10 @@
 
   siteUrl = "http://" + top.location.host.toString();
 
-  $(document).delegate('a[href="/listen"], a[href="/directory"], a[href="/settings"], a[href="/help"]', "click", function(e) {
+  $(document).delegate('a:not(.history-ignore)[href="/listen"], a[href="/directory"], a[href="/settings"], a[href="/help"]', "click", function(e) {
     var State;
     e.preventDefault();
     State = History.getState();
-    console.log(State);
     return History.pushState({}, "", $(e.currentTarget).attr('href'));
   });
 

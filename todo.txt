@@ -105,6 +105,8 @@ ROADMAP
                     * Just make it appear under the "Add" item. No position: absolute.
     [x] --  1.0B02 -- "Momentize" isn't being properly called upon AJAX loading (for "All" feeds). It's also slow.
     [x] --  1.0B04 -- Scrollbars don't work properly when switching between directory and listen, for example.
+    [x] --  1.0B05 -- Add a hover effect so people know they're hovering over a podcast title link.
+    [x] --  1.0B06 -- Update the 404 to be styled like the new Hark.
   
   1.1
   ----------
@@ -141,8 +143,6 @@ BUGS
 
   ***
   ----------
-  [ ] --  1.0B05 -- Add a hover effect so people know they're hovering over a podcast title link.
-  [ ] --  1.0B06 -- Update the 404 to be styled like the new Hark.
   [ ] --  1.0B07 -- Title is not updated when navigating via AJAX.
                     * Might also want to look into pjax to simplify this.
                     * https://github.com/defunkt/jquery-pjax

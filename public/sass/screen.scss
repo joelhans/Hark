@@ -626,7 +626,7 @@ nav ul {
     line-height: 34px;
     color: darken($copy, 10%);
     &:hover {
-      @include background($orange-to-red);
+      color: $red;
     }
   }
 }
@@ -794,11 +794,14 @@ a.delete, a.delete:visited {
 * 404 error
 *
 *******************************************/
-#hark-not-found { padding: 80px 0 40px 0; }
-
-.not-found {
-  h1, h2 { text-align: center; }
-  .column-8 { margin-bottom: 100px; }
+a.logo-spin {
+  margin: 80px 0 80px 0;
+  -webkit-animation: spinner 5s infinite;
+  -moz-animation:    spinner 5s infinite;
+  -ms-animation:     spinner 5s infinite;
+  -webkit-animation-timing-function:  linear;
+  -moz-animation-timing-function:   linear;
+  -ms-animation-timing-function:    linear;
 }
 
 /*******************************************
@@ -1051,6 +1054,35 @@ a.delete, a.delete:visited {
 
 }
 
+/*******************************************
+*
+* Animations
+*
+*******************************************/
+
+@-webkit-keyframes spinner {
+  0% { @include rotate(0deg) }
+  50%  { @include rotate(180deg) }
+  100% { @include rotate(360deg) }
+}
+
+@-moz-keyframes spinner {
+  0% { @include rotate(0deg) }
+  50%  { @include rotate(180deg) }
+  100% { @include rotate(360deg) }
+}
+
+@-ms-keyframes spinner {
+  0% { @include rotate(0deg) }
+  50%  { @include rotate(180deg) }
+  100% { @include rotate(360deg) }
+}
+
+@keyframes spinner {
+  0% { @include rotate(0deg) }
+  50%  { @include rotate(180deg) }
+  100% { @include rotate(360deg) }
+}
 
 
 @-webkit-keyframes pulse {
