@@ -89,12 +89,13 @@ html, body {
   @include inline-block;
   width: 330px; height: 220px;
   margin: 0 auto;
-  @include background(image-url('/img/hark-logo-v3-display.svg') no-repeat);
-  background-size: 400px 400px;
-  background-position: -12px -80px;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
+  // @include background(image-url('/img/hark-logo-v3-display.svg') no-repeat);
+  // background-size: 400px 400px;
+  // background-position: -12px -80px;
+  // text-indent: 100%;
+  // white-space: nowrap;
+  // overflow: hidden;
+  img { width: 330px; }
 }
 
 .claim-username,
@@ -193,14 +194,19 @@ header {
 
 .hark-logo a {
   float: left;
-  width: 150px; height: 60px;
-  margin: 14px 0 0 20px;
-  @include background(image-url('/img/hark-logo-v3-display.svg') no-repeat);
-  background-size: 100px 60px;
-  background-position: -10px 0px;
+  width: 200px; height: 80px;
+  // margin: 14px 0 0 20px;
+  // @include background(image-url('/img/hark-logo-v3-display.svg') no-repeat);
+  // background-size: 100px 60px;
+  // background-position: -10px 0px;
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
+  img {
+    display: block;
+    width: 110px;
+    margin: -40px 0 0 20px;
+  }
 }
 
 nav ul {
