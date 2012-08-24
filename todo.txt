@@ -103,6 +103,8 @@ ROADMAP
     [x] --  1.0B03 -- Incorporate differentiator between listened/not-listened items in single view.
     [x] --  1.0B11 -- Add feed input is hidden due to overflow-x on the sidebar element.
                     * Just make it appear under the "Add" item. No position: absolute.
+    [x] --  1.0B02 -- "Momentize" isn't being properly called upon AJAX loading (for "All" feeds). It's also slow.
+    [x] --  1.0B04 -- Scrollbars don't work properly when switching between directory and listen, for example.
   
   1.1
   ----------
@@ -135,12 +137,6 @@ BUGS
 
   ****
   ----------
-  [ ] --  1.0B02 -- "Momentize" isn't being properly called upon AJAX loading (for "All" feeds). It's also slow.
-                    * What's up with "Uncaught ReferenceError: SBN is not defined"?
-                    * Something to do with History.JS, I think.
-                    * Might also want to look into pjax to simplify this.
-                    * https://github.com/defunkt/jquery-pjax
-  [ ] --  1.0B04 -- Scrollbars don't work properly when switching between directory and listen, for example.
   [ ] --  1.0B12 -- Error modals need to be fixed.
 
   ***
@@ -162,6 +158,8 @@ BUGS
   [ ] --  Rapid-click on "mark as listened" causes some to not have successful POSTs. (Web sockets?)
 
 OTHER POSSIBLE FEATURES
+
+Look into pjax for simplified HTML History? https://github.com/defunkt/jquery-pjax
 
 Allow people to "bookmark" various points in a podcast and append them with notes, etc.
   * Use something similar to YouTube's timestamp?

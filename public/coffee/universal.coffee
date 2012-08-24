@@ -51,7 +51,7 @@ History.Adapter.bind window, 'statechange', () ->
       type: 'POST'
       url: '/listen'
       success: (data) ->
-        $('.hark-container').html(data)
+        $('.hark-container').replaceWith(data)
         ajaxHelpers()
   else if State.hash == '/directory'
     $.ajax

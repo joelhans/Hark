@@ -625,6 +625,9 @@ nav ul {
     font-size: 24px;
     line-height: 34px;
     color: darken($copy, 10%);
+    &:hover {
+      @include background($orange-to-red);
+    }
   }
 }
 

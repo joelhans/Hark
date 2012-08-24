@@ -44,7 +44,7 @@
         type: 'POST',
         url: '/listen',
         success: function(data) {
-          $('.hark-container').html(data);
+          $('.hark-container').replaceWith(data);
           return ajaxHelpers();
         }
       });
