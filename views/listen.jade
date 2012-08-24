@@ -1,10 +1,7 @@
 doctype 5
 html(lang="en")
 	head
-		if (typeof(user.username) !== 'undefined')
-			title Hark | #{user.username}'s podcasts
-		else
-			title Hark | Your podcasts
+		title Hark | Your podcasts
 
 		!=partial('layout/head')
 

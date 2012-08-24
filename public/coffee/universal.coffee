@@ -37,22 +37,27 @@ History = window.History
 siteUrl = "http://" + top.location.host.toString()
 
 $(document)
-  .delegate 'a:not(.history-ignore)[href="/listen"], a[href="/directory"], a[href="/settings"], a[href="/help"]', "click", (e) ->
+  .delegate 'a:not(.history-ignore)[href="/listen"], 
+             a[href="/directory"],
+             a[href="/settings"],
+             a[href="/help"],
+             a[href^="/listen/podcast/"],
+             a[href^="/directory/category/"]', "click", (e) ->
     e.preventDefault()
     State = History.getState()
     History.pushState {}, "", $(e.currentTarget).attr 'href'
 
 History.Adapter.bind window, 'statechange', () ->
   State = History.getState()
-  History.log(State.data, State.title, State.url)
-  if State.hash == '/listen'
+  History.log(State.data, State.title, State.url, State.hash)
+  if State.hash == '/listen' || State.hash == '/listen/'
     $.ajax
       type: 'POST'
       url: '/listen'
       success: (data) ->
         $('.hark-container').replaceWith(data)
         ajaxHelpers()
-  else if State.hash == '/directory'
+  else if State.hash == '/directory' || State.hash == '/directory/'
     $.ajax
       type: 'POST'
       url: '/directory'
@@ -60,19 +65,35 @@ History.Adapter.bind window, 'statechange', () ->
         $('.hark-container').html(data)
         ajaxHelpers()
         wookmark()
-  else if State.hash == '/settings'
+  else if State.hash == '/settings' || State.hash == '/settings/'
     $.ajax
       type: 'POST'
       url: '/settings'
       success: (data) ->
         $('.hark-container').html(data)
         ajaxHelpers()
-  else if State.hash == '/help'
+  else if State.hash == '/help' || State.hash == '/help/'
     $.ajax
       type: 'POST'
       url: '/help'
       success: (data) ->
         $('.hark-container').html(data)
+        ajaxHelpers()
+  else if State.hash.indexOf('/listen/podcast/') isnt -1
+    $.ajax
+      type: 'POST'
+      data: { feedID : State.hash.split('/')[3] }
+      url: State.hash
+      success: (data) ->
+        $('.primary').html(data)
+        ajaxHelpers()
+  else if State.hash.indexOf('/directory/category/') isnt -1
+    $.ajax
+      type: 'POST'
+      data: { feedID : State.hash.split('/')[3] }
+      url: State.hash
+      success: (data) ->
+        $('.primary').html(data)
         ajaxHelpers()
   else
     return

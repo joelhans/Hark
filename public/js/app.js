@@ -27,7 +27,12 @@
 
   siteUrl = "http://" + top.location.host.toString();
 
-  $(document).delegate('a:not(.history-ignore)[href="/listen"], a[href="/directory"], a[href="/settings"], a[href="/help"]', "click", function(e) {
+  $(document).delegate('a:not(.history-ignore)[href="/listen"], \
+             a[href="/directory"],\
+             a[href="/settings"],\
+             a[href="/help"],\
+             a[href^="/listen/podcast/"],\
+             a[href^="/directory/category/"]', "click", function(e) {
     var State;
     e.preventDefault();
     State = History.getState();
@@ -37,8 +42,8 @@
   History.Adapter.bind(window, 'statechange', function() {
     var State;
     State = History.getState();
-    History.log(State.data, State.title, State.url);
-    if (State.hash === '/listen') {
+    History.log(State.data, State.title, State.url, State.hash);
+    if (State.hash === '/listen' || State.hash === '/listen/') {
       return $.ajax({
         type: 'POST',
         url: '/listen',
@@ -47,7 +52,7 @@
           return ajaxHelpers();
         }
       });
-    } else if (State.hash === '/directory') {
+    } else if (State.hash === '/directory' || State.hash === '/directory/') {
       return $.ajax({
         type: 'POST',
         url: '/directory',
@@ -57,7 +62,7 @@
           return wookmark();
         }
       });
-    } else if (State.hash === '/settings') {
+    } else if (State.hash === '/settings' || State.hash === '/settings/') {
       return $.ajax({
         type: 'POST',
         url: '/settings',
@@ -66,12 +71,36 @@
           return ajaxHelpers();
         }
       });
-    } else if (State.hash === '/help') {
+    } else if (State.hash === '/help' || State.hash === '/help/') {
       return $.ajax({
         type: 'POST',
         url: '/help',
         success: function(data) {
           $('.hark-container').html(data);
+          return ajaxHelpers();
+        }
+      });
+    } else if (State.hash.indexOf('/listen/podcast/') !== -1) {
+      return $.ajax({
+        type: 'POST',
+        data: {
+          feedID: State.hash.split('/')[3]
+        },
+        url: State.hash,
+        success: function(data) {
+          $('.primary').html(data);
+          return ajaxHelpers();
+        }
+      });
+    } else if (State.hash.indexOf('/directory/category/') !== -1) {
+      return $.ajax({
+        type: 'POST',
+        data: {
+          feedID: State.hash.split('/')[3]
+        },
+        url: State.hash,
+        success: function(data) {
+          $('.primary').html(data);
           return ajaxHelpers();
         }
       });

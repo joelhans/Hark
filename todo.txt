@@ -94,7 +94,7 @@ ROADMAP
   [x] --  A "Hark Directory"
             * This will be a central location for feeds.
             * I will be able to add new feeds to this database, and users will be able to browse/search for items that they're interested in.
-    1.0.x
+    1.0.1
     ----------
     [x] -- Improved organization/styles in the directory.
     [x] --  1.0B01 -- Volume is automatically set at 0. Set at 50%.
@@ -107,6 +107,8 @@ ROADMAP
     [x] --  1.0B04 -- Scrollbars don't work properly when switching between directory and listen, for example.
     [x] --  1.0B05 -- Add a hover effect so people know they're hovering over a podcast title link.
     [x] --  1.0B06 -- Update the 404 to be styled like the new Hark.
+    [x] --  1.0B13 -- GET requests to directory categories lead to a 404.
+    [x] --  1.0B14 -- AJAX requests do not push the correct new URL to the address bar.
   
   1.1
   ----------
@@ -152,6 +154,7 @@ BUGS
   [ ] --  1.0B08 -- Incorporate some kind of loading screen for loading the main screen. It's a bit slow.
   [ ] --  1.0B09 -- Add in some kind of animation for remaining podcast items when you mark one as "read."
   [ ] --  1.0B10 -- The "source" links in some feeds don't work. Maybe convert to GUID?
+                    * I've noticed that some GUIDs have the same problem. Hmm.
 
   *
   ----------

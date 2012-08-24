@@ -42,6 +42,7 @@ $(document)
 
 $(document)
   .delegate '.allFeeds a', 'click', (e) ->
+    # History.pushState {}, "Hark | Your podcasts", $(e.currentTarget).attr 'href'
     e.preventDefault()
     $.ajax
       type    : 'POST'
@@ -56,6 +57,7 @@ $(document)
 
 $(document)
   .delegate '.loadFeed, .loadFeedFromItem', 'click', (e) ->
+    # History.pushState {}, "Hark | " + $('.loadFeed').text(), $(e.currentTarget).attr 'href'
     e.preventDefault()
     data =
       feedID : $(this).attr('href').split('/')[3]
