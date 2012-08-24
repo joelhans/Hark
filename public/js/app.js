@@ -138,7 +138,7 @@
   };
 
   $(document).delegate('.act-add', 'click', function(e) {
-    return $('.add-feed-container').toggle();
+    return $('.add-feed').toggle();
   });
 
   $('.add-feed').live('keypress', function(e) {
@@ -154,7 +154,7 @@
         success: function(data) {
           $('.hark-container').html(data);
           $('.add-feed').val('');
-          $('.add-feed-container').hide();
+          $('.add-feed').hide();
           return ajaxHelpers();
         }
       });

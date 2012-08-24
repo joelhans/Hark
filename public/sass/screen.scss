@@ -438,34 +438,23 @@ nav ul {
   }
 }
 
-.add-feed-container {
-  // opacity: 0;
-  display: none;
-  position: absolute; top: 0px; left: 215px;
-  width: 400px;
-  padding: 10px 20px 10px 20px;
-  @include background($red);
-  z-index: 900;
-  @include transition(all, 0.5s, ease-in-out);
-}
-
 .add-feed {
-  margin: 0 0 0 1px;
+  display: none;
   width: 100%;
   font-family: $baseFontFamily;
   color: $base;
-  padding: 2px 4px 2px 4px;
+  padding: 6px 12px 6px 12px;
+  margin: 0px;
   border: 0px;
-  @include transition(all, 0.5s, ease-in-out);
-  @include background($red);
-  border-radius: 0px;
+  @include transition(all, 0.5s);
+  @include background($orange);
   &:hover {
-    border-bottom: 1px solid $base;
+    @include background($red);
     // @include box-shadow($base 0px 0px 10px);
   }
   &:focus {
     outline: 0;
-    border-bottom: 2px solid $base;
+    @include background($red);
     // @include box-shadow($base 0px 0px 20px);
   }
 }

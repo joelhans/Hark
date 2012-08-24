@@ -4,7 +4,7 @@
 
 $(document)
   .delegate '.act-add', 'click', (e) ->
-    $('.add-feed-container').toggle()
+    $('.add-feed').toggle()
 
 $('.add-feed').live 'keypress', (e) ->
   if e.which is 13
@@ -17,7 +17,7 @@ $('.add-feed').live 'keypress', (e) ->
       success: (data) ->
         $('.hark-container').html(data)
         $('.add-feed').val('')
-        $('.add-feed-container').hide()
+        $('.add-feed').hide()
         ajaxHelpers()
 
 # ------------------------------

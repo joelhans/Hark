@@ -21,7 +21,7 @@ section.actions
 if podcasts
 	ul.podcastList
 		for podcast in podcasts
-			li.podcast-item.single(data-uuid='' + podcast.podUUID, data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, data-feedUUID='' + podcast.feedUUID, data-source='' + podcast.podLink, data-listened='' + podcast.listened)
+			li.podcast-item.single(data-uuid='' + podcast.podUUID, data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, data-feedUUID='' + podcast.feedUUID, data-source='' + podcast.podLink)
 				div.pulser
 				div.podcast-date
 					p.moment #{podcast.podDate._d}

@@ -100,7 +100,9 @@ ROADMAP
     [x] --  1.0B01 -- Volume is automatically set at 0. Set at 50%.
     [x] --  1.0B12 -- Need a new logo!
                     * Check the upper-left version, and the log-in, sign-up version. Check in FF, too.
-    [ ] --  1.0B03 -- Incorporate differentiator between listened/not-listened items in single view.
+    [x] --  1.0B03 -- Incorporate differentiator between listened/not-listened items in single view.
+    [x] --  1.0B11 -- Add feed input is hidden due to overflow-x on the sidebar element.
+                    * Just make it appear under the "Add" item. No position: absolute.
   
   1.1
   ----------
@@ -139,8 +141,7 @@ BUGS
                     * Might also want to look into pjax to simplify this.
                     * https://github.com/defunkt/jquery-pjax
   [ ] --  1.0B04 -- Scrollbars don't work properly when switching between directory and listen, for example.
-  [ ] --  1.0B11 -- Add feed input is hidden due to overflow-x on the sidebar element.
-                    * Just make it appear under the "Add" item. No position: absolute.
+  [ ] --  1.0B12 -- Error modals need to be fixed.
 
   ***
   ----------

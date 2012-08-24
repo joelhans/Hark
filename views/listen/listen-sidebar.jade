@@ -2,10 +2,9 @@ if feeds
 	ul.subscriptions
 		li.sidebar-item-big.act-add
 			a(href='#') Add
+		input(type='text', class='add-feed', placeholder='Copy an RSS feed here and hit <Enter>.')
 		li.sidebar-item-big.act-update 
 			a(href='#') Update
-		span.add-feed-container
-			input(type='text', class='add-feed', placeholder='Copy an RSS feed here and hit <Enter>.')
 		li.sidebar-item.allFeeds
 			a(href='/listen') All
 		for feed in feeds
