@@ -53,6 +53,7 @@ var parser = new xml2js.Parser();
               mediaType,
               pubDate,
               listened,
+              description,
               construction = new Array(),
               podData = new Array();
 
@@ -74,12 +75,17 @@ var parser = new xml2js.Parser();
                     listened = 'true';
                   }
 
+                  if( feed.item[i].description.indexOf('<script') != -1 )
+                    description = feed.item[i].description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+                  else
+                    description = feed.item[i].description
+
                   podData = {
                     'podTitle'  : feed.item[i].title,
                     'podLink' : feed.item[i].link,
                     'podFile' : feed.item[i].enclosure['@'].url,
                     'podMedia'  : feed.item[i].media,
-                    'podDesc' : feed.item[i].description,
+                    'podDesc' : description,
                     'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
                     'podDate' : pubDate,
                     'prettyDay' : pubDate.format('D'),
@@ -97,6 +103,11 @@ var parser = new xml2js.Parser();
                 }
                 
                 listened = 'false';
+
+                if( feed.item[i].description.indexOf('<script') != -1 )
+                  description = feed.item[i].description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+                else
+                  description = feed.item[i].description
 
                 podData = {
                     'podTitle'  : feed.item.title,
@@ -305,6 +316,11 @@ var parser = new xml2js.Parser();
                       pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
                     }
 
+                    if( feed.item[i].description.indexOf('<script') != -1 )
+                      description = feed.item[i].description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+                    else
+                      description = feed.item[i].description
+
                     podData = {
                       'podTitle'  : feed.item[i].title,
                       'podLink' : feed.item[i].link,
@@ -324,6 +340,11 @@ var parser = new xml2js.Parser();
                   } else if ( typeof feed.item['dc:date'] == "string" ) {
                     pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
                   }
+
+                  if( feed.item[i].description.indexOf('<script') != -1 )
+                    description = feed.item[i].description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+                  else
+                    description = feed.item[i].description
 
                   podData = {
                       'podTitle'  : feed.item.title,

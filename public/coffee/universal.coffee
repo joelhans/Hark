@@ -1,4 +1,5 @@
 $ = jQuery
+History = State = null
 
 # ------------------------------
 # On document load
