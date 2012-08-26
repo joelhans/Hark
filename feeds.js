@@ -301,6 +301,7 @@ var parser = new xml2js.Parser();
               var feed = xml.channel,
                 j,
                 pubDate,
+                description
                 podData = new Array(),
                 newList = [];
 
@@ -326,7 +327,7 @@ var parser = new xml2js.Parser();
                       'podLink' : feed.item[i].link,
                       'podFile' : feed.item[i].enclosure['@'].url,
                       'podMedia'  : feed.item[i].media,
-                      'podDesc' : feed.item[i].description,
+                      'podDesc' : description,
                       'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
                       'podDate' : pubDate,
                       'listened'  : 'false'
@@ -341,17 +342,17 @@ var parser = new xml2js.Parser();
                     pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
                   }
 
-                  if( feed.item[i].description.indexOf('<script') != -1 )
-                    description = feed.item[i].description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+                  if( feed.item.description.indexOf('<script') != -1 )
+                    description = feed.item.description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
                   else
-                    description = feed.item[i].description
+                    description = feed.item.description
 
                   podData = {
                       'podTitle'  : feed.item.title,
                       'podLink' : feed.item.link,
                       'podFile' : feed.item.enclosure['@'].url,
                       'podMedia'  : feed.item.media,
-                      'podDesc' : feed.item.description,
+                      'podDesc' : description,
                       'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
                       'podDate' : pubDate,
                       'prettyDay' : pubDate.format('D'),
