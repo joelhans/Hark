@@ -109,6 +109,11 @@ ROADMAP
     [x] --  1.0B06 -- Update the 404 to be styled like the new Hark.
     [x] --  1.0B13 -- GET requests to directory categories lead to a 404.
     [x] --  1.0B14 -- AJAX requests do not push the correct new URL to the address bar.
+
+    1.0.x
+    ----------
+    [x] --  1.0B12 -- Error modals need to be fixed.
+    [x] --  1.0B08 -- Incorporate some kind of loading screen for loading the main screen. It's a bit slow.
   
   1.1
   ----------
@@ -143,7 +148,7 @@ BUGS
 
   ****
   ----------
-  [ ] --  1.0B12 -- Error modals need to be fixed.
+  
 
   ***
   ----------
@@ -154,7 +159,6 @@ BUGS
 
   **
   ----------
-  [ ] --  1.0B08 -- Incorporate some kind of loading screen for loading the main screen. It's a bit slow.
   [ ] --  1.0B09 -- Add in some kind of animation for remaining podcast items when you mark one as "read."
   [ ] --  1.0B10 -- The "source" links in some feeds don't work. Maybe convert to GUID?
                     * I've noticed that some GUIDs have the same problem. Hmm.

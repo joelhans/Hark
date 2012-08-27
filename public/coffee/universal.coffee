@@ -29,6 +29,7 @@ ajaxHelpers = () ->
   sidebarHeight()
   listenHeight()
   momentize()
+  $('#loading').fadeOut(300)
 
 # ------------------------------
 # HTML5 HISTORY
@@ -49,6 +50,7 @@ $(document)
     History.pushState {}, "", $(e.currentTarget).attr 'href'
 
 History.Adapter.bind window, 'statechange', () ->
+  $('#loading').fadeIn(300)
   State = History.getState()
   History.log(State.data, State.title, State.url, State.hash)
   if State.hash == '/listen' || State.hash == '/listen/'
@@ -64,8 +66,8 @@ History.Adapter.bind window, 'statechange', () ->
       url: '/directory'
       success: (data) ->
         $('.hark-container').html(data)
-        ajaxHelpers()
         wookmark()
+        ajaxHelpers()
   else if State.hash == '/settings' || State.hash == '/settings/'
     $.ajax
       type: 'POST'
@@ -95,8 +97,8 @@ History.Adapter.bind window, 'statechange', () ->
       url: State.hash
       success: (data) ->
         $('.primary').html(data)
-        ajaxHelpers()
         wookmark()
+        ajaxHelpers()
   else
     return
 

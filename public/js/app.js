@@ -21,7 +21,8 @@
   ajaxHelpers = function() {
     sidebarHeight();
     listenHeight();
-    return momentize();
+    momentize();
+    return $('#loading').fadeOut(300);
   };
 
   History = window.History;
@@ -40,6 +41,7 @@
   });
 
   History.Adapter.bind(window, 'statechange', function() {
+    $('#loading').fadeIn(300);
     State = History.getState();
     History.log(State.data, State.title, State.url, State.hash);
     if (State.hash === '/listen' || State.hash === '/listen/') {
@@ -57,8 +59,8 @@
         url: '/directory',
         success: function(data) {
           $('.hark-container').html(data);
-          ajaxHelpers();
-          return wookmark();
+          wookmark();
+          return ajaxHelpers();
         }
       });
     } else if (State.hash === '/settings' || State.hash === '/settings/') {
@@ -100,8 +102,8 @@
         url: State.hash,
         success: function(data) {
           $('.primary').html(data);
-          ajaxHelpers();
-          return wookmark();
+          wookmark();
+          return ajaxHelpers();
         }
       });
     } else {

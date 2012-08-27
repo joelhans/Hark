@@ -847,6 +847,36 @@ a.logo-spin {
   }
 }
 
+/*******************************************
+*
+* Loading
+*
+*******************************************/
+
+#loading {
+  display: none;
+  position: fixed; left: 0px; top: 80px; bottom: 91px; right: 0px;
+  @include background($bg);
+  z-index: 2000;
+}
+
+.loading-box {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.loading-spin {
+  width: 200px;
+  margin: 100px auto 60px auto;
+  -webkit-animation: spinner 5s infinite;
+  -moz-animation:    spinner 5s infinite;
+  -ms-animation:     spinner 5s infinite;
+  -webkit-animation-timing-function:  linear;
+  -moz-animation-timing-function:   linear;
+  -ms-animation-timing-function:    linear;
+}
+
 /* -----------------------------------------
   Media queries for login/signup.
 ----------------------------------------- */
