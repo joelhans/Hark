@@ -134,6 +134,14 @@ listenHeight = () ->
   $('.primary').css('height', c_height - 171)
 
 # ------------------------------
+# Error handling
+# ------------------------------
+
+$('.modal-close')
+  .live 'click', (e) ->
+    $('#modal').fadeOut(200)
+
+# ------------------------------
 # Sidebar hover effect
 # ------------------------------
 

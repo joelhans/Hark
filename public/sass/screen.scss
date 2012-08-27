@@ -809,77 +809,42 @@ a.logo-spin {
 * Other errors
 *
 *******************************************/
-.error {
-  font-size: 14px;
-  line-height: 21px;
-  color: $errorColor;
-}
-
-.success { color: $successColor; }
-
-#error-mask, .js-modal-error { display: none; }
-
-.mask, #error-mask, .settings-mask {
-  width: 100%; height: 100%; min-height: 100%;
+#modal {
+  display: none;
   position: fixed; left: 0px; top: 0px;
+  width: 100%; height: 100%; min-height: 100%;
   @include background(rgba(33, 33, 33, 0.6));
   z-index: 1000;
 }
 
-.settings-mask { display: none; }
-
-.modal-error, .js-modal-error, .settings-modal-error {
-  width: 400px;
-  position: fixed; top: 40%; left: 50%;
-  margin-left: -200px;
-  padding: 20px;
-  @include border-radius(5px);
-  background-color: $errorColor;
-  p {
-    color: $base;
-    margin-bottom: 0px;
-  }
-  .modal-error-close {
-    position: absolute; top: -6px; right: -6px;
-    width: 36px; height: 36px;
-    font-size: 14px;
-    line-height: 14px;
-    color: $body;
-    background-color: $base;
-    @include border-radius(18px);
-    border: 5px solid $errorColor;
-    margin: 0px 0 0 20px;
-    padding: 4px 0 0 9px;
-    @include transition-property(all);
-    @include transition-duration(0.5s);
-    &:hover {
-      border: 5px solid $body;
-      background-color: $base;
-      color: $errorColor;
-      cursor: pointer;
-    }
-  }
+.modal-box {
+  position: relative;
+  width: 600px; height: auto;
+  margin: 20% auto 0 auto;
+  @include background($bg);
 }
 
-.settings-modal-error {
-  a {
-    margin: 30px auto 0 auto;
-    text-align: center;
-    display: block;
-    border: 0px;
-    &:hover { border: 0px; }
-    i {
-      @include transition-property(all);
-      @include transition-duration(0.5s);
-      font-size: 80px;
-      color: $base;
-      &:hover { color: $body; }
-    }
-  }
+.modal-text {
+  padding: 40px;
 }
 
-.modal-error-feed {
-  position: absolute; top: 100px; left: 40px;
+.modal-close {
+  position: absolute; top: -6px; right: -6px;
+  width: 36px; height: 36px;
+  font-size: 14px;
+  line-height: 14px;
+  color: $copy;
+  background-color: $white;
+  @include border-radius(18px);
+  border: 5px solid $orange;
+  margin: 0px 0 0 20px;
+  padding: 4px 0 0 9px;
+  @include transition(all, 0.5s);
+  &:hover {
+    border: 5px solid $red;
+    color: $red;
+    cursor: pointer;
+  }
 }
 
 /* -----------------------------------------

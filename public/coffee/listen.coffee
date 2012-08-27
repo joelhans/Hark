@@ -4,6 +4,7 @@
 
 $(document)
   .delegate '.act-add', 'click', (e) ->
+    e.preventDefault()
     $('.add-feed').toggle()
 
 $('.add-feed').live 'keypress', (e) ->
@@ -14,6 +15,9 @@ $('.add-feed').live 'keypress', (e) ->
       type:    'POST'
       url:     '/listen/add'
       data:    data
+      error: (err) ->
+        $('#modal').html(err.responseText)
+        $('#modal').fadeIn(500)
       success: (data) ->
         $('.hark-container').html(data)
         $('.add-feed').val('')
@@ -31,6 +35,9 @@ $(document)
     $.ajax
       type: 'POST'
       url: '/listen/update'
+      error: (err) ->
+        $('#modal').html(err.responseText)
+        $('#modal').fadeIn(500)
       success: (data) ->
         $('.act-update a').text 'Update'
         $('.primary').html(data)

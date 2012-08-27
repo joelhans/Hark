@@ -100,7 +100,8 @@
         url: State.hash,
         success: function(data) {
           $('.primary').html(data);
-          return ajaxHelpers();
+          ajaxHelpers();
+          return wookmark();
         }
       });
     } else {
@@ -145,6 +146,10 @@
     return $('.primary').css('height', c_height - 171);
   };
 
+  $('.modal-close').live('click', function(e) {
+    return $('#modal').fadeOut(200);
+  });
+
   $(document).delegate('.categories li:not(.safe), .subscriptions li:not(.safe), .currently-playing li:not(.heading), .choose-settings li:not(.safe), .questions li:not(.safe)', 'hover', function(e) {
     if (e.type === 'mouseenter') {
       return $('.hover-er').css('top', $(e.currentTarget).offset().top + 0).css('opacity', '100').css('height', $(e.currentTarget).height());
@@ -165,6 +170,7 @@
   };
 
   $(document).delegate('.act-add', 'click', function(e) {
+    e.preventDefault();
     return $('.add-feed').toggle();
   });
 
@@ -178,6 +184,10 @@
         type: 'POST',
         url: '/listen/add',
         data: data,
+        error: function(err) {
+          $('#modal').html(err.responseText);
+          return $('#modal').fadeIn(500);
+        },
         success: function(data) {
           $('.hark-container').html(data);
           $('.add-feed').val('');
@@ -194,6 +204,10 @@
     return $.ajax({
       type: 'POST',
       url: '/listen/update',
+      error: function(err) {
+        $('#modal').html(err.responseText);
+        return $('#modal').fadeIn(500);
+      },
       success: function(data) {
         $('.act-update a').text('Update');
         $('.primary').html(data);

@@ -363,8 +363,6 @@ $(document).ready(function() {
       $('.sort-date i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
     }
 
-    console.log(feedSortMe);
-
     $.each(feedSortMe, function() {
       $('.podcastList').append($('[data-uuid="' + this.uuid + '"]'));
     });
@@ -389,15 +387,6 @@ $(document).ready(function() {
         console.log('Deleted!');
       }
     });
-  });
-
-  //
-  //  Errors.
-  //
-
-  $(document).delegate('.modal-error-close', 'click', function(e) {
-    $('.mask, #error-mask, .settings-mask').fadeOut(200);
-    $(this).parent().fadeOut(200);
   });
 
   //

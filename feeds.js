@@ -3,7 +3,8 @@ module.exports = function(app, express, loadUser, Users, Feeds, db){
 var request = require('request')
   , xml2js = require('xml2js')
   , moment = require('moment')
-  , async = require('async');
+  , async = require('async')
+  , url = require('url');
 
 var parser = new xml2js.Parser();
 
@@ -22,31 +23,36 @@ var parser = new xml2js.Parser();
   //
 
   app.post('/listen/add', loadUser, function(req, res) {
-    Feeds.findOne({ 'userID': harkUser, 'href': req.body.url }, function(err, result) {
+    var parsedURL = url.parse(req.body.url);
+    if (parsedURL.protocol !== 'http:' || parsedURL.protocol !== 'http:') {
+      res.status(500);
+      req.flash('error', "The feed must begin with http: or https:. Please check the feed you're trying to input and try again.");
+      res.partial('layout/modal', { flash: req.flash() });
+      return;
+    }
+
+    Feeds.findOne({ 'owner': harkUser.userID, 'href': req.body.url }, function(err, result) {
       if ( result !== null ) {
-        req.flash('errorAddFeed', "You already added that feed!");
-        getFeeds(harkUser.userID, function(error, feed, podcastList) {
-          res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
-        });
+        res.status(500);
+        req.flash('error', "You already added that feed!");
+        res.partial('layout/modal', { flash: req.flash() });
         return;
       } else {
         request({uri: req.body.url}, function(error, response, body){
-
           if ( error ) {
-            req.flash('errorAddFeed', "An error occured.");
-            getFeeds(harkUser.userID, function(error, feed, podcastList) {
-              res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
-            });
+            res.status(500);
+            req.flash('error', "An error occured.");
+            res.partial('layout/modal', { flash: req.flash() });
             return;
           }
 
           parser.parseString(body, function (err, result) {
 
             if (typeof result === "undefined") {
-              req.flash('errorAddFeed', "An error occured when adding that feed. Check the URL and try again.");
-              getFeeds(harkUser.userID, function(error, feed, podcastList) {
-                res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
-              });
+              res.status(500);
+              req.flash('error', "An error occured when adding that feed. Check the URL and try again.");
+              res.partial('layout/modal', { flash: req.flash() });
+              return;
             }
 
             var feed = result.channel,
@@ -291,10 +297,15 @@ var parser = new xml2js.Parser();
           parser.parseString(body, function (err, xml) {
 
             if (typeof(xml) === 'undefined') {
-              req.flash('errorAddFeed', "There was an error with one of your feeds. Maybe the site is currently down. The affected podcast is at: " + feedHREF + '. The rest of your podcasts will update normally.');
-              getFeeds(harkUser.userID, function(error, feed, podcastList) {
-                res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
-              });
+              res.status(500);
+              req.flash('error', "An error occured when adding that feed. Check the URL and try again.");
+              res.partial('layout/modal', { flash: req.flash() });
+
+
+              // req.flash('errorAddFeed', "There was an error with one of your feeds. Maybe the site is currently down. The affected podcast is at: " + feedHREF + '. The rest of your podcasts will update normally.');
+              // getFeeds(harkUser.userID, function(error, feed, podcastList) {
+              //   res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
+              // });
               newList = [];
               callback(null, feeds, existingList, feedHREF, feedUUID, newList, counter);
             } else {
