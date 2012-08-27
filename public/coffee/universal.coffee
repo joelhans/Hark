@@ -96,6 +96,7 @@ History.Adapter.bind window, 'statechange', () ->
       success: (data) ->
         $('.primary').html(data)
         ajaxHelpers()
+        wookmark()
   else
     return
 

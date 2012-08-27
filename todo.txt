@@ -118,6 +118,8 @@ ROADMAP
   1.2
   ----------
   [ ] --  Have a variety of keyboard shortcuts for various important functions.
+  [ ] --  Video podcast support.
+          * Will probably convert MediaElement.js to handle this.
 
   1.3
   ----------
@@ -148,6 +150,7 @@ BUGS
   [ ] --  1.0B07 -- Title is not updated when navigating via AJAX.
                     * Might also want to look into pjax to simplify this.
                     * https://github.com/defunkt/jquery-pjax
+  [ ] --  1.0B15 -- Wookmark is not called when using History to browse through the directory.
 
   **
   ----------
