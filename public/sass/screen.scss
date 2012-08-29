@@ -22,7 +22,6 @@ $white-to-orange: linear-gradient($white, $orange);
 $white-to-yellow: linear-gradient($white, $yellow);
 $orange-to-red-trans: linear-gradient(transparentize($orange, 0.9), transparentize($red, 0.9));
 
-
 $body:       rgba(78,79,75,1);
 
 @import "compass/reset";
@@ -56,6 +55,12 @@ html, body {
           box-sizing: border-box;
 }
 
+::selection,
+::-moz-selection {
+  background: $orange;
+  color: $white;
+}
+
 ::-webkit-input-placeholder {
   color:    $base;
 }
@@ -87,15 +92,9 @@ html, body {
 
 .signup-intro a {
   @include inline-block;
-  width: 330px; height: 220px;
-  margin: 0 auto;
-  // @include background(image-url('/img/hark-logo-v3-display.svg') no-repeat);
-  // background-size: 400px 400px;
-  // background-position: -12px -80px;
-  // text-indent: 100%;
-  // white-space: nowrap;
-  // overflow: hidden;
-  img { width: 330px; }
+  width: 400px;
+  margin: 0 auto 40px auto;
+  img { width: 400px; }
 }
 
 .claim-username,
@@ -195,17 +194,13 @@ header {
 .hark-logo a {
   float: left;
   width: 200px; height: 80px;
-  // margin: 14px 0 0 20px;
-  // @include background(image-url('/img/hark-logo-v3-display.svg') no-repeat);
-  // background-size: 100px 60px;
-  // background-position: -10px 0px;
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
   img {
     display: block;
-    width: 110px;
-    margin: 0px 0 0 20px;
+    width: 160px;
+    margin: 10px 0 0 20px;
   }
 }
 
@@ -794,14 +789,17 @@ a.delete, a.delete:visited {
 * 404 error
 *
 *******************************************/
-a.logo-spin {
-  margin: 80px 0 80px 0;
+a.logo-spin {  
+  display: block;
+  width: 200px;
+  margin: 80px auto 80px auto;
   -webkit-animation: spinner 5s infinite;
   -moz-animation:    spinner 5s infinite;
   -ms-animation:     spinner 5s infinite;
   -webkit-animation-timing-function:  linear;
   -moz-animation-timing-function:   linear;
   -ms-animation-timing-function:    linear;
+  img { width: 200px; }
 }
 
 /*******************************************
