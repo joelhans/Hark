@@ -13,7 +13,7 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
       res.render('directory', {
         locals: {
           directory: result,
-          username: harkUser.username,
+          user: harkUser,
           playing: harkUser.playing
         }
       });
@@ -26,6 +26,7 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
       res.partial('directory/directory-structure', {
         locals: {
           directory: result,
+          user: harkUser,
           playing: harkUser.playing
         }
       });
@@ -33,9 +34,18 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
   });
 
   app.post('/directory/subscribe/:uuid', loadUser, function(req, res) {
+    console.log(harkUser);
 
     Directory.findOne({ 'uuid' : req.params.uuid }, function(err, result) {
       if(err) { throw err; }
+
+      if ( harkUser === false ) {
+        res.status(500);
+        req.flash('error', "You need to be logged in to do that! Please log in or create an account.");
+        res.partial('layout/modal', { flash: req.flash() });
+        return;
+      }
+
       Feeds.findOne({ 'uuid' : req.params.uuid, 'owner': harkUser.userID }, function(err, resultTest) {
         if (resultTest === null) {
           if ( moment().diff(result.lastUpdated._d) > 10 ) {
@@ -60,7 +70,10 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
             });
           }
         } else {
-          console.log('User already added that feed. Need an alert here.');
+          res.status(500);
+          req.flash('error', "You are already subscribed to that feed.");
+          res.partial('layout/modal', { flash: req.flash() });
+          return;
         }
       });
     });
@@ -73,7 +86,7 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
       res.render('directory', {
         locals: {
           directory: result,
-          username: harkUser.username,
+          user: harkUser,
           playing: harkUser.playing
         }
       });
@@ -86,7 +99,8 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
       if(err) { throw err; }
       res.partial('directory/directory-main', {
         locals: {
-          directory: result
+          directory: result,
+          user: harkUser
         }
       });
     });

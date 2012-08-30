@@ -7,7 +7,10 @@ html(lang="en")
 	
 	body
 
-		!=partial('layout/header')
+		- if (user == false)
+			!=partial('layout/header-log-out')
+		- else
+			!=partial('layout/header')
 
 		section.hark-container
 			!=partial('directory/directory-structure')

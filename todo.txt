@@ -110,10 +110,11 @@ ROADMAP
     [x] --  1.0B13 -- GET requests to directory categories lead to a 404.
     [x] --  1.0B14 -- AJAX requests do not push the correct new URL to the address bar.
 
-    1.0.x
+    1.0.2
     ----------
     [x] --  1.0B12 -- Error modals need to be fixed.
     [x] --  1.0B08 -- Incorporate some kind of loading screen for loading the main screen. It's a bit slow.
+    [x] --  Allow non-user browsing of the Directory, with calls to sign up for Hark.
   
   1.1
   ----------
@@ -155,7 +156,6 @@ BUGS
   [ ] --  1.0B07 -- Title is not updated when navigating via AJAX.
                     * Might also want to look into pjax to simplify this.
                     * https://github.com/defunkt/jquery-pjax
-  [ ] --  1.0B15 -- Wookmark is not called when using History to browse through the directory.
 
   **
   ----------
@@ -173,8 +173,6 @@ Look into pjax for simplified HTML History? https://github.com/defunkt/jquery-pj
 
 Allow people to "bookmark" various points in a podcast and append them with notes, etc.
   * Use something similar to YouTube's timestamp?
-
-When listening to a podcast, make some kind of "pulse" on its feed in the left column.
 
 Turn the getFeeds function into a cursor.each one like the updateFeeds one. Should be quicker.
 

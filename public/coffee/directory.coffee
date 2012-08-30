@@ -19,6 +19,9 @@ $(document)
     $.ajax
       type    : 'POST'
       url     : $(e.currentTarget).attr 'href'
+      error   : (err) ->
+        $('#modal').html($(err.responseText))
+        $('#modal').fadeIn(500)
       success : (data) ->
         console.log '?'
 

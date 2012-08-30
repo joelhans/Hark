@@ -381,6 +381,10 @@
     return $.ajax({
       type: 'POST',
       url: $(e.currentTarget).attr('href'),
+      error: function(err) {
+        $('#modal').html($(err.responseText));
+        return $('#modal').fadeIn(500);
+      },
       success: function(data) {
         return console.log('?');
       }

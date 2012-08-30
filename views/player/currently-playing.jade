@@ -1,11 +1,15 @@
 li.heading.safe Now playing
 li.sidebar-item
-	if (typeof(playing) !== 'undefined')
-		a.current-feed(href='/listen/podcast/' + playing.feedUUID) #{playing.feedTitle}
-	else
-		a.current-feed.blank(href='/listen') Go play something!
+  - if (typeof(playing) !== 'undefined')
+    a.current-feed(href='/listen/podcast/' + playing.feedUUID) #{playing.feedTitle}
+  - else if (user == false)
+    a.blank(href='/signup') You need to sign up!
+  - else
+    a.current-feed.blank(href='/listen') Go play something!
 li.sidebar-item
-	if playing
-		p.safe #{playing.podcastTitle}
-	else
-		a.current-item.blank(href='/directory') Need a new podcast?
+  - if (typeof(playing) !== 'undefined')
+    p.safe #{playing.podcastTitle}
+  - else if (user == false)
+    a.blank(href='/signup') Hark wants YOU!
+  - else
+    a.current-item.blank(href='/directory') Need a new podcast?
