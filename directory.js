@@ -34,8 +34,6 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
   });
 
   app.post('/directory/subscribe/:uuid', loadUser, function(req, res) {
-    console.log(harkUser);
-
     Directory.findOne({ 'uuid' : req.params.uuid }, function(err, result) {
       if(err) { throw err; }
 
@@ -106,6 +104,15 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
     });
   });
 
+  app.get('/directory/podcast/:uuid', loadUser, function(req, res) {
+    Directory.findOne({ 'uuid' : req.params.uuid }, function(err, result) {
+      if(err) { throw err; }
+      console.log('RENDER');
+      console.log(result);
+
+    });
+  });
+
 updateDirectoryFeed = function(result, done) {
   async.waterfall([
     function ( callback ) {
@@ -126,6 +133,8 @@ updateDirectoryFeed = function(result, done) {
             var feed = xml.channel,
               j,
               pubDate,
+              listened,
+              description
               podData = new Array(),
               newList = [];
 
@@ -141,17 +150,29 @@ updateDirectoryFeed = function(result, done) {
                     pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
                   }
 
+                  if( feed.item[i].description.indexOf('<script') != -1 )
+                    description = feed.item[i].description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+                  else
+                    description = feed.item[i].description
+
+                  if ( i === 0 ) {
+                    listened = 'false';
+                  } else {
+                    listened = 'true';
+                  }
+
                   podData = {
                     'podTitle'  : feed.item[i].title,
                     'podLink' : feed.item[i].link,
                     'podFile' : feed.item[i].enclosure['@'].url,
                     'podMedia'  : feed.item[i].media,
-                    'podDesc' : feed.item[i].description,
+                    'podDesc' : description,
                     'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
                     'podDate' : pubDate,
                     'prettyDay' : pubDate.format('D'),
                     'prettyMonth' : pubDate.format('MMMM'),
-                    'prettyYear' : pubDate.format('YYYY')
+                    'prettyYear' : pubDate.format('YYYY'),
+                    'listened' : listened
                   };
                   newList.push(podData);
                 }
@@ -163,17 +184,25 @@ updateDirectoryFeed = function(result, done) {
                   pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
                 }
 
+                if( feed.item.description.indexOf('<script') != -1 )
+                  description = feed.item.description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+                else
+                  description = feed.item.description
+
+                listened = 'false';
+
                 podData = {
                     'podTitle'  : feed.item.title,
                     'podLink' : feed.item.link,
                     'podFile' : feed.item.enclosure['@'].url,
                     'podMedia'  : feed.item.media,
-                    'podDesc' : feed.item.description,
+                    'podDesc' : description,
                     'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
                     'podDate' : pubDate,
                     'prettyDay' : pubDate.format('D'),
                     'prettyMonth' : pubDate.format('MMMM'),
-                    'prettyYear' : pubDate.format('YYYY')
+                    'prettyYear' : pubDate.format('YYYY'),
+                    'listened' : listened
                   };
                 newList.push(podData);
                 break;

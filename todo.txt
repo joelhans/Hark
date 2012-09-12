@@ -115,6 +115,10 @@ ROADMAP
     [x] --  1.0B12 -- Error modals need to be fixed.
     [x] --  1.0B08 -- Incorporate some kind of loading screen for loading the main screen. It's a bit slow.
     [x] --  Allow non-user browsing of the Directory, with calls to sign up for Hark.
+
+    1.0.3
+    ----------
+    
   
   1.1
   ----------
