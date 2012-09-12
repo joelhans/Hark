@@ -15,7 +15,8 @@ config =
   inFiles: [ 
     'universal'
     'listen'
-    'directory' 
+    'directory'
+    'mejs'
   ]
   outFile: 'app'
   yuic:    '~/Dropbox/toolbox/dotfiles/bin/yuicompressor-2.4.2.jar'
