@@ -244,7 +244,7 @@ nav ul {
   line-height: 22px;
   font-weight: 700;
   margin: 0px;
-  border: 4px solid transparentize($orange, 1);
+  // border: 4px solid transparentize($orange, 1);
   border-radius: 20px;
   @include transition(all, 0.3s);
   z-index: 2;
@@ -253,13 +253,13 @@ nav ul {
     width: 100%;
     color: $red;
     text-decoration: none;
-    padding: 8px 20px 8px 20px;
+    padding: 10px 20px 0px 20px;
     @include transition(all, 0.3s);
     border: 0px;
     z-index: 2;
   }
   &:hover {
-    border: 4px solid $orange;
+    // border: 4px solid $orange;
     a {
       color: $orange;
     }
@@ -270,7 +270,7 @@ nav ul {
   font-size: 18px;
   font-weight: 400;
   margin: 0px;
-  padding: 16px 20px 14px 24px;
+  padding: 16px 20px 14px 20px;
   border: 0;
 }
 
@@ -283,7 +283,7 @@ nav ul {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding: 8px 20px 8px 20px;
+  padding: 8px 20px 4px 20px;
 }
 
 /* -----------------------------------------
@@ -314,7 +314,7 @@ nav ul {
   line-height: 22px;
   font-weight: 700;
   margin: 0px;
-  border: 4px solid transparentize($orange, 1);
+  // border: 4px solid transparentize($orange, 1);
   border-radius: 20px;
   @include transition(all, 0.3s);
   z-index: 2;
@@ -332,7 +332,7 @@ nav ul {
     z-index: 2;
   }
   &:hover {
-    border: 4px solid $orange;
+    // border: 4px solid $orange;
     a {
       color: $orange;
       // @include background(transparent);
@@ -348,7 +348,7 @@ nav ul {
   line-height: 22px;
   font-weight: 400;
   margin: 0px;
-  border: 4px solid transparentize($orange, 1);
+  // border: 4px solid transparentize($orange, 1);
   border-radius: 20px;
   @include transition(all, 0.3s);
   z-index: 2;
@@ -357,13 +357,13 @@ nav ul {
     width: 100%;
     color: $copy;
     text-decoration: none;
-    padding: 8px 20px 8px 20px;
+    padding: 12px 20px 12px 20px;
     @include transition(all, 0.3s);
     border: 0px;
     z-index: 2;
   }
   &:hover {
-    border: 4px solid $orange;
+    // border: 4px solid $orange;
     a {
       color: $orange;
       // @include background(transparent);
@@ -563,51 +563,26 @@ nav ul {
 }
 
 .podcastList {
-  // width: 840px;
+  float: left;
+  width: 75%;
   margin: 80px 0 0 0;
   padding: 20px;
 }
 
 .podcast-item {
   position: relative;
-  float: left;
-  width: 30%; height: 160px;
-  margin: 40px 3% 40px 0;
+  width: 100%;
+  margin: 40px 0 0px 0;
   padding: 10px;
+  border: 1px solid transparentize($orange, 1);
   @include background($orange-to-red-trans);
-  // border: 1px solid $purple;
-  // border-radius: 5px;
-  // box-shadow: 0 0 10px $red;
-  // @include transition(all, 0.5s);
   > div {
     @include inline-block;
   }
 }
 
 .selected {
-  @include background(transparentize($red, 0.7));
-}
-
-.pulser {
-  position: absolute; left: -10px; top: -10px;
-  display: block;
-  opacity: 0;
-  width: 40px; height: 40px;
-  border-radius: 20px;
-  @include background(transparentize($orange, 0.2));
-}
-
-// Re-enable/design this at some later point in time.
-// .podcast-item:hover > .pulser { opacity: 1; }
-
-.podcast-date {
-  position: absolute; right: -10px; top: -10px;
-  width: 140px; height: 40px;
-  @include background($orange-to-red);
-  p {
-    color: $base;
-    padding: 7px 4px 4px 10px;
-  }
+  border: 1px solid $orange;
 }
 
 .podcast-title {
@@ -616,10 +591,9 @@ nav ul {
   overflow: hidden;
   text-overflow: ellipsis;
   a {
-    display: block;
     font-size: 24px;
     line-height: 34px;
-    color: darken($copy, 10%);
+    color: $copy;
     &:hover {
       color: $red;
     }
@@ -627,7 +601,7 @@ nav ul {
 }
 
 .podcast-feed {
-  position: absolute; bottom: 10px; left: 10px;
+  margin-bottom: 30px;
 }
 
 .item-actions {
@@ -649,24 +623,28 @@ nav ul {
   }
 }
 
-// .podcast-item:hover > .item-actions { opacity: 1; }
-
 div.podcastDescription {
   display: none;
-  position: absolute; top: 160px; left: 0px;
   width: 100%;
-  padding: 10px;
-  z-index: 100;
-  @include background($white);
-  // padding: 0 20px 0 0;
   p {
     margin-bottom: 0px;
     padding-bottom: 12px;
   }
 }
 
+.description-warning {
+  color: $red;
+  font-size: 14px; 
+}
+
 .false {
   font-weight: 700;
+}
+
+.listen-sidebar {
+  float: left;
+  width: 25%;
+  background-color: black;
 }
 
 /* -----------------------------------------

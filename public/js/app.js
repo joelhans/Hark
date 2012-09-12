@@ -318,14 +318,12 @@
   });
 
   $(document).delegate('.podcast-item:not(.selected)', 'click', function(e) {
-    $('.selected').children('.podcastDescription').fadeOut(500);
     $('.podcast-item').removeClass('selected');
     $(e.currentTarget).addClass('selected');
     return $('.act-listen, .act-mark, .act-read, .act-source, .act-download').removeClass('inactive').addClass('active');
   });
 
   $(document).delegate('.selected', 'click', function(e) {
-    $('.selected').children('.podcastDescription').fadeOut(500);
     $(e.currentTarget).removeClass('selected');
     return $('.act-listen, .act-mark, .act-read, .act-source, .act-download').removeClass('active').addClass('inactive');
   });
@@ -337,6 +335,11 @@
   $(document).delegate('.act-read.active', 'click', function(e) {
     $('.selected').children('.podcastDescription').toggle(500);
     return false;
+  });
+
+  $(document).delegate('.item-actions-read', 'click', function(e) {
+    console.log('hi');
+    return $(e.currentTarget).parent().parent().children('.podcastDescription').toggle(500);
   });
 
   $(document).delegate('.act-source.active', 'click', function(e) {
@@ -352,18 +355,46 @@
     return $('.act-sorting ul').toggle();
   });
 
-  $(document).delegate('.podcast-title a', 'hover', function(e) {
-    if (e.type === 'mouseenter') {
-      if ($(e.currentTarget).height() > $(e.currentTarget).parent().height()) {
-        return $(e.currentTarget).animate({
-          'margin-top': $(e.currentTarget).parent().height() - $(e.currentTarget).height()
-        }, 1000);
-      }
+  $(document).delegate('.sort-feed', 'click', function(e) {
+    var feedSortMe;
+    feedSortMe = [];
+    $('.podcast-item').each(function(e) {
+      var sortData;
+      sortData = {
+        uuid: $(this).attr('data-uuid'),
+        feedTitle: $(this).attr('data-feed')
+      };
+      console.log(sortData);
+      return feedSortMe.push(sortData);
+    });
+    if ($('.sort-feed').hasClass('descending') === !true) {
+      feedSortMe.sort(function(a, b) {
+        if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase()) {
+          return 1;
+        } else if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase()) {
+          return -1;
+        }
+        return 0;
+      });
+      $('.sort-feed').addClass('descending');
+      $('.sort-title i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up');
+      $('.sort-feed i').removeClass('icon-chevron-up').addClass('icon-chevron-down');
     } else {
-      return $(e.currentTarget).animate({
-        'margin-top': 0
-      }, 1000, "linear");
+      feedSortMe.sort(function(a, b) {
+        if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase()) {
+          return 1;
+        } else if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase()) {
+          return -1;
+        }
+        return 0;
+      });
+      $('.sort-feed').removeClass('descending').addClass('ascending');
+      $('.sort-title i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up');
+      $('.sort-feed i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
     }
+    return $.each(feedSortMe, function() {
+      return $('.podcastList').append($('[data-uuid="' + this.uuid + '"]'));
+    });
   });
 
   wookmark = function() {

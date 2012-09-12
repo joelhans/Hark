@@ -242,47 +242,47 @@ $(document).ready(function() {
   //  Sorting.
   //
 
-  $(document).delegate('.sort-feed', 'click', function(e) {
-    e.preventDefault();
+  // $(document).delegate('.sort-feed', 'click', function(e) {
+  //   e.preventDefault();
 
-    var feedSortMe = new Array();
+  //   var feedSortMe = new Array();
 
-    $('.podcast-item').each(function() {
-      sortData = {
-        uuid: $(this).attr('data-uuid'),
-        feedTitle: $(this).children('.podcastFeed').children().text()
-      }
-      feedSortMe.push(sortData);
-      });
+  //   $('.podcast-item').each(function() {
+  //     sortData = {
+  //       uuid: $(this).attr('data-uuid'),
+  //       feedTitle: $(this).children('.podcastFeed').children().text()
+  //     }
+  //     feedSortMe.push(sortData);
+  //     });
 
-    if ( $('.sort-feed').hasClass('descending') !== true ) {
-      feedSortMe.sort(function (a,b) {
-        if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
-          return 1;
-        if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
-          return -1;
-        return 0;
-      });
-      $('.sort-feed').addClass('descending');
-      $('.sort-title i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up');
-      $('.sort-feed i').removeClass('icon-chevron-up').addClass('icon-chevron-down');
-    } else {
-      feedSortMe.sort(function (a,b) {
-        if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
-          return 1;
-        if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
-          return -1;
-        return 0;
-      });
-      $('.sort-feed').removeClass('descending').addClass('ascending');
-      $('.sort-title i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up');
-      $('.sort-feed i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
-    }
+  //   if ( $('.sort-feed').hasClass('descending') !== true ) {
+  //     feedSortMe.sort(function (a,b) {
+  //       if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
+  //         return 1;
+  //       if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
+  //         return -1;
+  //       return 0;
+  //     });
+  //     $('.sort-feed').addClass('descending');
+  //     $('.sort-title i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up');
+  //     $('.sort-feed i').removeClass('icon-chevron-up').addClass('icon-chevron-down');
+  //   } else {
+  //     feedSortMe.sort(function (a,b) {
+  //       if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
+  //         return 1;
+  //       if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
+  //         return -1;
+  //       return 0;
+  //     });
+  //     $('.sort-feed').removeClass('descending').addClass('ascending');
+  //     $('.sort-title i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up');
+  //     $('.sort-feed i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
+  //   }
 
-    $.each(feedSortMe, function(){
-      $('.podcastList').append($('[data-uuid="' + this.uuid + '"]'));
-    });
-  });
+  //   $.each(feedSortMe, function(){
+  //     $('.podcastList').append($('[data-uuid="' + this.uuid + '"]'));
+  //   });
+  // });
 
   $(document).delegate('.sort-title', 'click', function(e) {
     e.preventDefault();

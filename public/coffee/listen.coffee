@@ -147,7 +147,7 @@ $(document)
 
 $(document)
   .delegate '.podcast-item:not(.selected)', 'click', (e) ->
-    $('.selected').children('.podcastDescription').fadeOut(500)
+    # $('.selected').children('.podcastDescription').fadeOut(500)
     $('.podcast-item').removeClass('selected')
     $(e.currentTarget).addClass('selected')
     $('.act-listen, .act-mark, .act-read, .act-source, .act-download').removeClass('inactive').addClass('active')
@@ -156,7 +156,7 @@ $(document)
 
 $(document)
   .delegate '.selected', 'click', (e) ->
-    $('.selected').children('.podcastDescription').fadeOut(500)
+    # $('.selected').children('.podcastDescription').fadeOut(500)
     $(e.currentTarget).removeClass('selected')
     $('.act-listen, .act-mark, .act-read, .act-source, .act-download').removeClass('active').addClass('inactive')
 
@@ -180,6 +180,11 @@ $(document)
       # ajaxHelpers()
     return false
 
+$(document)
+  .delegate '.item-actions-read', 'click', (e) ->
+    console.log 'hi'
+    $(e.currentTarget).parent().parent().children('.podcastDescription').toggle(500)
+
 # Go through to external link
 
 $(document)
@@ -199,16 +204,52 @@ $(document)
     console.log 'hi'
     $('.act-sorting ul').toggle()
 
+$(document)
+  .delegate '.sort-feed', 'click', (e) ->
+    feedSortMe = []
+
+    $('.podcast-item').each (e) ->
+      sortData = 
+        uuid: $(this).attr('data-uuid'),
+        feedTitle: $(this).attr('data-feed')
+      console.log sortData
+      feedSortMe.push(sortData)
+
+    if $('.sort-feed').hasClass('descending') is not true
+      feedSortMe.sort (a,b) ->
+        if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
+          return 1
+        else if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
+          return -1
+        return 0
+      $('.sort-feed').addClass('descending')
+      $('.sort-title i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up')
+      $('.sort-feed i').removeClass('icon-chevron-up').addClass('icon-chevron-down')
+    else
+      feedSortMe.sort (a,b) ->
+        if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
+          return 1
+        else if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
+          return -1
+        return 0
+      $('.sort-feed').removeClass('descending').addClass('ascending')
+      $('.sort-title i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up')
+      $('.sort-feed i').removeClass('icon-chevron-down').addClass('icon-chevron-up')
+
+    $.each feedSortMe, () ->
+      $('.podcastList').append($('[data-uuid="' + this.uuid + '"]'))
+
+
 # ------------------------------
 # Podcast tweaks/fixes
 # ------------------------------
 
 # Scrolling effect when hovering over a long title.
 
-$(document)
-  .delegate '.podcast-title a', 'hover', (e) ->
-    if e.type == 'mouseenter'
-      if $(e.currentTarget).height() > $(e.currentTarget).parent().height()
-        $(e.currentTarget).animate({'margin-top': $(e.currentTarget).parent().height() - $(e.currentTarget).height()}, 1000)
-    else
-      $(e.currentTarget).animate({'margin-top': 0}, 1000, "linear")
+# $(document)
+#   .delegate '.podcast-title a', 'hover', (e) ->
+#     if e.type == 'mouseenter'
+#       if $(e.currentTarget).height() > $(e.currentTarget).parent().height()
+#         $(e.currentTarget).animate({'margin-top': $(e.currentTarget).parent().height() - $(e.currentTarget).height()}, 1000)
+#     else
+#       $(e.currentTarget).animate({'margin-top': 0}, 1000, "linear")

@@ -118,7 +118,8 @@ ROADMAP
 
     1.0.3
     ----------
-    
+    [x] --  Slightly reworked layout in the main view.
+    [x] --  Fixed a small bug related to sorting podcasts by feed name.
   
   1.1
   ----------
