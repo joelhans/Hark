@@ -1,5 +1,3 @@
-// HISTORY.js
-
 $(document).ready(function() {
 
   var mediaData,
@@ -14,9 +12,12 @@ $(document).ready(function() {
     supplied: 'mp3',
     // solution: 'html, flash',
     solution: 'flash, html',
-    errorAlerts: false,
+    errorAlerts: true,
     volume: 0.5,
     play: function(d) {
+      $('.podcast-player').css({'top': '0px'});
+      $('.video-podcast-player').css({'top': '90px'});
+      $('.video-player').fadeOut(300)
       $('.jp-playing').fadeIn(300);
       updatePlaying = setInterval(function(){
         updateStatus();
@@ -56,16 +57,82 @@ $(document).ready(function() {
     },
     error:function(d) {
       console.log('ERROR:' + d);
-      // $('.error-text').html('There is a problem with the podcast player. A common solution is to disable any Flash-blocking software in your browser.');
-      // $('#error-mask').fadeIn(200);
-      // $('.js-modal-error').fadeIn(200);
     },
     ready:function(d) {
-      if (typeof(playing) !== 'undefined') {
+      if (typeof(playing) !== 'undefined' && playing.podcast.indexOf('mp3') !== -1 ) {
+        $('.podcast-player').css({'top': '0px'});
         mediaData = playing;
         playStatus(playing.progress, playing);
         $('#jquery_jplayer_1').jPlayer("setMedia", {
           mp3: playing.podcast
+        }).jPlayer('pause', Math.round(playing.progress));
+      }
+    }
+  });
+
+  $('#jquery_jplayer_2').jPlayer({
+    swfPath: "/js/",
+    supplied: 'm4v, m4a',
+    // solution: 'html, flash',
+    solution: 'html, flash',
+    volume: 0.5,
+    cssSelectorAncestor: "#jp_container_2",
+    errorAlerts: true,
+    play: function(d) {
+      $('.podcast-player').css({'top': '90px'});
+      $('.video-podcast-player').css({'top': '0px'});
+      $('.video-player').fadeIn(300)
+      $('.jp-playing').fadeIn(300);
+      updatePlaying = setInterval(function(){
+        updateStatus();
+      }, 120000);
+    },
+    timeupdate: function(d) {
+      progress = d.jPlayer.status.currentTime;
+      playStatus(progress, mediaData);
+    },
+    pause: function(d) {
+      clearInterval(updatePlaying);
+    },
+    ended: function(d) {
+      clearInterval(updatePlaying);
+      $('#jquery_jplayer_2').fadeOut(300)
+      $('[data-uuid="' + mediaData.podcastID + '"]')
+        .animate(
+          { opacity: '0' },
+          { duration: 600
+        })
+        .animate(
+          { height: '0px', 'margin-bottom': '0px' },
+          { duration: 600,
+          complete: function() {
+            $(this).remove();
+            $('.jp-playing').fadeOut(300).html('');
+          }
+      });
+      $.ajax({
+        type: 'POST',
+        url: '/listen/' + mediaData.feedUUID + '/listened/' + mediaData.podcastID,
+        data: mediaData,
+        success: function() {},
+        error: function() {
+          console.log('jPlayer had an error.');
+        }
+      });
+    },
+    error:function(d) {
+      console.log('ERROR:' + d);
+    },
+    ready:function(d) {
+      console.log(playing.podcast.indexOf('mp4'));
+      if (typeof(playing) !== 'undefined' && playing.podcast.indexOf('mp4') !== -1 ) {
+        $('.podcast-player').css({'top': '90px'});
+        $('.video-podcast-player').css({'top': '0px'});
+        $('#jquery_jplayer_2').fadeIn(300)
+        mediaData = playing;
+        playStatus(playing.progress, playing);
+        $('#jquery_jplayer_2').jPlayer("setMedia", {
+          m4v: playing.podcast
         }).jPlayer('pause', Math.round(playing.progress));
       }
     }
@@ -76,7 +143,11 @@ $(document).ready(function() {
   //
 
   $('.manual-sync').click(function(e) {
-    progress = $('#jquery_jplayer_1').data("jPlayer").status.currentTime;
+    if ( $('#jquery_jplayer_1').data().jPlayer.status.paused === false ) {
+      progress = $('#jquery_jplayer_1').data("jPlayer").status.currentTime;
+    } else if ( $('#jquery_jplayer_2').data().jPlayer.status.paused === false ) {
+      progress = $('#jquery_jplayer_2').data("jPlayer").status.currentTime;
+    }
     playStatus(progress, mediaData);
     updateStatus();
   });
@@ -202,9 +273,16 @@ $(document).ready(function() {
       feedUUID: $(this).attr('href').split('/')[2],
       feedTitle: $(this).attr("data-feed")
     }
-    $('#jquery_jplayer_1').jPlayer("setMedia", {
-      mp3: mediaData.podcast
-    }).jPlayer('play');
+    if ( mediaData.podcast.indexOf('mp4') == -1 ) {
+      $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
+        mp3: mediaData.podcast
+      }).jPlayer('play');
+    }
+    else {
+      $('#jquery_jplayer_2').jPlayer("pauseOthers").jPlayer("setMedia", {
+        m4v: mediaData.podcast
+      }).jPlayer('play');
+    }
     $.ajax({
       type: 'POST',
       url: '/listen/' + mediaData.feedUUID + '/' + mediaData.podcastID,
@@ -224,9 +302,16 @@ $(document).ready(function() {
       feedUUID: $('.selected').attr("data-feedUUID"),
       feedTitle: $('.selected').attr("data-feed")
     }
-    $('#jquery_jplayer_1').jPlayer("setMedia", {
-      mp3: mediaData.podcast
-    }).jPlayer('play');
+    if ( mediaData.podcast.indexOf('mp4') == -1 ) {
+      $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
+        mp3: mediaData.podcast
+      }).jPlayer('play');
+    }
+    else {
+      $('#jquery_jplayer_2').jPlayer("pauseOthers").jPlayer("setMedia", {
+        m4v: mediaData.podcast
+      }).jPlayer('play');
+    }
     $.ajax({
       type: 'POST',
       url: '/listen/' + mediaData.feedUUID + '/' + mediaData.podcastID,
@@ -237,136 +322,6 @@ $(document).ready(function() {
     });
   });
 
-
-  //
-  //  Sorting.
-  //
-
-  // $(document).delegate('.sort-feed', 'click', function(e) {
-  //   e.preventDefault();
-
-  //   var feedSortMe = new Array();
-
-  //   $('.podcast-item').each(function() {
-  //     sortData = {
-  //       uuid: $(this).attr('data-uuid'),
-  //       feedTitle: $(this).children('.podcastFeed').children().text()
-  //     }
-  //     feedSortMe.push(sortData);
-  //     });
-
-  //   if ( $('.sort-feed').hasClass('descending') !== true ) {
-  //     feedSortMe.sort(function (a,b) {
-  //       if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
-  //         return 1;
-  //       if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
-  //         return -1;
-  //       return 0;
-  //     });
-  //     $('.sort-feed').addClass('descending');
-  //     $('.sort-title i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up');
-  //     $('.sort-feed i').removeClass('icon-chevron-up').addClass('icon-chevron-down');
-  //   } else {
-  //     feedSortMe.sort(function (a,b) {
-  //       if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
-  //         return 1;
-  //       if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
-  //         return -1;
-  //       return 0;
-  //     });
-  //     $('.sort-feed').removeClass('descending').addClass('ascending');
-  //     $('.sort-title i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up');
-  //     $('.sort-feed i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
-  //   }
-
-  //   $.each(feedSortMe, function(){
-  //     $('.podcastList').append($('[data-uuid="' + this.uuid + '"]'));
-  //   });
-  // });
-
-  $(document).delegate('.sort-title', 'click', function(e) {
-    e.preventDefault();
-
-    var feedSortMe = new Array();
-
-    $('.podcast-item').each(function() {
-      sortData = {
-        uuid: $(this).attr('data-uuid'),
-        podcastTitle: $(this).children('.podcast-title').children().text()
-      }
-      feedSortMe.push(sortData);
-    });
-
-    if ( $('.sort-title').hasClass('descending') !== true ) {
-      feedSortMe.sort(function (a,b) {
-        if (a['podcastTitle'].toLowerCase() > b['podcastTitle'].toLowerCase())
-          return 1;
-        if (a['podcastTitle'].toLowerCase() < b['podcastTitle'].toLowerCase())
-          return -1;
-        return 0;
-      });
-      $('.sort-title').addClass('descending');
-      $('.sort-feed i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up');
-      $('.sort-title i').removeClass('icon-chevron-up').addClass('icon-chevron-down');
-    } else {
-      feedSortMe.sort(function (a,b) {
-        if (a['podcastTitle'].toLowerCase() < b['podcastTitle'].toLowerCase())
-          return 1;
-        if (a['podcastTitle'].toLowerCase() > b['podcastTitle'].toLowerCase())
-          return -1;
-        return 0;
-      });
-      $('.sort-title').removeClass('descending').addClass('ascending');
-      $('.sort-feed i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up');
-      $('.sort-title i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
-    }
-
-    $.each(feedSortMe, function() {
-      $('.podcastList').append($('[data-uuid="' + this.uuid + '"]'));
-    });
-  });
-
-  $(document).delegate('.sort-date', 'click', function(e) {
-    e.preventDefault();
-
-    var feedSortMe = new Array();
-
-    $('.podcast-item').each(function() {
-      sortData = {
-        uuid: $(this).attr('data-uuid'),
-        date: $(this).children('.podcast-date').children('.moment').attr('data-date')
-      }
-      feedSortMe.push(sortData);
-    });
-
-    if ( $('.sort-date').hasClass('descending') !== true ) {
-      feedSortMe.sort(function (a,b) {
-        if (moment(a['date']) < moment(b['date']))
-          return 1;
-        if (moment(a['date']) > moment(b['date']))
-          return -1;
-        return 0;
-      });
-      $('.sort-date').addClass('descending');
-      $('.sort-title i, .sort-feed i').removeClass('icon-chevron-down icon-chevron-up');
-      $('.sort-date i').removeClass('icon-chevron-up').addClass('icon-chevron-down');
-    } else {
-      feedSortMe.sort(function (a,b) {
-        if (moment(a['date']) > moment(b['date']))
-          return 1;
-        if (moment(a['date']) < moment(b['date']))
-          return -1;
-        return 0;
-      });
-      $('.sort-date').removeClass('descending').addClass('ascending');
-      $('.sort-title i, .sort-feed i').removeClass('icon-chevron-down icon-chevron-up');
-      $('.sort-date i').removeClass('icon-chevron-down').addClass('icon-chevron-up');
-    }
-
-    $.each(feedSortMe, function() {
-      $('.podcastList').append($('[data-uuid="' + this.uuid + '"]'));
-    });
-  });
 
   //
   //  Settings.

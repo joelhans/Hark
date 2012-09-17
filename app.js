@@ -202,21 +202,19 @@ function loadUser(req, res, next) {
   // After setting "harkUser," we let the route continue. If there is no user, we redirect to the
   // login page.
 
-  console.log(req.user);
-
   if (typeof(req.user) !== 'undefined') {
     if (typeof(req.user[0]) !== 'undefined') {
       harkUser = req.user[0];
     } else {
       harkUser = req.user;
     }
+    console.log('OUR USER: ' + harkUser.userID);
     return next();
   } else if ( typeof(req.user) === 'undefined' && req.url === '/signup' ) {
     return next();
   } else if ( typeof(req.user) === 'undefined' && req.url === '/' ) {
     return next();
   } else if ( typeof(req.user) === 'undefined' && req.url.indexOf('/directory') !== -1 ) {
-    console.log('RENDER A NON LOGGED IN DIRECTORY VIEW NOW.')
     harkUser = false;
     return next();
   }

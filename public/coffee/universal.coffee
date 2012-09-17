@@ -1,5 +1,5 @@
 $ = jQuery
-History = State = null
+History = State = progress = null
 
 # ------------------------------
 # On document load
@@ -7,12 +7,12 @@ History = State = null
 
 $(document).ready () ->
   ajaxHelpers()
-
   State = History.getState()
-  console.log State
-
   wookmark()
-  
+
+window.onload = () ->
+  jplayer()
+
 # ------------------------------
 # On window resize
 # ------------------------------

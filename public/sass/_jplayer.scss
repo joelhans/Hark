@@ -1,18 +1,39 @@
 footer {
   position: fixed; left: 0px; bottom: 0px;
-  width: 100%;
+  width: 100%; height: 90px;
   @include background($bg);
   border-top: 1px solid transparentize($orange, 0.8);
 }
 
 .mejs-container {}
 
-.podcast-player {
-  float: left;
-  width: 100%; height: 90px;
+.podcast-player,
+.video-podcast-player {
+  position: absolute; top: 0px; left: 0px;
+  width: 100%;
   margin: 0;
   div { margin-bottom: 0px; }
 }
+
+.video-podcast-player {
+  top: 90px;
+}
+
+.video-player {
+  display: none;
+  position: fixed; bottom: 100px; left: 50%;
+  margin-left: -260px;
+  z-index: 1000;
+}
+
+.video-menu a {
+  @include inline-block;
+}
+
+// .jp-video-play {
+//   display: block;
+//   width: 400px; height: 300px;
+// }
 
 .jp-controls li { @include inline-block; }
 

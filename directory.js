@@ -79,7 +79,6 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
 
   app.get('/directory/category/:category', loadUser, function(req, res) {
     Directory.find({ 'categories' : { $in : [req.params.category] } }).toArray(function(err, result) {
-      console.log(result);
       if(err) { throw err; }
       res.render('directory', {
         locals: {
@@ -93,7 +92,6 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
 
   app.post('/directory/category/:category', loadUser, function(req, res) {
     Directory.find({ 'categories' : { $in : [req.params.category] } }).toArray(function(err, result) {
-      console.log(result);
       if(err) { throw err; }
       res.partial('directory/directory-main', {
         locals: {
@@ -240,7 +238,6 @@ updateDirectoryFeed = function(result, done) {
 
         callback(null, newList, existingList, newPodcastList);
     }, function (newList, existingList, newPodcastList, callback) {
-      console.log(newPodcastList);
       if (typeof newPodcastList[0] !== 'undefined' && newPodcastList[0] !== null) {
         Directory.findAndModify({ 'url': result.url }, [], { $set: { 'pods' : newPodcastList, 'lastUpdated' : moment(), 'lastPodcast' : newPodcastList[0].podDate } }, { new:true }, function(err, newResult) {
           if (err) { throw err; }

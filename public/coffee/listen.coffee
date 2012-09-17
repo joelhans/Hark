@@ -197,12 +197,15 @@ $(document)
   .delegate '.act-download.active', 'click', (e) ->
     window.open($('.selected').attr('data-file'), '_newtab')
 
+# ------------------------------
 # Sorting
+# ------------------------------
 
 $(document)
   .delegate '.act-sorting', 'click', (e) ->
-    console.log 'hi'
     $('.act-sorting ul').toggle()
+
+# By feed title
 
 $(document)
   .delegate '.sort-feed', 'click', (e) ->
@@ -212,7 +215,6 @@ $(document)
       sortData = 
         uuid: $(this).attr('data-uuid'),
         feedTitle: $(this).attr('data-feed')
-      console.log sortData
       feedSortMe.push(sortData)
 
     if $('.sort-feed').hasClass('descending') is not true
@@ -239,6 +241,78 @@ $(document)
     $.each feedSortMe, () ->
       $('.podcastList').append($('[data-uuid="' + this.uuid + '"]'))
 
+# By podcast title
+
+$(document)
+  .delegate '.sort-title', 'click', (e) ->
+    feedSortMe = []
+
+    $('.podcast-item').each (e) ->
+      sortData = 
+        uuid: $(this).attr('data-uuid'),
+        podcastTitle: $(this).attr('data-title')
+      feedSortMe.push(sortData)
+
+    if $('.sort-title').hasClass('descending') is not true
+      feedSortMe.sort (a,b) ->
+        if (a['podcastTitle'].toLowerCase() > b['podcastTitle'].toLowerCase())
+          return 1
+        else if (a['podcastTitle'].toLowerCase() < b['podcastTitle'].toLowerCase())
+          return -1
+        return 0
+      $('.sort-title').addClass('descending')
+      $('.sort-feed i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up')
+      $('.sort-title i').removeClass('icon-chevron-up').addClass('icon-chevron-down')
+    else
+      feedSortMe.sort (a,b) ->
+        if (a['podcastTitle'].toLowerCase() < b['podcastTitle'].toLowerCase())
+          return 1
+        else if (a['podcastTitle'].toLowerCase() > b['podcastTitle'].toLowerCase())
+          return -1
+        return 0
+      $('.sort-title').removeClass('descending').addClass('ascending')
+      $('.sort-feed i, .sort-date i').removeClass('icon-chevron-down icon-chevron-up')
+      $('.sort-title i').removeClass('icon-chevron-down').addClass('icon-chevron-up')
+
+    $.each feedSortMe, () ->
+      $('.podcastList').append($('[data-uuid="' + this.uuid + '"]'))
+
+# By date
+
+$(document)
+  .delegate '.sort-date', 'click', (e) ->
+    feedSortMe = []
+
+    $('.podcast-item').each (e) ->
+      sortData = 
+        uuid: $(this).attr('data-uuid'),
+        date: $(this).children('.podcast-feed').children('.moment').attr('data-date')
+      feedSortMe.push(sortData)
+
+    if $('.sort-date').hasClass('descending') is not true
+      feedSortMe.sort (a,b) ->
+        if (moment(a['date']) < moment(b['date']))
+          return 1
+        if (moment(a['date']) > moment(b['date']))
+          return -1
+        return 0
+      $('.sort-date').addClass('descending')
+      $('.sort-title i, .sort-feed i').removeClass('icon-chevron-down icon-chevron-up')
+      $('.sort-date i').removeClass('icon-chevron-up').addClass('icon-chevron-down')
+    else
+      feedSortMe.sort (a,b) ->
+        if (moment(a['date']) > moment(b['date']))
+          return 1
+        if (moment(a['date']) < moment(b['date']))
+          return -1
+        return 0
+      $('.sort-date').removeClass('descending').addClass('ascending')
+      $('.sort-title i, .sort-feed i').removeClass('icon-chevron-down icon-chevron-up')
+      $('.sort-date i').removeClass('icon-chevron-down').addClass('icon-chevron-up')
+
+    console.log feedSortMe
+    $.each feedSortMe, () ->
+      $('.podcastList').append($('[data-uuid="' + this.uuid + '"]'))
 
 # ------------------------------
 # Podcast tweaks/fixes
