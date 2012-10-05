@@ -125,10 +125,16 @@ ROADMAP
   ----------
   [x] --  Video podcast support.
 
+    1.1.1
+    ----------
+    [x] --  Added the number of subscribers to each podcast from the Directory.
+    [x] --  More categories, plus sub-categories.
+
   1.2
   ----------
   [ ] --  Have a variety of keyboard shortcuts for various important functions.
   [ ] --  A full/expanded help/FAQ section.
+  [ ] --  Sorting options for the Directory.
 
   1.3
   ----------
