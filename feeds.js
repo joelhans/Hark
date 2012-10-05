@@ -1,4 +1,4 @@
-module.exports = function(app, express, loadUser, Users, Feeds, db){
+module.exports = function(app, express, loadUser, Users, Feeds, Directory, db){
 
 var request = require('request')
   , xml2js = require('xml2js')
@@ -59,6 +59,7 @@ var parser = new xml2js.Parser();
               mediaType,
               pubDate,
               listened,
+              podMedia,
               description,
               construction = new Array(),
               podData = new Array();
@@ -69,63 +70,86 @@ var parser = new xml2js.Parser();
               if ( typeof feed.item[i] !== "undefined" ) {
                 if ( typeof feed.item[i].enclosure !== "undefined" ) {
 
-                  if ( typeof feed.item[i]['pubDate'] == "string" ) {
-                    pubDate = moment(feed.item[i]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
-                  } else if ( typeof feed.item[i]['dc:date'] == "string" ) {
-                    pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
-                  }
-
                   if ( i === 0 ) {
                     listened = 'false';
                   } else {
                     listened = 'true';
                   }
 
-                  if( feed.item[i].description.indexOf('<script') != -1 )
-                    description = feed.item[i].description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-                  else
-                    description = feed.item[i].description
+                  // PUBDATE //
+                  if ( typeof feed.item[i]['pubDate'] == "string" ) {
+                    pubDate = moment(feed.item[i]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z").format();
+                  } else if ( typeof feed.item[i]['dc:date'] == "string" ) {
+                    pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ").format();
+                  }
+                  // /PUBDATE //
+
+                  // DESCRIPTION //
+                  if (typeof(feed.item[i].description) !== "undefined") {
+                    description = feed.item[i].description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                  } else if (typeof(feed.item[i]['itunes:summary']) !== "undefined") {
+                    description = feed.item[i]['itunes:summary'].replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                  } else {
+                    break;
+                  }
+                  // /DESCRIPTION //
+
+                  // MEDIA //
+                  if (typeof(feed.item[i].enclosure[0]) !== "undefined") {
+                    podMedia = feed.item[i].enclosure[0]['@'].url
+                  } else {
+                    podMedia = feed.item[i].enclosure['@'].url
+                  }
+                  // /MEDIA //
 
                   podData = {
                     'podTitle'  : feed.item[i].title,
                     'podLink' : feed.item[i].link,
-                    'podFile' : feed.item[i].enclosure['@'].url,
-                    'podMedia'  : feed.item[i].media,
+                    'podFile' : podMedia,
                     'podDesc' : description,
                     'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
                     'podDate' : pubDate,
-                    'prettyDay' : pubDate.format('D'),
-                    'prettyMonth' : pubDate.format('MMMM'),
-                    'prettyYear' : pubDate.format('YYYY'),
                     'listened'  : listened
                   };
                   construction.push(podData);
                 }
               } else if ( typeof feed.item.title !== "undefined" ) {
-                if ( typeof feed.item['pubDate'] == "string" ) {
-                  pubDate = moment(feed.item['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
-                } else if ( typeof feed.item['dc:date'] == "string" ) {
-                  pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
-                }
-                
-                listened = 'false';
 
-                if( feed.item[i].description.indexOf('<script') != -1 )
-                  description = feed.item[i].description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-                else
-                  description = feed.item[i].description
+                  listened = 'false';
+
+                  // PUBDATE //
+                  if ( typeof feed.item['pubDate'] == "string" ) {
+                    pubDate = moment(feed.item['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z").format();
+                  } else if ( typeof feed.item['dc:date'] == "string" ) {
+                    pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ").format();
+                  }
+                  // /PUBDATE //
+
+                  // DESCRIPTION //
+                  if (typeof(feed.item.description) !== "undefined") {
+                    description = feed.item.description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                  } else if (typeof(feed.item['itunes:summary']) !== "undefined") {
+                    description = feed.item['itunes:summary'].replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                  } else {
+                    break;
+                  }
+                  // /DESCRIPTION //
+
+                  // MEDIA //
+                  if (typeof(feed.item.enclosure[0]) !== "undefined") {
+                    podMedia = feed.item.enclosure[0]['@'].url
+                  } else {
+                    podMedia = feed.item.enclosure['@'].url
+                  }
+                  // /MEDIA //
 
                 podData = {
                     'podTitle'  : feed.item.title,
                     'podLink' : feed.item.link,
-                    'podFile' : feed.item.enclosure['@'].url,
-                    'podMedia'  : feed.item.media,
-                    'podDesc' : feed.item.description,
+                    'podFile' : podMedia,
+                    'podDesc' : description,
                     'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
                     'podDate' : pubDate,
-                    'prettyDay' : pubDate.format('D'),
-                    'prettyMonth' : pubDate.format('MMMM'),
-                    'prettyYear' : pubDate.format('YYYY'),
                     'listened'  : listened
                   };
                 construction.push(podData);
@@ -183,6 +207,9 @@ var parser = new xml2js.Parser();
 
   app.post('/listen/remove/:_id', loadUser, function(req, res) {
     Feeds.findAndModify({ 'owner': harkUser.userID, 'uuid': req.body.feedID }, [], {}, { remove:true }, function(err, result) {
+      Directory.findAndModify({ 'uuid' : req.body.feedID }, {}, {$inc : { 'subscriptions' : -1 }}, {}, function(err, result) {
+        if(err) { throw err; }
+      });
       getFeeds(harkUser.userID, function(error, feed, podcastList) {
           res.partial('listen/listen-structure', { 
             feeds: feed,
@@ -241,11 +268,22 @@ var parser = new xml2js.Parser();
 
         if (typeof podcastList[0] !== "undefined") {
           podcastList.sort(function (a , b) {
-            if (moment(a['podDate']['_d']) > moment(b['podDate']['_d']))
-              return -1;
-            if (moment(a['podDate']['_d']) < moment(b['podDate']['_d']))
-              return 1;
-            return 0;
+            var sort_a,
+                sort_b;
+
+            if (typeof(a['podDate']['_d']) == "object") {
+              sort_a = moment(a['podDate']['_d']).valueOf();
+            } else {
+              sort_a = moment(a['podDate']).valueOf();
+            }
+
+            if (typeof(b['podDate']['_d']) == "object") {
+              sort_b = moment(b['podDate']['_d']).valueOf();
+            } else {
+              sort_b = moment(b['podDate']).valueOf();
+            }
+
+            return sort_b - sort_a;
           });
         }
 
@@ -298,7 +336,7 @@ var parser = new xml2js.Parser();
 
             if (typeof(xml) === 'undefined') {
               res.status(500);
-              req.flash('error', "An error occured when adding that feed. Check the URL and try again.");
+              req.flash('error', "An error occured when updating a feed. Please try again in a few minutes.");
               res.partial('layout/modal', { flash: req.flash() });
 
 
@@ -322,54 +360,80 @@ var parser = new xml2js.Parser();
                 if ( typeof feed.item[i] !== "undefined" ) {
                   if ( typeof feed.item[i].enclosure !== "undefined" ) {
 
+                    // PUBDATE //
                     if ( typeof feed.item[i]['pubDate'] == "string" ) {
-                      pubDate = moment(feed.item[i]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z");
+                      pubDate = moment(feed.item[i]['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z").format();
                     } else if ( typeof feed.item[i]['dc:date'] == "string" ) {
-                      pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
+                      pubDate = moment(feed.item[i]['dc:date'], "YYYY-MM-DD\TH:mm:ssZ").format();
                     }
+                    // /PUBDATE //
 
-                    if( feed.item[i].description.indexOf('<script') != -1 )
-                      description = feed.item[i].description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-                    else
-                      description = feed.item[i].description
+                    // DESCRIPTION //
+                    if (typeof(feed.item[i].description) !== "undefined") {
+                      description = feed.item[i].description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                    } else if (typeof(feed.item[i]['itunes:summary']) !== "undefined") {
+                      description = feed.item[i]['itunes:summary'].replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                    } else {
+                      break;
+                    }
+                    // /DESCRIPTION //
+
+                    // MEDIA //
+                    if (typeof(feed.item[i].enclosure[0]) !== "undefined") {
+                      podMedia = feed.item[i].enclosure[0]['@'].url
+                    } else {
+                      podMedia = feed.item[i].enclosure['@'].url
+                    }
+                    // /MEDIA //
 
                     podData = {
                       'podTitle'  : feed.item[i].title,
-                      'podLink' : feed.item[i].link,
-                      'podFile' : feed.item[i].enclosure['@'].url,
-                      'podMedia'  : feed.item[i].media,
-                      'podDesc' : description,
-                      'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
-                      'podDate' : pubDate,
+                      'podLink'   : feed.item[i].link,
+                      'podFile'   : feed.item[i].enclosure['@'].url,
+                      'podMedia'  : podMedia,
+                      'podDesc'   : description,
+                      'podUUID'   : Math.round((new Date().valueOf() * Math.random())) + '',
+                      'podDate'   : pubDate,
                       'listened'  : 'false'
                     };
                     newList.push(podData);
                   }
                 } else if ( typeof feed.item.title !== "undefined" ) {
 
+                  // PUBDATE //
                   if ( typeof feed.item['pubDate'] == "string" ) {
-                    pubDate = moment(feed.item['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z")
+                    pubDate = moment(feed.item['pubDate'], "ddd\, DD MMM YYYY H:mm:ss Z").format();
                   } else if ( typeof feed.item['dc:date'] == "string" ) {
-                    pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ");
+                    pubDate = moment(feed.item['dc:date'], "YYYY-MM-DD\TH:mm:ssZ").format();
                   }
+                  // /PUBDATE //
 
-                  if( feed.item.description.indexOf('<script') != -1 )
-                    description = feed.item.description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-                  else
-                    description = feed.item.description
+                  // DESCRIPTION //
+                  if (typeof(feed.item.description) !== "undefined") {
+                    description = feed.item.description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                  } else if (typeof(feed.item['itunes:summary']) !== "undefined") {
+                    description = feed.item['itunes:summary'].replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                  } else {
+                    break;
+                  }
+                  // /DESCRIPTION //
+
+                  // MEDIA //
+                  if (typeof(feed.item.enclosure[0]) !== "undefined") {
+                    podMedia = feed.item.enclosure[0]['@'].url
+                  } else {
+                    podMedia = feed.item.enclosure['@'].url
+                  }
+                  // /MEDIA //
 
                   podData = {
-                      'podTitle'  : feed.item.title,
-                      'podLink' : feed.item.link,
-                      'podFile' : feed.item.enclosure['@'].url,
-                      'podMedia'  : feed.item.media,
-                      'podDesc' : description,
-                      'podUUID' : Math.round((new Date().valueOf() * Math.random())) + '',
-                      'podDate' : pubDate,
-                      'prettyDay' : pubDate.format('D'),
-                      'prettyMonth' : pubDate.format('MMMM'),
-                      'prettyYear' : pubDate.format('YYYY'),
-                      'listened'  : 'false'
+                      'podTitle'    : feed.item.title,
+                      'podLink'     : feed.item.link,
+                      'podFile'     : podMedia,
+                      'podDesc'     : description,
+                      'podUUID'     : Math.round((new Date().valueOf() * Math.random())) + '',
+                      'podDate'     : pubDate,
+                      'listened'    : 'false'
                     };
                   newList.push(podData);
                   break;

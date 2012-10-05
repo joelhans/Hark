@@ -7,7 +7,6 @@ wookmark = () ->
     offset: 20,
     autoResize: true
   });
-  console.log 'wookmarking it'
 
 # ------------------------------
 # Link handlers
@@ -15,15 +14,14 @@ wookmark = () ->
 $(document)
   .delegate '.directory-feed-subscribe', 'click', (e) ->
     e.preventDefault()
-    console.log $(e.currentTarget).attr 'href'
     $.ajax
       type    : 'POST'
       url     : $(e.currentTarget).attr 'href'
       error   : (err) ->
         $('#modal').html($(err.responseText))
         $('#modal').fadeIn(500)
-      success : (data) ->
-        console.log '?'
+      success : (data, textStatus, jqXHR) ->
+        $(e.currentTarget).text('Subscribed!')
 
 $(document)
   .delegate '.category a:not(.loadAll)', 'click', (e) ->

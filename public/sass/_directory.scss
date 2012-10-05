@@ -80,6 +80,22 @@
   }
 }
 
+.directory-help {
+  padding: 10px 20px 10px 20px;
+}
+
+.subcategories {
+  display: none;
+  li {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700;
+    padding: 0 0 0 10px;
+  }
+}
+
+.category:hover > .sidebar-expander { opacity: 100; }
+
 // .directory-item:hover > .directory-feed-subscribe {
 //   border-top: 1px solid $red;
 // }

@@ -1,25 +1,29 @@
 /* COLORS */
-$orange: rgba(243, 151, 83, 1);
-$red: rgba(255, 98, 68, 1);
-$yellow: rgba(237, 239, 121, 1);
+$orange:    rgba(243, 151, 83, 1);
+$red:       rgba(255, 98, 68, 1);
+$yellow:    rgba(237, 239, 121, 1);
 
-$copy: rgba(33, 33, 33, 1);
-$white: rgba(242, 242, 242, 1);
+$green:     rgba(138, 155, 15, 1);
+$purple:    rgba(73, 10, 61, 1);
+$pink:      rgba(189, 21, 80, 1);
 
-$bg: rgba(243, 240, 238, 1);
+$copy:      rgba(33, 33, 33, 1);
+$white:     rgba(242, 242, 242, 1);
 
-$link-color: $red;
-$link-hover-color: $orange;
-$link-focus-color: false;
-$link-active-color: false;
-$link-visited-color: false;
-$link-trans-color:   transparentize($link-color, 0.8);
+$bg:        rgba(243, 240, 238, 1);
+
+$link-color:          $red;
+$link-hover-color:    $orange;
+$link-focus-color:    false;
+$link-active-color:   false;
+$link-visited-color:  false;
+$link-trans-color:    transparentize($link-color, 0.8);
 
 /* GRADIENTS */
-$orange-to-red: linear-gradient($orange, $red);
-$red-to-orange: linear-gradient($red, $orange);
-$white-to-orange: linear-gradient($white, $orange);
-$white-to-yellow: linear-gradient($white, $yellow);
+$orange-to-red:       linear-gradient($orange, $red);
+$red-to-orange:       linear-gradient($red, $orange);
+$white-to-orange:     linear-gradient($white, $orange);
+$white-to-yellow:     linear-gradient($white, $yellow);
 $orange-to-red-trans: linear-gradient(transparentize($orange, 0.9), transparentize($red, 0.9));
 
 $body:       rgba(78,79,75,1);
@@ -79,7 +83,7 @@ html, body {
  
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px $orange; 
+  -webkit-box-shadow: inset 0 0 6px transparentize($purple, 0.5); 
 }
 
 /* -----------------------------------------
@@ -574,8 +578,7 @@ nav ul {
   width: 100%;
   margin: 40px 0 0px 0;
   padding: 10px;
-  border: 1px solid transparentize($orange, 1);
-  @include background($orange-to-red-trans);
+  border-left: 10px solid $green;
   > div {
     @include inline-block;
   }
@@ -911,125 +914,8 @@ a.logo-spin {
 /* -----------------------------------------
   Media queries for main view.
 ----------------------------------------- */
-@media only screen and (max-width: 1200px) {
-  // .header-settings a { margin: 0; }
-}
+@import "_media-queries.scss";
 
-@media only screen and (max-width: 990px) {
-  // .header-settings a i { margin: 0 5px 0 0; }
-  // .addFeed { width: 50%; }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 990px) {
-  .jp-volume-control { right: 35px; }
-  .jp-mute { left: -32px; }
-  .jp-volume-bar { width: 70px; }
-  .jp-volume-max { left: 70px; }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 850px) {
-  // .jp-progress-control { width: 55%; }
-}
-
-@media only screen and (max-width: 900px) {
-  // .header-settings a { width: 24px; }
-  // .header-settings a i { margin: 0; }
-}
-
-@media only screen and (min-width: 768px) and (max-width: 959px) {
-  .updateButton {
-    position: relative;
-    margin: 0 auto;
-    top: 0px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  header { height: 224px; }
-
-  .logo, .podcast-player { width: 100%; }
-
-  // .header-settings {
-  //  width: 5%;
-  //  margin: -8px 0 0 70%;
-  // }
-
-  // .header-settings a i.icon-home { margin: 0 0 0 -2px; }
-  // .header-settings a i.icon-cog { margin: 0 0 0 -1px; }
-
-  .jp-progress-control { 
-    left: 110px; right: 20px;
-  }
-
-  .jp-volume-control {
-    top: 85px;
-    left: 50%;
-    margin-left: -40px;
-  }
-
-  .jp-playing {
-    width: 80%;
-    left: 20%;
-  }
-
-  // .listen, .subscriptions { float: right; }
-
-  .listen { 
-    width: 100%;
-    margin: 0 10px 0 10px;
-  }
-
-  .podcast-header {
-    border-right: 0px;
-  }
-
-  .podcastItem {
-    border-right: 0px;
-  }
-
-  .subscriptions {
-    width: 100%;
-    margin: 20px 10px 0 10px;
-    border-right: 0px;
-    // padding-top: 0px;
-  }
-
-  // .updateButton {
-  //  top: 78px;
-  // }
-
-  .settings { 
-    width: 100%;
-    margin: 0 10px 0 10px;
-  }
-
-  .information {
-    width: 100%;
-    margin: 20px 10px 0 10px;
-    border-right: 0px;
-    // padding-top: 0px;
-  }
-
-}
-
-@media only screen and (max-width: 480px) {
-  .jp-progress-control {
-    width: 75%;
-    left: 25%;
-  }
-
-  .jp-playing {
-    width: 75%;
-    left: 25%;
-  }
-
-}
-
-/*******************************************
-*
-* Animations
-*
-*******************************************/
 
 @-webkit-keyframes spinner {
   0% { @include rotate(0deg) }
@@ -1054,49 +940,3 @@ a.logo-spin {
   50%  { @include rotate(180deg) }
   100% { @include rotate(360deg) }
 }
-
-
-@-webkit-keyframes pulse {
-  0% { opacity: 0; }
-  50%  { opacity: 0.3; -webkit-transform:scale(1.2) }
-  100% { opacity: 0; -webkit-transform:scale(1.4); }
-}
-@-moz-keyframes pulse {
-  0% { opacity: 0; }
-  50%  { opacity: 0.3; -moz-transform:scale(1.2) }
-  100% { opacity: 0; -moz-transform:scale(1.4); }
-}
-@-ms-keyframes pulse {
-  0% { opacity: 0; }
-  50%  { opacity: 0.3; -ms-transform:scale(1.2) }
-  100% { opacity: 0; -ms-transform:scale(1.4); }
-}
-
-@-webkit-keyframes input-pulse {
-  0% { box-shadow: $linkColor 0px 0px 0px; }
-  100% { box-shadow: $linkColor 0px 0px 20px; }
-}
-@-moz-keyframes input-pulse {
-  0% { box-shadow: $linkColor 0px 0px 0px; }
-  100% { box-shadow: $linkColor 0px 0px 20px; }
-}
-@-ms-keyframes input-pulse {
-  0% { box-shadow: $linkColor 0px 0px 0px; }
-  100% { box-shadow: $linkColor 0px 0px 20px; }
-}
-
-
-
-.clearfix:before,
-.clearfix:after {
-    content:"";
-    display:table;
-}
-.clearfix:after {
-    clear:both;
-}
-/* For IE 6/7 (trigger hasLayout) */
-.clearfix {
-    zoom:1;
-}
-

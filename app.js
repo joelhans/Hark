@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 1.0.1
+//  Current version: 1.1
 //
 //  Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -30,7 +30,8 @@ var express = require('express')
   , moment = require('moment')
   , mongodb = require('mongodb')
   , conf = require('./conf')
-  , connect = require('connect');
+  , connect = require('connect')
+  , coffee = require('coffee-script');
 
 var parser = new xml2js.Parser();
 
@@ -224,6 +225,7 @@ function loadUser(req, res, next) {
 require('./users.js')(app, express, loadUser, Users, Feeds, db, bcrypt, nodemailer);
 require('./feeds.js')(app, express, loadUser, Users, Feeds, Directory, db);
 require('./directory.js')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID);
+require('./lib/directory_cron')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID)
 
 //  ---------------------------------------
 //  ROUTES
@@ -357,11 +359,22 @@ app.post('/listen/podcast/:_id', loadUser, function(req, res) {
       return;
     } else {
       podcastList.sort(function (a , b) {
-        if (a['podDate']['_d'] > b['podDate']['_d'])
-          return -1;
-        if (a['podDate']['_d'] < b['podDate']['_d'])
-          return 1;
-        return 0;
+        var sort_a,
+            sort_b;
+
+        if (typeof(a['podDate']['_d']) == "object") {
+          sort_a = moment(a['podDate']['_d']).valueOf();
+        } else {
+          sort_a = moment(a['podDate']).valueOf();
+        }
+
+        if (typeof(b['podDate']['_d']) == "object") {
+          sort_b = moment(b['podDate']['_d']).valueOf();
+        } else {
+          sort_b = moment(b['podDate']).valueOf();
+        }
+
+        return sort_b - sort_a;
       });
     }
 

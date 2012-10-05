@@ -7,7 +7,7 @@ html(lang="en")
 	
 	body
 
-		- if (user == false)
+		- if (user === false)
 			!=partial('layout/header-log-out')
 		- else
 			!=partial('layout/header')

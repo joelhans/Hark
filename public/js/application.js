@@ -12,7 +12,7 @@ $(document).ready(function() {
     supplied: 'mp3',
     // solution: 'html, flash',
     solution: 'flash, html',
-    errorAlerts: true,
+    errorAlerts: false,
     volume: 0.5,
     play: function(d) {
       $('.podcast-player').css({'top': '0px'});
@@ -71,13 +71,13 @@ $(document).ready(function() {
   });
 
   $('#jquery_jplayer_2').jPlayer({
-    swfPath: "/js/",
+    swfPath: "/js",
     supplied: 'm4v, m4a',
     // solution: 'html, flash',
     solution: 'html, flash',
     volume: 0.5,
     cssSelectorAncestor: "#jp_container_2",
-    errorAlerts: true,
+    errorAlerts: false,
     play: function(d) {
       $('.podcast-player').css({'top': '90px'});
       $('.video-podcast-player').css({'top': '0px'});

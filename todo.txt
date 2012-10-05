@@ -123,8 +123,7 @@ ROADMAP
   
   1.1
   ----------
-  [ ] --  Video podcast support.
-          * Will probably convert MediaElement.js to handle this.
+  [x] --  Video podcast support.
 
   1.2
   ----------
@@ -159,8 +158,7 @@ BUGS
   ***
   ----------
   [ ] --  1.0B07 -- Title is not updated when navigating via AJAX.
-                    * Might also want to look into pjax to simplify this.
-                    * https://github.com/defunkt/jquery-pjax
+                    * Working for everything but Directory categories. Can't figure out a way to reliably grab the capitalized, human-readable category name.
 
   **
   ----------
@@ -171,6 +169,33 @@ BUGS
   *
   ----------
   [ ] --  Rapid-click on "mark as listened" causes some to not have successful POSTs. (Web sockets?)
+
+
+DIRECTORY
+
+  ****
+  ----------
+  [ ] -- Add count to feeds. +1 with each subscription.
+  [ ] -- Need some kind of auto-update function for feeds. Updating on a subscription often isn't enough.
+
+
+  ***
+  ----------
+  [ ] -- Sort by name / last podcast / popularity.
+
+
+  **
+  ----------
+
+
+  *
+  ----------
+
+  Categories to add
+  ----------
+  History
+  Gaming
+
 
 OTHER POSSIBLE FEATURES
 

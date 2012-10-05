@@ -27,7 +27,10 @@ if podcasts
 				p.podcast-feed
 					a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
 					span.breaker &nbsp;|&nbsp;
-					span.moment #{podcast.podDate._d}
+					- if (typeof(podcast.podDate._d) != 'undefined')
+							span.moment #{podcast.podDate._d}
+					- else
+						span.moment #{podcast.podDate}
 					span.breaker &nbsp;|&nbsp;
 					a.item-actions-read(href="#") Read more...
 				div.podcastDescription

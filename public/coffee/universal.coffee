@@ -1,5 +1,5 @@
 $ = jQuery
-History = State = progress = null
+History = State = progress = path = null
 
 # ------------------------------
 # On document load
@@ -47,6 +47,7 @@ $(document)
              a[href^="/directory/category/"]', "click", (e) ->
     e.preventDefault()
     State = History.getState()
+    path = $(e.currentTarget).text()
     History.pushState {}, "", $(e.currentTarget).attr 'href'
 
 History.Adapter.bind window, 'statechange', () ->
@@ -59,6 +60,7 @@ History.Adapter.bind window, 'statechange', () ->
       url: '/listen'
       success: (data) ->
         $('.hark-container').replaceWith(data)
+        document.title = 'Hark | Your podcasts'
         ajaxHelpers()
   else if State.hash == '/directory' || State.hash == '/directory/'
     $.ajax
@@ -67,6 +69,7 @@ History.Adapter.bind window, 'statechange', () ->
       success: (data) ->
         $('.hark-container').html(data)
         wookmark()
+        document.title = 'Hark | The Directory'
         ajaxHelpers()
   else if State.hash == '/settings' || State.hash == '/settings/'
     $.ajax
@@ -74,6 +77,7 @@ History.Adapter.bind window, 'statechange', () ->
       url: '/settings'
       success: (data) ->
         $('.hark-container').html(data)
+        document.title = 'Hark | Your settings'
         ajaxHelpers()
   else if State.hash == '/help' || State.hash == '/help/'
     $.ajax
@@ -81,6 +85,7 @@ History.Adapter.bind window, 'statechange', () ->
       url: '/help'
       success: (data) ->
         $('.hark-container').html(data)
+        document.title = 'Hark | FAQ & Help'
         ajaxHelpers()
   else if State.hash.indexOf('/listen/podcast/') isnt -1
     $.ajax
@@ -89,6 +94,7 @@ History.Adapter.bind window, 'statechange', () ->
       url: State.hash
       success: (data) ->
         $('.primary').html(data)
+        document.title = 'Hark | ' + $(data).find('.podcast-item:first-of-type').attr('data-feed')
         ajaxHelpers()
   else if State.hash.indexOf('/directory/category/') isnt -1
     $.ajax
@@ -97,6 +103,7 @@ History.Adapter.bind window, 'statechange', () ->
       url: State.hash
       success: (data) ->
         $('.primary').html(data)
+        # document.title = 'Hark | The Directory | ' + path
         wookmark()
         ajaxHelpers()
   else

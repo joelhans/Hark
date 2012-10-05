@@ -30,9 +30,6 @@ exerr  = (err, sout,  serr)->
   process.stdout.write sout if sout
   process.stdout.write serr if serr
 
-task 'doc', 'generate documentation for *.coffee files', ->
-  exec "docco #{config.srcDir}/*.coffee", exerr
-
 # this will keep the non-minified compiled and joined file updated as files in
 # `inFile` change.
 task 'watch', 'watch and compile changes in source dir', ->
@@ -41,12 +38,7 @@ task 'watch', 'watch and compile changes in source dir', ->
 
 task 'build', 'join and compile *.coffee files', ->
   exec "coffee -j #{outJS}.js -c #{strFiles}", exerr
-  exec "uglifyjs -o #{outJS}-min.js #{outJS}.js", exerr
-  # exec "java -jar #{config.yuic} #{outJS}.js -o #{outJS}.min.js", exerr
-
-# task 'min', 'minify compiled *.js file', ->
-#   exec "java -jar #{config.yuic} #{outJS}.js -o #{outJS}.min.js", exerr
-
-task 'bam', 'build and minify', ->
-  invoke 'build'
-  invoke 'min'
+  exec "uglifyjs -o #{outJS}-temp.js #{outJS}.js", exerr
+  exec "uglifyjs -o #{config.outDir}/application-temp.js #{config.outDir}/application.js", exerr
+  exec "cat #{config.outDir}/lib.js #{config.outDir}/application-temp.js #{outJS}-temp.js > #{outJS}-min.js", exerr
+  # exec "rm -rf #{config.outDir}/application-temp.js #{outJS}-temp.js", exerr
