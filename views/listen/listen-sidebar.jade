@@ -12,7 +12,9 @@ if feeds
 				a(href='/listen/podcast/' + feed.feeduuid, class='loadFeed') #{feed.feedTitle}
 				span.sidebar-expander
 					i.icon-cog
-				div.sidebar-actions
-					a(href='#', class='sidebar-action-edit') Edit
-					a(href='/listen/remove/' + feed.feeduuid, class='sidebar-action-remove') Remove
-					input(type='text', class='sidebar-action-edit-input', placeholder='Type the new feed name.')
+				ul.sidebar-actions
+					li
+						a(href='#', class='sidebar-action-edit') Edit
+					li
+						a(href='/listen/remove/' + feed.feeduuid, class='sidebar-action-remove') Remove
+						input(type='text', class='sidebar-action-edit-input', placeholder='Type the new feed name.')

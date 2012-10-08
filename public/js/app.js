@@ -258,23 +258,12 @@
 
   $(document).delegate('.sidebar-expander', 'click', function(e) {
     if ($(e.currentTarget).is('.expanded')) {
-      $(e.currentTarget).parent().animate({
-        height: '46px'
-      }, 300);
-      $('.hover-er').animate({
-        height: '46px'
-      }, 80);
       $(e.currentTarget).next().removeClass('undocked').fadeOut(300);
       $(e.currentTarget).parent().removeClass('active');
       return $(e.currentTarget).removeClass('expanded');
     } else {
       $('.sidebar-action-edit-input').hide();
-      $(e.currentTarget).parent().animate({
-        height: '112px'
-      }, 300).css('overflow', 'visible');
-      $('.hover-er').animate({
-        height: '102px'
-      }, 80);
+      $(e.currentTarget).parent().css('overflow', 'visible');
       $(e.currentTarget).next().addClass('undocked').fadeIn(300);
       $(e.currentTarget).parent().addClass('active');
       return $(e.currentTarget).addClass('expanded');
@@ -489,13 +478,7 @@
     });
   });
 
-  wookmark = function() {
-    return $('.directory-item').wookmark({
-      container: $('.directory-main'),
-      offset: 20,
-      autoResize: true
-    });
-  };
+  wookmark = function() {};
 
   $(document).delegate('.directory-feed-subscribe', 'click', function(e) {
     e.preventDefault();
@@ -537,6 +520,50 @@
         return wookmark();
       }
     });
+  });
+
+  $(document).on('click', '.directory-sort-popularity', function(e) {
+    if ($(this).is('.desc')) {
+      $('.directory-item').tsort({
+        attr: 'data-subs'
+      });
+      return $('.directory-sort-popularity').removeClass('desc').addClass('asc');
+    } else {
+      $('.directory-item').tsort({
+        order: 'desc',
+        attr: 'data-subs'
+      });
+      return $('.directory-sort-popularity').removeClass('asc').addClass('desc');
+    }
+  });
+
+  $(document).on('click', '.directory-sort-alphabetical', function(e) {
+    if ($(this).is('.desc')) {
+      $('.directory-item').tsort($(this).children('h1').text(), {
+        order: 'desc'
+      });
+      return $('.directory-sort-alphabetical').removeClass('desc').addClass('asc');
+    } else {
+      $('.directory-item').tsort($(this).children('h1').text(), {
+        order: 'asc'
+      });
+      return $('.directory-sort-alphabetical').removeClass('asc').addClass('desc');
+    }
+  });
+
+  $(document).on('click', '.directory-sort-latest', function(e) {
+    if ($(this).is('.desc')) {
+      $('.directory-item').tsort({
+        attr: 'data-date'
+      });
+      return $('.directory-sort-latest').removeClass('desc').addClass('asc');
+    } else {
+      $('.directory-item').tsort({
+        order: 'desc',
+        attr: 'data-date'
+      });
+      return $('.directory-sort-latest').removeClass('asc').addClass('desc');
+    }
   });
 
   jplayer = function() {

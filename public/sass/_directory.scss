@@ -3,13 +3,13 @@
 .directory-main {
   position: relative;
   padding: 10px 20px 10px 20px;
-  margin: 20px 0 0 0;
+  margin: 80px 0 0 0;
 }
 
 .directory-item {
   position: relative;
-  float: left;
-  width: 30%;
+  // float: left;
+  width: 75%;
   margin: 0px 3.33% 40px 0;
   border: 1px solid transparentize($red, 1);
   @include background($orange-to-red-trans);
@@ -86,11 +86,16 @@
 
 .subcategories {
   display: none;
+  margin-bottom: 0px;
   li {
     font-size: 14px;
     line-height: 22px;
     font-weight: 700;
+    margin-bottom: 0px;
     padding: 0 0 0 10px;
+    a {
+      padding: 8px 40px 8px 20px;
+    }
   }
 }
 

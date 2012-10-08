@@ -8,7 +8,8 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
 //    * Render directory view.
 
   app.get('/directory', loadUser, function(req, res) {
-    Directory.find({}).sort([['lastPodcast','ascending']]).toArray(function(err, result) {
+    // Directory.find({}, {limit: 50}).sort([['subscriptions','descending']]).toArray(function(err, result) {
+    Directory.find({}, {}).sort([['subscriptions','descending']]).toArray(function(err, result) {
       if(err) { throw err; }
       res.render('directory', {
         locals: {
@@ -23,9 +24,48 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
   });
 
   app.post('/directory', loadUser, function(req, res) {
-    Directory.find({}).toArray(function(err, result) {
+    // Directory.find({}, {limit: 50}).sort([['subscriptions','descending']]).toArray(function(err, result) {
+    Directory.find({}, {}).sort([['subscriptions','descending']]).toArray(function(err, result) {
       if(err) { throw err; }
       res.partial('directory/directory-structure', {
+        locals: {
+          directory: result,
+          category: 'all',
+          user: harkUser,
+          playing: harkUser.playing,
+          count: result.length
+        }
+      });
+    });
+  });
+
+  app.post('/directory/:page', loadUser, function(req, res) {
+    var page = req.params.page
+      , min = page * 50 - 50
+      , max = page * 50
+    console.log(page + ' , ' + min + ' , ' + max);
+    Directory.find({}, {limit: 50}, {skip: min}).sort([['subscriptions','descending']]).toArray(function(err, result) {
+      if(err) { throw err; }
+      res.partial('directory/directory-structure', {
+        locals: {
+          directory: result,
+          category: 'all',
+          user: harkUser,
+          playing: harkUser.playing,
+          count: result.length
+        }
+      });
+    });
+  });
+
+  app.get('/directory/:page', loadUser, function(req, res) {
+    var page = req.params.page
+      , min = page * 50 - 50
+      , max = page * 50
+    console.log(page + ' , ' + min + ' , ' + max);
+    Directory.find({}, {limit: 50}, {skip: min}).sort([['subscriptions','descending']]).toArray(function(err, result) {
+      if(err) { throw err; }
+      res.render('directory', {
         locals: {
           directory: result,
           category: 'all',

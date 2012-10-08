@@ -85,15 +85,16 @@ $(document)
 $(document)
   .delegate '.sidebar-expander', 'click', (e) ->
     if $(e.currentTarget).is('.expanded')
-      $(e.currentTarget).parent().animate({height: '46px'}, 300)
-      $('.hover-er').animate({height: '46px'}, 80)
+      # $(e.currentTarget).parent().animate({height: '46px'}, 300)
+      # $('.hover-er').animate({height: '46px'}, 80)
       $(e.currentTarget).next().removeClass('undocked').fadeOut(300)
       $(e.currentTarget).parent().removeClass('active')
       $(e.currentTarget).removeClass('expanded')
     else
       $('.sidebar-action-edit-input').hide()
-      $(e.currentTarget).parent().animate({height: '112px'}, 300).css('overflow', 'visible'); 
-      $('.hover-er').animate({height: '102px'}, 80)
+      # $(e.currentTarget).parent().animate({height: '112px'}, 300).css('overflow', 'visible');
+      $(e.currentTarget).parent().css('overflow', 'visible');
+      # $('.hover-er').animate({height: '102px'}, 80)
       $(e.currentTarget).next().addClass('undocked').fadeIn(300)
       $(e.currentTarget).parent().addClass('active')
       $(e.currentTarget).addClass('expanded')

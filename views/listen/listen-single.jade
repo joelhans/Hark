@@ -28,7 +28,7 @@ if podcasts
 					a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
 					span.breaker &nbsp;|&nbsp;
 					- if (typeof(podcast.podDate._d) != 'undefined')
-							span.moment.d #{podcast.podDate._d}
+							span.moment #{podcast.podDate._d}
 					- else
 						span.moment #{podcast.podDate}
 					span.breaker &nbsp;|&nbsp;
