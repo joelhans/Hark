@@ -21,6 +21,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
     new_build       = []
     Directory.find({}).sort('lastUpdated',1).toArray (err, result) ->
       # to_update = result[0]
+      # console.log to_update
 
       # This works, but is not "throttled."
       # update_directory_request(to_update)

@@ -8,8 +8,8 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
 //    * Render directory view.
 
   app.get('/directory', loadUser, function(req, res) {
-    // Directory.find({}, {limit: 50}).sort([['subscriptions','descending']]).toArray(function(err, result) {
-    Directory.find({}, {}).sort([['subscriptions','descending']]).toArray(function(err, result) {
+    Directory.find({}).limit(1).sort([['subscriptions','descending']]).toArray(function(err, result) {
+    // Directory.find({}, {}).sort([['subscriptions','descending']]).toArray(function(err, result) {
       if(err) { throw err; }
       res.render('directory', {
         locals: {
@@ -17,15 +17,15 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
           category: 'all',
           user: harkUser,
           playing: harkUser.playing,
-          count: result.length
+          page: 1
         }
       });
     });
   });
 
   app.post('/directory', loadUser, function(req, res) {
-    // Directory.find({}, {limit: 50}).sort([['subscriptions','descending']]).toArray(function(err, result) {
-    Directory.find({}, {}).sort([['subscriptions','descending']]).toArray(function(err, result) {
+    Directory.find({}).limit(1).sort([['subscriptions','descending']]).toArray(function(err, result) {
+    // Directory.find({}, {}).sort([['subscriptions','descending']]).toArray(function(err, result) {
       if(err) { throw err; }
       res.partial('directory/directory-structure', {
         locals: {
@@ -33,49 +33,89 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
           category: 'all',
           user: harkUser,
           playing: harkUser.playing,
-          count: result.length
+          page: 1
         }
       });
     });
   });
 
-  app.post('/directory/:page', loadUser, function(req, res) {
+  //
+  //  PAGINATION
+  //
+
+  app.post('/directory/page/:page', loadUser, function(req, res) {
     var page = req.params.page
-      , min = page * 50 - 50
-      , max = page * 50
-    console.log(page + ' , ' + min + ' , ' + max);
-    Directory.find({}, {limit: 50}, {skip: min}).sort([['subscriptions','descending']]).toArray(function(err, result) {
-      if(err) { throw err; }
-      res.partial('directory/directory-structure', {
-        locals: {
-          directory: result,
-          category: 'all',
-          user: harkUser,
-          playing: harkUser.playing,
-          count: result.length
-        }
+      , min = page * 1 - 1
+      , max = page * 1
+    if (req.body.category) {
+      Directory.find({ 'categories' : { $in : [req.body.category] } }).limit(1).skip(min).sort([['subscriptions','descending']]).toArray(function(err, result) {
+        if(err) { throw err; }
+        res.partial('directory/directory-structure', {
+          locals: {
+            directory: result,
+            category: 'all',
+            user: harkUser,
+            playing: harkUser.playing,
+            page: req.params.page
+          }
+        });
       });
-    });
+    } else {
+      Directory.find({}).limit(1).skip(min).sort([['subscriptions','descending']]).toArray(function(err, result) {
+        if(err) { throw err; }
+        res.partial('directory/directory-structure', {
+          locals: {
+            directory: result,
+            category: 'all',
+            user: harkUser,
+            playing: harkUser.playing,
+            page: req.params.page
+          }
+        });
+      });
+    }
   });
 
-  app.get('/directory/:page', loadUser, function(req, res) {
+  //
+  //  SORTING
+  // 
+
+  app.post('/directory/sort-title', loadUser, function(req, res) {
     var page = req.params.page
-      , min = page * 50 - 50
-      , max = page * 50
-    console.log(page + ' , ' + min + ' , ' + max);
-    Directory.find({}, {limit: 50}, {skip: min}).sort([['subscriptions','descending']]).toArray(function(err, result) {
-      if(err) { throw err; }
-      res.render('directory', {
-        locals: {
-          directory: result,
-          category: 'all',
-          user: harkUser,
-          playing: harkUser.playing,
-          count: result.length
-        }
+      , min = page * 1 - 1
+      , max = page * 1
+    if (req.body.category) {
+      Directory.find({ 'categories' : { $in : [req.body.category] } }).limit(1).skip(min).sort([['title','ascending']]).toArray(function(err, result) {
+        if(err) { throw err; }
+        res.partial('directory/directory-structure', {
+          locals: {
+            directory: result,
+            category: 'all',
+            user: harkUser,
+            playing: harkUser.playing,
+            page: req.params.page
+          }
+        });
       });
-    });
+    } else {
+      Directory.find({}).limit(1).skip(min).sort([['title','ascending']]).toArray(function(err, result) {
+        if(err) { throw err; }
+        res.partial('directory/directory-structure', {
+          locals: {
+            directory: result,
+            category: 'all',
+            user: harkUser,
+            playing: harkUser.playing,
+            page: req.params.page
+          }
+        });
+      });
+    }
   });
+
+  //
+  //  SUBSCRIBE
+  //
 
   app.post('/directory/subscribe/:uuid', loadUser, function(req, res) {
     Directory.findOne({ 'uuid' : req.params.uuid }, function(err, result) {
@@ -111,7 +151,7 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
   });
 
   app.get('/directory/category/:category', loadUser, function(req, res) {
-    Directory.find({ 'categories' : { $in : [req.params.category] } }).toArray(function(err, result) {
+    Directory.find({ 'categories' : { $in : [req.params.category] } }).limit(1).toArray(function(err, result) {
       if(err) { throw err; }
       res.render('directory', {
         locals: {
@@ -119,21 +159,22 @@ module.exports = function(app, express, loadUser, Directory, Feeds, moment, requ
           category: req.params.category,
           user: harkUser,
           playing: harkUser.playing,
-          count: result.length
+          page: 1
         }
       });
     });
   });
 
   app.post('/directory/category/:category', loadUser, function(req, res) {
-    Directory.find({ 'categories' : { $in : [req.params.category] } }).toArray(function(err, result) {
+    Directory.find({ 'categories' : { $in : [req.params.category] } }).limit(1).toArray(function(err, result) {
       if(err) { throw err; }
       res.partial('directory/directory-main', {
         locals: {
           directory: result,
           category: req.params.category,
           user: harkUser,
-          count: result.length
+          playing: harkUser.playing,
+          page: 1
         }
       });
     });

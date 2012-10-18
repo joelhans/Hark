@@ -35,6 +35,7 @@ $(document)
         console.log data
         ajaxHelpers()
         wookmark()
+        dir_pagination()
 
   .delegate '.category a.loadAll', 'click', (e) ->
     e.preventDefault()
@@ -46,6 +47,7 @@ $(document)
         $('.hark-container').html(data)
         ajaxHelpers()
         wookmark()
+        dir_pagination()
 
 # ------------------------------
 # Sorting
@@ -80,3 +82,70 @@ $(document).on 'click', '.directory-sort-latest', (e) ->
   else
     $('.directory-item').tsort({order:'desc', attr:'data-date'})
     $('.directory-sort-latest').removeClass('asc').addClass('desc')
+
+# Pure alpha
+
+$(document).on 'click', '.directory-sort-pure-alpha', (e) ->
+  e.preventDefault()
+  category = null
+  if typeof(top.location.pathname.split('/')[3]) isnt 'undefined'
+    category = top.location.pathname.split('/')[3]
+  $.ajax
+    type    : 'POST'
+    url     : '/directory/sort-title'
+    data    : {
+      category: category
+    }
+    success : (data) ->
+      $('.hark-container').html(data)
+      ajaxHelpers()
+      wookmark()
+
+# ------------------------------
+# Pagination
+# ------------------------------
+
+dir_pagination = () ->
+  current_page = parseInt($('.directory-main').attr 'data-page')
+  if current_page is 1
+    $('.pagination-next').attr('href', '/directory/page/2')
+    $('.pagination-prev').css({'opacity': 0})
+  else
+    prev_page = current_page - 1
+    next_page = current_page + 1
+    $('.pagination-prev').attr('href', '/directory/page/' + prev_page)
+    $('.pagination-next').attr('href', '/directory/page/' + next_page)
+
+$(document).on 'click', '.pagination-prev', (e) ->
+  e.preventDefault()
+  category = null
+  if typeof(top.location.pathname.split('/')[3]) isnt 'undefined'
+    category = top.location.pathname.split('/')[3]
+  $.ajax
+    type    : 'POST'
+    url     : $(this).attr 'href'
+    data    : {
+      category: category
+    }
+    success : (data) ->
+      $('.hark-container').html(data)
+      ajaxHelpers()
+      wookmark()
+      dir_pagination()
+
+$(document).on 'click', '.pagination-next', (e) ->
+  e.preventDefault()
+  category = null
+  if typeof(top.location.pathname.split('/')[3]) isnt 'undefined'
+    category = top.location.pathname.split('/')[3]
+  $.ajax
+    type    : 'POST'
+    url     : $(this).attr 'href'
+    data    : {
+      category: category
+    }
+    success : (data) ->
+      $('.hark-container').html(data)
+      ajaxHelpers()
+      wookmark()
+      dir_pagination()

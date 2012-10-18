@@ -9,6 +9,7 @@ $(document).ready () ->
   ajaxHelpers()
   State = History.getState()
   wookmark()
+  dir_pagination()
 
 window.onload = () ->
   jplayer()
@@ -69,6 +70,7 @@ History.Adapter.bind window, 'statechange', () ->
       success: (data) ->
         $('.hark-container').html(data)
         wookmark()
+        dir_pagination()
         document.title = 'Hark | The Directory'
         ajaxHelpers()
   else if State.hash == '/settings' || State.hash == '/settings/'

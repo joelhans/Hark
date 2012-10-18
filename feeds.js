@@ -1,5 +1,9 @@
 module.exports = function(app, express, loadUser, Users, Feeds, Directory, db){
 
+FeedCatches = require('./lib/feeds_catches').FeedCatches;
+
+update_feeds = require('./lib/feeds_update')
+
 var request = require('request')
   , xml2js = require('xml2js')
   , moment = require('moment')
@@ -296,6 +300,9 @@ var parser = new xml2js.Parser();
   // UPDATE YOUR PODCASTS
   //
 
+  // require('./lib/feeds_update')(app, express, loadUser, Directory, Feeds, moment, request, async, parser)
+
+
   app.post('/listen/update', loadUser, function(req, res) {
     var item,
       counter = 0,
@@ -338,12 +345,6 @@ var parser = new xml2js.Parser();
               res.status(500);
               req.flash('error', "An error occured when updating a feed. Please try again in a few minutes.");
               res.partial('layout/modal', { flash: req.flash() });
-
-
-              // req.flash('errorAddFeed', "There was an error with one of your feeds. Maybe the site is currently down. The affected podcast is at: " + feedHREF + '. The rest of your podcasts will update normally.');
-              // getFeeds(harkUser.userID, function(error, feed, podcastList) {
-              //   res.partial('listen/listen-main', { feeds: feed, podcasts: podcastList, flash: req.flash() });    
-              // });
               newList = [];
               callback(null, feeds, existingList, feedHREF, feedUUID, newList, counter);
             } else {
@@ -369,12 +370,12 @@ var parser = new xml2js.Parser();
                     // /PUBDATE //
 
                     // DESCRIPTION //
-                    if (typeof(feed.item[i].description) !== "undefined") {
-                      description = feed.item[i].description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                    if (typeof(feed.item[i].description) !== "undefined" && typeof(feed.item[i].description) !== "object") {
+                      description = feed.item[i].description.toString().replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
                     } else if (typeof(feed.item[i]['itunes:summary']) !== "undefined") {
-                      description = feed.item[i]['itunes:summary'].replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                      description = feed.item[i]['itunes:summary'].toString().replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
                     } else {
-                      break;
+                      description = 'No description available.'
                     }
                     // /DESCRIPTION //
 
@@ -409,12 +410,12 @@ var parser = new xml2js.Parser();
                   // /PUBDATE //
 
                   // DESCRIPTION //
-                  if (typeof(feed.item.description) !== "undefined") {
+                  if (typeof(feed.item.description) !== "undefined" && typeof(feed.item.description) !== "object") {
                     description = feed.item.description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
                   } else if (typeof(feed.item['itunes:summary']) !== "undefined") {
                     description = feed.item['itunes:summary'].replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
                   } else {
-                    break;
+                    description = 'No description available. Sorry.'
                   }
                   // /DESCRIPTION //
 
