@@ -1,0 +1,154 @@
+// Directory CSS
+
+.directory-main {
+  position: relative;
+  padding: 10px 20px 10px 20px;
+  margin: 80px 0 0 0;
+}
+
+.directory-item {
+  position: relative;
+  // float: left;
+  width: 75%;
+  margin: 0px 3.33% 40px 0;
+  border: 1px solid transparentize($red, 1);
+  @include background($orange-to-red-trans);
+  @include transition(all, 0.5s);
+  // &:hover {
+  //   border: 1px solid $red;
+  // }
+}
+
+.directory-feed-title {
+  font-size: 22px;
+  line-height: 34px;
+  color: $copy;
+  padding: 26px 20px 0 20px;
+}
+
+.directory-feed-description {
+  color: $copy;
+  padding: 10px 20px 0 20px;
+}
+
+.directory-feed-details {
+  overflow: auto;
+  width: 100%;
+  margin: 26px 0 0 0;
+  padding: 0 20px 0 20px;
+}
+
+.directory-feed-details-left,
+.directory-feed-details-right {
+  float: left;
+  width: 50%;
+  span:first-of-type {
+    display: block;
+    font-weight: 700;
+    color: $copy;
+  }
+  span:last-of-type {
+    font-size: 14px;
+  }
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 22px;
+  color: $copy;
+}
+
+.directory-feed-details-left {
+  padding: 0 20px 0 0;
+  // border-right: 1px solid $red;
+}
+
+.directory-feed-details-right {
+  padding: 0 0 0 20px;
+}
+
+.directory-feed-subscribe {
+  display: block;
+  margin: 26px auto 0 auto;
+  padding: 16px 0 16px 0;
+  color: $copy;
+  font-size: 18px;
+  text-align: center;
+  // border-top: 1px solid transparentize($red, 1);
+  @include transition(all, 0.3s);
+  &:hover {
+    color: $base;
+    @include background($orange-to-red);
+  }
+}
+
+.directory-help {
+  padding: 10px 20px 10px 20px;
+}
+
+.subcategories {
+  display: none;
+  margin-bottom: 0px;
+  li {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700;
+    margin-bottom: 0px;
+    padding: 0 0 0 10px;
+    a {
+      padding: 8px 40px 8px 20px;
+    }
+  }
+}
+
+.category:hover > .sidebar-expander { opacity: 100; }
+
+// .directory-item:hover > .directory-feed-subscribe {
+//   border-top: 1px solid $red;
+// }
+
+.pagination {
+  width: 75%;
+  text-align: center;
+  p {
+    @include inline-block;
+    font-size: 20px;
+  }
+  p:first-of-type {
+    margin-right: 20px;
+  }
+  p:last-of-type {
+    margin-left: 20px;
+  }
+}
+
+/****************************************************
+*
+* LOGGED-OUT VIEW
+*
+****************************************************/
+
+.directory-no-login { padding: 0 0 0 20px; }
+
+h2.directory-no-login { padding: 10px 0 0 20px; }
+
+.directory-signup {
+  float: right;
+  display: block;
+  font-family: 'Lato', Arial, serif;
+  font-size: 31.68px;
+  font-weight: 700;
+  font-style: italic;
+
+  // display: block;
+  // color: $red;
+  border: 0px;
+  padding: 30px 0 0 100px;
+
+  position: relative;
+  height: 70px;
+  margin: 10px 80px 60px 20px;
+  // @include background($white);
+  img {
+    position: absolute; left: 20px; top: 8px;
+    width: 60px;
+  }
+}

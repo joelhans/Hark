@@ -18,20 +18,20 @@
 //  MODULES
 //  ---------------------------------------
 
-var express = require('express')
-  , http = require('http')
-  , url = require('url')
-  , crypto = require('crypto')
-  , request = require('request')
-  , async = require('async')
-  , xml2js = require('xml2js')
+var express    = require('express')
+  , http       = require('http')
+  , url        = require('url')
+  , crypto     = require('crypto')
+  , request    = require('request')
+  , async      = require('async')
+  , xml2js     = require('xml2js')
   , nodemailer = require('nodemailer')
-  , bcrypt = require('node.bcrypt.js')
-  , moment = require('moment')
-  , mongodb = require('mongodb')
-  , conf = require('./conf')
-  , connect = require('connect')
-  , coffee = require('coffee-script');
+  , bcrypt     = require('node.bcrypt.js')
+  , moment     = require('moment')
+  , mongodb    = require('mongodb')
+  , conf       = require('./lib/conf')
+  , connect    = require('connect')
+  , coffee     = require('coffee-script');
 
 var parser = new xml2js.Parser();
 
@@ -39,26 +39,26 @@ var parser = new xml2js.Parser();
 //  DATABASES
 //  ---------------------------------------
 
-var Db = require('mongodb').Db
-  , Server = require('mongodb').Server
+var Db            = require('mongodb').Db
+  , Server        = require('mongodb').Server
   , server_config = new Server('localhost', 27017, {auto_reconnect: true, native_parser: true})
-  , db = new Db('Hark', server_config, {})
-  , mongoStore = require('connect-mongodb')
-  , ObjectID = require('mongodb').ObjectID;
+  , db            = new Db('Hark', server_config, {})
+  , mongoStore    = require('connect-mongodb')
+  , ObjectID      = require('mongodb').ObjectID;
 
-var Users = new mongodb.Collection(db, 'Users')
-  , Feeds = new mongodb.Collection(db, 'Feeds')
+var Users     = new mongodb.Collection(db, 'Users')
+  , Feeds     = new mongodb.Collection(db, 'Feeds')
   , Directory = new mongodb.Collection(db, 'Directory');
 
 //  ---------------------------------------
 //  PASSPORT CONFIGURATION
 //  ---------------------------------------
 
-var passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy
-  , TwitterStrategy = require('passport-twitter').Strategy
+var passport         = require('passport')
+  , LocalStrategy    = require('passport-local').Strategy
+  , TwitterStrategy  = require('passport-twitter').Strategy
   , FacebookStrategy = require('passport-facebook').Strategy
-  , GoogleStrategy = require('passport-google').Strategy;
+  , GoogleStrategy   = require('passport-google').Strategy;
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -222,9 +222,9 @@ function loadUser(req, res, next) {
   res.redirect('/');
 }
 
-require('./users.js')(app, express, loadUser, Users, Feeds, db, bcrypt, nodemailer);
-require('./feeds.js')(app, express, loadUser, Users, Feeds, Directory, db);
-require('./directory.js')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID);
+require('./lib/users.js')(app, express, loadUser, Users, Feeds, db, bcrypt, nodemailer);
+require('./lib/feeds.js')(app, express, loadUser, Users, Feeds, Directory, db);
+require('./lib/directory.js')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID);
 require('./lib/directory_cron')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID)
 
 //  ---------------------------------------

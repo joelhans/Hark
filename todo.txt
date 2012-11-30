@@ -183,7 +183,7 @@ BUGS
 
   ****
   ----------
-  
+  [ ] --  1.2B01 -- When you watch one video, then audio, and then another video, the video doesn't show up.
 
   ***
   ----------

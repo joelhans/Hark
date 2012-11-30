@@ -1,0 +1,923 @@
+/* COLORS */
+$orange:    rgba(243, 151, 83, 1);
+$red:       rgba(255, 98, 68, 1);
+$yellow:    rgba(237, 239, 121, 1);
+
+$green:     rgba(138, 155, 15, 1);
+$purple:    rgba(73, 10, 61, 1);
+$pink:      rgba(189, 21, 80, 1);
+
+$copy:      rgba(33, 33, 33, 1);
+$white:     rgba(242, 242, 242, 1);
+
+$bg:        rgba(243, 240, 238, 1);
+
+$link-color:          $red;
+$link-hover-color:    $orange;
+$link-focus-color:    false;
+$link-active-color:   false;
+$link-visited-color:  false;
+$link-trans-color:    transparentize($link-color, 0.8);
+
+/* GRADIENTS */
+$orange-to-red:       linear-gradient($orange, $red);
+$red-to-orange:       linear-gradient($red, $orange);
+$white-to-orange:     linear-gradient($white, $orange);
+$white-to-yellow:     linear-gradient($white, $yellow);
+$orange-to-red-trans: linear-gradient(transparentize($orange, 0.9), transparentize($red, 0.9));
+
+$body:       rgba(78,79,75,1);
+
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/utilities";
+@import "typography";
+@import "colonnade";
+@import "font-awesome";
+@import "directory";
+
+/*  -----------------------------------------
+  -----------------------------------------
+  
+  Layout.
+  
+  -----------------------------------------
+-----------------------------------------  */
+
+/* -----------------------------------------
+  Body.
+----------------------------------------- */
+html, body {
+  height: 100%;
+  width: 100%;
+  @include background($bg);
+}
+
+* { 
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+::selection,
+::-moz-selection {
+  background: $orange;
+  color: $white;
+}
+
+::-webkit-input-placeholder {
+  color:    $base;
+}
+::-moz-placeholder {
+  color:    $base;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px transparentize($purple, 0.5); 
+}
+
+/* -----------------------------------------
+  Signup/login.
+----------------------------------------- */
+.signup-intro {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.signup-intro a {
+  @include inline-block;
+  width: 400px;
+  margin: 0 auto 40px auto;
+  img { width: 400px; }
+}
+
+.claim-username,
+.update-password {
+  h3 {
+    width: 20%;
+    @include inline-block;
+  }
+  input {
+    width: 400px; height: 40px;
+    display: block;
+    padding: 2px 4px 2px 4px;
+    border: 0px;
+    &:last-of-type {
+      width: 70px;
+      margin: 20px 0 20px 165px;
+    }
+  }
+}
+
+.create-email, .create-password, .create-submit, .login-email, .login-password, .login-submit, .forgot-email, .forgot-submit, .reset-email, .reset-password, .reset-submit {
+  font-family: $baseFontFamily;
+  color: $base;
+  padding: 16px 40px 16px 40px;
+  border: 0px; outline: 0px;
+  @include transition(all, 0.5s);
+  @include background($orange);
+  &:hover {
+    @include background($red);
+  }
+  &:focus {
+    @include background($red);
+    outline: 1px solid $red;
+  }
+}
+
+.create-submit, .login-submit, .forgot-submit, .reset-submit {
+  margin-top: 40px;
+  background-color: $red;
+  color: $base;
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    background-color: $orange;
+  }
+}
+
+.login-forgot, .existing-account {
+  text-align: center;
+  a { margin-left: 20px; }
+}
+
+.login-error, .create-error, .forgot-error {
+  p {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+  }
+}
+
+.login-service {
+  position: relative;
+  text-align: center;
+    a {
+      @include background($red);
+      display: block;
+      position: relative;
+      width: 240px; height: 50px;
+      margin: 0 auto 20px auto;
+      padding: 2px 20px 8px 60px;
+      border: 0px;
+      color: $base;
+      line-height: 50px;
+      &:hover {
+        border: 0px;
+        @include background($orange);
+      }
+    }
+}
+
+.facebook i, .twitter i, .google i {
+  position: absolute; top: 1px; left: 20px;
+  font-size: 30px;
+}
+
+/* -----------------------------------------
+  Header.
+----------------------------------------- */
+header {
+  width: 100%; height: 80px;
+  padding: 0px;
+  border-bottom: 1px solid transparentize($red, 0.8);
+  overflow: hidden;
+}
+
+.hark-logo a {
+  float: left;
+  width: 200px; height: 80px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  img {
+    display: block;
+    width: 160px;
+    margin: 10px 0 0 20px;
+  }
+}
+
+nav ul {
+  width: 100%;
+  margin: 0 0 0 240px;
+  li {
+    @include inline-block;
+    font-family: 'Lato';
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 16px 120px 0 0;
+    a {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+/* -----------------------------------------
+  jPlayer.
+----------------------------------------- */
+@import "jplayer";
+
+/* -----------------------------------------
+  Currently playing.
+----------------------------------------- */
+.currently-playing {
+  display: block;
+  position: relative;
+  margin: 0px;
+}
+
+.currently-playing li {
+  position: relative;
+  color: $copy;
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 700;
+  margin: 0px;
+  // border: 4px solid transparentize($orange, 1);
+  border-radius: 20px;
+  @include transition(all, 0.3s);
+  z-index: 2;
+  a {
+    display: block;
+    width: 100%;
+    color: $red;
+    text-decoration: none;
+    padding: 10px 20px 12px 20px;
+    @include transition(all, 0.3s);
+    border: 0px;
+    z-index: 2;
+  }
+  &:hover {
+    // border: 4px solid $orange;
+    a {
+      color: $orange;
+    }
+  }
+}
+
+.currently-playing li.heading {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0px;
+  padding: 16px 20px 14px 20px;
+  border: 0;
+}
+
+.currently-playing li p.safe {
+  color: $copy;
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 10px 20px 12px 20px;
+}
+
+/* -----------------------------------------
+  Sidebar
+----------------------------------------- */
+.sidebar {
+  float: left;
+  width: 220px;
+  border-right: 1px solid transparentize($red, 0.8);
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.sidebar:hover {
+  overflow-y: auto;
+}
+
+.subscriptions,
+.categories,
+.questions {
+  display: block;
+  position: relative;
+}
+
+.sidebar-item,
+.category {
+  position: relative;
+  // height: 46px;
+  color: $copy;
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 700;
+  margin: 0px;
+  // border: 4px solid transparentize($orange, 1);
+  border-radius: 20px;
+  @include transition(all, 0.3s);
+  z-index: 2;
+  a {
+    display: block;
+    width: 100%;
+    color: $red;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 12px 40px 12px 20px;
+    @include transition(all, 0.3s);
+    border: 0px;
+    z-index: 2;
+  }
+  &:hover {
+    // border: 4px solid $orange;
+    a {
+      color: $orange;
+      // @include background(transparent);
+    }
+  }
+}
+
+.sidebar-item-big {
+  position: relative;
+  color: $copy;
+  font-family: 'Lato';
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+  margin: 0px;
+  // border: 4px solid transparentize($orange, 1);
+  border-radius: 20px;
+  @include transition(all, 0.3s);
+  z-index: 2;
+  a {
+    display: block;
+    width: 100%;
+    color: $copy;
+    text-decoration: none;
+    padding: 12px 20px 12px 20px;
+    @include transition(all, 0.3s);
+    border: 0px;
+    z-index: 2;
+  }
+  &:hover {
+    // border: 4px solid $orange;
+    a {
+      color: $orange;
+      // @include background(transparent);
+    }
+  }
+}
+
+.safe {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0px;
+  padding: 16px 20px 14px 20px;
+}
+
+.questions .sidebar-item a {
+  overflow: auto;
+  white-space: normal;
+}
+
+// .active {
+//   @include background(transparentize($red, 0.7)); 
+// }
+
+.hover-er {
+  display: none;
+  opacity: 0;
+  position: absolute; top: 56px; left: 10px;
+  width: 190px; height: 28px;
+  margin: 0;
+  @include background(transparent);
+  border-radius: 20px;
+  border: 4px solid $red;
+  z-index: 1;
+  @include transition(all, 0.3s);
+}
+
+.sidebar-expander {
+  position: absolute; right: 10px; top: 20px;
+  margin: -12px 0 0 0;
+  opacity: 0;
+  @include transition(all, 0.3s);
+  i {
+    color: $red;
+    font-size: 24px;
+  }
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.sidebar-item:hover > .sidebar-expander { opacity: 100; }
+
+.sidebar-actions {
+  display: none;
+  margin-bottom: 0px;
+  li {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700;
+    margin-bottom: 0px;
+    padding: 0 0 0 10px;
+    a {
+      padding: 8px 40px 8px 20px;
+    }
+  }
+}
+
+.add-feed {
+  display: none;
+  width: 100%;
+  font-family: $baseFontFamily;
+  color: $base;
+  padding: 6px 12px 6px 12px;
+  margin: 0px;
+  border: 0px;
+  @include transition(all, 0.5s);
+  @include background($orange);
+  &:hover {
+    @include background($red);
+    // @include box-shadow($base 0px 0px 10px);
+  }
+  &:focus {
+    outline: 0;
+    @include background($red);
+    // @include box-shadow($base 0px 0px 20px);
+  }
+}
+
+
+.edit-feed-input {
+  float: left;
+  display: none;
+  margin: 0px;
+  font-family: $baseFontFamily;
+  border: 1px solid $base;
+  @include transition(all, 0.5s, ease-in-out);
+  &:hover {
+    @include box-shadow($linkColor 0px 0px 10px);
+  }
+  &:focus {
+    outline: 0;
+    @include box-shadow($linkColor 0px 0px 20px);
+  }
+}
+
+.allFeeds, .allFeeds:visited {
+  color: $errorColor !important;
+}
+
+.feedActions {
+  width: 46px; height: 30px;
+  background-color: transparent;
+  position: absolute; right: 15px;
+  margin: 0;
+}
+
+.removeFeed, .editFeed, .removeFeed:visited, .editFeed:visited {
+  width: 24px; height: 24px;
+  @include inline-block;
+  @include border-radius(12px);
+  font-size: 16px;
+  line-height: 16px;
+  color: $base;
+  background-color: $linkColor;
+  border: 3px solid $bodyTrans;
+  opacity: 0;
+  margin: -2px 5px 0 0;
+  &:hover {
+    border: 3px solid $errorColor;  
+    background-color: $base;
+    color: $body;
+  }
+  i { margin: 1px 0 0 -1px; }
+}
+
+/* -----------------------------------------
+  Action buttons.
+----------------------------------------- */
+.actions {
+  position: fixed; left: 220px;  right: 14px;
+  padding: 10px 20px 10px 20px;
+  border-bottom: 1px solid transparentize($red, 0.8);
+  @include background($bg);
+  z-index: 900;
+  ul li.action {
+    @include inline-block;
+    color: $base;
+    font-size: 14px;
+    line-height: 14px;
+    @include background($red);
+    margin: 10px 20px 0 0;
+    padding: 10px 20px 10px 20px;
+    @include transition(all, 0.5s);
+  }
+  ul li.action.active {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  ul li.action.inactive {
+    color: $body;
+    background-color: rgba(33, 33, 33, 0.05);
+  }
+  ul li.safe {
+    @include inline-block;
+    font-size: 14px;
+    line-height: 14px;
+    padding: 18px 20px 10px 0px;
+  }
+}
+
+.act-sorting {
+  position: relative;
+  @include background($red);
+  i { padding: 0 0 0 10px; }
+  ul {
+    display: none; top: 34px; left: 0px;
+    position: absolute;
+    width: 160px;
+    padding: 10px;
+    @include background($red);
+    a {
+      font-family: 'Lato';
+      font-size: 14px;
+      line-height: 22px;
+      font-weight: 400;
+      color: $base;
+      a:hover {
+        color: darken($base, 10%);
+      }
+    }
+  }
+}
+
+/* -----------------------------------------
+  Podcast list.
+----------------------------------------- */
+.primary {
+  position: relative;
+  overflow-y: scroll;
+}
+
+.podcastList {
+  float: left;
+  width: 75%;
+  margin: 80px 0 0 0;
+  padding: 20px;
+}
+
+.podcast-item {
+  position: relative;
+  width: 100%;
+  margin: 40px 0 0px 0;
+  padding: 10px;
+  border-left: 10px solid $green;
+  > div {
+    @include inline-block;
+  }
+}
+
+.selected {
+  @include background(darken($bg, 3%));
+  // border: 1px solid $orange;
+}
+
+.podcast-title {
+  max-height: 70px;
+  margin-top: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  a {
+    font-size: 24px;
+    line-height: 34px;
+    color: $copy;
+    &:hover {
+      color: $red;
+    }
+  }
+}
+
+.podcast-feed {
+  margin-bottom: 30px;
+}
+
+.item-actions {
+  position: absolute; bottom: -44px; left: 0px;
+  opacity: 0;
+  width: 100%; height: 32px;
+  @include background($orange);
+  @include transition(all, 0.3s);
+  a {
+    @include inline-block;
+    width: 20%;
+    color: $white;
+    font-size: 18px;
+    margin-top: 4px;
+    padding: 0px 12px 0 12px;
+    border-right: 1px solid $white;
+    &:last-of-type { border-right: 0px; }
+    &:hover { color: $red; }
+  }
+}
+
+div.podcastDescription {
+  display: none;
+  width: 100%;
+  p {
+    margin-bottom: 0px;
+    padding-bottom: 12px;
+  }
+}
+
+.description-warning {
+  color: $red;
+  font-size: 14px; 
+}
+
+.false {
+  font-weight: 700;
+}
+
+.listen-sidebar {
+  float: left;
+  width: 25%;
+  background-color: black;
+}
+
+/* -----------------------------------------
+  Settings.
+----------------------------------------- */
+.settings,
+.answers {
+  max-width: 840px;
+  padding: 20px;
+}
+
+.information {
+  position: relative;
+  height: auto;
+  width: 25%;
+  border-right: 1px solid $borderColor;
+  h1 {
+    font-size: 22px;
+    text-transform: uppercase;
+    margin: 6px 0 6px 0;
+    padding: 0 0 0 20px;
+  }
+  p { padding: 0 20px 0 20px; }
+  p + p { text-indent: 0px; }
+  a { color: darken($linkColor, 25%); }
+}
+
+.claim-username,
+.update-password {
+  h3 {
+    width: 20%;
+    @include inline-block;
+  }
+  input {
+    width: 400px; height: 40px;
+    display: block;
+    font-family: $baseFontFamily;
+    color: $base;
+    padding: 2px 4px 2px 4px;
+    border: 0px;
+    @include transition(all, 0.5s);
+    @include background($orange);
+    border-radius: 0px;
+    &:hover {
+      @include background($red)
+      // border-bottom: 1px solid $base;
+      // @include box-shadow($base 0px 0px 10px);
+    }
+    &:focus {
+      @include background($red);
+      outline: 1px solid $red;
+      // border-bottom: 2px solid $base;
+      // @include box-shadow($base 0px 0px 20px);
+    }
+    &:last-of-type {
+      width: 70px;
+      margin: 20px 0 20px 165px;
+    }
+  }
+}
+
+a.delete, a.delete:visited {
+  color: $base;
+  font-size: 14px;
+  padding: 12px 16px 12px 16px;
+  margin: 0 0 40px 0;
+  border-radius: 4px;
+  @include inline-block;
+  @include transition(all, 0.5s);
+  @include background($red);
+  &:hover {
+    @include background($orange);
+  }
+}
+
+/*******************************************
+*
+* FAQ/Help
+*
+*******************************************/
+.answers {
+  h2 {
+    margin-top: 60px;
+  }
+  h3 {
+    margin-top: 30px;
+  }
+}
+
+/*******************************************
+*
+* 404 error
+*
+*******************************************/
+a.logo-spin {  
+  display: block;
+  width: 200px;
+  margin: 80px auto 80px auto;
+  -webkit-animation: spinner 5s infinite;
+  -moz-animation:    spinner 5s infinite;
+  -ms-animation:     spinner 5s infinite;
+  -webkit-animation-timing-function:  linear;
+  -moz-animation-timing-function:   linear;
+  -ms-animation-timing-function:    linear;
+  img { width: 200px; }
+}
+
+/*******************************************
+*
+* Other errors
+*
+*******************************************/
+#modal {
+  display: none;
+  position: fixed; left: 0px; top: 0px;
+  width: 100%; height: 100%; min-height: 100%;
+  @include background(rgba(33, 33, 33, 0.6));
+  z-index: 1000;
+}
+
+.modal-box {
+  position: relative;
+  width: 600px; height: auto;
+  margin: 20% auto 0 auto;
+  @include background($bg);
+}
+
+.modal-text {
+  padding: 40px;
+}
+
+.modal-close {
+  position: absolute; top: -6px; right: -6px;
+  width: 36px; height: 36px;
+  font-size: 14px;
+  line-height: 14px;
+  color: $copy;
+  background-color: $white;
+  @include border-radius(18px);
+  border: 5px solid $orange;
+  margin: 0px 0 0 20px;
+  padding: 4px 0 0 9px;
+  @include transition(all, 0.5s);
+  &:hover {
+    border: 5px solid $red;
+    color: $red;
+    cursor: pointer;
+  }
+}
+
+/*******************************************
+*
+* Loading
+*
+*******************************************/
+
+#loading {
+  display: none;
+  position: fixed; left: 0px; top: 80px; bottom: 91px; right: 0px;
+  @include background($bg);
+  z-index: 2000;
+}
+
+.loading-box {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.loading-spin {
+  width: 200px;
+  margin: 100px auto 60px auto;
+  -webkit-animation: spinner 5s infinite;
+  -moz-animation:    spinner 5s infinite;
+  -ms-animation:     spinner 5s infinite;
+  -webkit-animation-timing-function:  linear;
+  -moz-animation-timing-function:   linear;
+  -ms-animation-timing-function:    linear;
+}
+
+/* -----------------------------------------
+  Media queries for login/signup.
+----------------------------------------- */
+
+@media only screen and (max-width: 767px) {
+  body.login-page header {
+    height: auto;
+    .row { margin-bottom: 0px; }
+  }
+
+  .hark-listen {
+    width: 100px;
+    margin: 0 auto;
+    a {
+      width: 100px; height: 100px;
+      font-size: 24px;
+      color: $linkColor;
+      text-align: center;
+      @include background(image-url("/public/img/grainy.png"), $base);
+      // position: absolute;
+      z-index: 30;
+      border-radius: 50px;
+      @include inline-block;
+    }
+    .pulse {
+      width: 100px; height: 100px;
+      background-color: $base;
+      position: absolute;
+      z-index: 25;
+      border-radius: 50px;
+      // @include box-shadow($base 0px 0px 100px);
+      @include inline-block;
+      -webkit-animation: pulse 5s infinite;
+      -moz-animation:    pulse 5s infinite;
+      -ms-animation:     pulse 5s infinite;
+      -webkit-animation-timing-function:  linear;
+      -moz-animation-timing-function:   linear;
+      -ms-animation-timing-function:    linear;
+    }
+  }
+
+  // nav {
+  //   margin-top: 100px;
+  //   ul {
+  //     text-align: center;
+  //     margin: 0;
+  //     li {
+  //       margin: 10px 0 0 0;
+  //       display: block;
+  //       text-align: center;
+  //     }
+  //   }
+  // }
+}
+
+/* -----------------------------------------
+  Media queries for main view.
+----------------------------------------- */
+@import "_media-queries.scss";
+
+
+@-webkit-keyframes spinner {
+  0% { @include rotate(0deg) }
+  50%  { @include rotate(180deg) }
+  100% { @include rotate(360deg) }
+}
+
+@-moz-keyframes spinner {
+  0% { @include rotate(0deg) }
+  50%  { @include rotate(180deg) }
+  100% { @include rotate(360deg) }
+}
+
+@-ms-keyframes spinner {
+  0% { @include rotate(0deg) }
+  50%  { @include rotate(180deg) }
+  100% { @include rotate(360deg) }
+}
+
+@keyframes spinner {
+  0% { @include rotate(0deg) }
+  50%  { @include rotate(180deg) }
+  100% { @include rotate(360deg) }
+}

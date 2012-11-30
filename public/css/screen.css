@@ -1,0 +1,3837 @@
+/* COLORS */
+/* GRADIENTS */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/\.gem\/ruby\/1\.9\.1\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/reset\/_utilities\.scss}line{font-family:\0000317}}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/\.gem\/ruby\/1\.9\.1\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/reset\/_utilities\.scss}line{font-family:\0000322}}
+html {
+  line-height: 1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/\.gem\/ruby\/1\.9\.1\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/reset\/_utilities\.scss}line{font-family:\0000324}}
+ol, ul {
+  list-style: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/\.gem\/ruby\/1\.9\.1\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/reset\/_utilities\.scss}line{font-family:\0000326}}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/\.gem\/ruby\/1\.9\.1\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/reset\/_utilities\.scss}line{font-family:\0000328}}
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/\.gem\/ruby\/1\.9\.1\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/reset\/_utilities\.scss}line{font-family:\0000330}}
+q, blockquote {
+  quotes: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/\.gem\/ruby\/1\.9\.1\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/reset\/_utilities\.scss}line{font-family:\00003103}}
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/\.gem\/ruby\/1\.9\.1\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/reset\/_utilities\.scss}line{font-family:\0000332}}
+a img {
+  border: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/\.gem\/ruby\/1\.9\.1\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/reset\/_utilities\.scss}line{font-family:\00003116}}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary {
+  display: block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000339}}
+p, aside, span, div {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #4e4f4b;
+  margin-bottom: 12px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000341}}
+dt, dd {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #4e4f4b;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000346}}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Lato", Arial, serif;
+  font-size: 35.2px;
+  font-weight: 400;
+  line-height: 42.24px;
+  color: #4e4f4b;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000347}}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+  font-weight: inherit;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000349}}
+h1, h2 {
+  margin-bottom: 12px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000350}}
+h3, h4 {
+  margin-bottom: 8px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000351}}
+h5, h6 {
+  margin-bottom: 6px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000353}}
+h1 {
+  font-size: 35.2px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000354}}
+h2 {
+  font-size: 28.16px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000355}}
+h3 {
+  font-size: 21.12px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000356}}
+h4 {
+  font-size: 17.6px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000357}}
+h5 {
+  font-size: 14.08px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000358}}
+h6 {
+  font-size: 12.32px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000360}}
+em {
+  font-style: italic;
+  line-height: inherit;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000361}}
+strong {
+  font-weight: bold;
+  line-height: inherit;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000362}}
+h2 strong {
+  font-weight: 400;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000364}}
+a {
+  color: #ff6244;
+  text-decoration: none;
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/\.gem\/ruby\/1\.9\.1\/gems\/compass-0\.12\.2\/frameworks\/compass\/stylesheets\/compass\/typography\/links\/_link-colors\.scss}line{font-family:\0000324}}
+a:hover {
+  color: #f39753;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000377}}
+ul, ol {
+  margin-bottom: 12px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000379}}
+ul li, ol li {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #4e4f4b;
+  margin-bottom: 12px;
+  margin-bottom: 8px;
+  color: #4e4f4b;
+  list-style-type: none;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000387}}
+blockquote {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #4e4f4b;
+  margin-bottom: 12px;
+  color: #4e4f4b;
+  margin: 0 0 12px 24px;
+  padding-left: 24px;
+  border-left: 1px solid #0090cd;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\0000394}}
+input {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #4e4f4b;
+  margin-bottom: 12px;
+  color: #4e4f4b;
+}
+
+/* -----------------------------------------
+*	Typography in > 767 mode.
+----------------------------------------- */
+@media screen and (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\00003103}}
+  p, ul li, span {
+    font-size: 13.6px;
+    line-height: 20.4px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\00003108}}
+  h1 {
+    font-size: 29.92px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\00003109}}
+  h2 {
+    font-size: 23.936px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\00003110}}
+  h3 {
+    font-size: 17.952px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\00003111}}
+  h4 {
+    font-size: 14.96px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\00003112}}
+  h5 {
+    font-size: 11.968px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_typography\.scss}line{font-family:\00003113}}
+  h6 {
+    font-size: 10.472px;
+  }
+}
+/***********************************************************************************
+*	This is Colonnade, a simple-but-beautiful responsive grid built on SASS.
+*
+*	I was built by Joel Hans (http://designbyjoel.com).
+*	Feel free to use this grid or adapt it to your own needs under the GPL license.
+*	License: http://www.gnu.org/copyleft/gpl.html
+*
+***********************************************************************************/
+/* Use media queries for grids larger than 960px? Set to false if you don't want them. */
+/***********************************************************************************
+*	Border-box: http://paulirish.com/2012/box-sizing-border-box-ftw/
+*
+*	I would use the * selector, but I don't want to interfere with
+*	a use case that is not compatible with the new box model.
+***********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000332}}
+.container, .row, [class*="column-"] {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/***********************************************************************************
+*	Standard styles for container, rows, columns.
+*	
+*	Nothing too special here, really.
+***********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000340}}
+.container {
+  position: relative;
+  width: 960px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000347}}
+.row {
+  margin-bottom: 20px;
+  zoom: 1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000352}}
+[class*="column-"] {
+  margin-left: 10px;
+  margin-right: 10px;
+  float: left;
+  position: relative;
+  display: inline;
+}
+
+/***********************************************************************************
+*	Columns
+*	
+*	Herein lies the SASS magic that builds the styles for
+*	each column and the offsets. It will use the user-configurable 
+*	variables for its logic.
+***********************************************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000370}}
+.column-1 {
+  width: 60px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000370}}
+.column-2 {
+  width: 140px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000370}}
+.column-3 {
+  width: 220px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000370}}
+.column-4 {
+  width: 300px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000370}}
+.column-5 {
+  width: 380px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000370}}
+.column-6 {
+  width: 460px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000370}}
+.column-7 {
+  width: 540px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000370}}
+.column-8 {
+  width: 620px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000370}}
+.column-9 {
+  width: 700px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000370}}
+.column-10 {
+  width: 780px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000370}}
+.column-11 {
+  width: 860px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000370}}
+.column-12 {
+  width: 940px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000377}}
+.offset-1 {
+  margin-left: 90px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000377}}
+.offset-2 {
+  margin-left: 170px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000377}}
+.offset-3 {
+  margin-left: 250px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000377}}
+.offset-4 {
+  margin-left: 330px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000377}}
+.offset-5 {
+  margin-left: 410px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000377}}
+.offset-6 {
+  margin-left: 490px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000377}}
+.offset-7 {
+  margin-left: 570px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000377}}
+.offset-8 {
+  margin-left: 650px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000377}}
+.offset-9 {
+  margin-left: 730px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000377}}
+.offset-10 {
+  margin-left: 810px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000377}}
+.offset-11 {
+  margin-left: 890px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000383}}
+[class*="column-"] > .row {
+  margin-bottom: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000387}}
+[class*="column-"] > .row > [class*="column-"]:first-child {
+  margin-left: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000391}}
+[class*="column-"] > .row > [class*="column-"]:last-child {
+  margin-right: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\0000396}}
+.row:before, .row:after {
+  content: '\0020';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003105}}
+.row:after {
+  clear: both;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003107}}
+.row {
+  zoom: 1;
+}
+
+/***********************************************************************************
+*	Responsiveness
+*	
+*	Now that we have the basic grid out of the way, we can
+*	completely muck it up with some media queries based on
+*	some good break points.
+***********************************************************************************/
+@media only screen and (min-width: 1400px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003121}}
+  .container {
+    width: 1400px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003126}}
+  .column-1 {
+    width: 96.66667px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003126}}
+  .column-2 {
+    width: 213.33333px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003126}}
+  .column-3 {
+    width: 330px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003126}}
+  .column-4 {
+    width: 446.66667px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003126}}
+  .column-5 {
+    width: 563.33333px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003126}}
+  .column-6 {
+    width: 680px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003126}}
+  .column-7 {
+    width: 796.66667px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003126}}
+  .column-8 {
+    width: 913.33333px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003126}}
+  .column-9 {
+    width: 1030px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003126}}
+  .column-10 {
+    width: 1146.66667px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003126}}
+  .column-11 {
+    width: 1263.33333px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003126}}
+  .column-12 {
+    width: 1380px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003132}}
+  .offset-1 {
+    margin-left: 126.66667px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003132}}
+  .offset-2 {
+    margin-left: 243.33333px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003132}}
+  .offset-3 {
+    margin-left: 360px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003132}}
+  .offset-4 {
+    margin-left: 476.66667px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003132}}
+  .offset-5 {
+    margin-left: 593.33333px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003132}}
+  .offset-6 {
+    margin-left: 710px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003132}}
+  .offset-7 {
+    margin-left: 826.66667px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003132}}
+  .offset-8 {
+    margin-left: 943.33333px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003132}}
+  .offset-9 {
+    margin-left: 1060px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003132}}
+  .offset-10 {
+    margin-left: 1176.66667px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003132}}
+  .offset-11 {
+    margin-left: 1293.33333px;
+  }
+}
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003143}}
+  .container {
+    width: 1140px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003148}}
+  .column-1 {
+    width: 75px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003148}}
+  .column-2 {
+    width: 170px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003148}}
+  .column-3 {
+    width: 265px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003148}}
+  .column-4 {
+    width: 360px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003148}}
+  .column-5 {
+    width: 455px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003148}}
+  .column-6 {
+    width: 550px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003148}}
+  .column-7 {
+    width: 645px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003148}}
+  .column-8 {
+    width: 740px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003148}}
+  .column-9 {
+    width: 835px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003148}}
+  .column-10 {
+    width: 930px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003148}}
+  .column-11 {
+    width: 1025px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003148}}
+  .column-12 {
+    width: 1120px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003154}}
+  .offset-1 {
+    margin-left: 105px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003154}}
+  .offset-2 {
+    margin-left: 200px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003154}}
+  .offset-3 {
+    margin-left: 295px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003154}}
+  .offset-4 {
+    margin-left: 390px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003154}}
+  .offset-5 {
+    margin-left: 485px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003154}}
+  .offset-6 {
+    margin-left: 580px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003154}}
+  .offset-7 {
+    margin-left: 675px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003154}}
+  .offset-8 {
+    margin-left: 770px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003154}}
+  .offset-9 {
+    margin-left: 865px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003154}}
+  .offset-10 {
+    margin-left: 960px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003154}}
+  .offset-11 {
+    margin-left: 1055px;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003165}}
+  .container {
+    width: 768px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003170}}
+  .column-1 {
+    width: 44px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003170}}
+  .column-2 {
+    width: 108px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003170}}
+  .column-3 {
+    width: 172px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003170}}
+  .column-4 {
+    width: 236px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003170}}
+  .column-5 {
+    width: 300px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003170}}
+  .column-6 {
+    width: 364px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003170}}
+  .column-7 {
+    width: 428px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003170}}
+  .column-8 {
+    width: 492px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003170}}
+  .column-9 {
+    width: 556px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003170}}
+  .column-10 {
+    width: 620px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003170}}
+  .column-11 {
+    width: 684px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003170}}
+  .column-12 {
+    width: 748px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003176}}
+  .offset-1 {
+    margin-left: 74px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003176}}
+  .offset-2 {
+    margin-left: 138px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003176}}
+  .offset-3 {
+    margin-left: 202px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003176}}
+  .offset-4 {
+    margin-left: 266px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003176}}
+  .offset-5 {
+    margin-left: 330px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003176}}
+  .offset-6 {
+    margin-left: 394px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003176}}
+  .offset-7 {
+    margin-left: 458px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003176}}
+  .offset-8 {
+    margin-left: 522px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003176}}
+  .offset-9 {
+    margin-left: 586px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003176}}
+  .offset-10 {
+    margin-left: 650px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003176}}
+  .offset-11 {
+    margin-left: 714px;
+  }
+}
+@media only screen and (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003184}}
+  [class*="offset-"] {
+    margin-left: 0px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003188}}
+  [class*="column-"] {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003198}}
+  .container, [class*="column-"] {
+    width: 420px;
+  }
+}
+@media only screen and (max-width: 479px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_colonnade\.scss}line{font-family:\00003206}}
+  .container, [class*="column-"] {
+    width: 300px;
+  }
+}
+/*  Font Awesome
+    the iconic font designed for use with Twitter Bootstrap
+    -------------------------------------------------------
+    The full suite of pictographic icons, examples, and documentation
+    can be found at: http://fortawesome.github.com/Font-Awesome/
+
+    License
+    -------------------------------------------------------
+    The Font Awesome webfont, CSS, and LESS files are licensed under CC BY 3.0:
+    http://creativecommons.org/licenses/by/3.0/ A mention of
+    'Font Awesome - http://fortawesome.github.com/Font-Awesome' in human-readable
+    source code is considered acceptable attribution (most common on the web).
+    If human readable source code is not available to the end user, a mention in
+    an 'About' or 'Credits' screen is considered acceptable (most common in desktop
+    or mobile software).
+
+    Contact
+    -------------------------------------------------------
+    Email: dave@davegandy.com
+    Twitter: http://twitter.com/fortaweso_me
+    Work: http://lemonwi.se co-founder
+
+    */
+@font-face {
+  font-family: "FontAwesome";
+  src: url(/fonts/fontawesome-webfont.eot);
+  src: url(/fonts/fontawesome-webfont.eot?#iefix) format('eot'), url(/fonts/fontawesome-webfont.woff) format('woff'), url(/fonts/fontawesome-webfont.ttf) format('truetype'), url(/fonts/fontawesome-webfont.otf) format('opentype'), url(/fonts/fontawesome-webfont.svg#FontAwesomeRegular) format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*  Font Awesome styles
+    ------------------------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\0000342}}
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\0000351}}
+a [class^="icon-"],
+a [class*=" icon-"] {
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+/* makes the font 33% larger relative to the icon container */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\0000357}}
+.icon-large:before {
+  vertical-align: middle;
+  font-size: 4/3em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\0000364}}
+.btn [class^="icon-"],
+.btn [class*=" icon-"], .nav-tabs [class^="icon-"],
+.nav-tabs [class*=" icon-"] {
+  /* keeps button heights with and without icons the same */
+  line-height: .9em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\0000372}}
+li [class^="icon-"],
+li [class*=" icon-"] {
+  display: inline-block;
+  width: 1.25em;
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\0000378}}
+li .icon-large:before,
+li .icon-large:before {
+  /* 1.5 increased font size for icon-large * 1.25 width */
+  width: 1.875em;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\0000384}}
+ul.icons {
+  list-style-type: none;
+  margin-left: 2em;
+  text-indent: -0.8em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\0000391}}
+ul.icons li [class^="icon-"],
+ul.icons li [class*=" icon-"] {
+  width: .8em;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\0000395}}
+ul.icons li .icon-large:before,
+ul.icons li .icon-large:before {
+  /* 1.5 increased font size for icon-large * 1.25 width */
+  vertical-align: initial;
+}
+
+/*  Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+    readers do not read off random characters that represent icons */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003105}}
+.icon-glass:before {
+  content: "\f000";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003106}}
+.icon-music:before {
+  content: "\f001";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003107}}
+.icon-search:before {
+  content: "\f002";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003108}}
+.icon-envelope:before {
+  content: "\f003";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003109}}
+.icon-heart:before {
+  content: "\f004";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003110}}
+.icon-star:before {
+  content: "\f005";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003111}}
+.icon-star-empty:before {
+  content: "\f006";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003112}}
+.icon-user:before {
+  content: "\f007";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003113}}
+.icon-film:before {
+  content: "\f008";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003114}}
+.icon-th-large:before {
+  content: "\f009";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003115}}
+.icon-th:before {
+  content: "\f00a";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003116}}
+.icon-th-list:before {
+  content: "\f00b";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003117}}
+.icon-ok:before {
+  content: "\f00c";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003118}}
+.icon-remove:before {
+  content: "\f00d";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003119}}
+.icon-zoom-in:before {
+  content: "\f00e";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003121}}
+.icon-zoom-out:before {
+  content: "\f010";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003122}}
+.icon-off:before {
+  content: "\f011";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003123}}
+.icon-signal:before {
+  content: "\f012";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003124}}
+.icon-cog:before {
+  content: "\f013";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003125}}
+.icon-trash:before {
+  content: "\f014";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003126}}
+.icon-home:before {
+  content: "\f015";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003127}}
+.icon-file:before {
+  content: "\f016";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003128}}
+.icon-time:before {
+  content: "\f017";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003129}}
+.icon-road:before {
+  content: "\f018";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003130}}
+.icon-download-alt:before {
+  content: "\f019";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003131}}
+.icon-download:before {
+  content: "\f01a";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003132}}
+.icon-upload:before {
+  content: "\f01b";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003133}}
+.icon-inbox:before {
+  content: "\f01c";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003134}}
+.icon-play-circle:before {
+  content: "\f01d";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003135}}
+.icon-repeat:before {
+  content: "\f01e";
+}
+
+/* \f020 is not a valid unicode character. all shifted one down */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003138}}
+.icon-refresh:before {
+  content: "\f021";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003139}}
+.icon-list-alt:before {
+  content: "\f022";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003140}}
+.icon-lock:before {
+  content: "\f023";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003141}}
+.icon-flag:before {
+  content: "\f024";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003142}}
+.icon-headphones:before {
+  content: "\f025";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003143}}
+.icon-volume-off:before {
+  content: "\f026";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003144}}
+.icon-volume-down:before {
+  content: "\f027";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003145}}
+.icon-volume-up:before {
+  content: "\f028";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003146}}
+.icon-qrcode:before {
+  content: "\f029";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003147}}
+.icon-barcode:before {
+  content: "\f02a";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003148}}
+.icon-tag:before {
+  content: "\f02b";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003149}}
+.icon-tags:before {
+  content: "\f02c";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003150}}
+.icon-book:before {
+  content: "\f02d";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003151}}
+.icon-bookmark:before {
+  content: "\f02e";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003152}}
+.icon-print:before {
+  content: "\f02f";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003154}}
+.icon-camera:before {
+  content: "\f030";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003155}}
+.icon-font:before {
+  content: "\f031";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003156}}
+.icon-bold:before {
+  content: "\f032";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003157}}
+.icon-italic:before {
+  content: "\f033";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003158}}
+.icon-text-height:before {
+  content: "\f034";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003159}}
+.icon-text-width:before {
+  content: "\f035";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003160}}
+.icon-align-left:before {
+  content: "\f036";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003161}}
+.icon-align-center:before {
+  content: "\f037";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003162}}
+.icon-align-right:before {
+  content: "\f038";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003163}}
+.icon-align-justify:before {
+  content: "\f039";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003164}}
+.icon-list:before {
+  content: "\f03a";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003165}}
+.icon-indent-left:before {
+  content: "\f03b";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003166}}
+.icon-indent-right:before {
+  content: "\f03c";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003167}}
+.icon-facetime-video:before {
+  content: "\f03d";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003168}}
+.icon-picture:before {
+  content: "\f03e";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003170}}
+.icon-pencil:before {
+  content: "\f040";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003171}}
+.icon-map-marker:before {
+  content: "\f041";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003172}}
+.icon-adjust:before {
+  content: "\f042";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003173}}
+.icon-tint:before {
+  content: "\f043";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003174}}
+.icon-edit:before {
+  content: "\f044";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003175}}
+.icon-share:before {
+  content: "\f045";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003176}}
+.icon-check:before {
+  content: "\f046";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003177}}
+.icon-move:before {
+  content: "\f047";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003178}}
+.icon-step-backward:before {
+  content: "\f048";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003179}}
+.icon-fast-backward:before {
+  content: "\f049";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003180}}
+.icon-backward:before {
+  content: "\f04a";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003181}}
+.icon-play:before {
+  content: "\f04b";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003182}}
+.icon-pause:before {
+  content: "\f04c";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003183}}
+.icon-stop:before {
+  content: "\f04d";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003184}}
+.icon-forward:before {
+  content: "\f04e";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003186}}
+.icon-fast-forward:before {
+  content: "\f050";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003187}}
+.icon-step-forward:before {
+  content: "\f051";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003188}}
+.icon-eject:before {
+  content: "\f052";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003189}}
+.icon-chevron-left:before {
+  content: "\f053";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003190}}
+.icon-chevron-right:before {
+  content: "\f054";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003191}}
+.icon-plus-sign:before {
+  content: "\f055";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003192}}
+.icon-minus-sign:before {
+  content: "\f056";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003193}}
+.icon-remove-sign:before {
+  content: "\f057";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003194}}
+.icon-ok-sign:before {
+  content: "\f058";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003195}}
+.icon-question-sign:before {
+  content: "\f059";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003196}}
+.icon-info-sign:before {
+  content: "\f05a";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003197}}
+.icon-screenshot:before {
+  content: "\f05b";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003198}}
+.icon-remove-circle:before {
+  content: "\f05c";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003199}}
+.icon-ok-circle:before {
+  content: "\f05d";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003200}}
+.icon-ban-circle:before {
+  content: "\f05e";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003202}}
+.icon-arrow-left:before {
+  content: "\f060";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003203}}
+.icon-arrow-right:before {
+  content: "\f061";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003204}}
+.icon-arrow-up:before {
+  content: "\f062";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003205}}
+.icon-arrow-down:before {
+  content: "\f063";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003206}}
+.icon-share-alt:before {
+  content: "\f064";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003207}}
+.icon-resize-full:before {
+  content: "\f065";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003208}}
+.icon-resize-small:before {
+  content: "\f066";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003209}}
+.icon-plus:before {
+  content: "\f067";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003210}}
+.icon-minus:before {
+  content: "\f068";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003211}}
+.icon-asterisk:before {
+  content: "\f069";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003212}}
+.icon-exclamation-sign:before {
+  content: "\f06a";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003213}}
+.icon-gift:before {
+  content: "\f06b";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003214}}
+.icon-leaf:before {
+  content: "\f06c";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003215}}
+.icon-fire:before {
+  content: "\f06d";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003216}}
+.icon-eye-open:before {
+  content: "\f06e";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003218}}
+.icon-eye-close:before {
+  content: "\f070";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003219}}
+.icon-warning-sign:before {
+  content: "\f071";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003220}}
+.icon-plane:before {
+  content: "\f072";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003221}}
+.icon-calendar:before {
+  content: "\f073";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003222}}
+.icon-random:before {
+  content: "\f074";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003223}}
+.icon-comment:before {
+  content: "\f075";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003224}}
+.icon-magnet:before {
+  content: "\f076";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003225}}
+.icon-chevron-up:before {
+  content: "\f077";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003226}}
+.icon-chevron-down:before {
+  content: "\f078";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003227}}
+.icon-retweet:before {
+  content: "\f079";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003228}}
+.icon-shopping-cart:before {
+  content: "\f07a";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003229}}
+.icon-folder-close:before {
+  content: "\f07b";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003230}}
+.icon-folder-open:before {
+  content: "\f07c";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003231}}
+.icon-resize-vertical:before {
+  content: "\f07d";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003232}}
+.icon-resize-horizontal:before {
+  content: "\f07e";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003234}}
+.icon-bar-chart:before {
+  content: "\f080";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003235}}
+.icon-twitter-sign:before {
+  content: "\f081";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003236}}
+.icon-facebook-sign:before {
+  content: "\f082";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003237}}
+.icon-camera-retro:before {
+  content: "\f083";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003238}}
+.icon-key:before {
+  content: "\f084";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003239}}
+.icon-cogs:before {
+  content: "\f085";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003240}}
+.icon-comments:before {
+  content: "\f086";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003241}}
+.icon-thumbs-up:before {
+  content: "\f087";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003242}}
+.icon-thumbs-down:before {
+  content: "\f088";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003243}}
+.icon-star-half:before {
+  content: "\f089";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003244}}
+.icon-heart-empty:before {
+  content: "\f08a";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003245}}
+.icon-signout:before {
+  content: "\f08b";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003246}}
+.icon-linkedin-sign:before {
+  content: "\f08c";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003247}}
+.icon-pushpin:before {
+  content: "\f08d";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003248}}
+.icon-external-link:before {
+  content: "\f08e";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003250}}
+.icon-signin:before {
+  content: "\f090";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003251}}
+.icon-trophy:before {
+  content: "\f091";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003252}}
+.icon-github-sign:before {
+  content: "\f092";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003253}}
+.icon-upload-alt:before {
+  content: "\f093";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003254}}
+.icon-lemon:before {
+  content: "\f094";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003255}}
+.icon-phone:before {
+  content: "\f095";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003256}}
+.icon-check-empty:before {
+  content: "\f096";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003257}}
+.icon-bookmark-empty:before {
+  content: "\f097";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003258}}
+.icon-phone-sign:before {
+  content: "\f098";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003259}}
+.icon-twitter:before {
+  content: "\f099";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003260}}
+.icon-facebook:before {
+  content: "\f09a";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003261}}
+.icon-github:before {
+  content: "\f09b";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003262}}
+.icon-unlock:before {
+  content: "\f09c";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003263}}
+.icon-credit-card:before {
+  content: "\f09d";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003264}}
+.icon-rss:before {
+  content: "\f09e";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003266}}
+.icon-hdd:before {
+  content: "\f0a0";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003267}}
+.icon-bullhorn:before {
+  content: "\f0a1";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003268}}
+.icon-bell:before {
+  content: "\f0a2";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003269}}
+.icon-certificate:before {
+  content: "\f0a3";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003270}}
+.icon-hand-right:before {
+  content: "\f0a4";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003271}}
+.icon-hand-left:before {
+  content: "\f0a5";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003272}}
+.icon-hand-up:before {
+  content: "\f0a6";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003273}}
+.icon-hand-down:before {
+  content: "\f0a7";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003274}}
+.icon-circle-arrow-left:before {
+  content: "\f0a8";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003275}}
+.icon-circle-arrow-right:before {
+  content: "\f0a9";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003276}}
+.icon-circle-arrow-up:before {
+  content: "\f0aa";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003277}}
+.icon-circle-arrow-down:before {
+  content: "\f0ab";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003278}}
+.icon-globe:before {
+  content: "\f0ac";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003279}}
+.icon-wrench:before {
+  content: "\f0ad";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003280}}
+.icon-tasks:before {
+  content: "\f0ae";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003282}}
+.icon-filter:before {
+  content: "\f0b0";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003283}}
+.icon-briefcase:before {
+  content: "\f0b1";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003284}}
+.icon-fullscreen:before {
+  content: "\f0b2";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003286}}
+.icon-group:before {
+  content: "\f0c0";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003287}}
+.icon-link:before {
+  content: "\f0c1";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003288}}
+.icon-cloud:before {
+  content: "\f0c2";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003289}}
+.icon-beaker:before {
+  content: "\f0c3";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003290}}
+.icon-cut:before {
+  content: "\f0c4";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003291}}
+.icon-copy:before {
+  content: "\f0c5";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003292}}
+.icon-paper-clip:before {
+  content: "\f0c6";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003293}}
+.icon-save:before {
+  content: "\f0c7";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003294}}
+.icon-sign-blank:before {
+  content: "\f0c8";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003295}}
+.icon-reorder:before {
+  content: "\f0c9";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003296}}
+.icon-list-ul:before {
+  content: "\f0ca";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003297}}
+.icon-list-ol:before {
+  content: "\f0cb";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003298}}
+.icon-strikethrough:before {
+  content: "\f0cc";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003299}}
+.icon-underline:before {
+  content: "\f0cd";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003300}}
+.icon-table:before {
+  content: "\f0ce";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003302}}
+.icon-magic:before {
+  content: "\f0d0";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003303}}
+.icon-truck:before {
+  content: "\f0d1";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003304}}
+.icon-pinterest:before {
+  content: "\f0d2";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003305}}
+.icon-pinterest-sign:before {
+  content: "\f0d3";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003306}}
+.icon-google-plus-sign:before {
+  content: "\f0d4";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003307}}
+.icon-google-plus:before {
+  content: "\f0d5";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003308}}
+.icon-money:before {
+  content: "\f0d6";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003309}}
+.icon-caret-down:before {
+  content: "\f0d7";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003310}}
+.icon-caret-up:before {
+  content: "\f0d8";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003311}}
+.icon-caret-left:before {
+  content: "\f0d9";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003312}}
+.icon-caret-right:before {
+  content: "\f0da";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003313}}
+.icon-columns:before {
+  content: "\f0db";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003314}}
+.icon-sort:before {
+  content: "\f0dc";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003315}}
+.icon-sort-down:before {
+  content: "\f0dd";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003316}}
+.icon-sort-up:before {
+  content: "\f0de";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003318}}
+.icon-envelope-alt:before {
+  content: "\f0e0";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003319}}
+.icon-linkedin:before {
+  content: "\f0e1";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003320}}
+.icon-undo:before {
+  content: "\f0e2";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003321}}
+.icon-legal:before {
+  content: "\f0e3";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003322}}
+.icon-dashboard:before {
+  content: "\f0e4";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003323}}
+.icon-comment-alt:before {
+  content: "\f0e5";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003324}}
+.icon-comments-alt:before {
+  content: "\f0e6";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003325}}
+.icon-bolt:before {
+  content: "\f0e7";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003326}}
+.icon-sitemap:before {
+  content: "\f0e8";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003327}}
+.icon-umbrella:before {
+  content: "\f0e9";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003328}}
+.icon-paste:before {
+  content: "\f0ea";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_font-awesome\.scss}line{font-family:\00003330}}
+.icon-user-md:before {
+  content: "\f200";
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\000033}}
+.directory-main {
+  position: relative;
+  padding: 10px 20px 10px 20px;
+  margin: 80px 0 0 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\000039}}
+.directory-item {
+  position: relative;
+  width: 75%;
+  margin: 0px 3.33% 40px 0;
+  border: 1px solid rgba(255, 98, 68, 0);
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, rgba(243, 151, 83, 0.1)), color-stop(100%, rgba(255, 98, 68, 0.1)));
+  background: -webkit-linear-gradient(rgba(243, 151, 83, 0.1), rgba(255, 98, 68, 0.1));
+  background: -moz-linear-gradient(rgba(243, 151, 83, 0.1), rgba(255, 98, 68, 0.1));
+  background: -o-linear-gradient(rgba(243, 151, 83, 0.1), rgba(255, 98, 68, 0.1));
+  background: linear-gradient(rgba(243, 151, 83, 0.1), rgba(255, 98, 68, 0.1));
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000322}}
+.directory-feed-title {
+  font-size: 22px;
+  line-height: 34px;
+  color: #212121;
+  padding: 26px 20px 0 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000329}}
+.directory-feed-description {
+  color: #212121;
+  padding: 10px 20px 0 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000334}}
+.directory-feed-details {
+  overflow: auto;
+  width: 100%;
+  margin: 26px 0 0 0;
+  padding: 0 20px 0 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000342}}
+.directory-feed-details-left,
+.directory-feed-details-right {
+  float: left;
+  width: 50%;
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 22px;
+  color: #212121;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000345}}
+.directory-feed-details-left span:first-of-type,
+.directory-feed-details-right span:first-of-type {
+  display: block;
+  font-weight: 700;
+  color: #212121;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000350}}
+.directory-feed-details-left span:last-of-type,
+.directory-feed-details-right span:last-of-type {
+  font-size: 14px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000359}}
+.directory-feed-details-left {
+  padding: 0 20px 0 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000364}}
+.directory-feed-details-right {
+  padding: 0 0 0 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000368}}
+.directory-feed-subscribe {
+  display: block;
+  margin: 26px auto 0 auto;
+  padding: 16px 0 16px 0;
+  color: #212121;
+  font-size: 18px;
+  text-align: center;
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000377}}
+.directory-feed-subscribe:hover {
+  color: #f7f3f4;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f39753), color-stop(100%, #ff6244));
+  background: -webkit-linear-gradient(#f39753, #ff6244);
+  background: -moz-linear-gradient(#f39753, #ff6244);
+  background: -o-linear-gradient(#f39753, #ff6244);
+  background: linear-gradient(#f39753, #ff6244);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000383}}
+.directory-help {
+  padding: 10px 20px 10px 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000387}}
+.subcategories {
+  display: none;
+  margin-bottom: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000390}}
+.subcategories li {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 700;
+  margin-bottom: 0px;
+  padding: 0 0 0 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\0000396}}
+.subcategories li a {
+  padding: 8px 40px 8px 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\00003102}}
+.category:hover > .sidebar-expander {
+  opacity: 100;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\00003108}}
+.pagination {
+  width: 75%;
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\00003111}}
+.pagination p {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  font-size: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\00003115}}
+.pagination p:first-of-type {
+  margin-right: 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\00003118}}
+.pagination p:last-of-type {
+  margin-left: 20px;
+}
+
+/****************************************************
+*
+* LOGGED-OUT VIEW
+*
+****************************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\00003129}}
+.directory-no-login {
+  padding: 0 0 0 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\00003131}}
+h2.directory-no-login {
+  padding: 10px 0 0 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\00003133}}
+.directory-signup {
+  float: right;
+  display: block;
+  font-family: 'Lato', Arial, serif;
+  font-size: 31.68px;
+  font-weight: 700;
+  font-style: italic;
+  border: 0px;
+  padding: 30px 0 0 100px;
+  position: relative;
+  height: 70px;
+  margin: 10px 80px 60px 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_directory\.scss}line{font-family:\00003150}}
+.directory-signup img {
+  position: absolute;
+  left: 20px;
+  top: 8px;
+  width: 60px;
+}
+
+/*  -----------------------------------------
+  -----------------------------------------
+  
+  Layout.
+  
+  -----------------------------------------
+-----------------------------------------  */
+/* -----------------------------------------
+  Body.
+----------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\0000350}}
+html, body {
+  height: 100%;
+  width: 100%;
+  background: #f3f0ee;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\0000356}}
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\0000363}}
+::selection,
+::-moz-selection {
+  background: #f39753;
+  color: #f2f2f2;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\0000368}}
+::-webkit-input-placeholder {
+  color: #f7f3f4;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\0000371}}
+::-moz-placeholder {
+  color: #f7f3f4;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\0000375}}
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\0000379}}
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\0000384}}
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(73, 10, 61, 0.5);
+}
+
+/* -----------------------------------------
+  Signup/login.
+----------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\0000392}}
+.signup-intro {
+  margin-top: 40px;
+  text-align: center;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\0000397}}
+.signup-intro a {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 400px;
+  margin: 0 auto 40px auto;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003101}}
+.signup-intro a img {
+  width: 400px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003106}}
+.claim-username h3,
+.update-password h3 {
+  width: 20%;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003110}}
+.claim-username input,
+.update-password input {
+  width: 400px;
+  height: 40px;
+  display: block;
+  padding: 2px 4px 2px 4px;
+  border: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003115}}
+.claim-username input:last-of-type,
+.update-password input:last-of-type {
+  width: 70px;
+  margin: 20px 0 20px 165px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003122}}
+.create-email, .create-password, .create-submit, .login-email, .login-password, .login-submit, .forgot-email, .forgot-submit, .reset-email, .reset-password, .reset-submit {
+  font-family: "Lato", sans-serif;
+  color: #f7f3f4;
+  padding: 16px 40px 16px 40px;
+  border: 0px;
+  outline: 0px;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+  background: #f39753;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003129}}
+.create-email:hover, .create-password:hover, .create-submit:hover, .login-email:hover, .login-password:hover, .login-submit:hover, .forgot-email:hover, .forgot-submit:hover, .reset-email:hover, .reset-password:hover, .reset-submit:hover {
+  background: #ff6244;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003132}}
+.create-email:focus, .create-password:focus, .create-submit:focus, .login-email:focus, .login-password:focus, .login-submit:focus, .forgot-email:focus, .forgot-submit:focus, .reset-email:focus, .reset-password:focus, .reset-submit:focus {
+  background: #ff6244;
+  outline: 1px solid #ff6244;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003138}}
+.create-submit, .login-submit, .forgot-submit, .reset-submit {
+  margin-top: 40px;
+  background-color: #ff6244;
+  color: #f7f3f4;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003142}}
+.create-submit:hover, .login-submit:hover, .forgot-submit:hover, .reset-submit:hover {
+  cursor: pointer;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003145}}
+.create-submit:focus, .login-submit:focus, .forgot-submit:focus, .reset-submit:focus {
+  background-color: #f39753;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003150}}
+.login-forgot, .existing-account {
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003152}}
+.login-forgot a, .existing-account a {
+  margin-left: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003156}}
+.login-error p, .create-error p, .forgot-error p {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003163}}
+.login-service {
+  position: relative;
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003166}}
+.login-service a {
+  background: #ff6244;
+  display: block;
+  position: relative;
+  width: 240px;
+  height: 50px;
+  margin: 0 auto 20px auto;
+  padding: 2px 20px 8px 60px;
+  border: 0px;
+  color: #f7f3f4;
+  line-height: 50px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003176}}
+.login-service a:hover {
+  border: 0px;
+  background: #f39753;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003183}}
+.facebook i, .twitter i, .google i {
+  position: absolute;
+  top: 1px;
+  left: 20px;
+  font-size: 30px;
+}
+
+/* -----------------------------------------
+  Header.
+----------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003191}}
+header {
+  width: 100%;
+  height: 80px;
+  padding: 0px;
+  border-bottom: 1px solid rgba(255, 98, 68, 0.2);
+  overflow: hidden;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003198}}
+.hark-logo a {
+  float: left;
+  width: 200px;
+  height: 80px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003204}}
+.hark-logo a img {
+  display: block;
+  width: 160px;
+  margin: 10px 0 0 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003211}}
+nav ul {
+  width: 100%;
+  margin: 0 0 0 240px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003214}}
+nav ul li {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  font-family: 'Lato';
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 16px 120px 0 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003222}}
+nav ul li a {
+  display: block;
+  width: 100%;
+}
+
+/* -----------------------------------------
+  jPlayer.
+----------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\000031}}
+footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  height: 90px;
+  background: #f3f0ee;
+  border-top: 1px solid rgba(243, 151, 83, 0.2);
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000311}}
+.podcast-player,
+.video-podcast-player {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  margin: 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000315}}
+.podcast-player div,
+.video-podcast-player div {
+  margin-bottom: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000318}}
+.video-podcast-player {
+  top: 90px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000322}}
+.video-player {
+  display: none;
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  margin-left: -260px;
+  padding: 0px 30px 30px 30px;
+  background: #212121;
+  z-index: 1000;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000331}}
+.video-menu a {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000335}}
+.video-move {
+  position: absolute;
+  left: 30px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000339}}
+.video-minimize {
+  position: absolute;
+  left: 50px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000343}}
+.video-resize {
+  position: absolute;
+  right: 8px;
+  bottom: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000347}}
+#jquery_jplayer_2 {
+  padding-top: 30px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000356}}
+.jp-controls li {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000358}}
+.jp-interface {
+  position: relative;
+  margin: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000364}}
+.jp-play,
+.jp-pause {
+  position: absolute;
+  top: 8px;
+  left: 20px;
+  padding: 20px 4px 10px 8px;
+  border: 5px solid #f7f3f4;
+  border-radius: 40px;
+  background: #ff6244;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000370}}
+.jp-play i,
+.jp-pause i {
+  color: #f7f3f4;
+  font-size: 42px;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000375}}
+.jp-play:hover,
+.jp-pause:hover {
+  cursor: pointer;
+  background: #ff3711;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000378}}
+.jp-play:hover i,
+.jp-pause:hover i {
+  text-shadow: 0 0 20px #f7f3f4;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000382}}
+.jp-play:focus,
+.jp-pause:focus {
+  outline: none;
+  background: #ff3711;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000385}}
+.jp-play:focus i,
+.jp-pause:focus i {
+  text-shadow: 0 0 20px #f7f3f4;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000391}}
+i.icon-pause {
+  padding-right: 3px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000393}}
+.jp-progress-control {
+  position: absolute;
+  top: 35px;
+  left: 115px;
+  right: 340px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000398}}
+.jp-volume-control {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+  width: 160px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003104}}
+.jp-progress-bar,
+.jp-volume-bar {
+  position: relative;
+  width: 100%;
+  height: 17px;
+  box-shadow: inset 0 2px 8px #f39753, inset 0 0px 4px #f39753, 0 0 1px 1px #f39753, 0 0px 1px 1px #f5a56b, 0 -2px 10px 2px #f8c29b, 0 2px 6px 2px #f5a56b, 0 2px 15px 2px #e96c10;
+  border-radius: 8px;
+  background: white;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003119}}
+.jp-seek-bar,
+.jp-volume-bar-value {
+  position: absolute;
+  top: 4px;
+  left: 0px;
+  height: 11px;
+  border-radius: 8px;
+  background: #ffe2dd;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003126}}
+.jp-play-bar {
+  position: absolute;
+  top: 0px;
+  left: 1px;
+  height: 11px;
+  border-radius: 8px;
+  background: #fff8f6;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003134}}
+.jp-play-tracker,
+.jp-volume-tracker {
+  display: block;
+  float: right;
+  width: 22px;
+  height: 22px;
+  margin: -6px -14px 0 0;
+  box-shadow: 0px 1px 4px 1px #ff6244;
+  border-radius: 12px;
+  background: -webkit-gradient(radial, 11px 24px, 0, 11px 24px, 25, color-stop(24%, #ff6244), color-stop(100%, #ffffff));
+  background: -webkit-radial-gradient(11px 24px, circle, #ff6244 6px, #ffffff 25px);
+  background: -moz-radial-gradient(11px 24px, circle, #ff6244 6px, #ffffff 25px);
+  background: -o-radial-gradient(11px 24px, circle, #ff6244 6px, #ffffff 25px);
+  background: radial-gradient(11px 24px, circle, #ff6244 6px, #ffffff 25px);
+  z-index: 10;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003145}}
+.jp-current-time, .jp-duration {
+  font-family: "Lato", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #4e4f4b;
+  margin-bottom: 12px;
+  margin-bottom: 0px;
+  color: #212121;
+  position: absolute;
+  top: 25px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003152}}
+.jp-duration {
+  right: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003157}}
+.manual-sync,
+.jp-volume-container {
+  padding: 6px 8px 2px 8px;
+  background: #ff6244;
+  border: 5px solid #f7f3f4;
+  border-radius: 40px;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003163}}
+.manual-sync i,
+.jp-volume-container i {
+  color: #f7f3f4;
+  font-size: 24px;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003167}}
+.manual-sync i:focus,
+.jp-volume-container i:focus {
+  outline: none;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003169}}
+.manual-sync:hover,
+.jp-volume-container:hover {
+  cursor: pointer;
+  background: #ff3711;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003172}}
+.manual-sync:hover i,
+.jp-volume-container:hover i {
+  text-shadow: 0 0 20px #f7f3f4;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003176}}
+.manual-sync:focus,
+.jp-volume-container:focus {
+  outline: none;
+  background: #ff3711;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003179}}
+.manual-sync:focus i,
+.jp-volume-container:focus i {
+  text-shadow: 0 0 20px #f7f3f4;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003185}}
+.manual-sync {
+  position: absolute;
+  top: -14px;
+  right: -60px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003187}}
+.manual-sync:hover > .manual-sync-popup {
+  opacity: 100;
+  top: -40px;
+  z-index: 10;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003190}}
+.manual-sync-popup {
+  opacity: 0;
+  z-index: -1;
+  width: 140px;
+  position: absolute;
+  top: -8px;
+  right: -50px;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #f7f3f4;
+  padding: 2px 6px 2px 6px;
+  background: #ff6244;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003205}}
+.jp-volume-container {
+  position: absolute;
+  top: -14px;
+  left: -65px;
+  text-align: center;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003209}}
+.jp-volume-container a {
+  border: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003211}}
+.jp-volume-container a:hover {
+  border: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003212}}
+.jp-volume-container a:active {
+  outline: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003213}}
+.jp-volume-container a i.icon-volume-off {
+  margin-left: -11px;
+}
+
+/* -----------------------------------------
+  Currently playing.
+----------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003237}}
+.currently-playing {
+  display: block;
+  position: relative;
+  margin: 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003243}}
+.currently-playing li {
+  position: relative;
+  color: #212121;
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 700;
+  margin: 0px;
+  border-radius: 20px;
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+  z-index: 2;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003255}}
+.currently-playing li a {
+  display: block;
+  width: 100%;
+  color: #ff6244;
+  text-decoration: none;
+  padding: 10px 20px 12px 20px;
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+  border: 0px;
+  z-index: 2;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003267}}
+.currently-playing li:hover a {
+  color: #f39753;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003273}}
+.currently-playing li.heading {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0px;
+  padding: 16px 20px 14px 20px;
+  border: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003281}}
+.currently-playing li p.safe {
+  color: #212121;
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 10px 20px 12px 20px;
+}
+
+/* -----------------------------------------
+  Sidebar
+----------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003296}}
+.sidebar {
+  float: left;
+  width: 220px;
+  border-right: 1px solid rgba(255, 98, 68, 0.2);
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003304}}
+.sidebar:hover {
+  overflow-y: auto;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003310}}
+.subscriptions,
+.categories,
+.questions {
+  display: block;
+  position: relative;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003316}}
+.sidebar-item,
+.category {
+  position: relative;
+  color: #212121;
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 700;
+  margin: 0px;
+  border-radius: 20px;
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+  z-index: 2;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003329}}
+.sidebar-item a,
+.category a {
+  display: block;
+  width: 100%;
+  color: #ff6244;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 12px 40px 12px 20px;
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+  border: 0px;
+  z-index: 2;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003344}}
+.sidebar-item:hover a,
+.category:hover a {
+  color: #f39753;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003351}}
+.sidebar-item-big {
+  position: relative;
+  color: #212121;
+  font-family: 'Lato';
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+  margin: 0px;
+  border-radius: 20px;
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+  z-index: 2;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003363}}
+.sidebar-item-big a {
+  display: block;
+  width: 100%;
+  color: #212121;
+  text-decoration: none;
+  padding: 12px 20px 12px 20px;
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+  border: 0px;
+  z-index: 2;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003375}}
+.sidebar-item-big:hover a {
+  color: #f39753;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003382}}
+.safe {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0px;
+  padding: 16px 20px 14px 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003389}}
+.questions .sidebar-item a {
+  overflow: auto;
+  white-space: normal;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003398}}
+.hover-er {
+  display: none;
+  opacity: 0;
+  position: absolute;
+  top: 56px;
+  left: 10px;
+  width: 190px;
+  height: 28px;
+  margin: 0;
+  background: transparent;
+  border-radius: 20px;
+  border: 4px solid #ff6244;
+  z-index: 1;
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003411}}
+.sidebar-expander {
+  position: absolute;
+  right: 10px;
+  top: 20px;
+  margin: -12px 0 0 0;
+  opacity: 0;
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003416}}
+.sidebar-expander i {
+  color: #ff6244;
+  font-size: 24px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003420}}
+.sidebar-expander :hover {
+  cursor: pointer;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003425}}
+.sidebar-item:hover > .sidebar-expander {
+  opacity: 100;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003427}}
+.sidebar-actions {
+  display: none;
+  margin-bottom: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003430}}
+.sidebar-actions li {
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 700;
+  margin-bottom: 0px;
+  padding: 0 0 0 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003436}}
+.sidebar-actions li a {
+  padding: 8px 40px 8px 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003442}}
+.add-feed {
+  display: none;
+  width: 100%;
+  font-family: "Lato", sans-serif;
+  color: #f7f3f4;
+  padding: 6px 12px 6px 12px;
+  margin: 0px;
+  border: 0px;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+  background: #f39753;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003452}}
+.add-feed:hover {
+  background: #ff6244;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003456}}
+.add-feed:focus {
+  outline: 0;
+  background: #ff6244;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003464}}
+.edit-feed-input {
+  float: left;
+  display: none;
+  margin: 0px;
+  font-family: "Lato", sans-serif;
+  border: 1px solid #f7f3f4;
+  -webkit-transition: all, 0.5s, ease-in-out;
+  -moz-transition: all, 0.5s, ease-in-out;
+  -o-transition: all, 0.5s, ease-in-out;
+  transition: all, 0.5s, ease-in-out;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003471}}
+.edit-feed-input:hover {
+  -webkit-box-shadow: #0090cd 0px 0px 10px;
+  -moz-box-shadow: #0090cd 0px 0px 10px;
+  box-shadow: #0090cd 0px 0px 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003474}}
+.edit-feed-input:focus {
+  outline: 0;
+  -webkit-box-shadow: #0090cd 0px 0px 20px;
+  -moz-box-shadow: #0090cd 0px 0px 20px;
+  box-shadow: #0090cd 0px 0px 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003480}}
+.allFeeds, .allFeeds:visited {
+  color: #ff4747 !important;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003484}}
+.feedActions {
+  width: 46px;
+  height: 30px;
+  background-color: transparent;
+  position: absolute;
+  right: 15px;
+  margin: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003491}}
+.removeFeed, .editFeed, .removeFeed:visited, .editFeed:visited {
+  width: 24px;
+  height: 24px;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 16px;
+  color: #f7f3f4;
+  background-color: #0090cd;
+  border: 3px solid rgba(33, 33, 33, 0.1);
+  opacity: 0;
+  margin: -2px 5px 0 0;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003502}}
+.removeFeed:hover, .editFeed:hover, .removeFeed:visited:hover, .editFeed:visited:hover {
+  border: 3px solid #ff4747;
+  background-color: #f7f3f4;
+  color: #4e4f4b;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003507}}
+.removeFeed i, .editFeed i, .removeFeed:visited i, .editFeed:visited i {
+  margin: 1px 0 0 -1px;
+}
+
+/* -----------------------------------------
+  Action buttons.
+----------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003513}}
+.actions {
+  position: fixed;
+  left: 220px;
+  right: 14px;
+  padding: 10px 20px 10px 20px;
+  border-bottom: 1px solid rgba(255, 98, 68, 0.2);
+  background: #f3f0ee;
+  z-index: 900;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003519}}
+.actions ul li.action {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  color: #f7f3f4;
+  font-size: 14px;
+  line-height: 14px;
+  background: #ff6244;
+  margin: 10px 20px 0 0;
+  padding: 10px 20px 10px 20px;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003530}}
+.actions ul li.action.active:hover {
+  cursor: pointer;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003534}}
+.actions ul li.action.inactive {
+  color: #4e4f4b;
+  background-color: rgba(33, 33, 33, 0.05);
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003538}}
+.actions ul li.safe {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  font-size: 14px;
+  line-height: 14px;
+  padding: 18px 20px 10px 0px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003546}}
+.act-sorting {
+  position: relative;
+  background: #ff6244;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003549}}
+.act-sorting i {
+  padding: 0 0 0 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003550}}
+.act-sorting ul {
+  display: none;
+  top: 34px;
+  left: 0px;
+  position: absolute;
+  width: 160px;
+  padding: 10px;
+  background: #ff6244;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003556}}
+.act-sorting ul a {
+  font-family: 'Lato';
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  color: #f7f3f4;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003562}}
+.act-sorting ul a a:hover {
+  color: #e2d4d7;
+}
+
+/* -----------------------------------------
+  Podcast list.
+----------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003572}}
+.primary {
+  position: relative;
+  overflow-y: scroll;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003577}}
+.podcastList {
+  float: left;
+  width: 75%;
+  margin: 80px 0 0 0;
+  padding: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003584}}
+.podcast-item {
+  position: relative;
+  width: 100%;
+  margin: 40px 0 0px 0;
+  padding: 10px;
+  border-left: 10px solid #8a9b0f;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003590}}
+.podcast-item > div {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003595}}
+.selected {
+  background: #ede8e5;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003600}}
+.podcast-title {
+  max-height: 70px;
+  margin-top: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003605}}
+.podcast-title a {
+  font-size: 24px;
+  line-height: 34px;
+  color: #212121;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003609}}
+.podcast-title a:hover {
+  color: #ff6244;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003615}}
+.podcast-feed {
+  margin-bottom: 30px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003619}}
+.item-actions {
+  position: absolute;
+  bottom: -44px;
+  left: 0px;
+  opacity: 0;
+  width: 100%;
+  height: 32px;
+  background: #f39753;
+  -webkit-transition: all, 0.3s;
+  -moz-transition: all, 0.3s;
+  -o-transition: all, 0.3s;
+  transition: all, 0.3s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003625}}
+.item-actions a {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  width: 20%;
+  color: #f2f2f2;
+  font-size: 18px;
+  margin-top: 4px;
+  padding: 0px 12px 0 12px;
+  border-right: 1px solid #f2f2f2;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003633}}
+.item-actions a:last-of-type {
+  border-right: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003634}}
+.item-actions a:hover {
+  color: #ff6244;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003638}}
+div.podcastDescription {
+  display: none;
+  width: 100%;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003641}}
+div.podcastDescription p {
+  margin-bottom: 0px;
+  padding-bottom: 12px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003647}}
+.description-warning {
+  color: #ff6244;
+  font-size: 14px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003652}}
+.false {
+  font-weight: 700;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003656}}
+.listen-sidebar {
+  float: left;
+  width: 25%;
+  background-color: black;
+}
+
+/* -----------------------------------------
+  Settings.
+----------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003666}}
+.settings,
+.answers {
+  max-width: 840px;
+  padding: 20px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003671}}
+.information {
+  position: relative;
+  height: auto;
+  width: 25%;
+  border-right: 1px solid white;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003676}}
+.information h1 {
+  font-size: 22px;
+  text-transform: uppercase;
+  margin: 6px 0 6px 0;
+  padding: 0 0 0 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003682}}
+.information p {
+  padding: 0 20px 0 20px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003683}}
+.information p + p {
+  text-indent: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003684}}
+.information a {
+  color: #00364e;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003689}}
+.claim-username h3,
+.update-password h3 {
+  width: 20%;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003693}}
+.claim-username input,
+.update-password input {
+  width: 400px;
+  height: 40px;
+  display: block;
+  font-family: "Lato", sans-serif;
+  color: #f7f3f4;
+  padding: 2px 4px 2px 4px;
+  border: 0px;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+  background: #f39753;
+  border-radius: 0px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003703}}
+.claim-username input:hover,
+.update-password input:hover {
+  background: #ff6244;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003708}}
+.claim-username input:focus,
+.update-password input:focus {
+  background: #ff6244;
+  outline: 1px solid #ff6244;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003714}}
+.claim-username input:last-of-type,
+.update-password input:last-of-type {
+  width: 70px;
+  margin: 20px 0 20px 165px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003721}}
+a.delete, a.delete:visited {
+  color: #f7f3f4;
+  font-size: 14px;
+  padding: 12px 16px 12px 16px;
+  margin: 0 0 40px 0;
+  border-radius: 4px;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  *vertical-align: auto;
+  zoom: 1;
+  *display: inline;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+  background: #ff6244;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003730}}
+a.delete:hover, a.delete:visited:hover {
+  background: #f39753;
+}
+
+/*******************************************
+*
+* FAQ/Help
+*
+*******************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003741}}
+.answers h2 {
+  margin-top: 60px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003744}}
+.answers h3 {
+  margin-top: 30px;
+}
+
+/*******************************************
+*
+* 404 error
+*
+*******************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003754}}
+a.logo-spin {
+  display: block;
+  width: 200px;
+  margin: 80px auto 80px auto;
+  -webkit-animation: spinner 5s infinite;
+  -moz-animation: spinner 5s infinite;
+  -ms-animation: spinner 5s infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -ms-animation-timing-function: linear;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003764}}
+a.logo-spin img {
+  width: 200px;
+}
+
+/*******************************************
+*
+* Other errors
+*
+*******************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003772}}
+#modal {
+  display: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  background: rgba(33, 33, 33, 0.6);
+  z-index: 1000;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003780}}
+.modal-box {
+  position: relative;
+  width: 600px;
+  height: auto;
+  margin: 20% auto 0 auto;
+  background: #f3f0ee;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003787}}
+.modal-text {
+  padding: 40px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003791}}
+.modal-close {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 36px;
+  height: 36px;
+  font-size: 14px;
+  line-height: 14px;
+  color: #212121;
+  background-color: #f2f2f2;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  -ms-border-radius: 18px;
+  -o-border-radius: 18px;
+  border-radius: 18px;
+  border: 5px solid #f39753;
+  margin: 0px 0 0 20px;
+  padding: 4px 0 0 9px;
+  -webkit-transition: all, 0.5s;
+  -moz-transition: all, 0.5s;
+  -o-transition: all, 0.5s;
+  transition: all, 0.5s;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003803}}
+.modal-close:hover {
+  border: 5px solid #ff6244;
+  color: #ff6244;
+  cursor: pointer;
+}
+
+/*******************************************
+*
+* Loading
+*
+*******************************************/
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003816}}
+#loading {
+  display: none;
+  position: fixed;
+  left: 0px;
+  top: 80px;
+  bottom: 91px;
+  right: 0px;
+  background: #f3f0ee;
+  z-index: 2000;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003823}}
+.loading-box {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003829}}
+.loading-spin {
+  width: 200px;
+  margin: 100px auto 60px auto;
+  -webkit-animation: spinner 5s infinite;
+  -moz-animation: spinner 5s infinite;
+  -ms-animation: spinner 5s infinite;
+  -webkit-animation-timing-function: linear;
+  -moz-animation-timing-function: linear;
+  -ms-animation-timing-function: linear;
+}
+
+/* -----------------------------------------
+  Media queries for login/signup.
+----------------------------------------- */
+@media only screen and (max-width: 767px) {
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003845}}
+  body.login-page header {
+    height: auto;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003847}}
+  body.login-page header .row {
+    margin-bottom: 0px;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003850}}
+  .hark-listen {
+    width: 100px;
+    margin: 0 auto;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003853}}
+  .hark-listen a {
+    width: 100px;
+    height: 100px;
+    font-size: 24px;
+    color: #0090cd;
+    text-align: center;
+    background: url(/public/img/grainy.png), #f7f3f4;
+    z-index: 30;
+    border-radius: 50px;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    zoom: 1;
+    *display: inline;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/screen\.scss}line{font-family:\00003864}}
+  .hark-listen .pulse {
+    width: 100px;
+    height: 100px;
+    background-color: #f7f3f4;
+    position: absolute;
+    z-index: 25;
+    border-radius: 50px;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: middle;
+    *vertical-align: auto;
+    zoom: 1;
+    *display: inline;
+    -webkit-animation: pulse 5s infinite;
+    -moz-animation: pulse 5s infinite;
+    -ms-animation: pulse 5s infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    -ms-animation-timing-function: linear;
+  }
+}
+/* -----------------------------------------
+  Media queries for main view.
+----------------------------------------- */
+/*  -----------------------------------------
+  -----------------------------------------
+  
+  Media queries.
+  
+  -----------------------------------------
+-----------------------------------------  */
+@media only screen and (max-width: 768px) {
+  /* -----------------------------------------
+    Header.
+  ----------------------------------------- */
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_media-queries\.scss}line{font-family:\0000314}}
+  header {
+    height: auto;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_media-queries\.scss}line{font-family:\0000316}}
+  .hark-logo a {
+    float: none;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_media-queries\.scss}line{font-family:\0000318}}
+  .hark-logo a img {
+    margin: 10px auto 20px auto;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_media-queries\.scss}line{font-family:\0000320}}
+  .mobile-header-menu {
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: -160px;
+    background: #8a9b0f;
+  }
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_media-queries\.scss}line{font-family:\0000328}}
+  nav ul {
+    text-align: center;
+    margin: 0px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_media-queries\.scss}line{font-family:\0000331}}
+  nav ul li {
+    width: 100%;
+    margin: 16px 0 0 0;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_media-queries\.scss}line{font-family:\0000334}}
+  nav ul li:first-of-type {
+    margin: 0px;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_media-queries\.scss}line{font-family:\0000337}}
+  nav ul li:last-of-type {
+    margin: 16px 0 16px 0;
+  }
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_media-queries\.scss}line{font-family:\0000340}}
+  nav ul li a {
+    display: block;
+    width: 100%;
+  }
+}
+@-webkit-keyframes spinner {
+  /* line 902, ../../assets/scss/screen.scss */
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 903, ../../assets/scss/screen.scss */
+  50% {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  /* line 904, ../../assets/scss/screen.scss */
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes spinner {
+  /* line 908, ../../assets/scss/screen.scss */
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 909, ../../assets/scss/screen.scss */
+  50% {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  /* line 910, ../../assets/scss/screen.scss */
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-ms-keyframes spinner {
+  /* line 914, ../../assets/scss/screen.scss */
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 915, ../../assets/scss/screen.scss */
+  50% {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  /* line 916, ../../assets/scss/screen.scss */
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  /* line 920, ../../assets/scss/screen.scss */
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 921, ../../assets/scss/screen.scss */
+  50% {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  /* line 922, ../../assets/scss/screen.scss */
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
