@@ -153,7 +153,8 @@ ROADMAP
   [x] --  A full/expanded help/FAQ section.
   [x] --  Sorting options for the Directory.
   [x] --  Directory pagination (with 50-documents per page).
-  [ ] --  Better video podcast support.
+  [x] --  Better video podcast support.
+  [x] --  1.2B01 -- When you watch one video, then audio, and then another video, the video doesn't show up.
 
   1.3
   ----------
@@ -183,7 +184,7 @@ BUGS
 
   ****
   ----------
-  [ ] --  1.2B01 -- When you watch one video, then audio, and then another video, the video doesn't show up.
+  
 
   ***
   ----------

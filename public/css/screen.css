@@ -2463,9 +2463,10 @@ footer {
   height: 90px;
   background: #f3f0ee;
   border-top: 1px solid rgba(243, 151, 83, 0.2);
+  z-index: 1000;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000311}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000312}}
 .podcast-player,
 .video-podcast-player {
   position: absolute;
@@ -2474,30 +2475,30 @@ footer {
   width: 100%;
   margin: 0;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000315}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000316}}
 .podcast-player div,
 .video-podcast-player div {
   margin-bottom: 0px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000318}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000319}}
 .video-podcast-player {
   top: 90px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000322}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000323}}
 .video-player {
   display: none;
   position: fixed;
-  bottom: 100px;
-  left: 50%;
-  margin-left: -260px;
-  padding: 0px 30px 30px 30px;
+  top: 40%;
+  left: 220px;
+  padding: 4px 4px 34px 4px;
+  border-radius: 8px;
   background: #212121;
   z-index: 1000;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000331}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000333}}
 .video-menu a {
   display: -moz-inline-stack;
   display: inline-block;
@@ -2507,31 +2508,35 @@ footer {
   *display: inline;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000335}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000337}}
 .video-move {
   position: absolute;
-  left: 30px;
+  left: 8px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000339}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000341}}
 .video-minimize {
   position: absolute;
-  left: 50px;
+  left: 28px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000343}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000345}}
 .video-resize {
   position: absolute;
   right: 8px;
-  bottom: 0px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000347}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000349}}
 #jquery_jplayer_2 {
   padding-top: 30px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000356}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000353}}
+#jquery_jplayer_2, #jp_video_1 {
+  max-width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000362}}
 .jp-controls li {
   display: -moz-inline-stack;
   display: inline-block;
@@ -2541,13 +2546,13 @@ footer {
   *display: inline;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000358}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000364}}
 .jp-interface {
   position: relative;
   margin: 0px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000364}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000370}}
 .jp-play,
 .jp-pause {
   position: absolute;
@@ -2558,7 +2563,7 @@ footer {
   border-radius: 40px;
   background: #ff6244;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000370}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000376}}
 .jp-play i,
 .jp-pause i {
   color: #f7f3f4;
@@ -2568,35 +2573,35 @@ footer {
   -o-transition: all, 0.5s;
   transition: all, 0.5s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000375}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000381}}
 .jp-play:hover,
 .jp-pause:hover {
   cursor: pointer;
   background: #ff3711;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000378}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000384}}
 .jp-play:hover i,
 .jp-pause:hover i {
   text-shadow: 0 0 20px #f7f3f4;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000382}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000388}}
 .jp-play:focus,
 .jp-pause:focus {
   outline: none;
   background: #ff3711;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000385}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000391}}
 .jp-play:focus i,
 .jp-pause:focus i {
   text-shadow: 0 0 20px #f7f3f4;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000391}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000397}}
 i.icon-pause {
   padding-right: 3px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000393}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000399}}
 .jp-progress-control {
   position: absolute;
   top: 35px;
@@ -2604,7 +2609,7 @@ i.icon-pause {
   right: 340px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\0000398}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003104}}
 .jp-volume-control {
   position: absolute;
   top: 35px;
@@ -2612,7 +2617,7 @@ i.icon-pause {
   width: 160px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003104}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003110}}
 .jp-progress-bar,
 .jp-volume-bar {
   position: relative;
@@ -2623,7 +2628,7 @@ i.icon-pause {
   background: white;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003119}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003125}}
 .jp-seek-bar,
 .jp-volume-bar-value {
   position: absolute;
@@ -2634,7 +2639,7 @@ i.icon-pause {
   background: #ffe2dd;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003126}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003132}}
 .jp-play-bar {
   position: absolute;
   top: 0px;
@@ -2644,7 +2649,7 @@ i.icon-pause {
   background: #fff8f6;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003134}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003140}}
 .jp-play-tracker,
 .jp-volume-tracker {
   display: block;
@@ -2662,7 +2667,7 @@ i.icon-pause {
   z-index: 10;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003145}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003151}}
 .jp-current-time, .jp-duration {
   font-family: "Lato", sans-serif;
   font-size: 16px;
@@ -2676,12 +2681,12 @@ i.icon-pause {
   top: 25px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003152}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003158}}
 .jp-duration {
   right: 0px;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003157}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003163}}
 .manual-sync,
 .jp-volume-container {
   padding: 6px 8px 2px 8px;
@@ -2693,7 +2698,7 @@ i.icon-pause {
   -o-transition: all, 0.5s;
   transition: all, 0.5s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003163}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003169}}
 .manual-sync i,
 .jp-volume-container i {
   color: #f7f3f4;
@@ -2703,48 +2708,48 @@ i.icon-pause {
   -o-transition: all, 0.5s;
   transition: all, 0.5s;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003167}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003173}}
 .manual-sync i:focus,
 .jp-volume-container i:focus {
   outline: none;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003169}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003175}}
 .manual-sync:hover,
 .jp-volume-container:hover {
   cursor: pointer;
   background: #ff3711;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003172}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003178}}
 .manual-sync:hover i,
 .jp-volume-container:hover i {
   text-shadow: 0 0 20px #f7f3f4;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003176}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003182}}
 .manual-sync:focus,
 .jp-volume-container:focus {
   outline: none;
   background: #ff3711;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003179}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003185}}
 .manual-sync:focus i,
 .jp-volume-container:focus i {
   text-shadow: 0 0 20px #f7f3f4;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003185}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003191}}
 .manual-sync {
   position: absolute;
   top: -14px;
   right: -60px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003187}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003193}}
 .manual-sync:hover > .manual-sync-popup {
   opacity: 100;
   top: -40px;
   z-index: 10;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003190}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003196}}
 .manual-sync-popup {
   opacity: 0;
   z-index: -1;
@@ -2769,26 +2774,26 @@ i.icon-pause {
   transition: all, 0.5s;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003205}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003211}}
 .jp-volume-container {
   position: absolute;
   top: -14px;
   left: -65px;
   text-align: center;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003209}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003215}}
 .jp-volume-container a {
   border: 0px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003211}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003217}}
 .jp-volume-container a:hover {
   border: 0px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003212}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003218}}
 .jp-volume-container a:active {
   outline: 0px;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003213}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/panopticoff\/Dropbox\/web\/Hark\/assets\/scss\/_jplayer\.scss}line{font-family:\00003219}}
 .jp-volume-container a i.icon-volume-off {
   margin-left: -11px;
 }

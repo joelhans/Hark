@@ -1,17 +1,21 @@
 $ = jQuery
-History = State = progress = path = dir_pagination = null
+History = State = progress = path = dir_pagination = mediaData = progress = null
 
 # ------------------------------
 # On document load
 # ------------------------------
 
 $(document).ready () ->
+  console.log playing
   window.ajaxHelpers()
   State = History.getState()
   window.dir_pagination()
+  window.settings()
   return
 
 window.onload = () ->
+  window.jplayer_1()
+  window.jplayer_2()
   window.jplayer()
 
 # ------------------------------
