@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 1.1.3
+//  Current version: 1.2
 //
 //  Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -31,7 +31,8 @@ var express    = require('express')
   , mongodb    = require('mongodb')
   , conf       = require('./lib/conf')
   , connect    = require('connect')
-  , coffee     = require('coffee-script');
+  , coffee     = require('coffee-script')
+  , gzippo     = require('gzippo');
 
 var parser = new xml2js.Parser();
 
@@ -188,7 +189,8 @@ app.configure(function() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+  // app.use(express.static(__dirname + '/public'));
+  app.use(gzippo.staticGzip(__dirname + '/public'));
 });
 
 //  ---------------------------------------
@@ -484,7 +486,7 @@ app.post('/listen/:feed/:_id', loadUser, function(req, res) {
 
 app.post('/listen/:feed/listened/:_id', loadUser, function(req, res) {
   harkUser.playing = {};
-  Feeds.findAndModify({ 'owner': harkUser.userID, 'pods.podUUID' : req.param('podcastID') }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
+  Feeds.findAndModify({ 'owner': harkUser.userID, 'pods.podUUID' : req.body.id }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
     if(err) { throw err; }
       res.send(result);
   });

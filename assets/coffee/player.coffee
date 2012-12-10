@@ -6,7 +6,7 @@ window.jplayer_1 = () ->
   $('#jquery_jplayer_1').jPlayer
     swfPath: "/js"
     supplied: 'mp3'
-    solution: 'flash, html'
+    solution: 'html, flash'
     errorAlerts: false
     volume: 0.5
     play: (d) ->
@@ -24,17 +24,17 @@ window.jplayer_1 = () ->
       clearInterval(window.updatePlaying)
     ended: (d) ->
       clearInterval(window.updatePlaying)
-      # $('[data-uuid="' + window.mediaData.podcastID + '"]')
-     #    .animate
-     #      { opacity: '0' }
-     #      { duration: 600 }
-     #    .animate(
-     #      { height: '0px', 'margin-bottom': '0px' }
-     #      { duration: 600
-     #        complete: () ->
-      #         $(this).remove()
-      #         $('.jp-playing').fadeOut(300).html('')
-     #      }
+      $('[data-uuid="' + window.mediaData.podcastID + '"]')
+        .animate
+          opacity: '0',
+          600
+        .animate
+          height          : '0px'
+          'margin-bottom' : '0px',
+          600,
+          () ->
+            $(this).remove()
+            $('.jp-playing').fadeOut(300).html('')
       $.ajax
         type: 'POST'
         url: '/listen/' + window.mediaData.feedUUID + '/listened/' + window.mediaData.podcastID
@@ -63,11 +63,11 @@ window.jplayer_2 = () ->
     solution            : 'html, flash'
     errorAlerts         : false
     cssSelectorAncestor : "#jp_container_2"
-    volume              : 0.0
+    volume              : 0.5
     play                : (d) ->
       $('.podcast-player').css({'top': '90px'})
       $('.video-podcast-player').css({'top': '0px'})
-      $('.video-player').css('top': $(document).height() - $('.video-player').height() - 90)
+      $('.video-player').css('top': $(document).height() - $('.video-player').height() - 128)
       $('.video-player, #jquery_jplayer_2, .jp-playing').fadeIn(300)
       updatePlaying = setInterval (-> 
         window.updateStatus()
@@ -80,6 +80,17 @@ window.jplayer_2 = () ->
     ended: (d) ->
       clearInterval(window.updatePlaying)
       $('.video-player, #jquery_jplayer_2').fadeOut(300)
+      $('[data-uuid="' + window.mediaData.podcastID + '"]')
+        .animate
+          opacity: '0',
+          600
+        .animate
+          height          : '0px'
+          'margin-bottom' : '0px',
+          600,
+          () ->
+            $(this).remove()
+            $('.jp-playing').fadeOut(300).html('')
       $.ajax
         type: 'POST'
         url: '/listen/' + window.mediaData.feedUUID + '/listened/' + window.mediaData.podcastID
@@ -157,22 +168,6 @@ window.jplayer = () ->
     .delegate '.video-move', 'mouseup', (e) ->
       $('.video-move').undelegate()
       $(window).unbind 'mousemove'
-
-  # ------------------------------
-  # Minimize video player
-  # ------------------------------
-
-  $('body')
-    .on 'click', '.video-minimize', (e) ->
-      if $('.video-player').is('.minimized')
-        $('.video-player').removeClass('minimized')
-        half_width = $('.video-player').width() / 2
-        pos = $(window).width() - half_width
-        $('.video-player').css({'bottom': 100 + 'px', 'left': '50%', 'margin-left': -(half_width) + 'px'})
-      else
-        $('.video-player').addClass('minimized')
-        pos = $(window).width() - $('.video-player').width() / 2
-        $('.video-player').css({'bottom': -180 + 'px', 'left': pos, 'top': '', 'margin-left': ''})
 
   # ------------------------------
   # Resize video player

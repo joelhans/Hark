@@ -1,57 +1,3 @@
-#------------------------------
-# Listen to a podcast
-#------------------------------
-$(document)
-  .delegate '.act-listen.active', 'click', (e) ->
-    window.mediaData =
-      podcast      : $('.selected').attr("data-file")
-      podcastTitle : $('.selected').attr("data-title")
-      podcastID    : $('.selected').attr("data-uuid")
-      feedUUID     : $('.selected').attr("data-feedUUID")
-      feedTitle    : $('.selected').attr("data-feed")
-
-    if window.mediaData.podcast.indexOf('mp4') is -1
-      $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
-        mp3: window.mediaData.podcast
-      }).jPlayer('play')
-    else 
-      $('#jquery_jplayer_2').jPlayer("pauseOthers").jPlayer("setMedia", {
-        m4v: window.mediaData.podcast
-      }).jPlayer('play')
-
-    $.ajax
-      type    : 'POST'
-      url     : '/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
-      data    : window.mediaData
-      success : (data) ->
-        $('.currently-playing').html(data)
-
-$(document)
-  .delegate '.podcastListen', 'click', (e) ->
-    e.preventDefault()
-    window.mediaData =
-      podcast      : $(this).attr("data-file")
-      podcastTitle : $(this).attr("data-title")
-      podcastID    : $(this).attr('href').split('/')[3]
-      feedUUID     : $(this).attr('href').split('/')[2]
-      feedTitle    : $(this).attr("data-feed")
-
-    if window.mediaData.podcast.indexOf('mp4') is -1
-      $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
-        mp3: window.mediaData.podcast
-      }).jPlayer('play')
-    else 
-      $('#jquery_jplayer_2').jPlayer("pauseOthers").jPlayer("setMedia", {
-        m4v: window.mediaData.podcast
-      }).jPlayer('play')
-
-    $.ajax
-      type    : 'POST'
-      url     : '/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
-      data    : window.mediaData
-      success : (data) ->
-        $('.currently-playing').html(data)
-
 # ------------------------------
 # Add a feed
 # ------------------------------
@@ -207,6 +153,8 @@ $(document)
     $(e.currentTarget).addClass('selected')
     $('.act-listen, .act-mark, .act-read, .act-source, .act-download').removeClass('inactive').addClass('active')
 
+
+
 # De-select a podcast
 
 $(document)
@@ -216,16 +164,144 @@ $(document)
     $('.act-listen, .act-mark, .act-read, .act-source, .act-download').removeClass('active').addClass('inactive')
 
 # Listen to a podcast
-################################
-# CoffeeScript conversion still needed.
 
 $(document)
-  .delegate '.item-actions-listen', 'click', (e) ->
-    console.log 'hi'
+  .delegate '.act-listen.active', 'click', (e) ->
+    window.mediaData =
+      podcast      : $('.selected').attr("data-file")
+      podcastTitle : $('.selected').attr("data-title")
+      podcastID    : $('.selected').attr("data-uuid")
+      feedUUID     : $('.selected').attr("data-feedUUID")
+      feedTitle    : $('.selected').attr("data-feed")
+
+    if window.mediaData.podcast.indexOf('mp4') is -1
+      $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
+        mp3: window.mediaData.podcast
+      }).jPlayer('play')
+    else 
+      $('#jquery_jplayer_2').jPlayer("pauseOthers").jPlayer("setMedia", {
+        m4v: window.mediaData.podcast
+      }).jPlayer('play')
+
+    $.ajax
+      type    : 'POST'
+      url     : '/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
+      data    : window.mediaData
+      success : (data) ->
+        $('.currently-playing').html(data)
+
+$(document)
+  .delegate '.podcastListen', 'click', (e) ->
+    e.preventDefault()
+    window.mediaData =
+      podcast      : $(this).attr("data-file")
+      podcastTitle : $(this).attr("data-title")
+      podcastID    : $(this).attr('href').split('/')[3]
+      feedUUID     : $(this).attr('href').split('/')[2]
+      feedTitle    : $(this).attr("data-feed")
+
+    if window.mediaData.podcast.indexOf('mp4') is -1
+      $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
+        mp3: window.mediaData.podcast
+      }).jPlayer('play')
+    else 
+      $('#jquery_jplayer_2').jPlayer("pauseOthers").jPlayer("setMedia", {
+        m4v: window.mediaData.podcast
+      }).jPlayer('play')
+
+    $.ajax
+      type    : 'POST'
+      url     : '/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
+      data    : window.mediaData
+      success : (data) ->
+        $('.currently-playing').html(data)
 
 # Mark a podcast as "listened."
-################################
-# CoffeeScript conversion still needed.
+
+# $(document)
+#   .delegate '.podcastListened', 'click', (e) ->
+#     e.preventDefault()
+#     split = this.className.split(' ')
+#     delegator = split[1]
+#     data =
+#       id   : $(this).attr('href').split('/')[4]
+#       feed : $(this).attr('href').split('/')[2]
+
+#     if delegator is 'all'
+#       $(this).parent().parent().parent()
+#         .animate
+#           opacity: '0',
+#           600
+#         .animate
+#           height          : '0px'
+#           'margin-bottom' : '0px',
+#           600,
+#           () ->
+#             $(this).remove()
+#       $.ajax
+#         type : 'POST'
+#         url  : '/listen/' + data.feed + '/listened/' + data.id
+#         data : data
+#         success: (data) ->
+#           console.log 'Marked as listened!'
+#         error: (data) ->
+#           console.log('Hark had an error.'
+
+#     else if delegator is 'single'
+#       $('#' + data.id).removeClass('false')
+#       $.ajax
+#         type : 'POST'
+#         url  : '/listen/' + data.feed + '/listened/' + data.id
+#         data : data
+#         success: (data) ->
+#           console.log 'Marked as listened!'
+#         error: (data) ->
+#           console.log('Hark had an error.'
+#     else
+#       console.log 'Darn.'
+
+$(document)
+  .delegate '.act-mark.active', 'click', (e) ->
+    e.preventDefault()
+    split = $('.selected').attr('class').split(/\s+/)
+    delegator = split[1]
+    data =
+      id   : $('.selected').attr('data-uuid')
+      feed : $('.selected').attr('data-feedUUID')
+
+    console.log data, delegator
+
+    if delegator is 'all'
+      $('.selected')
+        .animate
+          opacity: '0',
+          600
+        .animate
+          height          : '0px'
+          'margin-bottom' : '0px',
+          600,
+          () ->
+            $(this).remove()
+      $.ajax
+        type : 'POST'
+        url  : '/listen/' + data.feed + '/listened/' + data.id
+        data : data
+        success: (data) ->
+          console.log data
+        error: (data) ->
+          console.log data
+    else if delegator is 'single'
+      $('#' + data.id).removeClass('false')
+      $.ajax
+        type : 'POST'
+        url  : '/listen/' + data.feed + '/listened/' + data.id
+        data : data
+        success: (data) ->
+          console.log data
+        error: (data) ->
+          console.log data
+    else
+      console.log 'Darn.'
 
 # Read a description
 
