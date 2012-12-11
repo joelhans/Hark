@@ -152,10 +152,16 @@ ROADMAP
   [x] --  Better video podcast support.
   [x] --  1.2B01 -- When you watch one video, then audio, and then another video, the video doesn't show up.
 
+    1.2.1
+    ----------
+    [x] --  1.2B01 -- Updating causes a crash.
+
   1.3
   ----------
   [ ] --  Directory pagination + various sorting options.
   [ ] --  Make an RSS feed that takes all the unlistened podcasts so people can sync it to other services.
+  [ ] --  Move to new version of XML2JS.
+              - https://github.com/Leonidas-from-XIV/node-xml2js
 
   1.4
   ----------
@@ -184,22 +190,19 @@ BUGS
 
   ****
   ----------
-  
 
   ***
   ----------
+  [ ] --  1.2B02 -- When a podcast ends, it is not marked as read in the DB.
   [ ] --  1.0B07 -- Title is not updated when navigating via AJAX.
                     * Working for everything but Directory categories. Can't figure out a way to reliably grab the capitalized, human-readable category name.
 
   **
   ----------
-  [ ] --  1.0B09 -- Add in some kind of animation for remaining podcast items when you mark one as "read."
-  [ ] --  1.0B10 -- The "source" links in some feeds don't work. Maybe convert to GUID?
-                    * I've noticed that some GUIDs have the same problem. Hmm.
 
   *
   ----------
-  [ ] --  Rapid-click on "mark as listened" causes some to not have successful POSTs. (Web sockets?)
+  [ ] --  Rapid-click on "mark as listened" causes some to not have successful POSTs.
 
 
 DIRECTORY

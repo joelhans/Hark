@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 1.2
+//  Current version: 1.2.1
 //
 //  Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -42,7 +42,7 @@ var parser = new xml2js.Parser();
 
 var Db            = require('mongodb').Db
   , Server        = require('mongodb').Server
-  , server_config = new Server('localhost', 27017, {auto_reconnect: true, native_parser: true})
+  , server_config = new Server('localhost', 27017, {safe:false, auto_reconnect: true, native_parser: true})
   , db            = new Db('Hark', server_config, {})
   , mongoStore    = require('connect-mongodb')
   , ObjectID      = require('mongodb').ObjectID;
@@ -568,4 +568,4 @@ app.use(function(req, res){
 //  ---------------------------------------
 
 app.listen(3000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+console.log("Express server listening.");
