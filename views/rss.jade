@@ -1,0 +1,17 @@
+!!! xml
+rss(version="2.0")
+  channel
+    title Hark Podcasts
+    link http://harkhq.com
+    description Hark is your personal radio station. Podcasts. Radio. Revolutionized.
+    lastBuildDate= podcasts[0].podDate
+    generator Hark
+    docs http://harkhq.com
+    if podcasts
+      for podcast in podcasts
+        item
+          title= podcast.podTitle
+          description= podcast.podDesc
+          guid(isPermaLink="true") http://listen.harkhq.com/listen/podcast/#{podcast.feedUUID}
+          pubDate= podcast.podDate
+          enclosure(url= podcast.podFile, length="0", type="audio/mpeg")

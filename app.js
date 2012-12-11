@@ -504,6 +504,20 @@ app.post('/listen/playing', loadUser, function(req, res) {
 });
 
 //
+//  RSS FEED
+//
+
+app.get('/user/:user/rss', function(req, res) {
+  getFeeds(req.params.user, function(error, feed, podcastList) {
+    res.render('rss', {
+      locals: {
+        podcasts: podcastList
+      }
+    });
+  });
+});
+
+//
 //  SETTINGS
 //
 

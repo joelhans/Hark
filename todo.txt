@@ -156,10 +156,14 @@ ROADMAP
     ----------
     [x] --  1.2B01 -- Updating causes a crash.
 
+    1.2.2
+    ----------
+    [x] --  for 1.3 --  Make an RSS feed that takes all the unlistened podcasts so people can sync it to other services.
+
   1.3
   ----------
   [ ] --  Directory pagination + various sorting options.
-  [ ] --  Make an RSS feed that takes all the unlistened podcasts so people can sync it to other services.
+  [x] --  Make an RSS feed that takes all the unlistened podcasts so people can sync it to other services.
   [ ] --  Move to new version of XML2JS.
               - https://github.com/Leonidas-from-XIV/node-xml2js
 
