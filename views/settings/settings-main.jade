@@ -36,10 +36,9 @@ div.settings
 
 	h2#rss Your podcasts RSS feed
 	p Hark compiles an RSS feed, much like the ones that you might have used to subscribe to podcasts yourself, so that you can bring Hark's catching ability to other podcast managers out there. Take your podcasts mobile, for example, with one of the many smartphone applications available for iOS and Android. Simply direct the application toward the link below and your un-listened podcasts will also be available on-the-go.
-	p Access the RSS feed 
-		a(href='/user/' + user.userID + '/rss/') here
-		.
+	p
+		a.blue-button(href='/user/' + user.userID + '/rss/') Your RSS Feed
 	p.error Your RSS feed is publicly-accessible, but your personal account information is not included in its data.
 
 	h2#settings-delete Delete your Hark! account
-	a.delete(href='/#') Goodbye, podcasts!
+	a.red-button(href='/#') Goodbye, podcasts!

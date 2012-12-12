@@ -1,0 +1,25 @@
+/*
+* BUTTONS
+*/
+
+.blue-button {
+  color: $white;
+  padding: 14px 20px 14px 20px;
+  border-radius: 2px;
+  @include background($blue);
+  &:hover {
+    color: $white;
+    @include background($red);
+  }
+}
+
+.red-button {
+  color: $white;
+  padding: 14px 20px 14px 20px;
+  border-radius: 2px;
+  @include background($red);
+  &:hover {
+    color: $white;
+    @include background($blue);
+  }
+}
