@@ -205,7 +205,7 @@ function loadUser(req, res, next) {
   // After setting "harkUser," we let the route continue. If there is no user, we redirect to the
   // login page.
 
-  if (typeof(req.user) !== 'undefined') {
+  if (typeof(req.user) !== 'undefined' && req.url !== '/') {
     if (typeof(req.user[0]) !== 'undefined') {
       harkUser = req.user[0];
     } else {
@@ -213,10 +213,16 @@ function loadUser(req, res, next) {
     }
     console.log('OUR USER: ' + harkUser.userID);
     return next();
-  } else if ( typeof(req.user) === 'undefined' && req.url === '/signup' ) {
-    return next();
+  } else if (typeof(req.user) !== 'undefined' && req.url === '/') {
+    res.redirect('/listen');
   } else if ( typeof(req.user) === 'undefined' && req.url === '/' ) {
     return next();
+  } else if ( typeof(req.user) === 'undefined' && req.url === '/signup' ) {
+    return next();
+  } else if ( typeof(req.user) === 'undefined' && req.url === '/login' ) {
+    return next();
+  } else if ( typeof(req.user) === 'undefined' && req.url.indexOf('/listen') !== -1 ) {
+    res.redirect('/login');
   } else if ( typeof(req.user) === 'undefined' && req.url.indexOf('/directory') !== -1 ) {
     harkUser = false;
     return next();
@@ -234,11 +240,15 @@ require('./lib/directory_cron')(app, express, loadUser, Directory, Feeds, moment
 //  ---------------------------------------
 
 app.get('/', loadUser, function(req, res) {
-  res.render('login', { message: req.flash('error') });
+  res.render('home');
 });
 
 app.get('/signup', loadUser, function(req, res) {
   res.render('signup');
+});
+
+app.get('/login', loadUser, function(req, res) {
+  res.render('login', { message: req.flash('error') });
 });
 
 app.post('/login', 
@@ -281,7 +291,7 @@ app.get('/forgot', function(req, res) {
 
 app.get('/logout', function(req, res){
   req.logOut();
-  res.redirect('/');
+  res.redirect('/login');
 });
 
 //
@@ -336,7 +346,6 @@ app.post('/listen/podcast/all', loadUser, function(req, res) {
 //
 
 app.post('/listen/podcast/:_id', loadUser, function(req, res) {
-  console.log(req.body.feedID);
   Feeds.find({ 'owner': harkUser.userID, 'uuid': req.body.feedID }).toArray(function(err, results) {
     if (err) { throw err; }
     var feed = new Array(),
@@ -459,6 +468,7 @@ app.get('/listen/podcast/:id', loadUser, function(req, res) {
   ], function () {
     res.render('listen', {
       locals: {
+        single: true,
         user: harkUser,
         feeds: construction,
         podcasts: podcastList,
@@ -484,9 +494,11 @@ app.post('/listen/:feed/:_id', loadUser, function(req, res) {
 //  MARK A PODCAST AS "LISTENED"
 //
 
-app.post('/listen/:feed/listened/:_id', loadUser, function(req, res) {
+app.post('/listen/:feed/listened/:id', loadUser, function(req, res) {
   harkUser.playing = {};
-  Feeds.findAndModify({ 'owner': harkUser.userID, 'pods.podUUID' : req.body.id }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
+  console.log(req.params);
+  console.log(req.body);
+  Feeds.findAndModify({ 'owner': harkUser.userID, 'pods.podUUID' : req.params.id }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
     if(err) { throw err; }
       res.send(result);
   });

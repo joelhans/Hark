@@ -1,38 +1,70 @@
 doctype 5
 html(lang="en")
-	head
-		title Hark | Reset your password.
+  head
+    title Hark | Reset your password
 
-		!=partial('layout/head')
+    !=partial('layout/head')
 
-	body
+  body
 
-		div.container
-			div.row
-				section.column-12.signup-intro
-					a.hark-logo-big(href="/login")
-						img(src='/img/hark-logo.svg')
-					h1 Hark is your personal radio station.
-					h2 Log in to your Hark account.
+    header.logo
+      img(src="/img/hark-logo-v5.svg")
+      span
 
-			div.row
-				section.column-12.signup-intro
-					h1 Hark is your personal radio station.
-					h2 Reset your password here.
+    section.signup-intro
+      h1 Reset your Hark password.
 
-			- if (typeof(flash) !== 'undefined')
-				div.row.forgot-error
-					div.column-12
-						- if (typeof(flash.forgotError) !== 'undefined')
-							p.error #{flash.forgotError}
-						- if (typeof(flash.forgotSuccess) !== 'undefined')
-							p.success #{flash.forgotSuccess}
-						
-	
+    - if (typeof(flash) !== 'undefined')
+      div.login-error.passport
+        - if (typeof(flash.forgotError) !== 'undefined')
+          p.error #{flash.forgotError}
+        - if (typeof(flash.forgotSuccess) !== 'undefined')
+          p.success #{flash.forgotSuccess}
 
-			div.row
-				form.column-12(method='post', action='/reset/new')
-					input.column-4.offset-1.reset-email(type='text', name='email', placeholder='Enter your e-mail.')
-					input.column-4.offset-2.reset-password(type='password', name='password', placeholder='Enter your password here.')
-					input(type='hidden', name='resetToken', value='' + token)
-					input.column-4.offset-4.reset-submit(type='submit', value='Reset your password.')
+    form.reset(method='post', action='/reset/new')
+      input.multi(type='text', name='email', placeholder='Enter your e-mail.')
+      input.multi(type='password', name='password', placeholder='Enter your password here.')
+      input(type='hidden', name='resetToken', value='' + token)
+      button(type='submit')
+        span Go
+
+
+
+//- doctype 5
+//- html(lang="en")
+//-   head
+//-     title Hark | Reset your password.
+
+//-     !=partial('layout/head')
+
+//-   body
+
+//-     div.container
+//-       div.row
+//-         section.column-12.signup-intro
+//-           a.hark-logo-big(href="/login")
+//-             img(src='/img/hark-logo.svg')
+//-           h1 Hark is your personal radio station.
+//-           h2 Log in to your Hark account.
+
+//-       div.row
+//-         section.column-12.signup-intro
+//-           h1 Hark is your personal radio station.
+//-           h2 Reset your password here.
+
+//-       - if (typeof(flash) !== 'undefined')
+//-         div.row.forgot-error
+//-           div.column-12
+//-             - if (typeof(flash.forgotError) !== 'undefined')
+//-               p.error #{flash.forgotError}
+//-             - if (typeof(flash.forgotSuccess) !== 'undefined')
+//-               p.success #{flash.forgotSuccess}
+            
+  
+
+//-       div.row
+//-         form.column-12(method='post', action='/reset/new')
+//-           input.column-4.offset-1.reset-email(type='text', name='email', placeholder='Enter your e-mail.')
+//-           input.column-4.offset-2.reset-password(type='password', name='password', placeholder='Enter your password here.')
+//-           input(type='hidden', name='resetToken', value='' + token)
+//-           input.column-4.offset-4.reset-submit(type='submit', value='Reset your password.')

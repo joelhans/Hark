@@ -38,11 +38,10 @@ window.jplayer_1 = () ->
       $.ajax
         type: 'POST'
         url: '/listen/' + window.mediaData.feedUUID + '/listened/' + window.mediaData.podcastID
-        data: window.mediaData
         success: () ->
           console.log 'jPlayer ended.'
         error: () ->
-          console.log('jPlayer had an error.')
+          console.log 'jPlayer had an error.'
     error: (d) ->
       console.log 'ERROR:'
       console.log d
@@ -94,11 +93,10 @@ window.jplayer_2 = () ->
       $.ajax
         type: 'POST'
         url: '/listen/' + window.mediaData.feedUUID + '/listened/' + window.mediaData.podcastID
-        data: window.mediaData
         success: () ->
           console.log 'jPlayer ended.'
         error: () ->
-          console.log('jPlayer had an error.')
+          console.log 'jPlayer had an error.'
     error: (d) ->
       console.log 'ERROR:' + d
     ready: (d) ->

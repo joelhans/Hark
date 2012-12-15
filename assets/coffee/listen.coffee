@@ -218,48 +218,6 @@ $(document)
 
 # Mark a podcast as "listened."
 
-# $(document)
-#   .delegate '.podcastListened', 'click', (e) ->
-#     e.preventDefault()
-#     split = this.className.split(' ')
-#     delegator = split[1]
-#     data =
-#       id   : $(this).attr('href').split('/')[4]
-#       feed : $(this).attr('href').split('/')[2]
-
-#     if delegator is 'all'
-#       $(this).parent().parent().parent()
-#         .animate
-#           opacity: '0',
-#           600
-#         .animate
-#           height          : '0px'
-#           'margin-bottom' : '0px',
-#           600,
-#           () ->
-#             $(this).remove()
-#       $.ajax
-#         type : 'POST'
-#         url  : '/listen/' + data.feed + '/listened/' + data.id
-#         data : data
-#         success: (data) ->
-#           console.log 'Marked as listened!'
-#         error: (data) ->
-#           console.log('Hark had an error.'
-
-#     else if delegator is 'single'
-#       $('#' + data.id).removeClass('false')
-#       $.ajax
-#         type : 'POST'
-#         url  : '/listen/' + data.feed + '/listened/' + data.id
-#         data : data
-#         success: (data) ->
-#           console.log 'Marked as listened!'
-#         error: (data) ->
-#           console.log('Hark had an error.'
-#     else
-#       console.log 'Darn.'
-
 $(document)
   .delegate '.act-mark.active', 'click', (e) ->
     e.preventDefault()

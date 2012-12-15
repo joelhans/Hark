@@ -44,7 +44,7 @@ ROADMAP
             [x] --  Canvas-based waves look a little nicer now, save for resizing.
             [x] --  Updating feeds with multiple new items causes some problems, notably only marking all but the newest one unlistened, or none at all.
 
-  0.4 // CURRENT LIVE VERSION ON HARKHQ.COM
+  0.4
   ----------
   [x] --  Migrate application.js from use of "live" click handlers to "delegate."
   [x] --  Adding feeds now inserts up to 50 items.
@@ -162,28 +162,33 @@ ROADMAP
 
   1.3
   ----------
-  [ ] --  Directory pagination + various sorting options.
+  [x] --  1.2B02 -- When a podcast ends, it is not marked as read in the DB.
   [x] --  Make an RSS feed that takes all the unlistened podcasts so people can sync it to other services.
-  [ ] --  Move to new version of XML2JS.
-              - https://github.com/Leonidas-from-XIV/node-xml2js
+  [x] --  New styling, branding.
 
   1.4
   ----------
-  [ ] --  Have a variety of keyboard shortcuts for various important functions.
-  [ ] --  Allow user to save listening progress in one podcast, listen to another one, and resume where they left off.
-  
+  [ ] --  Move to new database structure.
+
   1.5
-  ----------
-  [ ] --  Migration to new database format.
+  ---------
+  [ ] --  Directory
+      [ ] --  Improved (working) pagination.
+      [ ] --  Search for podcasts.
 
   1.6
+  ----------
+  [ ] --  Have a variety of keyboard shortcuts for various important functions.
+  [ ] --  Allow user to save listening progress in one podcast, listen to another one, and resume where they left off.
+
+  1.7
   ----------
   [ ] --  Categories
             * Users will be able to "tag" podcasts for certain categories (technology, design, etc).
             * Or, they will be able to drag-and-drop them into buckets.
             * Maybe both.
-  
-  2.0
+
+  1.8
   ----------
   [ ] --  "Harks": Personalized podcast streams/playlists.
             * Users will be able to select certain feeds they want to bundle together, maybe share them.
@@ -197,7 +202,6 @@ BUGS
 
   ***
   ----------
-  [ ] --  1.2B02 -- When a podcast ends, it is not marked as read in the DB.
   [ ] --  1.0B07 -- Title is not updated when navigating via AJAX.
                     * Working for everything but Directory categories. Can't figure out a way to reliably grab the capitalized, human-readable category name.
 
@@ -230,6 +234,8 @@ DIRECTORY
 
 OTHER POSSIBLE FEATURES
 
+Live viewing for livestreams?
+
 Look into pjax for simplified HTML History? https://github.com/defunkt/jquery-pjax
 
 Allow people to "bookmark" various points in a podcast and append them with notes, etc.
@@ -240,3 +246,134 @@ Turn the getFeeds function into a cursor.each one like the updateFeeds one. Shou
 Sanitize inputs.
   * Login -- user e-mails.
   * Feeds -- How to prevent maliciousness?
+
+
+PODCASTS TO ADD
+  http://feeds.feedburner.com/TheAdamAndDrewShow
+  NPR Programs: Fresh Air Podcast
+  NPR: All Songs Considered Podcast
+  The Dave Ramsey Show
+  CNBC's "The Suze Orman Show"- Full Show
+  Quit! -- 5by5
+  The EntreLeadership Podcast
+  Wall Street Journal This Morning
+  MAD MONEY W/ JIM CRAMER
+  Inspiring Words of Encouragement -- Zig Ziglar
+  APM: A Prairie Home Companion's News from Lake Wobegon
+  Comedy Bang Bang: The Podcast
+  How Did This Get Made? -- Earwolf
+
+  LANGUAGE
+  Coffee Break Spanish
+  BTR: TheThinkingAtheist | Blog Talk Radio
+  Coffee Break French
+  English as a Second Language Podcast
+  Learn to Speak Spanish with Discover Spanish
+  EconTalk
+  TEDTalks Education
+  Learn Spanish | SpanishPod101.com
+  Learn Spanish -- Survival Guide
+
+  GAMING
+  Giant Bombcast -- Giant Bomb
+  Car Tech (HD) -- CNET.com
+  The Instance: World of Warcraft Podcast!
+  The Game Informer Show
+  Game Scoop! -- IGN
+  Minecraft Me
+
+  GOVERNMENT
+  Inside CFR Events (Audio)
+  U.S. Presidents Podcast
+  White House Speeches
+  Center for Strategic and International Studies
+  CFR.org Podcasts
+  NORML Weekly News Podcast
+  Armed American Radio
+  Federalist Society Event Audio
+  National Park Service
+
+  HEALTH
+  The Jillian Michaels Show
+  The Rich Roll Podcast
+  The Meditation Podcast
+  PODRUNNER™: Workout Music
+  YOGAmazing
+  Get-Fit Guy's Quick and Dirty Tips to Slim Down and Shape Up
+  Paleo Lifestyle and Fitness Podcast
+
+  EDUCATION
+  Sesame Street Podcast
+  Christmas Old Time Radio
+  Nick Jr.
+  Storynory
+  Old Time Radio Comedy
+  The Official Adventures in Odyssey Podcast
+  Old Time Radio Mysteries
+
+  MUSIC
+  Above & Beyond: Group Therapy
+  Tiësto`s Club Life Podcast
+  A State of Trance Official Podcast
+  Hardwell On Air Official Podcast
+  NPR: Tiny Desk Concerts Podcast
+  Hysteria Radio
+  KEXP Song of the Day
+
+  NEWS
+  NBC Nightly News (video)
+  Decode DC
+  MSNBC Rachel Maddow (video)
+
+  SCIENCE
+  MinutePhysics
+  StarTalk Radio Show by Neil deGrasse Tyson » Shows
+  NPR: How To Do Everything Podcast
+  Science Friday Audio Podcast
+  Stuff To Blow Your Mind
+  How Stuff Works
+  BrainStuff
+  The Skeptics' Guide to the Universe
+  Astronomy Cast
+  Skeptoid
+
+  SOCIETY & CULTURE
+  Here's The Thing
+  Dan Carlin's Hardcore History
+  The Podcast History Of Our World
+  Damn Interesting
+  Stuff They Don't Want You To Know
+
+  SPORTS
+  ESPN: The B.S. Report with Bill Simmons
+  ESPN: PTI
+  The Dan Patrick Show: Podcast
+  The Grantland Network
+  ESPN: First Take
+  ESPN Radio: Best of Mike and Mike
+  The Basketball Jones Podcast
+  ESPN: Fantasy Focus Football
+  ESPN: Tony Kornheiser
+  ESPN New York: Stephen A. Smith & Ryan Ruocco
+
+  TECHNOLOGY
+  Still Untitled: The Adam Savage Project
+  Leo Laporte -- The Tech Guy
+  Lifehacker
+  Know How... (HD)
+  GeekBeat.TV
+  Before You Buy Video (large)
+  Mac Power Users
+  TechStuff
+
+  TV/VIDEO
+  The Lone Ranger
+  The Ellen Show (audio)
+  Dexter Wrap-Up
+  Total Recall (2012)
+  Taken 2: Behind the Scenes
+  Arthur Christmas
+  Arthur Christmas
+  Ice Age: Continental Drift Behind-the-Scenes
+  Despicable Me 2
+  The Empire Podcast

@@ -1,3 +1,23 @@
+mixin podcast-loop()
+	for podcast in podcasts
+		li.podcast-item.all(data-uuid='' + podcast.podUUID, data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, data-feedUUID='' + podcast.feedUUID, data-source='' + podcast.podLink)
+			p.podcast-title
+				a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen #{podcast.listened}', data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
+			p.podcast-feed
+				a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
+				span.breaker &nbsp;|&nbsp;
+				- if (typeof(podcast.podDate._d) != 'undefined')
+						span.moment #{podcast.podDate._d}
+				- else
+					span.moment #{podcast.podDate}
+				span.breaker &nbsp;|&nbsp;
+				a.item-actions-read(href="#") Read more...
+			div.podcastDescription
+				div
+					p!= podcast.podDesc
+				p.description-warning A note: Don't blame Hark for poorly-sourced descriptions. Tell your favorite podcast to make a proper RSS feed!
+
+
 section.actions
 	ul
 		li.action.red-button.inactive.act-listen Listen
@@ -19,28 +39,23 @@ section.actions
 						i
 
 if podcasts
-	ul.podcastList
-		for podcast in podcasts
-			li.podcast-item.all(data-uuid='' + podcast.podUUID, data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, data-feedUUID='' + podcast.feedUUID, data-source='' + podcast.podLink)
-				p.podcast-title
-					a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen #{podcast.listened}', data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
-				p.podcast-feed
-					a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
-					span.breaker &nbsp;|&nbsp;
-					- if (typeof(podcast.podDate._d) != 'undefined')
-							span.moment #{podcast.podDate._d}
-					- else
-						span.moment #{podcast.podDate}
-					span.breaker &nbsp;|&nbsp;
-					a.item-actions-read(href="#") Read more...
-				div.podcastDescription
-					div
-						p!= podcast.podDesc
-					p.description-warning A note: Don't blame Hark for poorly-sourced descriptions. Tell your favorite podcast to make a proper RSS feed!
-				
+	- if (typeof(single) != 'undefined')
+		- if (single == true)
+			div.podcast-meta
+				h1 #{podcasts[0].feedTitle}
+				div.podcast-meta-actions
+					a.red-button(href='/listen/remove/' + podcasts[0].feedUUID) Unsubscribe
+			ul.podcastList.list-single
+				mixin podcast-loop()
+	- else
+		ul.podcastList
+			mixin podcast-loop()
+
+					
 - if (typeof(flash) != 'undefined')
 	div.mask
 		div.modal-error
 			span.modal-error-close x
 			- if (typeof(flash.errorAddFeed) != 'undefined')
 				p.error= flash.errorAddFeed
+

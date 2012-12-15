@@ -47,7 +47,9 @@ module.exports = function(grunt) {
         dest: 'public/css',
         linecomments: true,
         forcecompile: true,
-        require: [],
+        require: [
+          'susy'
+        ],
         debugsass: false,
         images: 'public/images',
         relativeassets: true,

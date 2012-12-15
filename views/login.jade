@@ -1,58 +1,45 @@
 doctype 5
 html(lang="en")
-	head
-		title Hark | Log in.
+  head
+    title Hark | Log in.
 
-		!=partial('layout/head')
+    !=partial('layout/head')
 
-	body.hark-login
+  body
 
-		div.container
-			div.row
-				section.column-12.signup-intro
-					a.hark-logo-big(href="/login")
-						img(src='/img/hark-logo.svg')
-					h1 Hark is your personal radio station.
-					h2 Log in to your Hark account.
+    header.logo
+      img(src="/img/hark-logo-v5.svg")
+      span
 
-			- if (typeof(flash) !== 'undefined')
-				div.row.login-error
-					div.column-12
-						- if (typeof(flash.createSuccess) !== 'undefined')
-							p.success #{flash.createSuccess}
-						- if (typeof(flash.loginError) !== 'undefined')
-							p.error #{flash.loginError}
-			
-			- if (typeof(message) !== 'undefined')
-				div.row.login-error.passport
-					div.column-12
-						p.error #{message}
+    section.signup-intro
+      h1 Log in to Hark.
+    
+    - if (typeof(message) !== 'undefined')
+      div.row.login-error.passport
+        p.error #{message}
 
-			div.row
-				form.column-12.login-account(method='post', action='/login')
-					input.column-4.offset-1.login-email(type='text', name='email', placeholder='Enter your e-mail.')
-					input.column-4.offset-2.login-password(type='password', name='password', placeholder='Enter your password.')
-					input.column-4.offset-4.login-submit(type='submit', value='Login to Hark.')
+    - if (typeof(flash) !== 'undefined')
+      div.row.create-success.passport
+        p.error #{flash.success}
 
-			div.row
-				div.column-4.offset-4.login-forgot
-					a(href='/forgot') Forgot your password?
+    form.login(method='post', action='/login')
+      input.multi(type='text', name='email', placeholder='Enter your e-mail.')
+      input.multi(type='password', name='password', placeholder='Enter your password.')
+      button.login-submit(type='submit')
+        span Go
 
-			div.row
-				section.column-12.signup-intro
-					h2 Or use a single-click sign-in service.
+    div.login-forgot
+      a(href='/forgot') Forgot your password?
+      a(href='/signup') Need an account?
 
-			div.row
-				div.login-service.column-4
-					a.facebook(href='/auth/facebook/')
-						<i class="icon-facebook"></i> Log in with Facebook
+      //- div.row
+      //-   section.column-12.signup-intro
+      //-     h2 Or use a single-click sign-in service.
 
-				div.login-service.column-4
-					a.google(href='/auth/google')
-						<i class="icon-google-plus"></i> Log in with Google
-					p <em>A note about these one-click services: The only information I log is a username/e-mail address, and a display-friendly name (e.g. Joel Hans), if one is available.</em>
-					p <em>I will <strong>never</strong> post updates or tweets to these accounts, or store any more information than described above.</em>
-
-				div.login-service.column-4
-					a.twitter(href='/auth/twitter')
-						<i class="icon-twitter"></i> Log in with Twitter
+      //- div.row
+      //-   a.login-service.facebook.blue-button.facebook(href='/auth/facebook/')
+      //-     <i class="icon-facebook"></i> Log in with Facebook
+      //-   a.login-service.google.blue-button(href='/auth/google')
+      //-     <i class="icon-google-plus"></i> Log in with Google
+      //-   a.login-service.twitter.blue-button(href='/auth/twitter')
+      //-     <i class="icon-twitter"></i> Log in with Twitter

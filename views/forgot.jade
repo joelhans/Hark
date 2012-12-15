@@ -1,37 +1,67 @@
 doctype 5
 html(lang="en")
-	head
-		title Hark | Forgot your password?
+  head
+    title Hark | Forgot your password?
 
-		!=partial('layout/head')
+    !=partial('layout/head')
 
-	body.hark-login
+  body
 
-		div.container
-			div.row
-				section.column-12.signup-intro
-					a.hark-logo-big(href="/login")
-						img(src='/img/hark-logo.svg')
-					h1 Hark is your personal radio station.
-					h2 Recover a forgotten password.
+    header.logo
+      img(src="/img/hark-logo-v5.svg")
+      span
 
-			- if (typeof(flash) !== 'undefined')
-				div.row.forgot-error
-					div.column-12
-						- if (typeof(flash.forgotError) !== 'undefined')
-							p.error #{flash.forgotError}
-						- if (typeof(flash.forgotSuccess) !== 'undefined')
-							p.success #{flash.forgotSuccess}
-						
-	
+    section.signup-intro
+      h1 Recover a forgotten password.
 
-			div.row
-				form.column-12.forgot(method='post', action='/login/forgot')
-					input.column-4.offset-4.forgot-email(type='text', name='email', placeholder='Enter your e-mail here.')
-					input.column-4.offset-4.forgot-submit(type='submit', value='Reset your password.')
+    - if (typeof(flash) !== 'undefined')
+      div.login-error.passport
+        - if (typeof(flash.forgotError) !== 'undefined')
+          p.error #{flash.forgotError}
+        - if (typeof(flash.forgotSuccess) !== 'undefined')
+          p.success #{flash.forgotSuccess}
 
-			div.row
-				div.column-4.offset-4.login-forgot
-					a(href='/') Remembered that pesky password by now?
-					br
-					a(href='/signup') Or do you just need to make an account?
+    form.forgot(method='post', action='/login/forgot')
+      input(type='text', name='email', placeholder='Enter your e-mail here.')
+      button(type='submit')
+        span Go
+
+
+
+//- doctype 5
+//- html(lang="en")
+//-   head
+//-     title Hark | Forgot your password?
+
+//-     !=partial('layout/head')
+
+//-   body.hark-login
+
+//-     div.container
+//-       div.row
+//-         section.column-12.signup-intro
+//-           a.hark-logo-big(href="/login")
+//-             img(src='/img/hark-logo.svg')
+//-           h1 Hark is your personal radio station.
+//-           h2 Recover a forgotten password.
+
+//-       - if (typeof(flash) !== 'undefined')
+//-         div.row.forgot-error
+//-           div.column-12
+//-             - if (typeof(flash.forgotError) !== 'undefined')
+//-               p.error #{flash.forgotError}
+//-             - if (typeof(flash.forgotSuccess) !== 'undefined')
+//-               p.success #{flash.forgotSuccess}
+            
+  
+
+//-       div.row
+//-         form.column-12.forgot(method='post', action='/login/forgot')
+//-           input.column-4.offset-4.forgot-email(type='text', name='email', placeholder='Enter your e-mail here.')
+//-           input.column-4.offset-4.forgot-submit(type='submit', value='Reset your password.')
+
+//-       div.row
+//-         div.column-4.offset-4.login-forgot
+//-           a(href='/') Remembered that pesky password by now?
+//-           br
+//-           a(href='/signup') Or do you just need to make an account?

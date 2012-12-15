@@ -34,7 +34,7 @@ window.ajaxHelpers = () ->
   sidebarHeight()
   listenHeight()
   momentize()
-  $('#loading').fadeOut(300)
+  # $('#loading').fadeOut(300)
 
 # ------------------------------
 # HTML5 HISTORY
@@ -56,7 +56,7 @@ $(document)
     History.pushState {}, "", $(e.currentTarget).attr 'href'
 
 History.Adapter.bind window, 'statechange', () ->
-  $('#loading').fadeIn(300)
+  # $('#loading').fadeIn(300)
   State = History.getState()
   History.log(State.data, State.title, State.url, State.hash)
   if State.hash == '/listen' || State.hash == '/listen/'

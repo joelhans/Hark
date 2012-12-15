@@ -6,8 +6,8 @@ $linkColorHover: 		darken($linkColor, 20%);
 $errorColor:		 	rgba(255, 71, 71, 1);
 $successColor:	 		rgba(0, 180, 0, 1);
 
-$bodyTrans:			 	rgba(33, 33, 33, 0.1);
-$borderColor:		 	lighten($body, 70%);
+$copyTrans:			 	rgba(33, 33, 33, 0.1);
+$borderColor:		 	lighten($copy, 70%);
 
 $baseFont:				16px;
 $baseFontFamily:		'Lato', sans-serif;
@@ -22,7 +22,7 @@ $baseHeaderFont:		$baseFont * 2.2;
 		weight: 400;
 	}
 	line-height: $baseLine;
-	color: $body;
+	color: $copy;
 	margin-bottom: $baseLine / 2;
 }
 
@@ -33,10 +33,10 @@ $baseHeaderFont:		$baseFont * 2.2;
 		weight: 400;
 	}
 	line-height: $baseHeaderFont * 1.2;
-	color: $body;
+	color: $copy;
 }
 
-p, aside, span, div { @include bodyFont; }
+p, aside, span, div, a { @include bodyFont; }
 
 dt, dd {
 	@include bodyFont;
@@ -66,7 +66,7 @@ a {
 // 	// color: $linkColor;
 // 	// @include bodyFont;
 	text-decoration: none;
-// 	// border-bottom: 1px solid $bodyTrans;
+// 	// border-bottom: 1px solid $copyTrans;
 	@include transition(all, 0.3s);
 // 	&:hover {
 // 		color: $linkColorHover;
@@ -79,21 +79,21 @@ ul, ol {
 	li {
 		@include bodyFont;
 		margin-bottom: 8px;
-		color: $body;
+		color: $copy;
 		list-style-type: none;
 	}
 }
 
 blockquote {
 	@include bodyFont;
-	color: $body;
+	color: $copy;
 	margin: 0 0 $baseLine / 2 $baseLine; padding-left: $baseLine;
 	border-left: 1px solid $linkColor;
 }
 
 input {
 	@include bodyFont;
-	color: $body;
+	color: $copy;
 }
 
 /* -----------------------------------------

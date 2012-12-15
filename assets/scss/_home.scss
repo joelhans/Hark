@@ -1,0 +1,111 @@
+//--------------------------------------
+//    HOME
+//
+//    These styles are for Hark's home page.
+//--------------------------------------
+
+//
+//    SUSY SET-UP
+//
+
+$total-columns  : 12;
+$column-width   : 5em;
+$gutter-width   : 1em;
+$grid-padding   : $gutter-width;
+
+//
+//    STYLES
+//
+
+.home.container {
+  @include container;
+  header.logo {
+    overflow: visible;
+  }
+}
+
+nav.home {
+  @include span-columns(4 omega, 12);
+  text-align: right;
+  margin: -40px 0 0 0;
+  a {
+    margin-left: 40px;
+  }
+}
+
+.home-screenshot {
+  position: relative;
+  max-width: 100%;
+  margin: 80px auto -20px 0;
+  box-shadow: 0 0 40px $red;
+  z-index: 2;
+}
+
+.wrapper-red {
+  position: relative;
+  @include background($red);
+  width: 100%;
+  color: $white;
+  margin-top: 0px;
+  padding: 60px 0 20px 0;
+  @include clearfix;
+  z-index: 3;
+}
+
+.home-podcasts {
+  @include container;
+  text-align: center;
+  h1 {
+    font-size: 28px;
+    line-height: 32px;
+    color: $white;
+  }
+  h2 {
+    font-size: 20px;
+    color: $copy;
+    padding-bottom: 30px;
+  }
+}
+
+.home-podcasts ul li {
+  @include span-columns(3, 12);
+  min-height: 200px;
+  text-align: left;
+  margin-bottom: 0px;
+  padding-bottom: 20px;
+  &:nth-of-type(4n) {
+    @include omega;
+  }
+  h1 {
+    font-size: 22px;
+    line-height: 26px;
+  }
+}
+
+.wrapper-blue {
+  @include background($blue);
+  width: 100%;
+  color: $white;
+  padding: 60px 0 20px 0;
+  @include clearfix;
+}
+
+.home-footer {
+  @include container;
+  a {
+    color: $white;
+    &:hover {
+      color: $red;
+    }
+  }
+}
+
+.home-footer-left {
+  @include span-columns(4,12);
+  a { margin: 0 40px 0 0; }
+}
+
+.home-footer-right {
+  @include span-columns(8 omega,12);
+  text-align: right;
+}

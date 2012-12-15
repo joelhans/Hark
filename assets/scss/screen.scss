@@ -1,25 +1,9 @@
 /* COLORS */
-$orange:    rgba(243, 151, 83, 1);
-$red:       rgba(255, 98, 68, 1);
-$yellow:    rgba(237, 239, 121, 1);
-
-$green:     rgba(138, 155, 15, 1);
-$purple:    rgba(73, 10, 61, 1);
-$pink:      rgba(189, 21, 80, 1);
-
-$copy:      rgba(33, 33, 33, 1);
-$white:     rgba(242, 242, 242, 1);
-$bg:        rgba(243, 240, 238, 1);
-
-
-/* New colors */
 $red                : rgba(226, 132, 109, 1);
 $blue               : rgba(59, 129, 131, 1);
 $copy               : rgba(42, 8, 61, 1);
 $white              : rgba(242, 242, 242, 1);
 $bg                 : rgba(248, 249, 250, 1);
-
-
 
 $link-color:          $red;
 $link-hover-color:    $blue;
@@ -28,21 +12,12 @@ $link-active-color:   false;
 $link-visited-color:  false;
 $link-trans-color:    transparentize($link-color, 0.8);
 
-/* GRADIENTS */
-$orange-to-red:       linear-gradient($orange, $red);
-$red-to-orange:       linear-gradient($red, $orange);
-$white-to-orange:     linear-gradient($white, $orange);
-$white-to-yellow:     linear-gradient($white, $yellow);
-$orange-to-red-trans: linear-gradient(transparentize($orange, 0.9), transparentize($red, 0.9));
-
-$body:       rgba(78,79,75,1);
-
 @import "compass/reset";
 @import "compass/css3";
 @import "compass/utilities";
 @import "typography";
 @import "standards";
-@import "colonnade";
+@import "susy";
 @import "font-awesome";
 @import "directory";
 
@@ -75,13 +50,6 @@ html, body {
   color: $white;
 }
 
-::-webkit-input-placeholder {
-  color:    $base;
-}
-::-moz-placeholder {
-  color:    $base;
-}
-
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -97,63 +65,83 @@ html, body {
 }
 
 /* -----------------------------------------
+  Home
+----------------------------------------- */
+@import "home";
+
+/* -----------------------------------------
   Signup/login.
 ----------------------------------------- */
+header.logo {
+  border-radius: 50%;
+  display: block;
+  height: 200px;
+  @include background($red);
+  background-size: 110px 110px;
+  margin: 100px auto 40px auto;
+  position: relative;
+  width: 200px;
+}
+
+header.logo img {
+  left: 60px;
+  position: relative;
+  top: 40px;
+  width: 80px;
+}
+
+header.logo span {
+  display: block;
+  height: 180px;
+  width: 10px;
+  margin: 0 0 0 0;
+  position: absolute;
+  left: 95px; top: 10px;
+  -webkit-animation: spinner 5s infinite;
+  -moz-animation:    spinner 5s infinite;
+  -ms-animation:     spinner 5s infinite;
+  -webkit-animation-timing-function:  linear;
+  -moz-animation-timing-function:   linear;
+  -ms-animation-timing-function:    linear;
+}
+
+header.logo span:after {
+  background-color: $bg;
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 10px;
+  position: absolute;
+  width: 10px;
+  -webkit-animation: pulse 5s infinite;
+  -moz-animation:    pulse 5s infinite;
+  -ms-animation:     pulse 5s infinite;
+  -webkit-animation-timing-function:  linear;
+  -moz-animation-timing-function:   linear;
+  -ms-animation-timing-function:    linear;
+}
+
 .signup-intro {
-  margin-top: 40px;
   text-align: center;
 }
 
-.signup-intro a {
-  @include inline-block;
-  width: 400px;
-  margin: 0 auto 40px auto;
-  img { width: 400px; }
-}
-
-.claim-username,
-.update-password {
-  h3 {
-    width: 20%;
-    @include inline-block;
-  }
+form.login,
+form.create,
+form.forgot,
+form.reset {
+  width: 500px;
+  margin: 0 auto;
   input {
-    width: 400px; height: 40px;
-    display: block;
-    padding: 2px 4px 2px 4px;
-    border: 0px;
-    &:last-of-type {
-      width: 70px;
-      margin: 20px 0 20px 165px;
+    width: 439px;
+  }
+}
+
+form.reset {
+  input.multi {
+    &:nth-of-type(2) {
+      border-radius: 2px 0 0 2px;
+      @include inline-block;
     }
-  }
-}
-
-.create-email, .create-password, .create-submit, .login-email, .login-password, .login-submit, .forgot-email, .forgot-submit, .reset-email, .reset-password, .reset-submit {
-  font-family: $baseFontFamily;
-  color: $base;
-  padding: 16px 40px 16px 40px;
-  border: 0px; outline: 0px;
-  @include transition(all, 0.5s);
-  @include background($orange);
-  &:hover {
-    @include background($red);
-  }
-  &:focus {
-    @include background($red);
-    outline: 1px solid $red;
-  }
-}
-
-.create-submit, .login-submit, .forgot-submit, .reset-submit {
-  margin-top: 40px;
-  background-color: $red;
-  color: $base;
-  &:hover {
-    cursor: pointer;
-  }
-  &:focus {
-    background-color: $orange;
   }
 }
 
@@ -163,35 +151,36 @@ html, body {
 }
 
 .login-error, .create-error, .forgot-error {
+  margin: 20px 0 20px 0;
+  text-align: center;
   p {
-    text-align: center;
+    color: $red;
+    font-size: 22px;
+    font-weight: bold;
+  }
+}
+
+.create-success {
+  margin: 20px 0 20px 0;
+  text-align: center;
+  p {
+    color: $blue;
     font-size: 22px;
     font-weight: bold;
   }
 }
 
 .login-service {
+  display: block;
   position: relative;
+  margin: 0 auto 20px auto;
+  padding: 14px 20px 14px 20px;
   text-align: center;
-    a {
-      @include background($red);
-      display: block;
-      position: relative;
-      width: 240px; height: 50px;
-      margin: 0 auto 20px auto;
-      padding: 2px 20px 8px 60px;
-      border: 0px;
-      color: $base;
-      line-height: 50px;
-      &:hover {
-        border: 0px;
-        @include background($orange);
-      }
-    }
+  width: 300px;
 }
 
 .facebook i, .twitter i, .google i {
-  position: absolute; top: 1px; left: 20px;
+  position: absolute; top: 12px; left: 20px;
   font-size: 30px;
 }
 
@@ -205,17 +194,55 @@ header {
   overflow: hidden;
 }
 
-.hark-logo a {
+.logo-mini {
+  border-radius: 50%;
+  display: block;
   float: left;
-  width: 200px; height: 80px;
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  img {
-    display: block;
-    width: 160px;
-    margin: 10px 0 0 20px;
-  }
+  height: 70px;
+  @include background($red);
+  background-size: 110px 110px;
+  margin: 5px 0 0 20px;
+  position: relative;
+  width: 70px;
+}
+
+.logo-mini img {
+  left: 18px;
+  position: relative;
+  top: 12px;
+  width: 32px;
+}
+
+.logo-mini span {
+  display: block;
+  height: 64px;
+  width: 10px;
+  margin: 0 0 0 0;
+  position: absolute;
+  left: 30px;
+  top: 3px;
+  -webkit-animation: spinner 5s infinite;
+  -moz-animation:    spinner 5s infinite;
+  -ms-animation:     spinner 5s infinite;
+  -webkit-animation-timing-function:  linear;
+  -moz-animation-timing-function:   linear;
+  -ms-animation-timing-function:    linear;
+}
+
+.logo-mini span:after {
+  background-color: $bg;
+  border-radius: 50%;
+  content: '';
+  display: block;
+  height: 5px;
+  position: absolute;
+  width: 5px;
+  -webkit-animation: pulse 5s infinite;
+  -moz-animation:    pulse 5s infinite;
+  -ms-animation:     pulse 5s infinite;
+  -webkit-animation-timing-function:  linear;
+  -moz-animation-timing-function:   linear;
+  -ms-animation-timing-function:    linear;
 }
 
 nav ul {
@@ -227,8 +254,7 @@ nav ul {
     font-size: 16px;
     line-height: 22px;
     font-weight: 700;
-    text-transform: uppercase;
-    margin: 16px 120px 0 0;
+    margin: 30px 120px 0 0;
     a {
       display: block;
       width: 100%;
@@ -258,7 +284,6 @@ nav ul {
   line-height: 22px;
   font-weight: 700;
   margin: 0px;
-  // border: 4px solid transparentize($orange, 1);
   border-radius: 20px;
   @include transition(all, 0.3s);
   z-index: 2;
@@ -324,25 +349,23 @@ nav ul {
 .sidebar-item,
 .category {
   position: relative;
-  // height: 46px;
-  color: $copy;
-  font-family: 'Lato';
-  font-size: 14px;
-  line-height: 22px;
-  font-weight: 700;
   margin: 0px;
-  // border: 4px solid transparentize($orange, 1);
   border-radius: 20px;
   @include transition(all, 0.3s);
   z-index: 2;
   a {
     display: block;
     width: 100%;
+    font-family: 'Lato';
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 700;
     color: $red;
     text-decoration: none;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin: 0px;
     padding: 12px 40px 12px 20px;
     @include transition(all, 0.3s);
     border: 0px;
@@ -358,12 +381,7 @@ nav ul {
 .sidebar-item-big {
   position: relative;
   color: $copy;
-  font-family: 'Lato';
-  font-size: 18px;
-  line-height: 22px;
-  font-weight: 400;
   margin: 0px;
-  // border: 4px solid transparentize($orange, 1);
   border-radius: 20px;
   @include transition(all, 0.3s);
   z-index: 2;
@@ -371,11 +389,19 @@ nav ul {
     display: block;
     width: 100%;
     color: $copy;
+    font-family: 'Lato';
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
     text-decoration: none;
+    margin: 0px;
     padding: 12px 20px 12px 20px;
-    @include transition(all, 0.3s);
     border: 0px;
     z-index: 2;
+    &:hover {
+      color: $white;
+      @include background($red);
+    }
   }
 }
 
@@ -389,23 +415,6 @@ nav ul {
 .questions .sidebar-item a {
   overflow: auto;
   white-space: normal;
-}
-
-// .active {
-//   @include background(transparentize($red, 0.7)); 
-// }
-
-.hover-er {
-  display: none;
-  opacity: 0;
-  position: absolute; top: 56px; left: 10px;
-  width: 190px; height: 28px;
-  margin: 0;
-  @include background(transparent);
-  border-radius: 20px;
-  border: 4px solid $red;
-  z-index: 1;
-  @include transition(all, 0.3s);
 }
 
 .sidebar-expander {
@@ -448,7 +457,7 @@ nav ul {
   margin: 0px;
   border: 0px;
   @include transition(all, 0.5s);
-  @include background($orange);
+  @include background($red);
   &:hover {
     @include background($red);
     // @include box-shadow($base 0px 0px 10px);
@@ -459,7 +468,6 @@ nav ul {
     // @include box-shadow($base 0px 0px 20px);
   }
 }
-
 
 .edit-feed-input {
   float: left;
@@ -496,13 +504,13 @@ nav ul {
   line-height: 16px;
   color: $base;
   background-color: $linkColor;
-  border: 3px solid $bodyTrans;
+  border: 3px solid $red;
   opacity: 0;
   margin: -2px 5px 0 0;
   &:hover {
     border: 3px solid $errorColor;  
     background-color: $base;
-    color: $body;
+    color: $copy;
   }
   i { margin: 1px 0 0 -1px; }
 }
@@ -522,6 +530,7 @@ nav ul {
     font-size: 14px;
     line-height: 14px;
     margin: 10px 20px 0 0;
+    @include transition(all, 0.5s);
   }
   ul li.action.active {
     &:hover {
@@ -529,7 +538,7 @@ nav ul {
     }
   }
   ul li.action.inactive {
-    color: $body;
+    color: $copy;
     background-color: rgba(33, 33, 33, 0.05);
   }
   ul li.safe {
@@ -543,17 +552,21 @@ nav ul {
 .act-sorting {
   position: relative;
   @include background($red);
+  &:hover {
+    cursor: pointer;
+  }
   i {
     height: 14px;
     padding: 0 0 0 10px;
   }
   ul {
-    display: none; top: 34px; left: 0px;
+    display: none; top: 40px; left: 0px;
     position: absolute;
     width: 160px;
     padding: 10px;
     border-radius: 2px;
-    @include background($red);
+    @include background($blue);
+    @include transition(all, 0.5s);
     a {
       font-family: 'Lato';
       font-size: 14px;
@@ -578,15 +591,15 @@ nav ul {
 .podcastList {
   float: left;
   width: 75%;
-  margin: 80px 0 0 0;
+  margin: 100px 0 0 0;
   padding: 20px 20px 20px 0;
 }
 
 .podcast-item {
   position: relative;
   width: 100%;
-  margin: 30px 0 0px 0;
-  padding: 10px 10px 10px 20px;
+  margin: 0;
+  padding: 20px 10px 20px 20px;
   > div {
     @include inline-block;
   }
@@ -615,25 +628,6 @@ nav ul {
   margin-bottom: 0px;
 }
 
-.item-actions {
-  position: absolute; bottom: -44px; left: 0px;
-  opacity: 0;
-  width: 100%; height: 32px;
-  @include background($orange);
-  @include transition(all, 0.3s);
-  a {
-    @include inline-block;
-    width: 20%;
-    color: $white;
-    font-size: 18px;
-    margin-top: 4px;
-    padding: 0px 12px 0 12px;
-    border-right: 1px solid $white;
-    &:last-of-type { border-right: 0px; }
-    &:hover { color: $red; }
-  }
-}
-
 div.podcastDescription {
   display: none;
   width: 100%;
@@ -659,78 +653,26 @@ div.podcastDescription {
   background-color: black;
 }
 
+.podcast-meta {
+  position: relative;
+  float: left;
+  width: 75%;
+  margin: 100px 0 0 0;
+  padding: 20px 20px 20px 20px;
+}
+
+.podcast-meta-actions {
+  position: absolute; top: 20px; right: 20px;
+}
+
+.list-single {
+  margin: 0 0 0 0;
+}
+
 /* -----------------------------------------
   Settings.
 ----------------------------------------- */
-.settings,
-.answers {
-  max-width: 840px;
-  padding: 20px;
-}
-
-.information {
-  position: relative;
-  height: auto;
-  width: 25%;
-  border-right: 1px solid $borderColor;
-  h1 {
-    font-size: 22px;
-    text-transform: uppercase;
-    margin: 6px 0 6px 0;
-    padding: 0 0 0 20px;
-  }
-  p { padding: 0 20px 0 20px; }
-  p + p { text-indent: 0px; }
-  a { color: darken($linkColor, 25%); }
-}
-
-.claim-username,
-.update-password {
-  h3 {
-    width: 20%;
-    @include inline-block;
-  }
-  input {
-    width: 400px; height: 40px;
-    display: block;
-    font-family: $baseFontFamily;
-    color: $base;
-    padding: 2px 4px 2px 4px;
-    border: 0px;
-    @include transition(all, 0.5s);
-    @include background($orange);
-    border-radius: 0px;
-    &:hover {
-      @include background($red)
-      // border-bottom: 1px solid $base;
-      // @include box-shadow($base 0px 0px 10px);
-    }
-    &:focus {
-      @include background($red);
-      outline: 1px solid $red;
-      // border-bottom: 2px solid $base;
-      // @include box-shadow($base 0px 0px 20px);
-    }
-    &:last-of-type {
-      width: 70px;
-      margin: 20px 0 20px 165px;
-    }
-  }
-}
-
-a.delete, a.delete:visited {
-  color: $base;
-  font-size: 14px;
-  padding: 12px 16px 12px 16px;
-  margin: 0 0 40px 0;
-  border-radius: 4px;
-  @include inline-block;
-  @include transition(all, 0.5s);
-  @include background($red);
-  &:hover {
-    @include background($orange);
-  }
-}
+@import "settings";
 
 /*******************************************
 *
@@ -796,7 +738,7 @@ a.logo-spin {
   color: $copy;
   background-color: $white;
   @include border-radius(18px);
-  border: 5px solid $orange;
+  border: 5px solid $red;
   margin: 0px 0 0 20px;
   padding: 4px 0 0 9px;
   @include transition(all, 0.5s);
@@ -838,61 +780,6 @@ a.logo-spin {
 }
 
 /* -----------------------------------------
-  Media queries for login/signup.
------------------------------------------ */
-
-@media only screen and (max-width: 767px) {
-  body.login-page header {
-    height: auto;
-    .row { margin-bottom: 0px; }
-  }
-
-  .hark-listen {
-    width: 100px;
-    margin: 0 auto;
-    a {
-      width: 100px; height: 100px;
-      font-size: 24px;
-      color: $linkColor;
-      text-align: center;
-      @include background(image-url("/public/img/grainy.png"), $base);
-      // position: absolute;
-      z-index: 30;
-      border-radius: 50px;
-      @include inline-block;
-    }
-    .pulse {
-      width: 100px; height: 100px;
-      background-color: $base;
-      position: absolute;
-      z-index: 25;
-      border-radius: 50px;
-      // @include box-shadow($base 0px 0px 100px);
-      @include inline-block;
-      -webkit-animation: pulse 5s infinite;
-      -moz-animation:    pulse 5s infinite;
-      -ms-animation:     pulse 5s infinite;
-      -webkit-animation-timing-function:  linear;
-      -moz-animation-timing-function:   linear;
-      -ms-animation-timing-function:    linear;
-    }
-  }
-
-  // nav {
-  //   margin-top: 100px;
-  //   ul {
-  //     text-align: center;
-  //     margin: 0;
-  //     li {
-  //       margin: 10px 0 0 0;
-  //       display: block;
-  //       text-align: center;
-  //     }
-  //   }
-  // }
-}
-
-/* -----------------------------------------
   Media queries for main view.
 ----------------------------------------- */
 @import "media-queries";
@@ -900,24 +787,10 @@ a.logo-spin {
 
 @-webkit-keyframes spinner {
   0% { @include rotate(0deg) }
-  50%  { @include rotate(180deg) }
-  100% { @include rotate(360deg) }
-}
-
-@-moz-keyframes spinner {
-  0% { @include rotate(0deg) }
-  50%  { @include rotate(180deg) }
-  100% { @include rotate(360deg) }
-}
-
-@-ms-keyframes spinner {
-  0% { @include rotate(0deg) }
-  50%  { @include rotate(180deg) }
   100% { @include rotate(360deg) }
 }
 
 @keyframes spinner {
   0% { @include rotate(0deg) }
-  50%  { @include rotate(180deg) }
   100% { @include rotate(360deg) }
 }
