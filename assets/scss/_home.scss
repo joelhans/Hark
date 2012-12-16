@@ -41,6 +41,56 @@ nav.home {
   z-index: 2;
 }
 
+.wrapper-copy {
+  position: relative;
+  @include background($copy);
+  width: 100%;
+  color: $white;
+  margin-top: 0px;
+  padding: 60px 0 20px 0;
+  @include clearfix;
+  z-index: 3;
+}
+
+.home-features {
+  @include container;
+  text-align: center;
+  h1 {
+    font-size: 28px;
+    line-height: 32px;
+    color: $white;
+  }
+  h2 {
+    font-size: 20px;
+    color: $copy;
+    padding-bottom: 30px;
+  }
+  p {
+    color: $white;
+  }
+}
+
+.home-features ul li {
+  @include span-columns(4, 12);
+  min-height: 200px;
+  text-align: left;
+  margin-bottom: 0px;
+  padding-bottom: 20px;
+  &:nth-of-type(3n) {
+    @include omega;
+  }
+  h1 {
+    font-size: 22px;
+    line-height: 26px;
+  }
+  i {
+    font-size: 38px;
+    color: $red;
+    display: block;
+    margin: 0 auto 20px auto;
+  }
+}
+
 .wrapper-red {
   position: relative;
   @include background($red);
@@ -49,7 +99,6 @@ nav.home {
   margin-top: 0px;
   padding: 60px 0 20px 0;
   @include clearfix;
-  z-index: 3;
 }
 
 .home-podcasts {

@@ -127,7 +127,7 @@ $('.sidebar-action-edit-input')
 # Remove feed
 
 $(document)
-  .delegate '.sidebar-action-remove', 'click', (e) ->
+  .delegate '.unsubscribe', 'click', (e) ->
     e.preventDefault()
     data =
       feedID: $(e.currentTarget).attr('href').split('/')[3]
