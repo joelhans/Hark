@@ -216,29 +216,11 @@ BUGS
 
   **
   ----------
+  [ ] --  1.3.0/01 -- When watching a video podcast, resuming play knocks the player back to the bottom-middle, insteado f where the user has placed it.
 
   *
   ----------
   [ ] --  Rapid-click on "mark as listened" causes some to not have successful POSTs.
-
-
-DIRECTORY
-
-  ****
-  ----------
-
-
-  ***
-  ----------
-  [ ] -- Sort by name / last podcast / popularity.
-
-
-  **
-  ----------
-
-
-  *
-  ----------
 
 
 OTHER POSSIBLE FEATURES
