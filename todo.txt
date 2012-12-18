@@ -178,12 +178,15 @@ ROADMAP
   1.4
   ----------
   [ ] --  Move to new database structure.
+    [ ] --  Fix updating for directory-based feeds.
+    [ ] --  Add a check so that if a user tries to manually add a feed that's in the Directory, they get the Directory version anyway.
+    [ ] --  Fix unsubscribing to feeds. Some error is hit.
 
   1.5
   ---------
   [ ] --  Directory
-      [ ] --  Improved (working) pagination.
-      [ ] --  Search for podcasts.
+    [ ] --  Improved (working) pagination.
+    [ ] --  Search for podcasts.
 
   1.6
   ----------
@@ -368,3 +371,5 @@ PODCASTS TO ADD
   Ice Age: Continental Drift Behind-the-Scenes
   Despicable Me 2
   The Empire Podcast
+
+  http://www.hourofthetime.com/

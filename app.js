@@ -231,9 +231,8 @@ function loadUser(req, res, next) {
 }
 
 require('./lib/users.js')(app, express, loadUser, Users, Feeds, db, bcrypt, nodemailer);
-require('./lib/feeds.js')(app, express, loadUser, Users, Feeds, Directory, db);
+require('./lib/feeds.js')(app, express, loadUser, Users, Feeds, Directory, db, moment, ObjectID);
 require('./lib/directory.js')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID);
-require('./lib/directory_cron')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID)
 
 //  ---------------------------------------
 //  ROUTES
@@ -299,12 +298,12 @@ app.get('/logout', function(req, res){
 //
 
 app.get('/listen', loadUser, function(req, res) {
-  getFeeds(harkUser.userID, function(error, feed, podcastList) {
+  getFeeds(harkUser.userID, 'all', function(error, feeds, podcasts) {
     res.render('listen', {
       locals: {
         user: harkUser,
-        feeds: feed,
-        podcasts: podcastList,
+        feeds: feeds,
+        podcasts: podcasts,
         playing: harkUser.playing
       }
     });
@@ -316,11 +315,11 @@ app.get('/listen', loadUser, function(req, res) {
 //
 
 app.post('/listen', loadUser, function(req, res) {
-  getFeeds(harkUser.userID, function(error, feed, podcastList) {
+  getFeeds(harkUser.userID, 'all', function(error, feeds, podcasts) {
     res.partial('listen/listen-structure', { 
       user: harkUser,
-      feeds: feed, 
-      podcasts: podcastList,
+      feeds: feeds, 
+      podcasts: podcasts,
       playing: harkUser.playing
     });
   });
@@ -331,7 +330,7 @@ app.post('/listen', loadUser, function(req, res) {
 //
 
 app.post('/listen/podcast/all', loadUser, function(req, res) {
-  getFeeds(harkUser.userID, function(error, feed, podcastList) {
+  getFeeds(harkUser.userID, 'all', function(error, feed, podcastList) {
     res.partial('listen/listen-main', { 
       user: harkUser,
       feeds: feed, 
@@ -345,53 +344,11 @@ app.post('/listen/podcast/all', loadUser, function(req, res) {
 //  VIEW THE FULL LISTIING OF ONLY A SINGLE PODCAST
 //
 
-app.post('/listen/podcast/:_id', loadUser, function(req, res) {
-  Feeds.find({ 'owner': harkUser.userID, 'uuid': req.body.feedID }).toArray(function(err, results) {
-    if (err) { throw err; }
-    var feed = new Array(),
-        podcastList = new Array();
-
-    feed = {
-      feedTitle       : results[0].title,
-      feedDescription : results[0].description,
-      feeduuid        : results[0].uuid
-    }
-
-    for ( var i = 0; i < results[0].pods.length; ++i) {
-      var podData = results[0].pods[i];
-
-      podData['feedTitle'] = results[0].title;
-      podData['feedUUID'] = results[0].uuid;
-
-      podcastList.push(podData);
-    }
-
-    if (typeof podcastList[0].podTitle == "undefined") {
-      return;
-    } else {
-      podcastList.sort(function (a , b) {
-        var sort_a,
-            sort_b;
-
-        if (typeof(a['podDate']['_d']) == "object") {
-          sort_a = moment(a['podDate']['_d']).valueOf();
-        } else {
-          sort_a = moment(a['podDate']).valueOf();
-        }
-
-        if (typeof(b['podDate']['_d']) == "object") {
-          sort_b = moment(b['podDate']['_d']).valueOf();
-        } else {
-          sort_b = moment(b['podDate']).valueOf();
-        }
-
-        return sort_b - sort_a;
-      });
-    }
-
-    res.partial('listen/listen-single', {
+app.post('/listen/podcast/:id', loadUser, function(req, res) {
+  getFeeds(harkUser.userID, req.params.id, function(error, feed, podcastList) {
+    res.partial('listen/listen-single', { 
       user: harkUser,
-      feeds: feed,
+      feeds: feed, 
       podcasts: podcastList,
       playing: harkUser.playing
     });
@@ -403,77 +360,13 @@ app.post('/listen/podcast/:_id', loadUser, function(req, res) {
 //
 
 app.get('/listen/podcast/:id', loadUser, function(req, res) {
-
-  var podcastList = new Array(),
-    construction = new Array();
-
-  async.waterfall([
-    function ( callback ) {
-      Feeds.find({ 'owner': harkUser.userID, 'uuid': req.params.id }).toArray(function(err, results) {
-        // NOT NECESSARY?
-        var feed = new Array();
-
-        feed = {
-          feedTitle     : results[0].title,
-          feedDescription : results[0].description,
-          feeduuid    : results[0].uuid
-        }
-
-        for ( var i = 0; i < results[0].pods.length; ++i) {
-          var podData = results[0].pods[i];
-
-          podData['feedTitle'] = results[0].title;
-          podData['feedUUID'] = results[0].uuid;
-
-          podcastList.push(podData);
-        }
-
-        if (typeof podcastList[0].podTitle == "undefined") {
-          return;
-        } else {
-          podcastList.sort(function (a , b) {
-            if (a['podDate']['_d'] > b['podDate']['_d'])
-              return -1;
-            if (a['podDate']['_d'] < b['podDate']['_d'])
-              return 1;
-            return 0;
-          });
-        }
-
-        callback( null, podcastList );
-      });
-    },
-    function ( podcastList, callback ) {
-      Feeds.find({ 'owner': harkUser.userID }).toArray(function(err, results) {
-        for (var i = 0; i < results.length; ++i) {
-          data = {
-            feedTitle     : results[i].title,
-            feedDescription : results[i].description,
-            feeduuid    : results[i].uuid
-          }
-          construction.push(data);
-        }
-
-        construction.sort(function (a , b) {
-          if (a['feedTitle'].toLowerCase() > b['feedTitle'].toLowerCase())
-            return 1;
-          if (a['feedTitle'].toLowerCase() < b['feedTitle'].toLowerCase())
-            return -1;
-          return 0;
-        });
-
-        callback( null, podcastList, construction );
-      });
-    }
-  ], function () {
+  getFeeds(harkUser.userID, req.params.id, function(error, feed, podcastList) {
     res.render('listen', {
-      locals: {
-        single: true,
-        user: harkUser,
-        feeds: construction,
-        podcasts: podcastList,
-        playing: harkUser.playing
-      }
+      single: true,
+      user: harkUser,
+      feeds: feed, 
+      podcasts: podcastList,
+      playing: harkUser.playing
     });
   });
 });
