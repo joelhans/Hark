@@ -14,6 +14,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
       feeds_loop = (feeds) ->
         feed_list = []
         podcast_list = []
+        meta = []
 
         # If the user has no feeds.
         if feeds is null
@@ -34,6 +35,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
                         pod_data['listened'] = 'false'
                         pod_data['feedTitle'] = result.title
                         pod_data['feedUUID']  = result.uuid
+                        pod_data['feedDesc']  = result.description
                         podcast_list.push pod_data
 
                   else if scope isnt 'all'
@@ -43,6 +45,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
                         pod_data['listened'] = podcast.listened
                         pod_data['feedTitle'] = result.title
                         pod_data['feedUUID']  = result.uuid
+                        pod_data['feedDesc']  = result.description
                         podcast_list.push pod_data
 
                 callback()
@@ -54,6 +57,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
                   pod_data = podcast
                   pod_data['feedTitle'] = feed.title
                   pod_data['feedUUID']  = feed.uuid
+                  pod_data['feedDesc']  = feed.description
 
                   if podcast.listened isnt 'true'
                     podcast_list.push pod_data
@@ -62,6 +66,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
                   pod_data = podcast
                   pod_data['feedTitle'] = feed.title
                   pod_data['feedUUID']  = feed.uuid
+                  pod_data['feedDesc']  = feed.description
                   podcast_list.push pod_data
 
               callback()
@@ -82,30 +87,20 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
 
                 return sort_b - sort_a
 
-            sidebar_loop(feed_list, podcast_list)
+            sidebar_loop(feed_list, podcast_list, meta)
 
-      sidebar_loop = (feed_list, podcast_list) ->
-        Feeds.find( { 'owner': userID } ).toArray (err, feeds) ->
+      sidebar_loop = (feed_list, podcast_list, meta) ->
+        Feeds.find( { 'owner': userID }, { pods: 0 } ).toArray (err, feeds) ->
           async.forEachSeries feeds
           , (feed, callback) ->
-            if feed.source is 'directory'
 
-              Directory.findOne { 'uuid': feed.uuid }, (err, result) ->
-                feed_data =
-                  feedTitle : result.title
-                  feeduuid  : result.uuid
-                feed_list.push feed_data
+            feed_data =
+              feedTitle : feed.title
+              feeduuid  : feed.uuid
 
-                callback()
+            feed_list.push feed_data
 
-            else if feed.source is 'owner' || typeof(feed.source) is 'undefined'
-
-              feed_data =
-                feedTitle : feed.title
-                feeduuid  : feed.uuid
-              feed_list.push feed_data
-
-              callback()
+            callback()
               
           , () ->
 

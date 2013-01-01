@@ -21,6 +21,7 @@ section.actions
 if podcasts
 	div.podcast-meta
 		h1 #{podcasts[0].feedTitle}
+		p.podcast-meta-description #{podcasts[0].feedDesc}
 		div.podcast-meta-actions
 			a.unsubscribe.red-button(href='/listen/remove/' + podcasts[0].feedUUID) Unsubscribe
 	ul.podcastList.list-single
