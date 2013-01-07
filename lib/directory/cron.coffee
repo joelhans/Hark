@@ -20,7 +20,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
     existing_build  = []
     new_build       = []
 
-    Directory.find().sort({ $natural: 1, lastUpdated: 1 }).limit(1).toArray (err, result) ->
+    Directory.find().sort({ lastUpdated: 1 }).limit(1).toArray (err, result) ->
       # This attempts to "throttle" requests until it finds a podcast that has not been updated in more than a day.
       for k,v of result
         if moment().diff(v.lastUpdated) > 86400000
