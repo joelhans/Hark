@@ -1,0 +1,63 @@
+- if (user == false)
+  h2.directory-no-login Subscribe to this podcast, and many others, in one click with Hark.
+  p.directory-no-login Of course, you need to 
+    a(href='/signup/') make an account 
+    to do so.
+  p.directory-no-login Or, you can 
+    a(href='/login/') log in 
+    to an existing account.
+  p.directory-no-login Eithe way, feel free to continue browsing the <a href="/directory">Directory</a>.
+
+section.actions
+  form.directory-search(method='post', action='/directory/search')
+    input.directory-search-term(type='text', placeholder='Seach for a podcast.')
+    button.directory-search-submit(type='submit')
+      span Go
+
+//-   ul.directory-sort
+//-     li.safe Sort by:
+//-     li.directory-sort-popularity.active.action Popularity
+//-     li.directory-sort-alphabetical.active.action Alphabetically
+//-     li.directory-sort-latest.active.action Recently updated
+//-     li.directory-sort-pure-alpha.active.action Pure alpha
+
+- if (directory.length >= 0)
+  ul.directory-main.clearfix(data-page='' + page, data-category='' + category)
+
+    -if (typeof(result_count) != 'undefined') 
+      p.result-count #{result_count} result(s) found.
+
+    for feed in directory
+      li.directory-item(data-category='' + category, data-subs='' + feed.subscriptions, data-date='' + feed.lastPodcast)
+        h1.directory-feed-title #{feed.title}
+        a.directory-feed-subscribe.blue-button(href='/directory/subscribe/' + feed.uuid) Subscribe
+        p.directory-feed-description #{feed.description}
+        //- - if (typeof(feed.subscriptions) != 'undefined')
+        //-   p.directory-feed-description #{feed.subscriptions} subscribers.
+        //- - else
+        //-   p.directory-feed-description No subscribers.
+        div.directory-feed-details
+          div.directory-feed-details-left
+            span Latest:
+            span #{feed.pods[0].podTitle}
+          div.directory-feed-details-right
+            span Updated:
+            - if (typeof(feed.pods[0].podDate['_d']) == 'string')
+              span.moment.with-d #{feed.pods[0].podDate['_d']}
+            - else
+              span.moment.no-d #{feed.pods[0].podDate}
+
+  -if (page != false)
+    div.pagination.clearfix
+      p
+        a.pagination-prev(href="/directory/") &larr; Previous
+      p
+        a.pagination-next(href="/directory/page/2") Next &rarr;
+
+  p.directory-help The Hark Directory: 169 podcasts, and counting.
+  p.directory-help Have a podcast that you want in the Hark Directory? Having a problem subscribing to a particular podcast? Send me an e-mail at <a href="mailto:admin@harkhq.com">admin@harkhq.com</a>.
+
+- else
+    div.directory-main.clearfix(data-page='' + page, data-category='' + category)
+      p Sorry, nothing found here.
+      p Recommend a podcast by sending an e-mail to <a href="mailto:admin@harkhq.com">admin@harkhq.com</a>.
