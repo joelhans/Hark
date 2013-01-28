@@ -212,15 +212,18 @@ BUGS
 
   ****
   ----------
+  [ ] -- 1.4B02  -- Need to remove the search function until 1.5 comes out.
 
   ***
   ----------
-  [ ] --  1.0B07 -- Title is not updated when navigating via AJAX.
-                    * Working for everything but Directory categories. Can't figure out a way to reliably grab the capitalized, human-readable category name.
+  [ ] --  1.4B01 -- Updating single-items feeds (This American Life) causes the newest item to show up multiple times.
+  [ ] --  1.4B03 -- Sync seems to fire often, and randomly. This could relate to some of the issues I've been noticing lately regarding sync not being updated correctly.
 
   **
   ----------
-  [ ] --  1.3.0/01 -- When watching a video podcast, resuming play knocks the player back to the bottom-middle, insteado f where the user has placed it.
+  [ ] --  1.3.0/01 -- When watching a video podcast, resuming play knocks the player back to the bottom-middle, instead of where the user has placed it.
+  [ ] --  1.0B07 -- Title is not updated when navigating via AJAX.
+                    * Working for everything but Directory categories. Can't figure out a way to reliably grab the capitalized, human-readable category name.
 
   *
   ----------
