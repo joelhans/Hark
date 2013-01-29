@@ -212,7 +212,7 @@ BUGS
 
   ****
   ----------
-  [ ] -- 1.4B02  -- Need to remove the search function until 1.5 comes out.
+  [x] -- 1.4B02  -- Need to remove the search function until 1.5 comes out.
 
   ***
   ----------
