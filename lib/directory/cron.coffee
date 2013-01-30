@@ -35,7 +35,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
         console.log err
         console.log 'Failed to update this feed.'
         console.log 'Failed feed: ' + to_update.title
-        update_directory_finalize()
+        update_directory_finalize(to_update, new_build, existing_build)
         return
 
       # Use XML2JS to parse it.

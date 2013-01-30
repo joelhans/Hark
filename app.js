@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 1.4.1
+//  Current version: 1.4.2
 //
 //  Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -26,7 +26,8 @@ var express    = require('express')
   , async      = require('async')
   , xml2js     = require('xml2js')
   , nodemailer = require('nodemailer')
-  , bcrypt     = require('node.bcrypt.js')
+  // , bcrypt     = require('node.bcrypt.js')
+  , bcrypt     = require('bcrypt')
   , moment     = require('moment')
   , mongodb    = require('mongodb')
   , conf       = require('./lib/conf')
@@ -42,7 +43,7 @@ var parser = new xml2js.Parser();
 
 var Db            = require('mongodb').Db
   , Server        = require('mongodb').Server
-  , server_config = new Server('localhost', 27017, {safe:false, auto_reconnect: true, native_parser: true})
+  , server_config = new Server('localhost', 27017, {safe: false, w: 1, auto_reconnect: true, native_parser: true})
   , db            = new Db('Hark', server_config, {})
   , mongoStore    = require('connect-mongodb')
   , ObjectID      = require('mongodb').ObjectID;
