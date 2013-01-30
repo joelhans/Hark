@@ -31,6 +31,13 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
     console.log 'We are going to update ' + to_update.title + '.'
     # Request the URL.
     request {uri: to_update.href}, (err, response, body) ->
+      if err
+        console.log err
+        console.log 'Failed to update this feed.'
+        console.log 'Failed feed: ' + to_update.title
+        update_directory_finalize()
+        return
+
       # Use XML2JS to parse it.
       parser.parseString body, (err, xml) ->
         if typeof(xml) is 'undefined'

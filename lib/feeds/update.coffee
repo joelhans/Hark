@@ -48,6 +48,14 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
     # Request the URL.
     console.log 'We are owner-updating ' + to_update.title + to_update.href
     request {uri: to_update.href}, (err, response, body) ->
+      if err
+        console.log err
+        console.log 'Failed to update this feed.'
+        console.log 'Failed feed: ' + to_update.title
+        counter++
+        update_feed_finalize(res, to_update, total, new_build, existing_build, counter)
+        return
+
       # Use XML2JS to parse it.
       parser.parseString body, (err, xml) ->
         if typeof(xml) is 'undefined'
@@ -67,7 +75,6 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
             FeedCatches(feed.item, req_build)
 
         # Once we're done, we move on to the comparison function.
-        console.log to_update.title, req_build[0]
         update_feed_compare(res, to_update, total, req_build)
 
   update_feed_compare = (res, to_update, total, req_build) ->
@@ -120,6 +127,14 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
       console.log 'We are directory-updating ' + result.title
       # Request the URL.
       request {uri: result.href}, (err, response, body) ->
+        if err
+          console.log err
+          console.log 'Failed to update this feed.'
+          console.log 'Failed feed: ' + to_update.title
+          counter++
+          dir_feed_finalize(res, to_update, total, new_build, existing_build, counter)
+          return
+        
         # Use XML2JS to parse it.
         parser.parseString body, (err, xml) ->
           if typeof(xml) is 'undefined'
