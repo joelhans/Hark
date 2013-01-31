@@ -66,13 +66,15 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
         req_build = []
 
         for i in [0...10]
+          console.log typeof feed.item.title
           # This catches to see if there is an array of items.
-          if (typeof feed.item[_i] isnt "undefined") && (typeof feed.item[i].enclosure isnt "undefined")
+          if (typeof feed.item[_i] isnt "undefined") && (typeof feed.item[_i].enclosure isnt "undefined")
             FeedCatches(feed.item[_i], req_build)
 
           # This catches to see if there is only one item.
-          else if (typeof feed.item.title isnt "undefined")
+          else if (typeof feed.item.title is "string")
             FeedCatches(feed.item, req_build)
+            break
 
         # Once we're done, we move on to the comparison function.
         update_feed_compare(res, to_update, total, req_build)
@@ -153,7 +155,6 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
               FeedCatches(feed.item, req_build)
 
           # Once we're done, we move on to the comparison function.
-          console.log req_build
           dir_feed_compare(res, to_update, total, result, req_build)
 
   dir_feed_compare = (res, to_update, total, result, req_build) ->

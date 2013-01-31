@@ -51,8 +51,9 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
             FeedCatches(feed.item[_i], req_build)
 
           # This catches to see if there is only one item.
-          else if (typeof feed.item.title isnt "undefined")
+          else if (typeof feed.item.title is 'string')
             FeedCatches(feed.item, req_build)
+            break
 
         # Once we're done, we move on to the comparison function.
         update_directory_compare(to_update, req_build)
