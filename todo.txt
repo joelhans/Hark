@@ -208,28 +208,6 @@ ROADMAP
             * Someone can make a "best comedy podcasts" Hark, others can subscribe to that.
 
 
-BUGS
-
-  ****
-  ----------
-  [x] -- 1.4B02  -- Need to remove the search function until 1.5 comes out.
-
-  ***
-  ----------
-  [ ] --  1.4B01 -- Updating single-items feeds (This American Life) causes the newest item to show up multiple times.
-  [ ] --  1.4B03 -- Sync seems to fire often, and randomly. This could relate to some of the issues I've been noticing lately regarding sync not being updated correctly.
-
-  **
-  ----------
-  [ ] --  1.3.0/01 -- When watching a video podcast, resuming play knocks the player back to the bottom-middle, instead of where the user has placed it.
-  [ ] --  1.0B07 -- Title is not updated when navigating via AJAX.
-                    * Working for everything but Directory categories. Can't figure out a way to reliably grab the capitalized, human-readable category name.
-
-  *
-  ----------
-  [ ] --  Rapid-click on "mark as listened" causes some to not have successful POSTs.
-
-
 OTHER POSSIBLE FEATURES
 
 Live viewing for livestreams?
@@ -239,11 +217,6 @@ Look into pjax for simplified HTML History? https://github.com/defunkt/jquery-pj
 Allow people to "bookmark" various points in a podcast and append them with notes, etc.
   * Use something similar to YouTube's timestamp?
 
-Turn the getFeeds function into a cursor.each one like the updateFeeds one. Should be quicker.
-
-Sanitize inputs.
-  * Login -- user e-mails.
-  * Feeds -- How to prevent maliciousness?
 
 DELETED
   Know How...

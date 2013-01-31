@@ -6,10 +6,19 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    build: {
+      files: [ 'assets/scss/*.scss', 'assets/coffee/*.coffee' ],
+      tasks: [ 'compass', 'coffee', 'concat', 'min' ]
+    },
+
+    dev_coffee: {
+      files: [ 'assets/coffee/*.coffee' ],
+      tasks: [ 'coffee', 'concat', 'min' ]
+    },
+
     watch: {
       files: [ 'assets/scss/*.scss', 'assets/coffee/*.coffee' ],
       tasks: [ 'compass', 'coffee', 'concat', 'min', 'reload' ]
-      // tasks: [ 'compass', 'coffee' ]
     },
 
     coffee: {

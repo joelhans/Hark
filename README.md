@@ -7,7 +7,7 @@ This will be filled in with more information as I have the time to update it. Fo
 
 ***You can get an account right now at [Hark](http://harkhq.com).***
 
-*Current version: 1.4.2. Updated January 30, 2013.*
+*Current version: 1.4.3. Updated January 31, 2013.*
 
 ## Technologies ##
 
