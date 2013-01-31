@@ -66,7 +66,8 @@ window.jplayer_2 = () ->
     play                : (d) ->
       $('.podcast-player').css({'top': '90px'})
       $('.video-podcast-player').css({'top': '0px'})
-      $('.video-player').css('top': $(document).height() - $('.video-player').height() - 128)
+      if !$('.video-player').hasClass('video-moved')
+        $('.video-player').css('top': $(document).height() - $('.video-player').height() - 128)
       $('.video-player, #jquery_jplayer_2, .jp-playing').fadeIn(300)
       updatePlaying = setInterval (-> 
         window.updateStatus()
@@ -162,7 +163,7 @@ window.jplayer = () ->
       $(window).bind 'mousemove', (e) ->
         e.preventDefault()
         $('.video-player').removeClass('minimized')
-        $('.video-player').css({'top': e.clientY - 20, 'left': e.clientX - 12, 'margin-left': ''})
+        $('.video-player').addClass('video-moved').css({'top': e.clientY - 20, 'left': e.clientX - 12, 'margin-left': ''})
     .delegate '.video-move', 'mouseup', (e) ->
       $('.video-move').undelegate()
       $(window).unbind 'mousemove'
