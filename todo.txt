@@ -2,8 +2,17 @@
 TODO
 --------------------------------
 
+1.5
+---------
+[ ] --  Directory
+  [ ] --  Improved (working) pagination.
+  [x] --  Search for podcasts.
+  [ ] --  Individual podcast pages.
 
+
+--------------------------------
 ROADMAP
+--------------------------------
 
   0.1
   ----------
@@ -182,13 +191,6 @@ ROADMAP
     [-] --  Add a check so that if a user tries to manually add a feed that's in the Directory, they get the Directory version anyway.
     [x] --  Fix unsubscribing to feeds. Some error is hit.
 
-  1.5
-  ---------
-  [ ] --  Directory
-    [ ] --  Improved (working) pagination.
-    [ ] --  Search for podcasts.
-    [ ] --  Individual podcast pages.
-
   1.6
   ----------
   [ ] --  Have a variety of keyboard shortcuts for various important functions.
@@ -207,8 +209,9 @@ ROADMAP
             * Users will be able to select certain feeds they want to bundle together, maybe share them.
             * Someone can make a "best comedy podcasts" Hark, others can subscribe to that.
 
-
-OTHER POSSIBLE FEATURES
+--------------------------------
+FEATURES
+--------------------------------
 
 Live viewing for livestreams?
 
