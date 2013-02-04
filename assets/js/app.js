@@ -3546,6 +3546,22 @@ if (!Array.prototype.indexOf) {
     });
   });
 
+  $(document).delegate('.directory-feed-title a', 'click', function(e) {
+    e.preventDefault();
+    return $.ajax({
+      type: 'POST',
+      url: $(e.currentTarget).attr('href'),
+      error: function(err) {
+        $('#modal').html($(err.responseText));
+        return $('#modal').fadeIn(500);
+      },
+      success: function(data, textStatus, jqXHR) {
+        $('.primary').html(data);
+        return ajaxHelpers();
+      }
+    });
+  });
+
   $(document).on('click', '.directory-search-submit', function(e) {
     var data;
     e.preventDefault();

@@ -47,6 +47,19 @@ $(document)
         ajaxHelpers()
         window.dir_pagination()
 
+$(document)
+  .delegate '.directory-feed-title a', 'click', (e) ->
+    e.preventDefault()
+    $.ajax
+      type    : 'POST'
+      url     : $(e.currentTarget).attr 'href'
+      error   : (err) ->
+        $('#modal').html($(err.responseText))
+        $('#modal').fadeIn(500)
+      success : (data, textStatus, jqXHR) ->
+        $('.primary').html(data)
+        ajaxHelpers()
+
 # ------------------------------
 # Search
 # ------------------------------
