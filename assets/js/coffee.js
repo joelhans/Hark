@@ -652,6 +652,45 @@
     });
   });
 
+  $(document).on('click', '.directory-search-submit', function(e) {
+    var data;
+    e.preventDefault();
+    data = {
+      string: $('.directory-search-term').val()
+    };
+    console.log(data);
+    console.log(data);
+    return $.ajax({
+      type: 'POST',
+      url: '/directory/search',
+      data: data,
+      success: function(data) {
+        $('.hark-container').html(data);
+        return ajaxHelpers();
+      }
+    });
+  });
+
+  $(document).on('keypress', '.directory-search-submit', function(e) {
+    var data;
+    if (e.which === 13) {
+      e.preventDefault();
+      data = {
+        string: $('.directory-search-term').val()
+      };
+      console.log(data);
+      return $.ajax({
+        type: 'POST',
+        url: '/directory/search',
+        data: data,
+        success: function(data) {
+          $('.hark-container').html(data);
+          return ajaxHelpers();
+        }
+      });
+    }
+  });
+
   $(document).on('click', '.directory-sort-popularity', function(e) {
     if ($(this).is('.desc')) {
       $('.directory-item').tsort({

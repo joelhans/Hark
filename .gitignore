@@ -5,3 +5,5 @@ npm-debug.log
 conf.js
 sources/
 hark_directory/
+public/css/
+public/js/
