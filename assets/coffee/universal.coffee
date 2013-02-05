@@ -6,7 +6,6 @@ History = State = progress = path = dir_pagination = mediaData = progress = null
 # ------------------------------
 
 $(document).ready () ->
-  console.log playing
   window.ajaxHelpers()
   State = History.getState()
   window.dir_pagination()

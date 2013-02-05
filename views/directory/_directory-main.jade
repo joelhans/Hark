@@ -1,12 +1,4 @@
-- if (user == false)
-  h2.directory-no-login Subscribe to this podcast, and many others, in one click with Hark.
-  p.directory-no-login Of course, you need to 
-    a(href='/signup/') make an account 
-    to do so.
-  p.directory-no-login Or, you can 
-    a(href='/login/') log in 
-    to an existing account.
-  p.directory-no-login Eithe way, feel free to continue browsing the <a href="/directory">Directory</a>.
+//- DIRECTORY ACTIONS
 
 section.actions
   form.directory-search(method='post', action='/directory/search')
@@ -14,12 +6,20 @@ section.actions
     button.directory-search-submit(type='submit')
       span Go
 
-  //- ul.directory-sort
-  //-   li.safe Sort by:
-  //-   li.directory-sort-popularity.active.action Popularity
-  //-   li.directory-sort-alphabetical.active.action Alphabetically
-  //-   li.directory-sort-latest.active.action Recently updated
-  //-   li.directory-sort-pure-alpha.active.action Pure alpha
+//- NON-LOGGED IN VIEW
+
+- if (user == false)
+  section.directory-no-login
+    h2 Subscribe to all these podcasts with just one click.
+    p Of course, you need to 
+      a(href='/signup/') make an account 
+      to do so.
+    p Or, you can 
+      a(href='/login/') log in 
+      to an existing account.
+    p Either way, feel free to continue browsing the <a href="/directory">Directory</a>.
+
+//- FOR DIRECTORY LISTINGS
 
 - if (individual != true)
   - if (directory.length >= 0)
@@ -64,7 +64,7 @@ section.actions
       for podcast in result.pods
         li.podcast-item.all(data-uuid='' + podcast.podUUID, data-file='' + podcast.podFile, data-feed='' + result.title, data-title='' + podcast.podTitle, data-feedUUID='' + result.uuid, data-source='' + podcast.podLink)
           p.podcast-title
-            a(href='/listen/' + result.uuid + '/' + podcast.podUUID, class='podcastListen false', data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
+            a(href='/listen/' + result.uuid + '/' + podcast.podUUID, class='podcastListen false', data-file='' + podcast.podFile, data-feed='' + result.title, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
           p.podcast-feed
             a(href='/listen/podcast/' + result.uuid, class='loadFeedFromItem') #{result.title}
             span.breaker &nbsp;|&nbsp;
@@ -79,10 +79,10 @@ section.actions
                 p!= podcast.podDesc
                 p.description-warning A note: Don't blame Hark for poorly-sourced descriptions. Tell your favorite podcast to make a proper RSS feed!
 
-  p.directory-help The Hark Directory: 169 podcasts, and counting.
-  p.directory-help Have a podcast that you want in the Hark Directory? Having a problem subscribing to a particular podcast? Send me an e-mail at <a href="mailto:admin@harkhq.com">admin@harkhq.com</a>.
-
 - else
     div.directory-main.clearfix(data-page='' + page, data-category='' + category)
-      p Sorry, nothing found here.
-      p Recommend a podcast by sending an e-mail to <a href="mailto:admin@harkhq.com">admin@harkhq.com</a>.
+    p Sorry, nothing found here.
+    p Recommend a podcast by sending an e-mail to <a href="mailto:admin@harkhq.com">admin@harkhq.com</a>.
+
+p.directory-help The Hark Directory: 169 podcasts, and counting.
+p.directory-help Have a podcast that you want in the Hark Directory? Having a problem subscribing to a particular podcast? Send me an e-mail at <a href="mailto:admin@harkhq.com">admin@harkhq.com</a>.

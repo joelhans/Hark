@@ -168,11 +168,11 @@ $(document)
 $(document)
   .delegate '.act-listen.active', 'click', (e) ->
     window.mediaData =
-      podcast      : $('.selected').attr("data-file")
-      podcastTitle : $('.selected').attr("data-title")
-      podcastID    : $('.selected').attr("data-uuid")
-      feedUUID     : $('.selected').attr("data-feedUUID")
-      feedTitle    : $('.selected').attr("data-feed")
+      podcast      : $('.selected').attr('data-file')
+      podcastTitle : $('.selected').attr('data-title')
+      podcastID    : $('.selected').attr('data-uuid')
+      feedUUID     : $('.selected').attr('data-feedUUID')
+      feedTitle    : $('.selected').attr('data-feed')
 
     if window.mediaData.podcast.indexOf('mp4') is -1
       $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
@@ -194,11 +194,11 @@ $(document)
   .delegate '.podcastListen', 'click', (e) ->
     e.preventDefault()
     window.mediaData =
-      podcast      : $(this).attr("data-file")
-      podcastTitle : $(this).attr("data-title")
+      podcast      : $(this).attr('data-file')
+      podcastTitle : $(this).attr('data-title')
       podcastID    : $(this).attr('href').split('/')[3]
       feedUUID     : $(this).attr('href').split('/')[2]
-      feedTitle    : $(this).attr("data-feed")
+      feedTitle    : $(this).attr('data-feed')
 
     if window.mediaData.podcast.indexOf('mp4') is -1
       $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {

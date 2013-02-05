@@ -2,11 +2,7 @@
 # Layout
 # ------------------------------
 wookmark = () ->
-  # $('.directory-item').wookmark({
-  #   container: $('.directory-main'),
-  #   offset: 20,
-  #   autoResize: true
-  # });
+  return
 
 # ------------------------------
 # Link handlers
@@ -68,8 +64,6 @@ $(document).on 'click', '.directory-search-submit', (e) ->
   e.preventDefault()
   data =
     string : $('.directory-search-term').val()
-  console.log data
-  console.log data
   $.ajax
     type   : 'POST'
     url    : '/directory/search'
@@ -83,7 +77,6 @@ $(document).on 'keypress', '.directory-search-submit', (e) ->
     e.preventDefault()
     data =
       string : $('.directory-search-term').val()
-    console.log data
     $.ajax
       type   : 'POST'
       url    : '/directory/search'

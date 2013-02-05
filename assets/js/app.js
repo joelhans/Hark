@@ -3063,11 +3063,11 @@ if (!Array.prototype.indexOf) {
 
   $(document).delegate('.act-listen.active', 'click', function(e) {
     window.mediaData = {
-      podcast: $('.selected').attr("data-file"),
-      podcastTitle: $('.selected').attr("data-title"),
-      podcastID: $('.selected').attr("data-uuid"),
-      feedUUID: $('.selected').attr("data-feedUUID"),
-      feedTitle: $('.selected').attr("data-feed")
+      podcast: $('.selected').attr('data-file'),
+      podcastTitle: $('.selected').attr('data-title'),
+      podcastID: $('.selected').attr('data-uuid'),
+      feedUUID: $('.selected').attr('data-feedUUID'),
+      feedTitle: $('.selected').attr('data-feed')
     };
     if (window.mediaData.podcast.indexOf('mp4') === -1) {
       $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
@@ -3091,11 +3091,11 @@ if (!Array.prototype.indexOf) {
   $(document).delegate('.podcastListen', 'click', function(e) {
     e.preventDefault();
     window.mediaData = {
-      podcast: $(this).attr("data-file"),
-      podcastTitle: $(this).attr("data-title"),
+      podcast: $(this).attr('data-file'),
+      podcastTitle: $(this).attr('data-title'),
       podcastID: $(this).attr('href').split('/')[3],
       feedUUID: $(this).attr('href').split('/')[2],
-      feedTitle: $(this).attr("data-feed")
+      feedTitle: $(this).attr('data-feed')
     };
     if (window.mediaData.podcast.indexOf('mp4') === -1) {
       $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
@@ -3322,7 +3322,6 @@ if (!Array.prototype.indexOf) {
   History = State = progress = path = dir_pagination = mediaData = progress = null;
 
   $(document).ready(function() {
-    console.log(playing);
     window.ajaxHelpers();
     State = History.getState();
     window.dir_pagination();
@@ -3568,8 +3567,6 @@ if (!Array.prototype.indexOf) {
     data = {
       string: $('.directory-search-term').val()
     };
-    console.log(data);
-    console.log(data);
     return $.ajax({
       type: 'POST',
       url: '/directory/search',
@@ -3588,7 +3585,6 @@ if (!Array.prototype.indexOf) {
       data = {
         string: $('.directory-search-term').val()
       };
-      console.log(data);
       return $.ajax({
         type: 'POST',
         url: '/directory/search',
