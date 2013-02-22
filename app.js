@@ -44,7 +44,7 @@ var parser = new xml2js.Parser();
 var Db            = require('mongodb').Db
   , Server        = require('mongodb').Server
   , server_config = new Server('localhost', 27017, {safe: false, auto_reconnect: true, native_parser: true})
-  , db            = new Db('Hark', server_config, {w: 1})
+  , db            = new Db('Hark', server_config, {})
   , mongoStore    = require('connect-mongodb')
   , ObjectID      = require('mongodb').ObjectID;
 
