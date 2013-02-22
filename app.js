@@ -378,6 +378,9 @@ app.get('/listen/podcast/:id', loadUser, function(req, res) {
 
 app.post('/listen/:feed/:_id', loadUser, function(req, res) {
   harkUser.playing = req.body;
+
+  console.log(harkUser.playing);
+
   Users.findAndModify({ 'userID':  harkUser.userID }, [], { $set: { 'playing' : req.body } }, { new:true, safe:true }, function(err, result) {
     res.partial('player/currently-playing', { playing: result.playing });
   });

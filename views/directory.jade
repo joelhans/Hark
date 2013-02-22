@@ -1,7 +1,12 @@
 doctype 5
 html(lang="en")
 	head
-		title Hark | The Directory
+		- if (individual == true)
+			title Hark | Directory | #{result.title}
+		- else if (category != 'all')
+			title Hark | Directory | #{category}
+		- else
+			title Hark | Directory
 		
 		!=partial('layout/head')
 	

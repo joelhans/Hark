@@ -10,5 +10,6 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           user         : harkUser
           category     : 'all'
           playing      : harkUser.playing
+          individual   : false
           page         : false
           result_count : result.length

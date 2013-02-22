@@ -6,9 +6,10 @@ History = State = progress = path = dir_pagination = mediaData = progress = null
 # ------------------------------
 
 $(document).ready () ->
-  console.log playing
   window.ajaxHelpers()
   State = History.getState()
+  window.listen_title()
+  window.dir_title()
   window.dir_pagination()
   window.settings()
   return
@@ -34,7 +35,6 @@ window.ajaxHelpers = () ->
   sidebarHeight()
   listenHeight()
   momentize()
-  # $('#loading').fadeOut(300)
 
 # ------------------------------
 # HTML5 HISTORY
@@ -49,7 +49,8 @@ $(document)
              a[href="/settings"],
              a[href="/help"],
              a[href^="/listen/podcast/"],
-             a[href^="/directory/category/"]', "click", (e) ->
+             a[href^="/directory/category/"],
+             a[href^="/directory/podcast/"]', "click", (e) ->
     e.preventDefault()
     State = History.getState()
     path = $(e.currentTarget).text()
@@ -59,14 +60,22 @@ History.Adapter.bind window, 'statechange', () ->
   # $('#loading').fadeIn(300)
   State = History.getState()
   History.log(State.data, State.title, State.url, State.hash)
+
+  # ------------------------------
+  # LISTEN
+  # ------------------------------
   if State.hash == '/listen' || State.hash == '/listen/'
     $.ajax
       type: 'POST'
       url: '/listen'
       success: (data) ->
         $('.hark-container').replaceWith(data)
-        document.title = 'Hark | Your podcasts'
+        document.title = 'Hark | Listen'
         window.ajaxHelpers()
+
+  # ------------------------------
+  # DIRECTORY
+  # ------------------------------
   else if State.hash == '/directory' || State.hash == '/directory/'
     $.ajax
       type: 'POST'
@@ -74,16 +83,24 @@ History.Adapter.bind window, 'statechange', () ->
       success: (data) ->
         $('.hark-container').html(data)
         window.dir_pagination()
-        document.title = 'Hark | The Directory'
+        document.title = 'Hark | Directory'
         window.ajaxHelpers()
+
+  # ------------------------------
+  # SETTINGS
+  # ------------------------------
   else if State.hash == '/settings' || State.hash == '/settings/'
     $.ajax
       type: 'POST'
       url: '/settings'
       success: (data) ->
         $('.hark-container').html(data)
-        document.title = 'Hark | Your settings'
+        document.title = 'Hark | Settings'
         window.ajaxHelpers()
+  
+  # ------------------------------
+  # HELP
+  # ------------------------------
   else if State.hash == '/help' || State.hash == '/help/'
     $.ajax
       type: 'POST'
@@ -92,6 +109,10 @@ History.Adapter.bind window, 'statechange', () ->
         $('.hark-container').html(data)
         document.title = 'Hark | FAQ & Help'
         window.ajaxHelpers()
+  
+  # ------------------------------
+  # LISTEN / INDIVIDUAL PAGES
+  # ------------------------------
   else if State.hash.indexOf('/listen/podcast/') isnt -1
     $.ajax
       type: 'POST'
@@ -101,6 +122,10 @@ History.Adapter.bind window, 'statechange', () ->
         $('.primary').html(data)
         document.title = 'Hark | ' + $(data).find('.podcast-item:first-of-type').attr('data-feed')
         window.ajaxHelpers()
+  
+  # ------------------------------
+  # DIRECTORY / CATEGORIES
+  # ------------------------------
   else if State.hash.indexOf('/directory/category/') isnt -1
     $.ajax
       type: 'POST'
@@ -109,8 +134,27 @@ History.Adapter.bind window, 'statechange', () ->
       success: (data) ->
         $('.primary').html(data)
         window.dir_pagination()
-        # document.title = 'Hark | The Directory | ' + path
+        document.title = 'Hark | Directory | ' + $('a[href$="'+State.hash+'"]').text()
         window.ajaxHelpers()
+
+  # ------------------------------
+  # DIRECTORY / INDIVIDUAL PAGES
+  # ------------------------------
+  else if State.hash.indexOf('/directory/podcast/') isnt -1
+    $.ajax
+      type    : 'POST'
+      url     : State.hash
+      error   : (err) ->
+        $('#modal').html($(err.responseText))
+        $('#modal').fadeIn(500)
+      success : (data, textStatus, jqXHR) ->
+        $('.primary').html(data)
+        document.title = 'Hark | Directory | ' + $(data).find('.podcast-item:first-of-type').attr('data-feed')
+        ajaxHelpers()
+
+  # ------------------------------
+  # ELSE
+  # ------------------------------
   else
     return
 

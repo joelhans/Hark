@@ -2,11 +2,16 @@
 # Layout
 # ------------------------------
 wookmark = () ->
-  # $('.directory-item').wookmark({
-  #   container: $('.directory-main'),
-  #   offset: 20,
-  #   autoResize: true
-  # });
+  return
+
+# ------------------------------
+# Title
+# ------------------------------
+
+window.dir_title = () ->
+  if typeof $('.directory-main').attr('data-category') isnt 'undefined'
+    category = $('.directory-main').attr 'data-category'
+    document.title = 'Hark | Directory | ' + $('a[href$="'+category+'/"]').text()
 
 # ------------------------------
 # Link handlers
@@ -55,8 +60,6 @@ $(document).on 'click', '.directory-search-submit', (e) ->
   e.preventDefault()
   data =
     string : $('.directory-search-term').val()
-  console.log data
-  console.log data
   $.ajax
     type   : 'POST'
     url    : '/directory/search'
@@ -70,7 +73,6 @@ $(document).on 'keypress', '.directory-search-submit', (e) ->
     e.preventDefault()
     data =
       string : $('.directory-search-term').val()
-    console.log data
     $.ajax
       type   : 'POST'
       url    : '/directory/search'

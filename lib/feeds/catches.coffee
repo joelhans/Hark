@@ -14,7 +14,6 @@ class exports.FeedCatches
     # /PUBDATE #
 
     # DESCRIPTION #
-    console.log typeof(feed_type.description)
     if typeof(feed_type.description) isnt "undefined" && typeof(feed_type.description) isnt "object"
       description = feed_type.description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
     else if typeof(feed_type['itunes:summary']) isnt "undefined" && typeof(feed_type['itunes:summary']) isnt "object"
