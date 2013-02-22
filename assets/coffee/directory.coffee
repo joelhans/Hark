@@ -5,6 +5,15 @@ wookmark = () ->
   return
 
 # ------------------------------
+# Title
+# ------------------------------
+
+window.dir_title = () ->
+  if typeof $('.directory-main').attr('data-category') isnt 'undefined'
+    category = $('.directory-main').attr 'data-category'
+    document.title = 'Hark | Directory | ' + $('a[href$="'+category+'/"]').text()
+
+# ------------------------------
 # Link handlers
 # ------------------------------
 $(document)
@@ -42,19 +51,6 @@ $(document)
         $('.hark-container').html(data)
         ajaxHelpers()
         window.dir_pagination()
-
-$(document)
-  .delegate '.directory-feed-title a', 'click', (e) ->
-    e.preventDefault()
-    $.ajax
-      type    : 'POST'
-      url     : $(e.currentTarget).attr 'href'
-      error   : (err) ->
-        $('#modal').html($(err.responseText))
-        $('#modal').fadeIn(500)
-      success : (data, textStatus, jqXHR) ->
-        $('.primary').html(data)
-        ajaxHelpers()
 
 # ------------------------------
 # Search

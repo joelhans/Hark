@@ -42,8 +42,8 @@ module.exports = function(grunt) {
       }
     },
 
-    dev_concat: {
-      dist: {
+    concat: {
+      dev: {
         src: [ 
           'assets/js/vendor/jquery.jplayer.js',
           'assets/js/vendor/jquery.tinysort.js',
@@ -53,11 +53,8 @@ module.exports = function(grunt) {
         ],
         dest: 'public/js/app.js',
         separator: ';'
-      }
-    },
-
-    concat: {
-      dist: {
+      },
+      build: {
         src: [ 
           'assets/js/vendor/jquery.jplayer.js',
           'assets/js/vendor/jquery.tinysort.js',
@@ -89,6 +86,19 @@ module.exports = function(grunt) {
         debugsass: false,
         images: 'public/images',
         relativeassets: true,
+        outputstyle: 'expanded'
+      },
+      build: {
+        src: 'assets/scss',
+        dest: 'public/css',
+        linecomments: false,
+        forcecompile: true,
+        require: [
+          'susy'
+        ],
+        debugsass: false,
+        images: 'public/images',
+        relativeassets: true,
         outputstyle: 'compressed'
       }
     },
@@ -99,5 +109,8 @@ module.exports = function(grunt) {
     }
 
   });
+
+  grunt.registerTask('dev', ['coffee', 'concat:dev', 'compass:dev']);
+  grunt.registerTask('build', ['coffee', 'concat:build', 'compass:build', 'min']);
   
 };

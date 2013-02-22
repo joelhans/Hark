@@ -1,4 +1,13 @@
 # ------------------------------
+# Title
+# ------------------------------
+
+window.listen_title = () ->
+  if typeof $('.list-single').attr('data-title') isnt 'undefined'
+    title = $('.list-single').attr('data-title')
+    document.title = 'Hark | ' + title
+
+# ------------------------------
 # Add a feed
 # ------------------------------
 
@@ -62,19 +71,19 @@ $(document)
 # Load a single feed
 # ------------------------------
 
-$(document)
-  .delegate '.loadFeed, .loadFeedFromItem', 'click', (e) ->
-    # History.pushState {}, "Hark | " + $('.loadFeed').text(), $(e.currentTarget).attr 'href'
-    e.preventDefault()
-    data =
-      feedID : $(this).attr('href').split('/')[3]
-    $.ajax
-      type:    'POST'
-      data:    data
-      url:     '/listen/podcast/' + data.feedID
-      success: (data) ->
-        $('.primary').html(data)
-        window.ajaxHelpers()
+# $(document)
+#   .delegate '.loadFeed, .loadFeedFromItem', 'click', (e) ->
+#     # History.pushState {}, "Hark | " + $('.loadFeed').text(), $(e.currentTarget).attr 'href'
+#     e.preventDefault()
+#     data =
+#       feedID : $(this).attr('href').split('/')[3]
+#     $.ajax
+#       type:    'POST'
+#       data:    data
+#       url:     '/listen/podcast/' + data.feedID
+#       success: (data) ->
+#         $('.primary').html(data)
+#         window.ajaxHelpers()
 
 # ------------------------------
 # Sidebar feed actions
