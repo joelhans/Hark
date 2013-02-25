@@ -49,8 +49,9 @@ section.actions
       div.pagination.clearfix
         p
           a.pagination-prev(href="/directory/") &larr; Previous
-        p
-          a.pagination-next(href="/directory/page/2") Next &rarr;
+        - if (final_page != true)
+          p
+            a.pagination-next(href="/directory/page/2") Next &rarr;
 
 - else if (individual = true)
   div.directory-main.clearfix
