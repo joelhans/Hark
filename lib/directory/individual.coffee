@@ -15,6 +15,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           playing    : harkUser.playing
           individual : true
           page       : false
+          final_page : false
 
   app.post '/directory/podcast/:uuid', loadUser, (req, res) ->
     Directory.findOne { 'uuid' : req.params.uuid }, (err, result) ->
@@ -31,3 +32,4 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           playing    : harkUser.playing
           individual : true
           page       : false
+          final_page : false

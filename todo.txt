@@ -4,8 +4,8 @@ TODO
 
 1.5
 ---------
-[ ] --  Directory
-  [ ] --  Improved (working) pagination.
+[x] --  Directory
+  [x] --  Improved (working) pagination.
   [x] --  Search for podcasts.
   [x] --  Individual podcast pages.
 
