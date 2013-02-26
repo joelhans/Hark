@@ -1,29 +1,35 @@
 {
-    "name": "Hark"
-  , "version": "1.5.0"
-  , "private": true
-  , "dependencies": {
-      "express": "= 2.5.7"
-    , "jade": ">= 0.0.1"
-    , "mongodb": ">= 0.9.7"
-    , "connect": ">= 1.8.5"
-    , "connect-mongodb": ">= 1.1.3"
-    , "request": ">= 2.9.152"
-    , "async": ">= 0.1.18"
-    , "xml2js": "= 0.1.13"
-    , "moment": ">= 1.4.0"
-    , "bcrypt": ">= 0.5.0"
-    , "nodemailer": ">= 0.3.10"
-    , "passport": ">= 0.1.10"
-    , "passport-local": ">= 0.1.3"
-    , "passport-twitter": ">= 0.1.3"
-    , "passport-google": ">= 0.2.0"
-    , "passport-facebook": ">= 0.1.3"
-    , "coffee-script": ">= 1.4.0"
-    , "cron": ">= 1.0.1"
-    , "grunt-contrib-coffee": ">= 0.3.2"
-    , "grunt-compass": ">= 0.3.7"
-    , "grunt-reload": ">= 0.2.0"
-    , "gzippo": ">= 0.2.0"
+  "name": "Hark",
+  "version": "1.5.0",
+  "private": true,
+  "dependencies": {
+    "express": "= 2.5.7",
+    "jade": ">= 0.0.1",
+    "mongodb": ">= 0.9.7",
+    "connect": ">= 1.8.5",
+    "connect-mongodb": ">= 1.1.3",
+    "request": ">= 2.9.152",
+    "async": ">= 0.1.18",
+    "xml2js": "= 0.1.13",
+    "moment": ">= 1.4.0",
+    "bcrypt": ">= 0.5.0",
+    "nodemailer": ">= 0.3.10",
+    "passport": ">= 0.1.10",
+    "passport-local": ">= 0.1.3",
+    "passport-twitter": ">= 0.1.3",
+    "passport-google": ">= 0.2.0",
+    "passport-facebook": ">= 0.1.3",
+    "coffee-script": ">= 1.4.0",
+    "cron": ">= 1.0.1",
+    "gzippo": ">= 0.2.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-coffee": "~0.4.1",
+    "grunt-compass": ">= 0.3.7",
+    "grunt-reload": ">= 0.2.0",
+    "grunt-contrib-copy": "~0.4.0",
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-contrib-uglify": "~0.1.1"
   }
 }
