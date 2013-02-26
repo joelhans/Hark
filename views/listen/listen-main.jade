@@ -46,7 +46,7 @@ if podcasts
 				p.podcast-meta-description #{podcasts[0].feedDesc}
 				div.podcast-meta-actions
 					a.unsubscribe.red-button(href='/listen/remove/' + podcasts[0].feedUUID) Unsubscribe
-			ul.podcastList.list-single
+			ul.podcastList.list-single(data-title='' + podcasts[0].feedTitle)
 				mixin podcast-loop()
 	- else
 		ul.podcastList

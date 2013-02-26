@@ -2,8 +2,41 @@
 TODO
 --------------------------------
 
+1.5
+---------
+[x] --  Directory
+  [x] --  Improved (working) pagination.
+  [x] --  Search for podcasts.
+  [x] --  Individual podcast pages.
 
+
+--------------------------------
 ROADMAP
+--------------------------------
+
+  1.6
+  ----------
+  [ ] --  Have a variety of keyboard shortcuts for various important functions.
+  [ ] --  Allow user to save listening progress in one podcast, listen to another one, and resume where they left off.
+  [ ] --  Investigate a way to integrate the Directory individual pages with a user's own version. Is that even possible? At the very least, a check to show that a user is already subscribed.
+  [ ] --  Add a Directory check to show when certain podcasts are already subscribed to.
+
+  1.7
+  ----------
+  [ ] --  Categories
+            * Users will be able to "tag" podcasts for certain categories (technology, design, etc).
+            * Or, they will be able to drag-and-drop them into buckets.
+            * Maybe both.
+
+  1.8
+  ----------
+  [ ] --  "Harks": Personalized podcast streams/playlists.
+            * Users will be able to select certain feeds they want to bundle together, maybe share them.
+            * Someone can make a "best comedy podcasts" Hark, others can subscribe to that.
+
+--------------------------------
+HISTORY
+--------------------------------
 
   0.1
   ----------
@@ -182,33 +215,9 @@ ROADMAP
     [-] --  Add a check so that if a user tries to manually add a feed that's in the Directory, they get the Directory version anyway.
     [x] --  Fix unsubscribing to feeds. Some error is hit.
 
-  1.5
-  ---------
-  [ ] --  Directory
-    [ ] --  Improved (working) pagination.
-    [ ] --  Search for podcasts.
-    [ ] --  Individual podcast pages.
-
-  1.6
-  ----------
-  [ ] --  Have a variety of keyboard shortcuts for various important functions.
-  [ ] --  Allow user to save listening progress in one podcast, listen to another one, and resume where they left off.
-
-  1.7
-  ----------
-  [ ] --  Categories
-            * Users will be able to "tag" podcasts for certain categories (technology, design, etc).
-            * Or, they will be able to drag-and-drop them into buckets.
-            * Maybe both.
-
-  1.8
-  ----------
-  [ ] --  "Harks": Personalized podcast streams/playlists.
-            * Users will be able to select certain feeds they want to bundle together, maybe share them.
-            * Someone can make a "best comedy podcasts" Hark, others can subscribe to that.
-
-
-OTHER POSSIBLE FEATURES
+--------------------------------
+FEATURES
+--------------------------------
 
 Live viewing for livestreams?
 

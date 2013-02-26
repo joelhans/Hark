@@ -6,20 +6,33 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
 
+    //
+    // BUILD
+    //
+
     build: {
       files: [ 'assets/scss/*.scss', 'assets/coffee/*.coffee' ],
       tasks: [ 'compass', 'coffee', 'concat', 'min' ]
     },
 
-    dev_coffee: {
-      files: [ 'assets/coffee/*.coffee' ],
-      tasks: [ 'coffee', 'concat', 'min' ]
-    },
+    //
+    // WATCHING
+    //
 
     watch: {
-      files: [ 'assets/scss/*.scss', 'assets/coffee/*.coffee' ],
-      tasks: [ 'compass', 'coffee', 'concat', 'min', 'reload' ]
+      coffeescript: {
+        files: [ 'assets/coffee/*.coffee' ],
+        tasks: [ 'coffee', 'concat' ]
+      },
+      sass: {
+        files: [ 'assets/scss/*.scss' ],
+        tasks: [ 'compass', 'reload' ]
+      }
     },
+
+    //
+    // STANDARDS
+    //
 
     coffee: {
       compile: {
@@ -30,7 +43,18 @@ module.exports = function(grunt) {
     },
 
     concat: {
-      dist: {
+      dev: {
+        src: [ 
+          'assets/js/vendor/jquery.jplayer.js',
+          'assets/js/vendor/jquery.tinysort.js',
+          'assets/js/vendor/jquery.history.js',
+          'assets/js/vendor/jquery.moment.js',
+          'assets/js/coffee.js'
+        ],
+        dest: 'public/js/app.js',
+        separator: ';'
+      },
+      build: {
         src: [ 
           'assets/js/vendor/jquery.jplayer.js',
           'assets/js/vendor/jquery.tinysort.js',
@@ -62,6 +86,19 @@ module.exports = function(grunt) {
         debugsass: false,
         images: 'public/images',
         relativeassets: true,
+        outputstyle: 'expanded'
+      },
+      build: {
+        src: 'assets/scss',
+        dest: 'public/css',
+        linecomments: false,
+        forcecompile: true,
+        require: [
+          'susy'
+        ],
+        debugsass: false,
+        images: 'public/images',
+        relativeassets: true,
         outputstyle: 'compressed'
       }
     },
@@ -72,5 +109,8 @@ module.exports = function(grunt) {
     }
 
   });
+
+  grunt.registerTask('dev', ['coffee', 'concat:dev', 'compass:dev']);
+  grunt.registerTask('build', ['coffee', 'concat:build', 'compass:build', 'min']);
   
 };

@@ -2,11 +2,16 @@
 # Layout
 # ------------------------------
 wookmark = () ->
-  # $('.directory-item').wookmark({
-  #   container: $('.directory-main'),
-  #   offset: 20,
-  #   autoResize: true
-  # });
+  return
+
+# ------------------------------
+# Title
+# ------------------------------
+
+window.dir_title = () ->
+  if typeof $('.directory-main').attr('data-category') isnt 'undefined'
+    category = $('.directory-main').attr 'data-category'
+    document.title = 'Hark | Directory | ' + $('a[href$="'+category+'/"]').text()
 
 # ------------------------------
 # Link handlers
@@ -46,6 +51,35 @@ $(document)
         $('.hark-container').html(data)
         ajaxHelpers()
         window.dir_pagination()
+
+# ------------------------------
+# Search
+# ------------------------------
+
+$(document).on 'click', '.directory-search-submit', (e) ->
+  e.preventDefault()
+  data =
+    string : $('.directory-search-term').val()
+  $.ajax
+    type   : 'POST'
+    url    : '/directory/search'
+    data   : data
+    success: (data) ->
+      $('.hark-container').html(data)
+      ajaxHelpers()
+
+$(document).on 'keypress', '.directory-search-submit', (e) ->
+  if e.which is 13
+    e.preventDefault()
+    data =
+      string : $('.directory-search-term').val()
+    $.ajax
+      type   : 'POST'
+      url    : '/directory/search'
+      data   : data
+      success: (data) ->
+        $('.hark-container').html(data)
+        ajaxHelpers()
 
 # ------------------------------
 # Sorting
@@ -106,7 +140,7 @@ window.dir_pagination = () ->
   current_page = parseInt($('.directory-main').attr 'data-page')
   if current_page is 1
     $('.pagination-next').attr('href', '/directory/page/2')
-    $('.pagination-prev').css({'opacity': 0})
+    $('.pagination-prev').hide()
   else
     prev_page = current_page - 1
     next_page = current_page + 1

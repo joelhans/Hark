@@ -21,6 +21,14 @@
 
 (function() {
 
+  window.listen_title = function() {
+    var title;
+    if (typeof $('.list-single').attr('data-title') !== 'undefined') {
+      title = $('.list-single').attr('data-title');
+      return document.title = 'Hark | ' + title;
+    }
+  };
+
   $(document).delegate('.act-add', 'click', function(e) {
     e.preventDefault();
     return $('.add-feed').toggle();
@@ -73,23 +81,6 @@
     return $.ajax({
       type: 'POST',
       url: '/listen/podcast/all',
-      success: function(data) {
-        $('.primary').html(data);
-        return window.ajaxHelpers();
-      }
-    });
-  });
-
-  $(document).delegate('.loadFeed, .loadFeedFromItem', 'click', function(e) {
-    var data;
-    e.preventDefault();
-    data = {
-      feedID: $(this).attr('href').split('/')[3]
-    };
-    return $.ajax({
-      type: 'POST',
-      data: data,
-      url: '/listen/podcast/' + data.feedID,
       success: function(data) {
         $('.primary').html(data);
         return window.ajaxHelpers();
@@ -169,11 +160,11 @@
 
   $(document).delegate('.act-listen.active', 'click', function(e) {
     window.mediaData = {
-      podcast: $('.selected').attr("data-file"),
-      podcastTitle: $('.selected').attr("data-title"),
-      podcastID: $('.selected').attr("data-uuid"),
-      feedUUID: $('.selected').attr("data-feedUUID"),
-      feedTitle: $('.selected').attr("data-feed")
+      podcast: $('.selected').attr('data-file'),
+      podcastTitle: $('.selected').attr('data-title'),
+      podcastID: $('.selected').attr('data-uuid'),
+      feedUUID: $('.selected').attr('data-feedUUID'),
+      feedTitle: $('.selected').attr('data-feed')
     };
     if (window.mediaData.podcast.indexOf('mp4') === -1) {
       $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
@@ -197,11 +188,11 @@
   $(document).delegate('.podcastListen', 'click', function(e) {
     e.preventDefault();
     window.mediaData = {
-      podcast: $(this).attr("data-file"),
-      podcastTitle: $(this).attr("data-title"),
+      podcast: $(this).attr('data-file'),
+      podcastTitle: $(this).attr('data-title'),
       podcastID: $(this).attr('href').split('/')[3],
       feedUUID: $(this).attr('href').split('/')[2],
-      feedTitle: $(this).attr("data-feed")
+      feedTitle: $(this).attr('data-feed')
     };
     if (window.mediaData.podcast.indexOf('mp4') === -1) {
       $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
@@ -428,9 +419,10 @@
   History = State = progress = path = dir_pagination = mediaData = progress = null;
 
   $(document).ready(function() {
-    console.log(playing);
     window.ajaxHelpers();
     State = History.getState();
+    window.listen_title();
+    window.dir_title();
     window.dir_pagination();
     window.settings();
   });
@@ -461,7 +453,8 @@
              a[href="/settings"],\
              a[href="/help"],\
              a[href^="/listen/podcast/"],\
-             a[href^="/directory/category/"]', "click", function(e) {
+             a[href^="/directory/category/"],\
+             a[href^="/directory/podcast/"]', "click", function(e) {
     e.preventDefault();
     State = History.getState();
     path = $(e.currentTarget).text();
@@ -477,7 +470,7 @@
         url: '/listen',
         success: function(data) {
           $('.hark-container').replaceWith(data);
-          document.title = 'Hark | Your podcasts';
+          document.title = 'Hark | Listen';
           return window.ajaxHelpers();
         }
       });
@@ -488,7 +481,7 @@
         success: function(data) {
           $('.hark-container').html(data);
           window.dir_pagination();
-          document.title = 'Hark | The Directory';
+          document.title = 'Hark | Directory';
           return window.ajaxHelpers();
         }
       });
@@ -498,7 +491,7 @@
         url: '/settings',
         success: function(data) {
           $('.hark-container').html(data);
-          document.title = 'Hark | Your settings';
+          document.title = 'Hark | Settings';
           return window.ajaxHelpers();
         }
       });
@@ -535,7 +528,22 @@
         success: function(data) {
           $('.primary').html(data);
           window.dir_pagination();
+          document.title = 'Hark | Directory | ' + $('a[href$="' + State.hash + '"]').text();
           return window.ajaxHelpers();
+        }
+      });
+    } else if (State.hash.indexOf('/directory/podcast/') !== -1) {
+      return $.ajax({
+        type: 'POST',
+        url: State.hash,
+        error: function(err) {
+          $('#modal').html($(err.responseText));
+          return $('#modal').fadeIn(500);
+        },
+        success: function(data, textStatus, jqXHR) {
+          $('.primary').html(data);
+          document.title = 'Hark | Directory | ' + $(data).find('.podcast-item:first-of-type').attr('data-feed');
+          return ajaxHelpers();
         }
       });
     } else {
@@ -610,6 +618,14 @@
 
   wookmark = function() {};
 
+  window.dir_title = function() {
+    var category;
+    if (typeof $('.directory-main').attr('data-category') !== 'undefined') {
+      category = $('.directory-main').attr('data-category');
+      return document.title = 'Hark | Directory | ' + $('a[href$="' + category + '/"]').text();
+    }
+  };
+
   $(document).delegate('.directory-feed-subscribe', 'click', function(e) {
     e.preventDefault();
     return $.ajax({
@@ -650,6 +666,42 @@
         return window.dir_pagination();
       }
     });
+  });
+
+  $(document).on('click', '.directory-search-submit', function(e) {
+    var data;
+    e.preventDefault();
+    data = {
+      string: $('.directory-search-term').val()
+    };
+    return $.ajax({
+      type: 'POST',
+      url: '/directory/search',
+      data: data,
+      success: function(data) {
+        $('.hark-container').html(data);
+        return ajaxHelpers();
+      }
+    });
+  });
+
+  $(document).on('keypress', '.directory-search-submit', function(e) {
+    var data;
+    if (e.which === 13) {
+      e.preventDefault();
+      data = {
+        string: $('.directory-search-term').val()
+      };
+      return $.ajax({
+        type: 'POST',
+        url: '/directory/search',
+        data: data,
+        success: function(data) {
+          $('.hark-container').html(data);
+          return ajaxHelpers();
+        }
+      });
+    }
   });
 
   $(document).on('click', '.directory-sort-popularity', function(e) {
@@ -721,9 +773,7 @@
     current_page = parseInt($('.directory-main').attr('data-page'));
     if (current_page === 1) {
       $('.pagination-next').attr('href', '/directory/page/2');
-      return $('.pagination-prev').css({
-        'opacity': 0
-      });
+      return $('.pagination-prev').hide();
     } else {
       prev_page = current_page - 1;
       next_page = current_page + 1;

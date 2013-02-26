@@ -2,23 +2,30 @@
 
 .directory-main {
   position: relative;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px 10px 0px;
   margin: 80px 0 0 0;
+}
+
+.directory-none {
+  position: relative;
+  padding: 10px 20px 22px 20px;
+  margin: 110px 0 0 0;
 }
 
 .directory-item {
   position: relative;
   width: 75%;
-  margin: 0px 3.33% 40px 0;
+  margin: 0 0 40px 0;
   @include transition(all, 0.5s);
 }
 
 .directory-feed-title {
-  font-size: 24px;
-  line-height: 34px;
-  font-weight: 700;
-  color: $copy;
   padding: 26px 20px 0 20px;
+  a {
+    font-size: 24px;
+    line-height: 34px;
+    font-weight: 700;
+  }
 }
 
 .directory-feed-description {
@@ -65,8 +72,12 @@
   display: block;
 }
 
-.directory-help {
-  padding: 10px 20px 10px 20px;
+.directory-footer {
+  padding-top: 20px;
+  border-top: 1px solid transparentize($red, 0.8);
+  p {
+    padding: 0 20px 0 20px;
+  }
 }
 
 .subcategories {
@@ -86,9 +97,13 @@
 
 .category:hover > .sidebar-expander { opacity: 100; }
 
-// .directory-item:hover > .directory-feed-subscribe {
-//   border-top: 1px solid $red;
-// }
+.directory-search {
+  margin: 4px 0 6px 0;
+}
+
+.result-count {
+  padding: 26px 0 0 20px;
+}
 
 .pagination {
   width: 75%;
@@ -105,35 +120,24 @@
   }
 }
 
+.directory-individual { 
+  position: relative; 
+  width: 75%;
+}
+
 /****************************************************
 *
 * LOGGED-OUT VIEW
 *
 ****************************************************/
 
+.directory-no-login {
+  width: 75%;
+  margin: 100px 0 -40px 0;
+  padding: 0 0 0 20px;
+  h2 { padding: 10px 0 0 0; }
+}
+
 .directory-no-login { padding: 0 0 0 20px; }
 
-h2.directory-no-login { padding: 10px 0 0 20px; }
 
-.directory-signup {
-  float: right;
-  display: block;
-  font-family: 'Lato', Arial, serif;
-  font-size: 31.68px;
-  font-weight: 700;
-  font-style: italic;
-
-  // display: block;
-  // color: $red;
-  border: 0px;
-  padding: 30px 0 0 100px;
-
-  position: relative;
-  height: 70px;
-  margin: 10px 80px 60px 20px;
-  // @include background($white);
-  img {
-    position: absolute; left: 20px; top: 8px;
-    width: 60px;
-  }
-}
