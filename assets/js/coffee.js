@@ -1,21 +1,213 @@
 (function() {
+  var wookmark;
 
-  window.settings = function() {
-    $(document).delegate('.delete', 'click', function(e) {
-      e.preventDefault();
-      return $('.settings-mask, .settings-modal-error').fadeIn(200);
+  wookmark = function() {};
+
+  window.dir_title = function() {
+    var category;
+    if (typeof $('.directory-main').attr('data-category') !== 'undefined') {
+      category = $('.directory-main').attr('data-category');
+      return document.title = 'Hark | Directory | ' + $('a[href$="' + category + '/"]').text();
+    }
+  };
+
+  $(document).delegate('.directory-feed-subscribe', 'click', function(e) {
+    e.preventDefault();
+    return $.ajax({
+      type: 'POST',
+      url: $(e.currentTarget).attr('href'),
+      error: function(err) {
+        $('#modal').html($(err.responseText));
+        return $('#modal').fadeIn(500);
+      },
+      success: function(data, textStatus, jqXHR) {
+        return $(e.currentTarget).text('Subscribed!');
+      }
     });
-    return $(document).delegate('.delete-confirm', 'click', function(e) {
+  });
+
+  $(document).delegate('.category a:not(.loadAll)', 'click', function(e) {
+    e.preventDefault();
+    return $.ajax({
+      type: 'POST',
+      url: $(this).attr('href'),
+      data: $(this).attr('href'),
+      success: function(data) {
+        $('.primary').html(data);
+        console.log(data);
+        ajaxHelpers();
+        return window.dir_pagination();
+      }
+    });
+  }).delegate('.category a.loadAll', 'click', function(e) {
+    e.preventDefault();
+    return $.ajax({
+      type: 'POST',
+      url: $(this).attr('href'),
+      data: $(this).attr('href'),
+      success: function(data) {
+        $('.hark-container').html(data);
+        ajaxHelpers();
+        return window.dir_pagination();
+      }
+    });
+  });
+
+  $(document).on('click', '.directory-search-submit', function(e) {
+    var data;
+    e.preventDefault();
+    data = {
+      string: $('.directory-search-term').val()
+    };
+    return $.ajax({
+      type: 'POST',
+      url: '/directory/search',
+      data: data,
+      success: function(data) {
+        $('.hark-container').html(data);
+        return ajaxHelpers();
+      }
+    });
+  });
+
+  $(document).on('keypress', '.directory-search-submit', function(e) {
+    var data;
+    if (e.which === 13) {
       e.preventDefault();
+      data = {
+        string: $('.directory-search-term').val()
+      };
       return $.ajax({
         type: 'POST',
-        url: '/settings/delete',
+        url: '/directory/search',
+        data: data,
         success: function(data) {
-          return console.log('Deleted!');
+          $('.hark-container').html(data);
+          return ajaxHelpers();
         }
       });
+    }
+  });
+
+  $(document).on('click', '.directory-sort-popularity', function(e) {
+    if ($(this).is('.desc')) {
+      $('.directory-item').tsort({
+        attr: 'data-subs'
+      });
+      return $('.directory-sort-popularity').removeClass('desc').addClass('asc');
+    } else {
+      $('.directory-item').tsort({
+        order: 'desc',
+        attr: 'data-subs'
+      });
+      return $('.directory-sort-popularity').removeClass('asc').addClass('desc');
+    }
+  });
+
+  $(document).on('click', '.directory-sort-alphabetical', function(e) {
+    if ($(this).is('.desc')) {
+      $('.directory-item').tsort($(this).children('h1').text(), {
+        order: 'desc'
+      });
+      return $('.directory-sort-alphabetical').removeClass('desc').addClass('asc');
+    } else {
+      $('.directory-item').tsort($(this).children('h1').text(), {
+        order: 'asc'
+      });
+      return $('.directory-sort-alphabetical').removeClass('asc').addClass('desc');
+    }
+  });
+
+  $(document).on('click', '.directory-sort-latest', function(e) {
+    if ($(this).is('.desc')) {
+      $('.directory-item').tsort({
+        attr: 'data-date'
+      });
+      return $('.directory-sort-latest').removeClass('desc').addClass('asc');
+    } else {
+      $('.directory-item').tsort({
+        order: 'desc',
+        attr: 'data-date'
+      });
+      return $('.directory-sort-latest').removeClass('asc').addClass('desc');
+    }
+  });
+
+  $(document).on('click', '.directory-sort-pure-alpha', function(e) {
+    var category;
+    e.preventDefault();
+    category = null;
+    if (typeof (top.location.pathname.split('/')[3]) !== 'undefined') {
+      category = top.location.pathname.split('/')[3];
+    }
+    return $.ajax({
+      type: 'POST',
+      url: '/directory/sort-title',
+      data: {
+        category: category
+      },
+      success: function(data) {
+        $('.hark-container').html(data);
+        return ajaxHelpers();
+      }
     });
+  });
+
+  window.dir_pagination = function() {
+    var current_page, next_page, prev_page;
+    current_page = parseInt($('.directory-main').attr('data-page'));
+    if (current_page === 1) {
+      $('.pagination-next').attr('href', '/directory/page/2');
+      return $('.pagination-prev').hide();
+    } else {
+      prev_page = current_page - 1;
+      next_page = current_page + 1;
+      $('.pagination-prev').attr('href', '/directory/page/' + prev_page);
+      return $('.pagination-next').attr('href', '/directory/page/' + next_page);
+    }
   };
+
+  $(document).on('click', '.pagination-prev', function(e) {
+    var category;
+    e.preventDefault();
+    category = null;
+    if (typeof (top.location.pathname.split('/')[3]) !== 'undefined') {
+      category = top.location.pathname.split('/')[3];
+    }
+    return $.ajax({
+      type: 'POST',
+      url: $(this).attr('href'),
+      data: {
+        category: category
+      },
+      success: function(data) {
+        $('.hark-container').html(data);
+        ajaxHelpers();
+        return window.dir_pagination();
+      }
+    });
+  });
+
+  $(document).on('click', '.pagination-next', function(e) {
+    var category;
+    e.preventDefault();
+    category = null;
+    if (typeof (top.location.pathname.split('/')[3]) !== 'undefined') {
+      category = top.location.pathname.split('/')[3];
+    }
+    return $.ajax({
+      type: 'POST',
+      url: $(this).attr('href'),
+      data: {
+        category: category
+      },
+      success: function(data) {
+        $('.hark-container').html(data);
+        ajaxHelpers();
+        return window.dir_pagination();
+      }
+    });
+  });
 
 }).call(this);
 
@@ -412,421 +604,6 @@
 }).call(this);
 
 (function() {
-  var $, History, State, dir_pagination, listenHeight, mediaData, momentize, path, progress, sidebarHeight, siteUrl;
-
-  $ = jQuery;
-
-  History = State = progress = path = dir_pagination = mediaData = progress = null;
-
-  $(document).ready(function() {
-    window.ajaxHelpers();
-    State = History.getState();
-    window.listen_title();
-    window.dir_title();
-    window.dir_pagination();
-    window.settings();
-  });
-
-  window.onload = function() {
-    window.jplayer_1();
-    window.jplayer_2();
-    return window.jplayer();
-  };
-
-  window.onresize = function(event) {
-    sidebarHeight();
-    return listenHeight();
-  };
-
-  window.ajaxHelpers = function() {
-    sidebarHeight();
-    listenHeight();
-    return momentize();
-  };
-
-  History = window.History;
-
-  siteUrl = "http://" + top.location.host.toString();
-
-  $(document).delegate('a:not(.history-ignore)[href="/listen"], \
-             a[href="/directory"],\
-             a[href="/settings"],\
-             a[href="/help"],\
-             a[href^="/listen/podcast/"],\
-             a[href^="/directory/category/"],\
-             a[href^="/directory/podcast/"]', "click", function(e) {
-    e.preventDefault();
-    State = History.getState();
-    path = $(e.currentTarget).text();
-    return History.pushState({}, "", $(e.currentTarget).attr('href'));
-  });
-
-  History.Adapter.bind(window, 'statechange', function() {
-    State = History.getState();
-    History.log(State.data, State.title, State.url, State.hash);
-    if (State.hash === '/listen' || State.hash === '/listen/') {
-      return $.ajax({
-        type: 'POST',
-        url: '/listen',
-        success: function(data) {
-          $('.hark-container').replaceWith(data);
-          document.title = 'Hark | Listen';
-          return window.ajaxHelpers();
-        }
-      });
-    } else if (State.hash === '/directory' || State.hash === '/directory/') {
-      return $.ajax({
-        type: 'POST',
-        url: '/directory',
-        success: function(data) {
-          $('.hark-container').html(data);
-          window.dir_pagination();
-          document.title = 'Hark | Directory';
-          return window.ajaxHelpers();
-        }
-      });
-    } else if (State.hash === '/settings' || State.hash === '/settings/') {
-      return $.ajax({
-        type: 'POST',
-        url: '/settings',
-        success: function(data) {
-          $('.hark-container').html(data);
-          document.title = 'Hark | Settings';
-          return window.ajaxHelpers();
-        }
-      });
-    } else if (State.hash === '/help' || State.hash === '/help/') {
-      return $.ajax({
-        type: 'POST',
-        url: '/help',
-        success: function(data) {
-          $('.hark-container').html(data);
-          document.title = 'Hark | FAQ & Help';
-          return window.ajaxHelpers();
-        }
-      });
-    } else if (State.hash.indexOf('/listen/podcast/') !== -1) {
-      return $.ajax({
-        type: 'POST',
-        data: {
-          feedID: State.hash.split('/')[3]
-        },
-        url: State.hash,
-        success: function(data) {
-          $('.primary').html(data);
-          document.title = 'Hark | ' + $(data).find('.podcast-item:first-of-type').attr('data-feed');
-          return window.ajaxHelpers();
-        }
-      });
-    } else if (State.hash.indexOf('/directory/category/') !== -1) {
-      return $.ajax({
-        type: 'POST',
-        data: {
-          feedID: State.hash.split('/')[3]
-        },
-        url: State.hash,
-        success: function(data) {
-          $('.primary').html(data);
-          window.dir_pagination();
-          document.title = 'Hark | Directory | ' + $('a[href$="' + State.hash + '"]').text();
-          return window.ajaxHelpers();
-        }
-      });
-    } else if (State.hash.indexOf('/directory/podcast/') !== -1) {
-      return $.ajax({
-        type: 'POST',
-        url: State.hash,
-        error: function(err) {
-          $('#modal').html($(err.responseText));
-          return $('#modal').fadeIn(500);
-        },
-        success: function(data, textStatus, jqXHR) {
-          $('.primary').html(data);
-          document.title = 'Hark | Directory | ' + $(data).find('.podcast-item:first-of-type').attr('data-feed');
-          return ajaxHelpers();
-        }
-      });
-    } else {
-
-    }
-  });
-
-  $(document).delegate('.current-item, .current-feed', 'click', function(e) {
-    var data;
-    e.preventDefault();
-    if ($(e.currentTarget).is('.blank')) {
-      console.log('blank');
-    } else {
-      data = {
-        feedID: $(this).attr('href').split('/')[3]
-      };
-      return $.ajax({
-        type: 'POST',
-        data: data,
-        url: '/listen/podcast/' + data.feedID,
-        success: function(data) {
-          $('.primary').html(data);
-          return window.ajaxHelpers();
-        }
-      });
-    }
-  });
-
-  sidebarHeight = function() {
-    var c_height, c_width, sidebar;
-    c_width = $(window).width();
-    c_height = $(window).height();
-    sidebar = $('.sidebar');
-    return $('.sidebar').css('height', c_height - 171);
-  };
-
-  listenHeight = function() {
-    var c_height, c_width, listen;
-    c_width = $(window).width();
-    c_height = $(window).height();
-    listen = $('.primary');
-    return $('.primary').css('height', c_height - 171);
-  };
-
-  $('.modal-close').live('click', function(e) {
-    return $('#modal').fadeOut(200);
-  });
-
-  $(document).delegate('.categories li:not(.safe), .subscriptions li:not(.safe), .currently-playing li:not(.heading), .choose-settings li:not(.safe), .questions li:not(.safe)', 'hover', function(e) {
-    if (e.type === 'mouseenter') {
-      return $('.hover-er').css('top', $(e.currentTarget).offset().top + 0).css('opacity', '100').css('height', $(e.currentTarget).height());
-    } else {
-      if ($(e.currentTarget).children('.sidebar-expander').is('.expanded')) {
-
-      } else {
-        return $('.hover-er').css('opacity', '0');
-      }
-    }
-  });
-
-  momentize = function() {
-    return $('.moment').each(function(i) {
-      $(this).attr('data-date', $(this).text());
-      return $(this).text(moment($(this).text()).fromNow());
-    });
-  };
-
-}).call(this);
-
-(function() {
-  var wookmark;
-
-  wookmark = function() {};
-
-  window.dir_title = function() {
-    var category;
-    if (typeof $('.directory-main').attr('data-category') !== 'undefined') {
-      category = $('.directory-main').attr('data-category');
-      return document.title = 'Hark | Directory | ' + $('a[href$="' + category + '/"]').text();
-    }
-  };
-
-  $(document).delegate('.directory-feed-subscribe', 'click', function(e) {
-    e.preventDefault();
-    return $.ajax({
-      type: 'POST',
-      url: $(e.currentTarget).attr('href'),
-      error: function(err) {
-        $('#modal').html($(err.responseText));
-        return $('#modal').fadeIn(500);
-      },
-      success: function(data, textStatus, jqXHR) {
-        return $(e.currentTarget).text('Subscribed!');
-      }
-    });
-  });
-
-  $(document).delegate('.category a:not(.loadAll)', 'click', function(e) {
-    e.preventDefault();
-    return $.ajax({
-      type: 'POST',
-      url: $(this).attr('href'),
-      data: $(this).attr('href'),
-      success: function(data) {
-        $('.primary').html(data);
-        console.log(data);
-        ajaxHelpers();
-        return window.dir_pagination();
-      }
-    });
-  }).delegate('.category a.loadAll', 'click', function(e) {
-    e.preventDefault();
-    return $.ajax({
-      type: 'POST',
-      url: $(this).attr('href'),
-      data: $(this).attr('href'),
-      success: function(data) {
-        $('.hark-container').html(data);
-        ajaxHelpers();
-        return window.dir_pagination();
-      }
-    });
-  });
-
-  $(document).on('click', '.directory-search-submit', function(e) {
-    var data;
-    e.preventDefault();
-    data = {
-      string: $('.directory-search-term').val()
-    };
-    return $.ajax({
-      type: 'POST',
-      url: '/directory/search',
-      data: data,
-      success: function(data) {
-        $('.hark-container').html(data);
-        return ajaxHelpers();
-      }
-    });
-  });
-
-  $(document).on('keypress', '.directory-search-submit', function(e) {
-    var data;
-    if (e.which === 13) {
-      e.preventDefault();
-      data = {
-        string: $('.directory-search-term').val()
-      };
-      return $.ajax({
-        type: 'POST',
-        url: '/directory/search',
-        data: data,
-        success: function(data) {
-          $('.hark-container').html(data);
-          return ajaxHelpers();
-        }
-      });
-    }
-  });
-
-  $(document).on('click', '.directory-sort-popularity', function(e) {
-    if ($(this).is('.desc')) {
-      $('.directory-item').tsort({
-        attr: 'data-subs'
-      });
-      return $('.directory-sort-popularity').removeClass('desc').addClass('asc');
-    } else {
-      $('.directory-item').tsort({
-        order: 'desc',
-        attr: 'data-subs'
-      });
-      return $('.directory-sort-popularity').removeClass('asc').addClass('desc');
-    }
-  });
-
-  $(document).on('click', '.directory-sort-alphabetical', function(e) {
-    if ($(this).is('.desc')) {
-      $('.directory-item').tsort($(this).children('h1').text(), {
-        order: 'desc'
-      });
-      return $('.directory-sort-alphabetical').removeClass('desc').addClass('asc');
-    } else {
-      $('.directory-item').tsort($(this).children('h1').text(), {
-        order: 'asc'
-      });
-      return $('.directory-sort-alphabetical').removeClass('asc').addClass('desc');
-    }
-  });
-
-  $(document).on('click', '.directory-sort-latest', function(e) {
-    if ($(this).is('.desc')) {
-      $('.directory-item').tsort({
-        attr: 'data-date'
-      });
-      return $('.directory-sort-latest').removeClass('desc').addClass('asc');
-    } else {
-      $('.directory-item').tsort({
-        order: 'desc',
-        attr: 'data-date'
-      });
-      return $('.directory-sort-latest').removeClass('asc').addClass('desc');
-    }
-  });
-
-  $(document).on('click', '.directory-sort-pure-alpha', function(e) {
-    var category;
-    e.preventDefault();
-    category = null;
-    if (typeof (top.location.pathname.split('/')[3]) !== 'undefined') {
-      category = top.location.pathname.split('/')[3];
-    }
-    return $.ajax({
-      type: 'POST',
-      url: '/directory/sort-title',
-      data: {
-        category: category
-      },
-      success: function(data) {
-        $('.hark-container').html(data);
-        return ajaxHelpers();
-      }
-    });
-  });
-
-  window.dir_pagination = function() {
-    var current_page, next_page, prev_page;
-    current_page = parseInt($('.directory-main').attr('data-page'));
-    if (current_page === 1) {
-      $('.pagination-next').attr('href', '/directory/page/2');
-      return $('.pagination-prev').hide();
-    } else {
-      prev_page = current_page - 1;
-      next_page = current_page + 1;
-      $('.pagination-prev').attr('href', '/directory/page/' + prev_page);
-      return $('.pagination-next').attr('href', '/directory/page/' + next_page);
-    }
-  };
-
-  $(document).on('click', '.pagination-prev', function(e) {
-    var category;
-    e.preventDefault();
-    category = null;
-    if (typeof (top.location.pathname.split('/')[3]) !== 'undefined') {
-      category = top.location.pathname.split('/')[3];
-    }
-    return $.ajax({
-      type: 'POST',
-      url: $(this).attr('href'),
-      data: {
-        category: category
-      },
-      success: function(data) {
-        $('.hark-container').html(data);
-        ajaxHelpers();
-        return window.dir_pagination();
-      }
-    });
-  });
-
-  $(document).on('click', '.pagination-next', function(e) {
-    var category;
-    e.preventDefault();
-    category = null;
-    if (typeof (top.location.pathname.split('/')[3]) !== 'undefined') {
-      category = top.location.pathname.split('/')[3];
-    }
-    return $.ajax({
-      type: 'POST',
-      url: $(this).attr('href'),
-      data: {
-        category: category
-      },
-      success: function(data) {
-        $('.hark-container').html(data);
-        ajaxHelpers();
-        return window.dir_pagination();
-      }
-    });
-  });
-
-}).call(this);
-
-(function() {
   var mediaData, progress;
 
   window.mediaData = progress = null;
@@ -1060,6 +837,229 @@
     }).on('mouseup', function(e) {
       $('.video-resize').off;
       return $(window).unbind('mousemove');
+    });
+  };
+
+}).call(this);
+
+(function() {
+
+  window.settings = function() {
+    $(document).delegate('.delete', 'click', function(e) {
+      e.preventDefault();
+      return $('.settings-mask, .settings-modal-error').fadeIn(200);
+    });
+    return $(document).delegate('.delete-confirm', 'click', function(e) {
+      e.preventDefault();
+      return $.ajax({
+        type: 'POST',
+        url: '/settings/delete',
+        success: function(data) {
+          return console.log('Deleted!');
+        }
+      });
+    });
+  };
+
+}).call(this);
+
+(function() {
+  var $, History, State, dir_pagination, listenHeight, mediaData, momentize, path, progress, sidebarHeight, siteUrl;
+
+  $ = jQuery;
+
+  History = State = progress = path = dir_pagination = mediaData = progress = null;
+
+  $(document).ready(function() {
+    window.ajaxHelpers();
+    State = History.getState();
+    window.listen_title();
+    window.dir_title();
+    window.dir_pagination();
+    window.settings();
+  });
+
+  window.onload = function() {
+    window.jplayer_1();
+    window.jplayer_2();
+    return window.jplayer();
+  };
+
+  window.onresize = function(event) {
+    sidebarHeight();
+    return listenHeight();
+  };
+
+  window.ajaxHelpers = function() {
+    sidebarHeight();
+    listenHeight();
+    return momentize();
+  };
+
+  History = window.History;
+
+  siteUrl = "http://" + top.location.host.toString();
+
+  $(document).delegate('a:not(.history-ignore)[href="/listen"], \
+             a[href="/directory"],\
+             a[href="/settings"],\
+             a[href="/help"],\
+             a[href^="/listen/podcast/"],\
+             a[href^="/directory/category/"],\
+             a[href^="/directory/podcast/"]', "click", function(e) {
+    e.preventDefault();
+    State = History.getState();
+    path = $(e.currentTarget).text();
+    return History.pushState({}, "", $(e.currentTarget).attr('href'));
+  });
+
+  History.Adapter.bind(window, 'statechange', function() {
+    State = History.getState();
+    History.log(State.data, State.title, State.url, State.hash);
+    if (State.hash === '/listen' || State.hash === '/listen/') {
+      return $.ajax({
+        type: 'POST',
+        url: '/listen',
+        success: function(data) {
+          $('.hark-container').replaceWith(data);
+          document.title = 'Hark | Listen';
+          return window.ajaxHelpers();
+        }
+      });
+    } else if (State.hash === '/directory' || State.hash === '/directory/') {
+      return $.ajax({
+        type: 'POST',
+        url: '/directory',
+        success: function(data) {
+          $('.hark-container').html(data);
+          window.dir_pagination();
+          document.title = 'Hark | Directory';
+          return window.ajaxHelpers();
+        }
+      });
+    } else if (State.hash === '/settings' || State.hash === '/settings/') {
+      return $.ajax({
+        type: 'POST',
+        url: '/settings',
+        success: function(data) {
+          $('.hark-container').html(data);
+          document.title = 'Hark | Settings';
+          return window.ajaxHelpers();
+        }
+      });
+    } else if (State.hash === '/help' || State.hash === '/help/') {
+      return $.ajax({
+        type: 'POST',
+        url: '/help',
+        success: function(data) {
+          $('.hark-container').html(data);
+          document.title = 'Hark | FAQ & Help';
+          return window.ajaxHelpers();
+        }
+      });
+    } else if (State.hash.indexOf('/listen/podcast/') !== -1) {
+      return $.ajax({
+        type: 'POST',
+        data: {
+          feedID: State.hash.split('/')[3]
+        },
+        url: State.hash,
+        success: function(data) {
+          $('.primary').html(data);
+          document.title = 'Hark | ' + $(data).find('.podcast-item:first-of-type').attr('data-feed');
+          return window.ajaxHelpers();
+        }
+      });
+    } else if (State.hash.indexOf('/directory/category/') !== -1) {
+      return $.ajax({
+        type: 'POST',
+        data: {
+          feedID: State.hash.split('/')[3]
+        },
+        url: State.hash,
+        success: function(data) {
+          $('.primary').html(data);
+          window.dir_pagination();
+          document.title = 'Hark | Directory | ' + $('a[href$="' + State.hash + '"]').text();
+          return window.ajaxHelpers();
+        }
+      });
+    } else if (State.hash.indexOf('/directory/podcast/') !== -1) {
+      return $.ajax({
+        type: 'POST',
+        url: State.hash,
+        error: function(err) {
+          $('#modal').html($(err.responseText));
+          return $('#modal').fadeIn(500);
+        },
+        success: function(data, textStatus, jqXHR) {
+          $('.primary').html(data);
+          document.title = 'Hark | Directory | ' + $(data).find('.podcast-item:first-of-type').attr('data-feed');
+          return ajaxHelpers();
+        }
+      });
+    } else {
+
+    }
+  });
+
+  $(document).delegate('.current-item, .current-feed', 'click', function(e) {
+    var data;
+    e.preventDefault();
+    if ($(e.currentTarget).is('.blank')) {
+      console.log('blank');
+    } else {
+      data = {
+        feedID: $(this).attr('href').split('/')[3]
+      };
+      return $.ajax({
+        type: 'POST',
+        data: data,
+        url: '/listen/podcast/' + data.feedID,
+        success: function(data) {
+          $('.primary').html(data);
+          return window.ajaxHelpers();
+        }
+      });
+    }
+  });
+
+  sidebarHeight = function() {
+    var c_height, c_width, sidebar;
+    c_width = $(window).width();
+    c_height = $(window).height();
+    sidebar = $('.sidebar');
+    return $('.sidebar').css('height', c_height - 171);
+  };
+
+  listenHeight = function() {
+    var c_height, c_width, listen;
+    c_width = $(window).width();
+    c_height = $(window).height();
+    listen = $('.primary');
+    return $('.primary').css('height', c_height - 171);
+  };
+
+  $('.modal-close').live('click', function(e) {
+    return $('#modal').fadeOut(200);
+  });
+
+  $(document).delegate('.categories li:not(.safe), .subscriptions li:not(.safe), .currently-playing li:not(.heading), .choose-settings li:not(.safe), .questions li:not(.safe)', 'hover', function(e) {
+    if (e.type === 'mouseenter') {
+      return $('.hover-er').css('top', $(e.currentTarget).offset().top + 0).css('opacity', '100').css('height', $(e.currentTarget).height());
+    } else {
+      if ($(e.currentTarget).children('.sidebar-expander').is('.expanded')) {
+
+      } else {
+        return $('.hover-er').css('opacity', '0');
+      }
+    }
+  });
+
+  momentize = function() {
+    return $('.moment').each(function(i) {
+      $(this).attr('data-date', $(this).text());
+      return $(this).text(moment($(this).text()).fromNow());
     });
   };
 

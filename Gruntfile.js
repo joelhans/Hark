@@ -1,19 +1,13 @@
 module.exports = function(grunt) {
 
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-compass');
   grunt.loadNpmTasks('grunt-reload');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
 
   grunt.initConfig({
-
-    //
-    // BUILD
-    //
-
-    build: {
-      files: [ 'assets/scss/*.scss', 'assets/coffee/*.coffee' ],
-      tasks: [ 'compass', 'coffee', 'concat', 'min' ]
-    },
 
     //
     // WATCHING
@@ -67,10 +61,11 @@ module.exports = function(grunt) {
       }
     },
 
-    min: {
-      dist: {
-        src: ['assets/js/app.js'],
-        dest: 'public/js/app.js'
+    uglify: {
+      build: {
+        files: {
+          'build/public/js/app.js': ['assets/js/app.js']
+        }
       }
     },
 
@@ -90,7 +85,7 @@ module.exports = function(grunt) {
       },
       build: {
         src: 'assets/scss',
-        dest: 'public/css',
+        dest: 'build/public/css',
         linecomments: false,
         forcecompile: true,
         require: [
@@ -106,11 +101,25 @@ module.exports = function(grunt) {
     reload: {
       port: 35729, // LR default
       liveReload: {}
+    },
+
+    copy: {
+      main: {
+        files: [
+          {src: ['lib/**'], dest: 'build/'},
+          {src: ['public/**'], dest: 'build/'},
+          {src: ['views/**'], dest: 'build/'},
+          {src: ['app.js'], dest: 'build/', filter: 'isFile'},
+          {src: ['favicon.ico'], dest: 'build/', filter: 'isFile'},
+          {src: ['package.json'], dest: 'build/', filter: 'isFile'}
+        ]
+      }
     }
 
   });
 
   grunt.registerTask('dev', ['coffee', 'concat:dev', 'compass:dev']);
-  grunt.registerTask('build', ['coffee', 'concat:build', 'compass:build', 'min']);
+  grunt.registerTask('build', ['copy', 'coffee', 'concat:build', 'compass:build', 'uglify:build']);
+  // grunt.registerTask('build', ['coffee', 'concat:build', 'compass:build', 'min']);
   
 };
