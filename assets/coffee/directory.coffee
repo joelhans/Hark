@@ -140,7 +140,7 @@ window.dir_pagination = () ->
   current_page = parseInt($('.directory-main').attr 'data-page')
   if current_page is 1
     $('.pagination-next').attr('href', '/directory/page/2')
-    $('.pagination-prev').css({'opacity': 0})
+    $('.pagination-prev').hide()
   else
     prev_page = current_page - 1
     next_page = current_page + 1

@@ -22,7 +22,7 @@ section.actions
 //- FOR DIRECTORY LISTINGS
 
 - if (individual != true)
-  - if (directory.length >= 0)
+  - if (directory.length > 0)
     ul.directory-main.clearfix(data-page='' + page, data-category='' + category)
 
       -if (typeof(result_count) != 'undefined') 
@@ -45,13 +45,18 @@ section.actions
               - else
                 span.moment.no-d #{feed.pods[0].podDate}
 
-    -if (page != false)
+    - if (page != false)
       div.pagination.clearfix
         p
           a.pagination-prev(href="/directory/") &larr; Previous
-        - if (final_page != true)
+        - if (final_page == false)
           p
             a.pagination-next(href="/directory/page/2") Next &rarr;
+
+  - else
+    div.directory-main.directory-none.clearfix(data-category='' + category)
+      p Sorry, nothing found here.
+      p Recommend a podcast by sending an e-mail to <a href="mailto:admin@harkhq.com">admin@harkhq.com</a>.
 
 - else if (individual = true)
   div.directory-main.clearfix
@@ -80,10 +85,8 @@ section.actions
                 p!= podcast.podDesc
                 p.description-warning A note: Don't blame Hark for poorly-sourced descriptions. Tell your favorite podcast to make a proper RSS feed!
 
-- else
-    div.directory-main.clearfix(data-page='' + page, data-category='' + category)
-    p Sorry, nothing found here.
-    p Recommend a podcast by sending an e-mail to <a href="mailto:admin@harkhq.com">admin@harkhq.com</a>.
 
-p.directory-help The Hark Directory: 169 podcasts, and counting.
-p.directory-help Have a podcast that you want in the Hark Directory? Having a problem subscribing to a particular podcast? Send me an e-mail at <a href="mailto:admin@harkhq.com">admin@harkhq.com</a>.
+
+div.directory-footer
+  p The Hark Directory: 169 podcasts, and counting.
+  p Have a podcast that you want in the Hark Directory? Having a problem subscribing to a particular podcast? Send me an e-mail at <a href="mailto:admin@harkhq.com">admin@harkhq.com</a>.

@@ -17,7 +17,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
       # After that, we send a general query to to the database.
       #
       Directory.count { 'categories' : { $in : [req.body.category] } }, (err, count) ->
-        Directory.find({ 'categories' : { $in : [req.body.category] } }).limit(1).skip(min).sort([['subscriptions','descending']]).toArray (err, result) ->
+        Directory.find({ 'categories' : { $in : [req.body.category] } }).limit(10).skip(min).sort([['subscriptions','descending']]).toArray (err, result) ->
           #
           # If there's an error...
           #
@@ -30,9 +30,9 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           #
           # We check if we should build out another page or not.
           #
-          console.log page, max, count
           if max >= count
             final_page = true
+          console.log page, max, count, final_page
 
           #
           # If everything goes as planned, we send our data to the client.
@@ -72,6 +72,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           console.log page, max, count
           if max >= count
             final_page = true
+          console.log page, max, count, final_page
 
           #
           # If everything goes as planned, we send our data to the client.

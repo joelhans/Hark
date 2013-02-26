@@ -6,6 +6,12 @@
   margin: 80px 0 0 0;
 }
 
+.directory-none {
+  position: relative;
+  padding: 10px 20px 22px 20px;
+  margin: 110px 0 0 0;
+}
+
 .directory-item {
   position: relative;
   width: 75%;
@@ -66,8 +72,12 @@
   display: block;
 }
 
-.directory-help {
-  padding: 10px 20px 10px 20px;
+.directory-footer {
+  padding-top: 20px;
+  border-top: 1px solid transparentize($red, 0.8);
+  p {
+    padding: 0 20px 0 20px;
+  }
 }
 
 .subcategories {
