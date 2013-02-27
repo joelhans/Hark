@@ -1917,43 +1917,47 @@ nav.home a {
   clear: both;
 }
 /* line 107, ../../assets/scss/_home.scss */
-.home-podcasts h1 {
-  font-size: 28px;
+.home-podcasts h1 a {
+  font-size: 24px;
   line-height: 32px;
   color: #f2f2f2;
 }
-/* line 112, ../../assets/scss/_home.scss */
+/* line 111, ../../assets/scss/_home.scss */
+.home-podcasts h1 a:hover {
+  color: #3b8183;
+}
+/* line 113, ../../assets/scss/_home.scss */
 .home-podcasts h2 {
   font-size: 20px;
   color: #2a083d;
   padding-bottom: 30px;
 }
 
-/* line 119, ../../assets/scss/_home.scss */
+/* line 120, ../../assets/scss/_home.scss */
 .home-podcasts ul li {
   width: 23.94366%;
   float: left;
   margin-right: 1.40845%;
   display: inline;
-  min-height: 200px;
+  min-height: 230px;
   text-align: left;
   margin-bottom: 0px;
   padding-bottom: 20px;
 }
-/* line 125, ../../assets/scss/_home.scss */
+/* line 126, ../../assets/scss/_home.scss */
 .home-podcasts ul li:nth-of-type(4n) {
   float: right;
   margin-right: 0;
   #margin-left: -1em;
   display: inline;
 }
-/* line 128, ../../assets/scss/_home.scss */
+/* line 129, ../../assets/scss/_home.scss */
 .home-podcasts ul li h1 {
   font-size: 22px;
   line-height: 26px;
 }
 
-/* line 134, ../../assets/scss/_home.scss */
+/* line 135, ../../assets/scss/_home.scss */
 .wrapper-blue {
   background: #3b8183;
   width: 100%;
@@ -1963,7 +1967,7 @@ nav.home a {
   *zoom: 1;
 }
 
-/* line 142, ../../assets/scss/_home.scss */
+/* line 143, ../../assets/scss/_home.scss */
 .home-footer {
   *zoom: 1;
   max-width: 71em;
@@ -1979,28 +1983,28 @@ nav.home a {
   display: table;
   clear: both;
 }
-/* line 144, ../../assets/scss/_home.scss */
+/* line 145, ../../assets/scss/_home.scss */
 .home-footer a {
   color: #f2f2f2;
 }
-/* line 146, ../../assets/scss/_home.scss */
+/* line 147, ../../assets/scss/_home.scss */
 .home-footer a:hover {
   color: #e2846d;
 }
 
-/* line 152, ../../assets/scss/_home.scss */
+/* line 153, ../../assets/scss/_home.scss */
 .home-footer-left {
   width: 32.39437%;
   float: left;
   margin-right: 1.40845%;
   display: inline;
 }
-/* line 154, ../../assets/scss/_home.scss */
+/* line 155, ../../assets/scss/_home.scss */
 .home-footer-left a {
   margin: 0 40px 0 0;
 }
 
-/* line 157, ../../assets/scss/_home.scss */
+/* line 158, ../../assets/scss/_home.scss */
 .home-footer-right {
   width: 66.19718%;
   float: right;

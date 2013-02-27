@@ -104,10 +104,11 @@ nav.home {
 .home-podcasts {
   @include container;
   text-align: center;
-  h1 {
-    font-size: 28px;
+  h1 a {
+    font-size: 24px;
     line-height: 32px;
     color: $white;
+    &:hover { color: $blue; }
   }
   h2 {
     font-size: 20px;
@@ -118,7 +119,7 @@ nav.home {
 
 .home-podcasts ul li {
   @include span-columns(3, 12);
-  min-height: 200px;
+  min-height: 230px;
   text-align: left;
   margin-bottom: 0px;
   padding-bottom: 20px;
