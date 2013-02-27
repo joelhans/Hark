@@ -6,6 +6,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-reload');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-replace');
 
   grunt.initConfig({
 
@@ -120,12 +121,27 @@ module.exports = function(grunt) {
           {src: ['package.json'], dest: 'build/', filter: 'isFile'}
         ]
       }
+    },
+
+    replace: {
+      dist: {
+        options: {
+          variables: {
+            'timestamp': '<%= new Date().getTime() %>'
+          }
+        },
+        files: {
+          'build/views/layout/head.jade': [
+            'build/views/layout/head.jade'
+          ]
+        }
+      }
     }
 
   });
 
   grunt.registerTask('dev', ['coffee:dev', 'concat:dev', 'compass:dev']);
-  grunt.registerTask('build', ['copy', 'coffee:build', 'concat:build', 'compass:build', 'uglify:build']);
+  grunt.registerTask('build', ['copy', 'coffee:build', 'concat:build', 'compass:build', 'uglify:build', 'replace']);
   // grunt.registerTask('build', ['coffee', 'concat:build', 'compass:build', 'min']);
   
 };
