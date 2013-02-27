@@ -29,9 +29,14 @@ module.exports = function(grunt) {
     //
 
     coffee: {
-      compile: {
+      dev: {
         files: {
-          'assets/js/coffee.js': ['assets/coffee/*.coffee'], // compile and concat into single file
+          'assets/js/coffee.js': ['assets/coffee/*.coffee']
+        }
+      },
+      build: {
+        files: {
+          'build/assets/js/coffee.js': ['build/assets/coffee/*.coffee']
         }
       }
     },
@@ -50,11 +55,11 @@ module.exports = function(grunt) {
       },
       build: {
         src: [ 
-          'assets/js/vendor/jquery.jplayer.js',
-          'assets/js/vendor/jquery.tinysort.js',
-          'assets/js/vendor/jquery.history.js',
-          'assets/js/vendor/jquery.moment.js',
-          'assets/js/coffee.js'
+          'build/assets/js/vendor/jquery.jplayer.js',
+          'build/assets/js/vendor/jquery.tinysort.js',
+          'build/assets/js/vendor/jquery.history.js',
+          'build/assets/js/vendor/jquery.moment.js',
+          'build/assets/js/coffee.js'
         ],
         dest: 'assets/js/app.js',
         separator: ';'
@@ -84,7 +89,7 @@ module.exports = function(grunt) {
         outputstyle: 'expanded'
       },
       build: {
-        src: 'assets/scss',
+        src: 'build/assets/scss',
         dest: 'build/public/css',
         linecomments: false,
         forcecompile: true,
@@ -106,6 +111,7 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: [
+          {src: ['assets/**'], dest: 'build/'},
           {src: ['lib/**'], dest: 'build/'},
           {src: ['public/**'], dest: 'build/'},
           {src: ['views/**'], dest: 'build/'},
@@ -118,8 +124,8 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('dev', ['coffee', 'concat:dev', 'compass:dev']);
-  grunt.registerTask('build', ['copy', 'coffee', 'concat:build', 'compass:build', 'uglify:build']);
+  grunt.registerTask('dev', ['coffee:dev', 'concat:dev', 'compass:dev']);
+  grunt.registerTask('build', ['copy', 'coffee:build', 'concat:build', 'compass:build', 'uglify:build']);
   // grunt.registerTask('build', ['coffee', 'concat:build', 'compass:build', 'min']);
   
 };
