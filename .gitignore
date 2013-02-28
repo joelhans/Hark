@@ -8,3 +8,5 @@ hark_directory/
 public/css/
 public/js/
 build/
+assets/js/coffee.js
+assets/js/app.js
