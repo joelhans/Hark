@@ -142,6 +142,5 @@ module.exports = function(grunt) {
 
   grunt.registerTask('dev', ['coffee:dev', 'concat:dev', 'compass:dev']);
   grunt.registerTask('build', ['copy', 'coffee:build', 'concat:build', 'compass:build', 'uglify:build', 'replace:build']);
-  // grunt.registerTask('build', ['coffee', 'concat:build', 'compass:build', 'min']);
-  
+
 };
