@@ -377,9 +377,6 @@ app.get('/listen/podcast/:id', loadUser, function(req, res) {
 
 app.post('/listen/:feed/:_id', loadUser, function(req, res) {
   harkUser.playing = req.body;
-
-  console.log(harkUser.playing);
-
   Users.findAndModify({ 'userID':  harkUser.userID }, [], { $set: { 'playing' : req.body } }, { new:true, safe:true }, function(err, result) {
     res.partial('player/currently-playing', { playing: result.playing });
   });
@@ -392,11 +389,12 @@ app.post('/listen/:feed/:_id', loadUser, function(req, res) {
 
 app.post('/listen/:feed/listened/:id', loadUser, function(req, res) {
   harkUser.playing = {};
-  console.log(req.params);
-  console.log(req.body);
   Feeds.findAndModify({ 'owner': harkUser.userID, 'pods.podUUID' : req.params.id }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
-    if(err) { throw err; }
-      res.send(result);
+    if (err) { 
+      throw err;
+      res.send(500);
+    }
+    res.send(200);
   });
 });
 
@@ -407,7 +405,11 @@ app.post('/listen/:feed/listened/:id', loadUser, function(req, res) {
 app.post('/listen/playing', loadUser, function(req, res) {
   harkUser.playing = req.body;
   Users.findAndModify({ 'userID':  harkUser.userID }, [], { $set: { 'playing' : req.body } }, { new:true }, function(err, result) {
-    res.send(result);
+    if (err) {
+      throw err;
+      res.send(500);
+    }
+    res.send(200);
   });
 });
 
