@@ -162,8 +162,6 @@ $(document)
     $(e.currentTarget).addClass('selected')
     $('.act-listen, .act-mark, .act-read, .act-source, .act-download').removeClass('inactive').addClass('active')
 
-
-
 # De-select a podcast
 
 $(document)
@@ -196,8 +194,11 @@ $(document)
       type    : 'POST'
       url     : '/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
       data    : window.mediaData
+      error: (data) ->
+        console.log data
       success : (data) ->
-        $('.currently-playing').html(data)
+        $('.current-feed').text(window.mediaData.feedTitle)
+        $('.currently-playing li:last-of-type p').text(window.mediaData.podcastTitle)
 
 $(document)
   .delegate '.podcastListen', 'click', (e) ->
@@ -222,8 +223,11 @@ $(document)
       type    : 'POST'
       url     : '/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
       data    : window.mediaData
+      error: (data) ->
+        console.log data
       success : (data) ->
-        $('.currently-playing').html(data)
+        $('.current-feed').text(window.mediaData.feedTitle)
+        $('.currently-playing li:last-of-type p').text(window.mediaData.podcastTitle)
 
 # Mark a podcast as "listened."
 
@@ -235,8 +239,6 @@ $(document)
     data =
       id   : $('.selected').attr('data-uuid')
       feed : $('.selected').attr('data-feedUUID')
-
-    console.log data, delegator
 
     if delegator is 'all'
       $('.selected')
@@ -280,7 +282,6 @@ $(document)
 
 $(document)
   .delegate '.item-actions-read', 'click', (e) ->
-    console.log 'hi'
     $(e.currentTarget).parent().parent().children('.podcastDescription').toggle(500)
 
 # Go through to external link
