@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 1.5.0
+//  Current version: 1.5.2
 //
 //  Hark is your personal radio station. Podcasts. Radio. Revolutionized.
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark

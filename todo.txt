@@ -2,24 +2,16 @@
 TODO
 --------------------------------
 
-1.5
----------
-[x] --  Directory
-  [x] --  Improved (working) pagination.
-  [x] --  Search for podcasts.
-  [x] --  Individual podcast pages.
-
-
---------------------------------
-ROADMAP
---------------------------------
-
-  1.6
-  ----------
+1.6
+----------
   [ ] --  Have a variety of keyboard shortcuts for various important functions.
   [ ] --  Allow user to save listening progress in one podcast, listen to another one, and resume where they left off.
   [ ] --  Investigate a way to integrate the Directory individual pages with a user's own version. Is that even possible? At the very least, a check to show that a user is already subscribed.
   [ ] --  Add a Directory check to show when certain podcasts are already subscribed to.
+
+--------------------------------
+ROADMAP
+--------------------------------
 
   1.7
   ----------
@@ -27,6 +19,8 @@ ROADMAP
             * Users will be able to "tag" podcasts for certain categories (technology, design, etc).
             * Or, they will be able to drag-and-drop them into buckets.
             * Maybe both.
+  [ ] --  Suggestions
+            * 
 
   1.8
   ----------
@@ -214,6 +208,13 @@ HISTORY
     [x] --  Fix updating for directory-based feeds.
     [-] --  Add a check so that if a user tries to manually add a feed that's in the Directory, they get the Directory version anyway.
     [x] --  Fix unsubscribing to feeds. Some error is hit.
+
+  1.5
+  ---------
+  [x] --  Directory
+    [x] --  Improved (working) pagination.
+    [x] --  Search for podcasts.
+    [x] --  Individual podcast pages.
 
 --------------------------------
 FEATURES
