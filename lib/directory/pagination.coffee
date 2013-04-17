@@ -51,7 +51,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
     # If not, we are in the main directory.
     #
     else
-     #
+      #
       # We have to first count the number of items in the whole collection.
       # After that, we send a general query to to the database.
       #
