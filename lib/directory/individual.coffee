@@ -7,7 +7,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
         req.flash 'error', 'Sorry, there was an error.'
         res.partial 'layout/modal', { flash: req.flash() }
         return
-      res.render 'directory'
+      res.render 'directory',
         locals:
           result     : result
           user       : harkUser
