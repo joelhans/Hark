@@ -66,7 +66,6 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
         req_build = []
 
         for i in [0...10]
-          console.log typeof feed.item.title
           # This catches to see if there is an array of items.
           if (typeof feed.item[_i] isnt "undefined") && (typeof feed.item[_i].enclosure isnt "undefined")
             FeedCatches(feed.item[_i], req_build)

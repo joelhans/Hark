@@ -36,6 +36,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
                         pod_data['feedTitle'] = result.title
                         pod_data['feedUUID']  = result.uuid
                         pod_data['feedDesc']  = result.description
+                        console.log pod_data
                         podcast_list.push pod_data
 
                   else if scope isnt 'all'
@@ -58,6 +59,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
                   pod_data['feedTitle'] = feed.title
                   pod_data['feedUUID']  = feed.uuid
                   pod_data['feedDesc']  = feed.description
+                  console.log pod_data
 
                   if podcast.listened isnt 'true'
                     podcast_list.push pod_data
@@ -75,16 +77,8 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
             # Sort our podcast list by date.
             if typeof podcast_list[0] isnt "undefined"
               podcast_list.sort (a , b) ->
-                if typeof(a['podDate']['_d']) is "object"
-                  sort_a = moment(a['podDate']['_d']).valueOf()
-                else 
-                  sort_a = moment(a['podDate']).valueOf()
-
-                if typeof(b['podDate']['_d']) is "object"
-                  sort_b = moment(b['podDate']['_d']).valueOf()
-                else
-                  sort_b = moment(b['podDate']).valueOf()
-
+                sort_a = moment(a['podDate']).valueOf()
+                sort_b = moment(b['podDate']).valueOf()
                 return sort_b - sort_a
 
             sidebar_loop(feed_list, podcast_list, meta)
