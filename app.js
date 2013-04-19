@@ -21,6 +21,7 @@
 var express    = require('express')
   , http       = require('http')
   , url        = require('url')
+  , coffee     = require('coffee-script')
   , crypto     = require('crypto')
   , request    = require('request')
   , async      = require('async')
@@ -29,10 +30,10 @@ var express    = require('express')
   , bcrypt     = require('bcrypt')
   , moment     = require('moment')
   , mongodb    = require('mongodb')
-  , conf       = require('./lib/conf')
   , connect    = require('connect')
-  , coffee     = require('coffee-script')
-  , gzippo     = require('gzippo');
+  , gzippo     = require('gzippo')
+  , flash      = require('connect-flash')
+  , conf       = require('./lib/conf');
 
 var parser = new xml2js.Parser();
 
@@ -56,10 +57,7 @@ var Users     = new mongodb.Collection(db, 'Users')
 //  ---------------------------------------
 
 var passport         = require('passport')
-  , LocalStrategy    = require('passport-local').Strategy
-  , TwitterStrategy  = require('passport-twitter').Strategy
-  , FacebookStrategy = require('passport-facebook').Strategy
-  , GoogleStrategy   = require('passport-google').Strategy;
+  , LocalStrategy    = require('passport-local').Strategy;
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -91,88 +89,16 @@ passport.use(new LocalStrategy({
   }
 ));
 
-passport.use(new TwitterStrategy({
-    consumerKey: conf.twitter.consumerKey,
-    consumerSecret: conf.twitter.consumerSecret,
-    callbackURL: "http://listen.harkhq.com/auth/twitter/callback"
-  },
-  function(token, tokenSecret, profile, done) {
-    Users.findOne({ 'userID': profile.id }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        var twitterUser = {
-          userID     : profile.id,
-          username   : profile.displayName
-        }
-        Users.insert(twitterUser, {safe:true}, function(err, newUser) {
-          return done(null, newUser);
-        });
-      }
-      else {
-        return done(null, user);
-      }
-    });
-  }
-));
-
-passport.use(new FacebookStrategy({
-    clientID: conf.facebook.appId,
-    clientSecret: conf.facebook.appSecret,
-    callbackURL: "http://listen.harkhq.com/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    Users.findOne({ 'userID': profile.id }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        var facebookUser = {
-          userID     : profile.id,
-          username   : profile.displayName
-        };
-        Users.insert(facebookUser, {safe:true}, function(err, newUser) {
-          return done(null, newUser);
-        });
-      }
-      else {
-        return done(null, user);
-      }
-    });
-  }
-));
-
-passport.use(new GoogleStrategy({
-    returnURL: 'http://listen.harkhq.com/auth/google/return',
-    realm: 'http://*.harkhq.com'
-  },
-  function(identifier, profile, done) {
-    Users.findOne({ 'userID': profile.id }, function(err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        var googleUser = {
-          userID     : profile.emails[0].value,
-          username   : profile.displayName
-        };
-        Users.insert(googleUser, {safe:true}, function(err, newUser) {
-          return done(null, newUser);
-        });
-      }
-      else {
-        return done(null, user);
-      }
-    });
-  }
-));
-
 //  ---------------------------------------
 //  EXPRESS CONFIGURATION
 //  ---------------------------------------
 
-var app = module.exports = express.createServer();
+var app = express();
 
 app.configure(function() {
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.set("view options", { layout: false });
-  // app.use(express.logger());
   app.use(express.cookieParser(conf.session.cookieParser));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -186,10 +112,10 @@ app.configure(function() {
     }
     }
   ));
+  app.use(flash());
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(app.router);
-  // app.use(express.static(__dirname + '/public'));
   app.use(gzippo.staticGzip(__dirname + '/public'));
 });
 
@@ -230,267 +156,11 @@ function loadUser(req, res, next) {
   res.redirect('/');
 }
 
-require('./lib/users.js')(app, express, loadUser, Users, Feeds, db, bcrypt, nodemailer);
+require('./lib/routes')(app, express, loadUser, Users, Feeds, Directory, db, moment, ObjectID)
+require('./lib/users-js.js')(app, express, loadUser, Users, Directory, Feeds, db, bcrypt, nodemailer);
+require('./lib/users')(app, express, loadUser, Users, Directory, Feeds, db, bcrypt, nodemailer, crypto, passport);
 require('./lib/feeds.js')(app, express, loadUser, Users, Feeds, Directory, db, moment, ObjectID);
-require('./lib/directory.js')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID);
-
-//  ---------------------------------------
-//  ROUTES
-//  ---------------------------------------
-
-app.get('/', loadUser, function(req, res) {
-  res.render('home');
-});
-
-app.get('/signup', loadUser, function(req, res) {
-  res.render('signup');
-});
-
-app.get('/login', loadUser, function(req, res) {
-  res.render('login', { message: req.flash('error') });
-});
-
-app.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/', failureFlash: true }),
-  function(req, res) {
-    res.redirect('/listen');
-  });
-
-app.get('/auth/twitter', passport.authenticate('twitter'));
-
-app.get('/auth/twitter/callback', 
-  passport.authenticate('twitter', { failureRedirect: '/', failureFlash: true }),
-  function(req, res) {
-    res.redirect('/listen');
-  });
-
-app.get('/auth/facebook', passport.authenticate('facebook'));
-
-app.get('/auth/facebook/callback', 
-  passport.authenticate('facebook', { failureRedirect: '/', failureFlash: true }),
-  function(req, res) {
-    res.redirect('/listen');
-  });
-
-app.get('/auth/google', passport.authenticate('google'));
-
-app.get('/auth/google/return', 
-  passport.authenticate('google', { failureRedirect: '/', failureFlash: true }),
-  function(req, res) {
-    res.redirect('/listen');
-  });
-
-app.get('/forgot', function(req, res) {
-  res.render('forgot');
-});
-
-//
-//  LOGOUT
-//
-
-app.get('/logout', function(req, res){
-  req.logOut();
-  res.redirect('/login');
-});
-
-//
-//  THE DEFAULT VIEW
-//
-
-app.get('/listen', loadUser, function(req, res) {
-  getFeeds(harkUser.userID, 'all', function(error, feeds, podcasts) {
-    res.render('listen', {
-      locals: {
-        user: harkUser,
-        feeds: feeds,
-        podcasts: podcasts,
-        playing: harkUser.playing
-      }
-    });
-  });
-});
-
-//
-// THE DEFAULT VIA AJAX/HTML5 HISTORY
-//
-
-app.post('/listen', loadUser, function(req, res) {
-  getFeeds(harkUser.userID, 'all', function(error, feeds, podcasts) {
-    res.partial('listen/listen-structure', { 
-      user: harkUser,
-      feeds: feeds, 
-      podcasts: podcasts,
-      playing: harkUser.playing
-    });
-  });
-});
-
-//
-// THE DEFAULT VIA "ALL" BUTTON
-//
-
-app.post('/listen/podcast/all', loadUser, function(req, res) {
-  getFeeds(harkUser.userID, 'all', function(error, feed, podcastList) {
-    res.partial('listen/listen-main', { 
-      user: harkUser,
-      feeds: feed, 
-      podcasts: podcastList,
-      playing: harkUser.playing
-    });
-  });
-});
-
-//
-//  VIEW THE FULL LISTIING OF ONLY A SINGLE PODCAST
-//
-
-app.post('/listen/podcast/:id', loadUser, function(req, res) {
-  getFeeds(harkUser.userID, req.params.id, function(error, feed, podcastList) {
-    res.partial('listen/listen-single', { 
-      user: harkUser,
-      feeds: feed, 
-      podcasts: podcastList,
-      playing: harkUser.playing
-    });
-  });
-});
-
-//
-//  VIEW THE FULL LISTIING OF ONLY A SINGLE PODCAST, THIS TIME VIA DEEP-LINKING OR BOOKMARK
-//
-
-app.get('/listen/podcast/:id', loadUser, function(req, res) {
-  getFeeds(harkUser.userID, req.params.id, function(error, feed, podcastList) {
-    res.render('listen', {
-      single: true,
-      user: harkUser,
-      feeds: feed, 
-      podcasts: podcastList,
-      playing: harkUser.playing
-    });
-  });
-});
-
-//
-//  LISTEN TO A PODCAST
-//
-
-app.post('/listen/:feed/:_id', loadUser, function(req, res) {
-  harkUser.playing = req.body;
-  Users.findAndModify({ 'userID':  harkUser.userID }, [], { $set: { 'playing' : req.body } }, { new:true, safe:true }, function(err, result) {
-    // res.partial('player/currently-playing', { playing: result.playing });
-    if (err) { 
-      throw err;
-      res.send(500);
-    }
-    res.send(200);
-  });
-});
-  
-
-//
-//  MARK A PODCAST AS "LISTENED"
-//
-
-app.post('/listen/:feed/listened/:id', loadUser, function(req, res) {
-  harkUser.playing = {};
-  Feeds.findAndModify({ 'owner': harkUser.userID, 'pods.podUUID' : req.params.id }, [], { $set: { 'pods.$.listened' : 'true' } }, { new:true }, function(err, result) {
-    if (err) { 
-      throw err;
-      res.send(500);
-    }
-    res.send(200);
-  });
-});
-
-//
-//  SYNC
-//
-
-app.post('/listen/playing', loadUser, function(req, res) {
-  harkUser.playing = req.body;
-  Users.findAndModify({ 'userID':  harkUser.userID }, [], { $set: { 'playing' : req.body } }, { new:true }, function(err, result) {
-    if (err) {
-      throw err;
-      res.send(500);
-    }
-    res.send(200);
-  });
-});
-
-//
-//  RSS FEED
-//
-
-app.get('/user/:user/rss', function(req, res) {
-  getFeeds(req.params.user, function(error, feed, podcastList) {
-    res.render('rss', {
-      locals: {
-        podcasts: podcastList
-      }
-    });
-  });
-});
-
-//
-//  SETTINGS
-//
-
-app.post('/settings', loadUser, function(req, res) {
-  res.partial('settings/settings-structure', {
-    user: harkUser,
-    playing: harkUser.playing
-  });
-});
-
-//
-//  SETTINGS VIA DEEP-LINKING/RELOAD
-//
-
-app.get('/settings', loadUser, function(req, res) {
-  res.render('settings', {
-    locals: {
-      user: harkUser,
-      feeds: [],
-      podcasts: [],
-      playing: harkUser.playing
-    }
-  });
-});
-
-//
-//  HELP
-//
-
-app.post('/help', loadUser, function(req, res) {
-  res.partial('help/help-structure', {
-    user: harkUser,
-    playing: harkUser.playing
-  });
-});
-
-//
-//  HELP VIA DEEP-LINKING/RELOAD
-//
-
-app.get('/help', loadUser, function(req, res) {
-  res.render('help', {
-    locals: {
-      user: harkUser,
-      feeds: [],
-      podcasts: [],
-      playing: harkUser.playing
-    }
-  });
-});
-
-//
-//  404
-//
-
-app.use(function(req, res){
-  res.render('404');
-});
+require('./lib/directory')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID);
 
 //  ---------------------------------------
 //  START THE SERVER!

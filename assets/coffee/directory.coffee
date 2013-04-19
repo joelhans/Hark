@@ -37,7 +37,6 @@ $(document)
       data    : $(this).attr('href')
       success : (data) ->
         $('.primary').html(data)
-        console.log data
         ajaxHelpers()
         window.dir_pagination()
 

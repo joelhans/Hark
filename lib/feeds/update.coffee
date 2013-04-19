@@ -111,13 +111,12 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
       Feeds.findAndModify { 'owner': harkUser.userID, 'uuid': to_update.uuid }, [], { $set: { 'pods' : final_build } }, {new:true}, (err, result) ->
     
     if counter is total
-      getFeeds harkUser.userID, 'all', (error, feed, podcastList) ->
-        res.partial 'listen/listen-main', { 
+      getFeeds harkUser.userID, 'all', (error, feeds, podcasts) ->
+        res.render 'listen/listen-main', 
           user     : harkUser
-          feeds    : feed 
-          podcasts : podcastList 
+          feeds    : feeds
+          podcasts : podcasts
           playing  : harkUser.playing
-        }
 
   #
   # UPDATING DIRECTORY-BASED FEED
@@ -200,10 +199,9 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
       Feeds.findAndModify { 'owner': harkUser.userID, 'uuid': to_update.uuid }, [], { $set: { 'pods' : final_build } }, {new:true}, (err, result) ->
 
     if counter is total
-      getFeeds harkUser.userID, 'all', (error, feed, podcastList) ->
-        res.partial 'listen/listen-main', { 
+      getFeeds harkUser.userID, 'all', (error, feeds, podcasts) ->
+        res.render 'listen/listen-main', 
           user     : harkUser
-          feeds    : feed 
-          podcasts : podcastList 
+          feeds    : feeds
+          podcasts : podcasts
           playing  : harkUser.playing
-        }

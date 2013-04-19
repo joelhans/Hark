@@ -1,27 +1,24 @@
-doctype 5
-html(lang="en")
-	head
-		- if (individual == true)
-			title Hark | Directory | #{result.title}
-		- else if (category != 'all')
-			title Hark | Directory | #{category}
-		- else
-			title Hark | Directory
-		
-		!=partial('layout/head')
-	
-	body
+extends layout/layout
 
-		- if (user === false)
-			!=partial('layout/header-log-out')
-		- else
-			!=partial('layout/header')
+block head
+  - if (individual == true)
+    title Hark | Directory | #{result.title}
+  - else if (category != 'all')
+    title Hark | Directory | #{category}
+  - else
+    title Hark | Directory
+  include layout/head
 
-		section.hark-container
-			!=partial('directory/directory-structure')
+block body
+  - if (user === false)
+    include layout/header-log-out
+  - else
+    include layout/header
 
-		footer
-			!=partial('layout/player')
+  section.hark-container
+    include directory/directory-structure
 
-		section#modal
-			!=partial('layout/modal')
+  footer
+    include player/player
+  section#modal
+    include layout/modal

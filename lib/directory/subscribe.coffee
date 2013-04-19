@@ -8,9 +8,9 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
       # If the user is viewing the directory while not logged in.
       if harkUser is false
         res.status(500)
-        req.flash 'error', 'You need to be logged in to do that! Please <a href="/login/">log in</a> or <a href="/signup/">create an account</a>.'
-        res.partial 'layout/modal',
-          flash: req.flash()
+        req.session.messages = 'You need to be logged in to do that! Please <a href="/login/">log in</a> or <a href="/signup/">create an account</a>.'
+        res.render 'layout/modal',
+          messages : req.session.messages
         return
 
       # As long as harkUser isn't false, we will continue.
@@ -20,9 +20,9 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
         
         if result_two isnt null
           res.status(500)
-          req.flash 'error', 'You are already subscribed to that feed.'
-          res.partial 'layout/modal',
-            flash: req.flash()
+          req.session.messages = 'You are already subscribed to that feed.'
+          res.render 'layout/modal',
+            messages : req.session.messages
           return
 
         else

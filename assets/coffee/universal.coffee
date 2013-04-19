@@ -48,7 +48,7 @@ $(document)
              a[href="/directory"],
              a[href="/settings"],
              a[href="/help"],
-             a[href^="/listen/podcast/"],
+             a[href^="/listen/view/"],
              a[href^="/directory/category/"],
              a[href^="/directory/podcast/"]', "click", (e) ->
     e.preventDefault()
@@ -113,7 +113,7 @@ History.Adapter.bind window, 'statechange', () ->
   # ------------------------------
   # LISTEN / INDIVIDUAL PAGES
   # ------------------------------
-  else if State.hash.indexOf('/listen/podcast/') isnt -1
+  else if State.hash.indexOf('/listen/view/') isnt -1
     $.ajax
       type: 'POST'
       data: { feedID : State.hash.split('/')[3] }

@@ -23,8 +23,9 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           #
           if err
             res.status(500)
-            req.flash 'error', 'Sorry, there was an error.'
-            res.partial 'layout/modal', { flash: req.flash() }
+            req.session.messages = 'Sorry, there was an error.'
+            res.render 'layout/modal',
+              messages : req.session.messages
             return
 
           #
@@ -37,15 +38,14 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           #
           # If everything goes as planned, we send our data to the client.
           #
-          res.partial 'directory/directory-structure',
-            locals:
-              directory  : result
-              user       : harkUser
-              category   : req.body.category
-              playing    : harkUser.playing
-              individual : false
-              page       : page
-              final_page : final_page
+          res.render 'directory/directory-structure',
+            directory  : result
+            user       : harkUser
+            category   : req.body.category
+            playing    : harkUser.playing
+            individual : false
+            page       : page
+            final_page : final_page
 
     #
     # If not, we are in the main directory.
@@ -62,8 +62,9 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           #
           if err
             res.status(500)
-            req.flash 'error', 'Sorry, there was an error.'
-            res.partial 'layout/modal', { flash: req.flash() }
+            req.session.messages = 'Sorry, there was an error.'
+            res.render 'layout/modal',
+              messages : req.session.messages
             return
           
           #
@@ -77,12 +78,11 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           #
           # If everything goes as planned, we send our data to the client.
           #
-          res.partial 'directory/directory-structure',
-            locals:
-              directory  : result
-              user       : harkUser
-              category   : req.body.category
-              playing    : harkUser.playing
-              individual : false
-              page       : page
-              final_page : final_page
+          res.render 'directory/directory-structure',
+            directory  : result
+            user       : harkUser
+            category   : req.body.category
+            playing    : harkUser.playing
+            individual : false
+            page       : page
+            final_page : final_page

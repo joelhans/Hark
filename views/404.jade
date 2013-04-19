@@ -1,21 +1,19 @@
-doctype 5
-html(lang="en")
-  head
-    title Hark | Four-oh-four.
+extends layout/layout
 
-    !=partial('layout/head')
+block head
+  title Hark | Four-oh-four.
+  include layout/head
 
-  body
+block body
+  header.logo
+    img(src="/img/hark-logo-v5.svg")
+    span
 
-    header.logo
-      img(src="/img/hark-logo-v5.svg")
-      span
-
-    section.signup-intro
-      h1 Whoops, you've arrived at a 404 error.
-      h2 That means you either ended up in a place that doesn't exist, or tried to go where you shouldn't.
-      h2 Naughty you.
-      p Were you logged in? If so, let's try to get you back to your podcasts. 
-        a.history-ignore(href='/listen') Get back to listening.
-      p Need an account? Need to login? Lets tak you back home. 
-        a.history-ignore(href='/signup') Go login or get an account.
+  section.signup-intro
+    h1 Whoops, you've arrived at a 404 error.
+    h2 That means you either ended up in a place that doesn't exist, or tried to go where you shouldn't.
+    h2 Naughty you.
+    p Were you logged in? If so, let's try to get you back to your podcasts. 
+      a.history-ignore(href='/listen') Get back to listening.
+    p Need an account? Need to login? Lets tak you back home. 
+      a.history-ignore(href='/signup') Go login or get an account.

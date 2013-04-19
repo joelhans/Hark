@@ -1,45 +1,27 @@
-doctype 5
-html(lang="en")
-  head
-    title Hark | Log in.
+extends layout/layout
 
-    !=partial('layout/head')
+block head
+  title Hark | Log in.
+  include layout/head
 
-  body
+block body
+  header.logo
+    img(src="/img/hark-logo-v5.svg")
+    span
 
-    header.logo
-      img(src="/img/hark-logo-v5.svg")
-      span
+  section.signup-intro
+    h1 Log in to Hark.
+  
+  - if (typeof(message) !== 'undefined')
+    div.row.login-error.passport
+      p.error #{message}
 
-    section.signup-intro
-      h1 Log in to Hark.
-    
-    - if (typeof(message) !== 'undefined')
-      div.row.login-error.passport
-        p.error #{message}
+  form.login(method='post', action='/login')
+    input.multi(type='text', name='email', placeholder='Enter your e-mail.')
+    input.multi(type='password', name='password', placeholder='Enter your password.')
+    button.login-submit(type='submit')
+      span Go
 
-    - if (typeof(flash) !== 'undefined')
-      div.row.create-success.passport
-        p.error #{flash.success}
-
-    form.login(method='post', action='/login')
-      input.multi(type='text', name='email', placeholder='Enter your e-mail.')
-      input.multi(type='password', name='password', placeholder='Enter your password.')
-      button.login-submit(type='submit')
-        span Go
-
-    div.login-forgot
-      a(href='/forgot') Forgot your password?
-      a(href='/signup') Need an account?
-
-      //- div.row
-      //-   section.column-12.signup-intro
-      //-     h2 Or use a single-click sign-in service.
-
-      //- div.row
-      //-   a.login-service.facebook.blue-button.facebook(href='/auth/facebook/')
-      //-     <i class="icon-facebook"></i> Log in with Facebook
-      //-   a.login-service.google.blue-button(href='/auth/google')
-      //-     <i class="icon-google-plus"></i> Log in with Google
-      //-   a.login-service.twitter.blue-button(href='/auth/twitter')
-      //-     <i class="icon-twitter"></i> Log in with Twitter
+  div.login-forgot
+    a(href='/forgot') Forgot your password?
+    a(href='/signup') Need an account?
