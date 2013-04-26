@@ -5,12 +5,14 @@ module.exports = (app, express, loadUser, Users, Feeds, Directory, db, moment, O
   #####################################
 
   app.get '/listen', loadUser, (req, res) ->
+    console.log harkUser
     getFeeds harkUser.userID, 'all', (error, feeds, podcasts) ->
       res.render 'listen',
         user     : harkUser
         feeds    : feeds
         podcasts : podcasts
         playing  : harkUser.playing
+        playlist : harkUser.playlist
 
   #####################################
   # LISTEN, via AJAX
@@ -23,6 +25,7 @@ module.exports = (app, express, loadUser, Users, Feeds, Directory, db, moment, O
         feeds    : feeds
         podcasts : podcasts
         playing  : harkUser.playing
+        playlist : harkUser.playlist
 
   #####################################
   # LISTEN, via 'all' button
@@ -35,6 +38,7 @@ module.exports = (app, express, loadUser, Users, Feeds, Directory, db, moment, O
         feeds    : feeds
         podcasts : podcasts
         playing  : harkUser.playing
+        playlist : harkUser.playlist
 
   #####################################
   # LISTEN, single view
@@ -48,6 +52,7 @@ module.exports = (app, express, loadUser, Users, Feeds, Directory, db, moment, O
         feeds    : feed
         podcasts : podcasts
         playing  : harkUser.playing
+        playlist : harkUser.playlist
 
   #####################################
   # LISTEN, single view, via AJAX
@@ -60,6 +65,7 @@ module.exports = (app, express, loadUser, Users, Feeds, Directory, db, moment, O
         feeds    : feed
         podcasts : podcasts
         playing  : harkUser.playing
+        playlist : harkUser.playlist
 
   #####################################
   # SETTINGS

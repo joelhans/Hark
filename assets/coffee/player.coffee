@@ -1,6 +1,9 @@
 window.mediaData = progress = null
-
 mediaData = window.mediaData
+
+######################################
+# AUDIO PLAYER
+######################################
 
 window.jplayer_1 = () ->
   $('#jquery_jplayer_1').jPlayer
@@ -42,6 +45,11 @@ window.jplayer_1 = () ->
           console.log 'jPlayer ended.'
         error: () ->
           console.log 'jPlayer had an error.'
+      ##
+      # PLAYLIST
+      ##
+      if $('.playlist-item').length
+        window.playlistInc()
     error: (d) ->
       console.log 'ERROR:'
       console.log d
@@ -54,6 +62,10 @@ window.jplayer_1 = () ->
         $('#jquery_jplayer_1').jPlayer("setMedia", {
             mp3: playing.podcast
          }).jPlayer('pause', Math.round(playing.progress))
+
+######################################
+# VIDEO PLAYER
+######################################
 
 window.jplayer_2 = () ->
   $('#jquery_jplayer_2').jPlayer
@@ -98,6 +110,11 @@ window.jplayer_2 = () ->
           console.log 'jPlayer ended.'
         error: () ->
           console.log 'jPlayer had an error.'
+      ##
+      # PLAYLIST
+      ##
+      if $('.playlist-item').length
+        window.playlistInc()
     error: (d) ->
       console.log 'ERROR:' + d
     ready: (d) ->
@@ -111,6 +128,10 @@ window.jplayer_2 = () ->
             m4v: playing.podcast
           }).jPlayer('pause', Math.round(playing.progress))
 
+######################################
+# UPDATE PLAYSTATUS IN SESSIONSTORAGE
+######################################
+
 window.playStatus = (progress, mediaData) ->
   sessionStorage.setItem("podcast", window.mediaData.podcast)
   sessionStorage.setItem("podcastID", window.mediaData.podcastID)
@@ -118,6 +139,10 @@ window.playStatus = (progress, mediaData) ->
   sessionStorage.setItem("feedTitle", window.mediaData.feedTitle)
   sessionStorage.setItem("podcastTitle", window.mediaData.podcastTitle)
   sessionStorage.setItem("progress", progress)
+
+######################################
+# SYNC PLAYSTATUS
+######################################
 
 window.updateStatus = () ->
   playing =
@@ -137,6 +162,51 @@ window.updateStatus = () ->
     error   : (data) ->
       console.log('Error with syncing! ' + data)
       return
+
+######################################
+# INCREMENT PLAYLIST
+######################################
+
+window.playlistInc = () ->
+  window.mediaData =
+    podcast      : $('.playlist-item').eq(0).attr('data-file')
+    podcastTitle : $('.playlist-item').eq(0).attr('data-title')
+    podcastID    : $('.playlist-item').eq(0).attr('data-uuid')
+    feedUUID     : $('.playlist-item').eq(0).attr('data-feedUUID')
+    feedTitle    : $('.playlist-item').eq(0).attr('data-feed')
+
+  if window.mediaData.podcast.indexOf('mp4') is -1
+    $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
+      mp3: window.mediaData.podcast
+    }).jPlayer('play')
+  else 
+    $('#jquery_jplayer_2').jPlayer("pauseOthers").jPlayer("setMedia", {
+      m4v: window.mediaData.podcast
+    }).jPlayer('play')
+
+  $.ajax
+    type    : 'POST'
+    url     : '/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
+    data    : window.mediaData
+    error: (data) ->
+      console.log data
+    success : (data) ->
+      $('.current-feed').text(window.mediaData.feedTitle)
+      $('.currently-playing li:last-of-type p').text(window.mediaData.podcastTitle)
+      $('.playlist-item')[0].remove()
+      $.ajax
+        type    : 'POST'
+        url     : '/listen/playlist/drop/'
+        data    : window.mediaData
+        error   : (err) ->
+          $('#modal').html(err.responseText)
+          $('#modal').fadeIn(500)
+        success : (data) ->
+          $('.playlist').html(data)
+
+######################################
+# OTHER JPLAYER FUNCTIONS
+######################################
 
 window.jplayer = () ->
 

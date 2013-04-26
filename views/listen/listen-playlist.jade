@@ -1,0 +1,10 @@
+h1 Playlist
+if (typeof(playlist[0]) != 'undefined')
+  a.playlist-clear(href='/listen/playlist/clear/') Clear
+  for podcast in playlist
+    div.playlist-item(data-title=''+podcast.podcastTitle, data-uuid=''+podcast.podcastID, data-feedUUID=''+podcast.feedUUID, data-file=''+podcast.podcast, data-feed=''+podcast.feedTitle)
+      p #{podcast.podcastTitle}
+      p #{podcast.feedTitle}
+      a.playlist-drop(href='/listen/playlist/drop/', data-file=''+podcast.podcast) x
+else
+  p You have nothing in your playlist.

@@ -8,6 +8,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-replace');
   grunt.loadNpmTasks('grunt-text-replace');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   grunt.initConfig({
 
@@ -140,6 +141,7 @@ module.exports = function(grunt) {
 
   });
 
+  // grunt.registerTask('coffee', ['coffee:dev', 'concat:dev']);
   grunt.registerTask('dev', ['coffee:dev', 'concat:dev', 'compass:dev']);
   grunt.registerTask('build', ['copy', 'coffee:build', 'concat:build', 'compass:build', 'uglify:build', 'replace:build']);
 
