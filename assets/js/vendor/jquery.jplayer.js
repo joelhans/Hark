@@ -2,18 +2,18 @@
  * jPlayer Plugin for jQuery JavaScript Library
  * http://www.jplayer.org
  *
- * Copyright (c) 2009 - 2012 Happyworm Ltd
+ * Copyright (c) 2009 - 2013 Happyworm Ltd
  * Dual licensed under the MIT and GPL licenses.
  *  - http://www.opensource.org/licenses/mit-license.php
  *  - http://www.gnu.org/copyleft/gpl.html
  *
  * Author: Mark J Panaghiston
- * Version: 2.2.16
- * Date: 21st November 2012
+ * Version: 2.3.0
+ * Date: 20th April 2013
  */
 
 /* Code verified using http://www.jshint.com/ */
-/*jshint asi:false, bitwise:false, boss:false, browser:true, curly:true, debug:false, eqeqeq:true, eqnull:false, evil:false, forin:false, immed:false, jquery:true, laxbreak:false, newcap:true, noarg:true, noempty:true, nonew:true, onevar:false, passfail:false, plusplus:false, regexp:false, undef:true, sub:false, strict:false, white:false smarttabs:true */
+/*jshint asi:false, bitwise:false, boss:false, browser:true, curly:true, debug:false, eqeqeq:true, eqnull:false, evil:false, forin:false, immed:false, jquery:true, laxbreak:false, newcap:true, noarg:true, noempty:true, nonew:true, onevar:false, passfail:false, plusplus:false, regexp:false, undef:true, sub:false, strict:false, white:false, smarttabs:true */
 /*global define:false, ActiveXObject:false, alert:false */
 
 (function (root, factory) {
@@ -401,11 +401,61 @@
   };
   $.jPlayer.nativeFeatures.init();
 
+  // The keyboard control system.
+
+  // The current jPlayer instance in focus.
+  $.jPlayer.focus = null;
+
+  // The list of element node names to ignore with key controls.
+  $.jPlayer.keyIgnoreElementNames = "INPUT TEXTAREA";
+
+  // The function that deals with key presses.
+  var keyBindings = function(event) {
+
+    var f = $.jPlayer.focus,
+      ignoreKey;
+
+    // A jPlayer instance must be in focus. ie., keyEnabled and the last one played.
+    if(f) {
+      // What generated the key press?
+      $.each( $.jPlayer.keyIgnoreElementNames.split(/\s+/g), function(i, name) {
+        // The strings should already be uppercase.
+        if(event.target.nodeName.toUpperCase() === name.toUpperCase()) {
+          ignoreKey = true;
+          return false; // exit each.
+        }
+      });
+      if(!ignoreKey) {
+        // See if the key pressed matches any of the bindings.
+        $.each(f.options.keyBindings, function(action, binding) {
+          // The binding could be a null when the default has been disabled. ie., 1st clause in if()
+          if(binding && event.which === binding.key && $.isFunction(binding.fn)) {
+            event.preventDefault(); // Key being used by jPlayer, so prevent default operation.
+            binding.fn(f);
+            return false; // exit each.
+          }
+        });
+      }
+    }
+  };
+
+  $.jPlayer.keys = function(en) {
+    var event = "keydown.jPlayer";
+    // Remove any binding, just in case enabled more than once.
+    $(document.documentElement).unbind(event);
+    if(en) {
+      $(document.documentElement).bind(event, keyBindings);
+    }
+  };
+
+  // Enable the global key control handler ready for any jPlayer instance with the keyEnabled option enabled.
+  $.jPlayer.keys(true);
+
   $.jPlayer.prototype = {
     count: 0, // Static Variable: Change it via prototype.
     version: { // Static Object
-      script: "2.2.16",
-      needFlash: "2.2.0",
+      script: "2.3.0",
+      needFlash: "2.3.0",
       flash: "unknown"
     },
     options: { // Instanced in $.jPlayer() constructor
@@ -439,6 +489,7 @@
         gui: ".jp-gui", // The interface used with autohide feature.
         noSolution: ".jp-no-solution" // For error feedback when jPlayer cannot find a solution.
       },
+      smoothPlayBar: false, // Smooths the play bar transitions, which affects clicks and short media with big changes per second.
       fullScreen: false, // Native Full Screen
       fullWindow: false,
       autohide: {
@@ -490,6 +541,48 @@
         // Specific time format for this instance. The supported options are defined in $.jPlayer.timeFormat
         // For the undefined options we use the default from $.jPlayer.timeFormat
       },
+      keyEnabled: false, // Enables keyboard controls.
+      audioFullScreen: false, // Enables keyboard controls to enter full screen with audio media.
+      keyBindings: { // The key control object, defining the key codes and the functions to execute.
+        // The parameter, f = $.jPlayer.focus, will be checked truethy before attempting to call any of these functions.
+        // Properties may be added to this object, in key/fn pairs, to enable other key controls. EG, for the playlist add-on.
+        play: {
+          key: 32, // space
+          fn: function(f) {
+            if(f.status.paused) {
+              f.play();
+            } else {
+              f.pause();
+            }
+          }
+        },
+        fullScreen: {
+          key: 13, // enter
+          fn: function(f) {
+            if(f.status.video || f.options.audioFullScreen) {
+              f._setOption("fullScreen", !f.options.fullScreen);
+            }
+          }
+        },
+        muted: {
+          key: 8, // backspace
+          fn: function(f) {
+            f._muted(!f.options.muted);
+          }
+        },
+        volumeUp: {
+          key: 38, // UP
+          fn: function(f) {
+            f.volume(f.options.volume + 0.1);
+          }
+        },
+        volumeDown: {
+          key: 40, // DOWN
+          fn: function(f) {
+            f.volume(f.options.volume - 0.1);
+          }
+        }
+      },
       verticalVolume: false, // Calculate volume from the bottom of the volume bar. Default is from the left. Also volume affects either width or height.
       // globalVolume: false, // Not implemented: Set to make volume changes affect all jPlayer instances
       // globalMute: false, // Not implemented: Set to make mute changes affect all jPlayer instances
@@ -539,6 +632,8 @@
       currentPercentAbsolute: 0,
       currentTime: 0,
       duration: 0,
+      videoWidth: 0, // Intrinsic width of the video in pixels.
+      videoHeight: 0, // Intrinsic height of the video in pixels.
       readyState: 0,
       networkState: 0,
       playbackRate: 1,
@@ -631,9 +726,9 @@
     },
     _init: function() {
       var self = this;
-
+      
       this.element.empty();
-
+      
       this.status = $.extend({}, this.status); // Copy static to unique instance.
       this.internal = $.extend({}, this.internal); // Copy static to unique instance.
 
@@ -645,16 +740,21 @@
 
       this.internal.domNode = this.element.get(0);
 
+      // Add key bindings focus to 1st jPlayer instanced with key control enabled.
+      if(this.options.keyEnabled && !$.jPlayer.focus) {
+        $.jPlayer.focus = this;
+      }
+
       this.formats = []; // Array based on supplied string option. Order defines priority.
       this.solutions = []; // Array based on solution string option. Order defines priority.
       this.require = {}; // Which media types are required: video, audio.
-
+      
       this.htmlElement = {}; // DOM elements created by jPlayer
       this.html = {}; // In _init()'s this.desired code and setmedia(): Accessed via this[solution], where solution from this.solutions array.
       this.html.audio = {};
       this.html.video = {};
       this.flash = {}; // In _init()'s this.desired code and setmedia(): Accessed via this[solution], where solution from this.solutions array.
-
+      
       this.css = {};
       this.css.cs = {}; // Holds the css selector strings
       this.css.jq = {}; // Holds jQuery selectors. ie., $(css.cs.method)
@@ -784,7 +884,7 @@
       this.internal.poster.jq.bind("click.jPlayer", function() {
         self._trigger($.jPlayer.event.click);
       });
-
+      
       // Generate the required media elements
       this.html.audio.available = false;
       if(this.require.audio) { // If a supplied format is audio
@@ -852,7 +952,7 @@
 
       // Set up the css selectors for the control and feedback entities.
       this._cssSelectorAncestor(this.options.cssSelectorAncestor);
-
+      
       // If neither html nor flash are being used by this browser, then media playback is not possible. Trigger an error event.
       if(!(this.html.used || this.flash.used)) {
         this._error( {
@@ -917,7 +1017,7 @@
         this.element.append(htmlObj);
         this.internal.flash.jq = $(htmlObj);
       }
-
+      
       // Add the HTML solution if being used.
       if(this.html.used) {
 
@@ -1000,6 +1100,10 @@
       }
       // Remove the fullscreen event handlers
       this._fullscreenRemoveEventListeners();
+      // Remove key bindings
+      if(this === $.jPlayer.focus) {
+        $.jPlayer.focus = null;
+      }
       // Destroy the HTML bridge.
       if(this.options.emulateHtml) {
         this._destroyHtmlBridge();
@@ -1007,7 +1111,7 @@
       this.element.removeData("jPlayer"); // Remove jPlayer data
       this.element.unbind(".jPlayer"); // Remove all event handlers created by the jPlayer constructor
       this.element.empty(); // Remove the inserted child elements
-
+      
       delete this.instances[this.internal.instance]; // Clear the instance on the static instance object
     },
     enable: function() { // Plan to implement
@@ -1073,7 +1177,7 @@
       // Create the event listeners
       // Only want the active entity to affect jPlayer and bubble events.
       // Using entity.gate so that object is referenced and gate property always current
-
+      
       mediaElement.addEventListener("progress", function() {
         if(entity.gate) {
           if(self.internal.cmdsIgnored && this.readyState > 0) { // Detect iOS executed the command
@@ -1220,7 +1324,7 @@
         sp = 100;
         cpr = cpa;
       }
-
+      
       if(override) {
         ct = 0;
         cpr = 0;
@@ -1231,6 +1335,9 @@
       this.status.currentPercentRelative = cpr;
       this.status.currentPercentAbsolute = cpa;
       this.status.currentTime = ct;
+
+      this.status.videoWidth = media.videoWidth;
+      this.status.videoHeight = media.videoHeight;
 
       this.status.readyState = media.readyState;
       this.status.networkState = media.networkState;
@@ -1378,6 +1485,9 @@
       this.status.currentTime = status.currentTime;
       this.status.duration = status.duration;
 
+      this.status.videoWidth = status.videoWidth;
+      this.status.videoHeight = status.videoHeight;
+
       // The Flash does not generate this information in this release
       this.status.readyState = 4; // status.readyState;
       this.status.networkState = 0; // status.networkState;
@@ -1424,7 +1534,13 @@
         this.css.jq.seekBar.width(this.status.seekPercent+"%");
       }
       if(this.css.jq.playBar.length) {
-        this.css.jq.playBar.width(this.status.currentPercentRelative+"%");
+        if(this.options.smoothPlayBar) {
+          this.css.jq.playBar.stop().animate({
+            width: this.status.currentPercentAbsolute+"%"
+          }, 250, "linear");
+        } else {
+          this.css.jq.playBar.width(this.status.currentPercentRelative+"%");
+        }
       }
       if(this.css.jq.currentTime.length) {
         this.css.jq.currentTime.text(this._convertTime(this.status.currentTime));
@@ -1454,7 +1570,7 @@
       this.flash.active = false;
     },
     setMedia: function(media) {
-
+    
       /*  media[format] = String: URL of format. Must contain all of the supplied option's video or audio formats.
        *  media.poster = String: Video poster URL.
        *  media.subtitles = String: * NOT IMPLEMENTED * URL of subtitles SRT file
@@ -1505,7 +1621,7 @@
               }
               self.status.video = false;
             }
-
+            
             supported = true;
             return false; // Exit $.each
           }
@@ -1580,9 +1696,15 @@
         this._urlNotSetError("load");
       }
     },
+    focus: function() {
+      if(this.options.keyEnabled) {
+        $.jPlayer.focus = this;
+      }
+    },
     play: function(time) {
       time = (typeof time === "number") ? time : NaN; // Remove jQuery event from click handler
       if(this.status.srcSet) {
+        this.focus();
         if(this.html.active) {
           this._html_play(time);
         } else if(this.flash.active) {
@@ -1790,9 +1912,9 @@
 
           if(this.css.jq[fn].length) {
             var handler = function(e) {
+              e.preventDefault();
               self[fn](e);
               $(this).blur();
-              return false;
             };
             this.css.jq[fn].bind("click.jPlayer", handler); // Using jPlayer namespace
           }
@@ -2023,6 +2145,18 @@
           break;
         case "timeFormat" :
           this.options[key] = $.extend({}, this.options[key], value); // store a merged copy of it, incase not all properties changed.
+          break;
+        case "keyEnabled" :
+          this.options[key] = value;
+          if(!value && this === $.jPlayer.focus) {
+            $.jPlayer.focus = null;
+          }
+          break;
+        case "keyBindings" :
+          this.options[key] = $.extend(true, {}, this.options[key], value); // store a merged DEEP copy of it, incase not all properties changed.
+          break;
+        case "audioFullScreen" :
+          this.options[key] = value;
           break;
       }
 
@@ -2289,7 +2423,7 @@
     _html_pause: function(time) {
       var self = this,
         media = this.htmlElement.media;
-
+      
       if(time > 0) { // We do not want the stop() command, which does pause(0), causing a load operation.
         this._html_load(); // Loads if required and clears any delayed commands.
       } else {
