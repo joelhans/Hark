@@ -10,7 +10,7 @@ module.exports = (app, express, loadUser, Users, Directory, Feeds, db, bcrypt, n
   # PLAYLISTS
   #####################################
 
-  require('./users/playlist')(app, express, loadUser, Directory, Feeds)
+  require('./users/playlist')(app, express, loadUser, Users, Directory, Feeds, db)
 
   #####################################
   # LISTEN TO A PODCAST

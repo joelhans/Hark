@@ -8,7 +8,9 @@ mixin podcast-loop()
         span.breaker &nbsp;|&nbsp;
         span.moment #{podcast.podDate}
         span.breaker &nbsp;|&nbsp;
-        a.item-actions-read(href="#") Read more...
+        a.item-actions-read(href="#") Read more
+        span.breaker &nbsp;|&nbsp;
+        a.playlist-add(href="#", data-uuid='' + podcast.podUUID, data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, data-feedUUID='' + podcast.feedUUID, data-source='' + podcast.podLink) Add to playlist
       div.podcastDescription
         div
           p!= podcast.podDesc
