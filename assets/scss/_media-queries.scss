@@ -1,3 +1,31 @@
+/**************************************
+* > 1400px
+**************************************/
+
+@media only screen and (min-width: 1400px) {
+
+  header {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .hark-container {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  footer {
+    max-width: 1400px;
+    left: 50%;
+    margin: 0 -700px;
+  }
+
+  .actions {
+  }
+
+}
+
+
 /*  -----------------------------------------
   -----------------------------------------
   

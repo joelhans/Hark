@@ -12,6 +12,7 @@ $(document).ready () ->
   window.dir_title()
   window.dir_pagination()
   window.settings()
+  action_width()
   return
 
 window.onload = () ->
@@ -26,6 +27,7 @@ window.onload = () ->
 window.onresize = (event) ->
   sidebarHeight()
   listenHeight()
+  action_width()
 
 # ------------------------------
 # Helpers that make AJAX more hospitable
@@ -35,7 +37,8 @@ window.ajaxHelpers = () ->
   sidebarHeight()
   listenHeight()
   momentize()
-
+  action_width()
+  
 # ------------------------------
 # HTML5 HISTORY
 # ------------------------------
@@ -190,6 +193,16 @@ listenHeight = () ->
   c_height = $(window).height()
   listen = $('.primary')
   $('.primary').css('height', c_height - 171)
+
+#######################################
+# ACTIONS WIDTH > 1400px
+#######################################
+
+window.action_width = () ->
+  if $(window).width() > 1400
+    actions_left = ($(window).width() - 1400) / 2 + 220 + 'px'
+    actions_right = ($(window).width() - 1400) / 2 + 12 + 'px'
+    $('.actions').css({'left': actions_left, 'right': actions_right})
 
 # ------------------------------
 # Error handling
