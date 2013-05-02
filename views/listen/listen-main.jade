@@ -4,11 +4,13 @@ mixin podcast-loop()
       p.podcast-title
         a(href='/listen/' + podcast.feedUUID + '/' + podcast.podUUID, class='podcastListen #{podcast.listened}', data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, id='' + podcast.podUUID) #{podcast.podTitle}
       p.podcast-feed
-        a(href='/listen/podcast/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
+        a(href='/listen/view/' + podcast.feedUUID, class='loadFeedFromItem') #{podcast.feedTitle}
         span.breaker &nbsp;|&nbsp;
         span.moment #{podcast.podDate}
         span.breaker &nbsp;|&nbsp;
-        a.item-actions-read(href="#") Read more...
+        a.item-actions-read(href="#") Read more
+        span.breaker &nbsp;|&nbsp;
+        a.playlist-add(href="#", data-uuid='' + podcast.podUUID, data-file='' + podcast.podFile, data-feed='' + podcast.feedTitle, data-title='' + podcast.podTitle, data-feedUUID='' + podcast.feedUUID, data-source='' + podcast.podLink) Add to playlist
       div.podcastDescription
         div
           p!= podcast.podDesc
@@ -48,12 +50,3 @@ if podcasts
   - else
     ul.podcastList
       mixin podcast-loop()
-
-          
-- if (typeof(flash) != 'undefined')
-  div.mask
-    div.modal-error
-      span.modal-error-close x
-      - if (typeof(flash.errorAddFeed) != 'undefined')
-        p.error= flash.errorAddFeed
-

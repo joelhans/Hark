@@ -1,75 +1,26 @@
-doctype 5
-html(lang="en")
-  head
-    title Hark | Sign up.
+extends layout/layout
 
-    !=partial('layout/head')
+block head
+  title Hark | Sign up.
+  include layout/head
 
-  body
+block body
+  header.logo
+    img(src="/img/hark-logo-v5.svg")
+    span
 
-    header.logo
-      img(src="/img/hark-logo-v5.svg")
-      span
+  section.signup-intro
+    h1 Create a Hark account.
 
-    section.signup-intro
-      h1 Create a Hark account.
+  - if (typeof(flash) !== 'undefined')
+    div.create-error.passport
+      p.error= flash.error
 
-    - if (typeof(flash) !== 'undefined')
-      div.create-error.passport
-        p.error= flash.error
+  form.create(method='post', action='/users/new')
+    input.multi(type='text', name='email', placeholder="Enter your e-mail.")
+    input.multi(type='password', name='password', placeholder="Enter your password.")
+    button.create-submit(type='submit')
+      span Go
 
-    form.create(method='post', action='/users/new')
-      input.multi(type='text', name='email', placeholder="Enter your e-mail.")
-      input.multi(type='password', name='password', placeholder="Enter your password.")
-      button.create-submit(type='submit')
-        span Go
-
-    div.existing-account
-      a(href='/login') Already have an account?
-
-      //- div.row
-      //-   section.column-12.signup-intro
-      //-     h2 Or use a single-click sign-in service.
-
-      //- div.row
-      //-   a.login-service.facebook.blue-button.facebook(href='/auth/facebook/')
-      //-     <i class="icon-facebook"></i> Log in with Facebook
-      //-   a.login-service.google.blue-button(href='/auth/google')
-      //-     <i class="icon-google-plus"></i> Log in with Google
-      //-   a.login-service.twitter.blue-button(href='/auth/twitter')
-      //-     <i class="icon-twitter"></i> Log in with Twitter
-
-
-
-    //- - if (typeof(flash) != 'undefined')
-    //-   - if (typeof(flash.errorCreateEmail) != 'undefined')
-    //-     p.error= flash.errorCreateEmail
-    //-     form.create-showme(method='post', action='/users/new')
-    //-       input.create-error(type='text', name='email', placeholder='Enter your e-mail here.')
-    //-       input.create-username(type='text', name='username', placeholder='Enter your username here.')
-    //-       input.create-password(type='password', name='password', placeholder='Enter your password here.')
-    //-       input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
-    //-       input.create-submit(type='submit', value='Create')
-    //-   - else if (typeof(flash.errorCreateUsername) != 'undefined')
-    //-     p.error= flash.errorCreateEmail
-    //-     form.create-showme(method='post', action='/users/new')
-    //-       input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
-    //-       input.create-error(type='text', name='username', placeholder='Enter your username here.')
-    //-       input.create-password(type='password', name='password', placeholder='Enter your password here.')
-    //-       input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
-    //-       input.create-submit(type='submit', value='Create')
-    //-   - else if (typeof(flash.errorCreatePass) != 'undefined')
-    //-     p.error= flash.errorCreateEmail
-    //-     form.create-showme(method='post', action='/users/new')
-    //-       input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
-    //-       input.create-username(type='text', name='username', placeholder='Enter your username here.')
-    //-       input.create-error(type='password', name='password', placeholder='Enter your password here.')
-    //-       input.create-error(type='password', name='password-validate', placeholder='Enter your password again.')
-    //-       input.create-submit(type='submit', value='Create')
-    //-   - else 
-    //-     form.create(method='post', action='/users/new')
-    //-       input.create-email(type='text', name='email', placeholder='Enter your e-mail here.')
-    //-       input.create-username(type='text', name='username', placeholder='Enter your username here.')
-    //-       input.create-password(type='password', name='password', placeholder='Enter your password here.')
-    //-       input.create-password(type='password', name='password-validate', placeholder='Enter your password again.')
-    //-       input.create-submit(type='submit', value='Create')
+  div.existing-account
+    a(href='/login') Already have an account?

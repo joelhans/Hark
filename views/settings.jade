@@ -1,18 +1,13 @@
-doctype 5
-html(lang="en")
-	head
-		title Hark | Settings
+extends layout/layout
 
-		!=partial('layout/head')
+block head
+  title Hark | Settings
+  include layout/head
 
-	body
-
-		!=partial('layout/header')
-
-		!=partial('settings/settings-structure')
-
-		footer
-			!=partial('layout/player')
-
-		section#modal
-			!=partial('layout/modal')
+block body
+  include layout/header
+  include settings/settings-structure
+  footer
+    include player/player
+  section#modal
+    include layout/modal

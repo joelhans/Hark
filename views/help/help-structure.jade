@@ -1,8 +1,8 @@
 section.hark-container
   aside.sidebar
     ul.currently-playing
-      !=partial('player/currently-playing')
-    !=partial('help/help-sidebar')
+      include ../player/currently-playing
+    include help-sidebar
 
   section.primary.clearfix
-    !=partial('help/help-main')
+    include help-main

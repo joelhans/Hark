@@ -9,7 +9,7 @@ if feeds
 			a(href='/listen') All
 		for feed in feeds
 			li.sidebar-item
-				a(href='/listen/podcast/' + feed.feeduuid, class='loadFeed') #{feed.feedTitle}
+				a(href='/listen/view/' + feed.feeduuid, class='loadFeed') #{feed.feedTitle}
 				span.sidebar-expander
 					i.icon-cog
 				ul.sidebar-actions

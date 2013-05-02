@@ -1,91 +1,89 @@
-doctype 5
-html(lang="en")
-  head
-    title Hark | Podcasts for everyone.
+extends layout/layout
 
-    !=partial('layout/head')
+block head
+  title Hark | Podcasts for everyone.
+  include layout/head
 
-  body.home
+block body
+  section.home.container
+    nav.home
+      a(href='/login') Log in
+      a(href='/signup') Sign up
 
-    section.home.container
-      nav.home
+    header.logo
+      img(src="/img/hark-logo-v5.svg")
+      span
+
+    section.signup-intro
+      h1 Hark is your personal radio station.
+
+    img.home-screenshot(src='/img/home-screenshot.jpg')
+
+  section.wrapper-copy
+    div.home-features
+      ul
+        li
+          i.icon-headphones
+          h1 Free as in everything
+          p Hark is completely free for anyone to use. There&rsquo;s no cost to sign up or to continue using the service, and no limits once you&rsquo;re on.
+        li
+          i.icon-refresh
+          h1 Stay in sync
+          p Listen at work, and then start right where you left off once you get home. Hark&rsquo;s sync feature is seamless and effortless.
+        li
+          i.icon-hand-up
+          h1 Expand your horizons
+          p Hark is home to a rapidly-growing database of excellent podcasts with one-click subscriptions. More on that below...
+
+  section.wrapper-red
+    div.home-podcasts
+      h1 Just some of the awesome content...
+      h2 Available with one-click subscriptions.
+      ul
+        li
+          h1 
+            a(href='/directory/podcast/241799422979') Radiolab
+          p Radiolab is a show about curiosity. Where sound illuminates ideas, and the boundaries blur between science, philosophy, and human experience.
+        li
+          h1 
+            a(href='/directory/podcast/485462263621') WTF with Marc Maron
+          p Comedian Marc Maron gets to the bottom a complex question — WTF? — with help from comedians, celebrities, and the voices in his own head.
+        li
+          h1 
+            a(href='/directory/podcast/678605035856') This American Life
+          p First-person stories and short fiction pieces that are touching, funny, and surprising. Hosted by Ira Glass, from WBEZ Chicago Public Radio.
+        li
+          h1 
+            a(href='/directory/podcast/1018791996401') NPR: Planet Money
+          p On NPR's Planet Money, you'll meet high rollers, brainy economists, and regular folks — all trying to make sense of our rapidly changing global economy.
+        li
+          h1 
+            a(href='/directory/podcast/718038869007') The Nerdist
+          p Nerdy nerdness comedy podcast with Chris Hardwick, Jonah Ray &amp; Matt Mira.
+        li
+          h1 
+            a(href='/directory/podcast/748972355596') Savage Lovecast
+          p Dan Savage, America's only advice columnist, answers your sex questions on the Internets.
+        li
+          h1 
+            a(href='/directory/podcast/140616630483') Judge John Hodgeman
+          p Have your pressing issues decided by Famous Minor Television Personality John Hodgman, Certified Judge.
+        li
+          h1 
+            a(href='/directory/podcast/212711894955') The Vergecast
+          p This Vergecast is your source for an irreverent and informative look at what's happening right now (and next) in the world of technology and gadgets.
+
+  section.wrapper-blue
+    div.home-footer
+      div.home-footer-left
         a(href='/login') Log in
         a(href='/signup') Sign up
-
-      header.logo
-        img(src="/img/hark-logo-v5.svg")
-        span
-
-      section.signup-intro
-        h1 Hark is your personal radio station.
-
-      img.home-screenshot(src='/img/home-screenshot.jpg')
-
-    section.wrapper-copy
-      div.home-features
-        ul
-          li
-            i.icon-headphones
-            h1 Free as in everything
-            p Hark is completely free for anyone to use. There&rsquo;s no cost to sign up or to continue using the service, and no limits once you&rsquo;re on.
-          li
-            i.icon-refresh
-            h1 Stay in sync
-            p Listen at work, and then start right where you left off once you get home. Hark&rsquo;s sync feature is seamless and effortless.
-          li
-            i.icon-hand-up
-            h1 Expand your horizons
-            p Hark is home to a rapidly-growing database of excellent podcasts with one-click subscriptions. More on that below...
-
-    section.wrapper-red
-      div.home-podcasts
-        h1 Just some of the awesome content...
-        h2 Available with one-click subscriptions.
-        ul
-          li
-            h1 
-              a(href='/directory/podcast/241799422979') Radiolab
-            p Radiolab is a show about curiosity. Where sound illuminates ideas, and the boundaries blur between science, philosophy, and human experience.
-          li
-            h1 
-              a(href='/directory/podcast/485462263621') WTF with Marc Maron
-            p Comedian Marc Maron gets to the bottom a complex question — WTF? — with help from comedians, celebrities, and the voices in his own head.
-          li
-            h1 
-              a(href='/directory/podcast/678605035856') This American Life
-            p First-person stories and short fiction pieces that are touching, funny, and surprising. Hosted by Ira Glass, from WBEZ Chicago Public Radio.
-          li
-            h1 
-              a(href='/directory/podcast/1018791996401') NPR: Planet Money
-            p On NPR's Planet Money, you'll meet high rollers, brainy economists, and regular folks — all trying to make sense of our rapidly changing global economy.
-          li
-            h1 
-              a(href='/directory/podcast/718038869007') The Nerdist
-            p Nerdy nerdness comedy podcast with Chris Hardwick, Jonah Ray &amp; Matt Mira.
-          li
-            h1 
-              a(href='/directory/podcast/748972355596') Savage Lovecast
-            p Dan Savage, America's only advice columnist, answers your sex questions on the Internets.
-          li
-            h1 
-              a(href='/directory/podcast/140616630483') Judge John Hodgeman
-            p Have your pressing issues decided by Famous Minor Television Personality John Hodgman, Certified Judge.
-          li
-            h1 
-              a(href='/directory/podcast/212711894955') The Vergecast
-            p This Vergecast is your source for an irreverent and informative look at what's happening right now (and next) in the world of technology and gadgets.
-
-    section.wrapper-blue
-      div.home-footer
-        div.home-footer-left
-          a(href='/login') Log in
-          a(href='/signup') Sign up
-        div.home-footer-right
-          p Hark was built by 
-            a(href='http://designbyjoel.com') Joel Hans
-            . Hark is on 
-            a(href='https://github.com/joelhans/Hark') Github
-            .
+      div.home-footer-right
+        p Hark was built by 
+          a(href='http://designbyjoel.com') Joel Hans
+          . Hark is on 
+          a(href='https://github.com/joelhans/Hark') Github
+          .
 
   script(type='text/javascript')
     var _gaq=[['_setAccount','UA-31494639-1'],['_trackPageview']];

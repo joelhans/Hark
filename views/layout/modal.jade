@@ -2,3 +2,8 @@
   div.modal-box
     span.modal-close x
     p.modal-text #{flash.error}
+
+- if (typeof(messages) !== 'undefined')
+  div.modal-box
+    span.modal-close x
+    p.modal-text #{messages}
