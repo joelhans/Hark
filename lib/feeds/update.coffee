@@ -117,6 +117,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           feeds    : feeds
           podcasts : podcasts
           playing  : harkUser.playing
+          playlist : harkUser.playlist
 
   #
   # UPDATING DIRECTORY-BASED FEED
@@ -205,3 +206,4 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           feeds    : feeds
           podcasts : podcasts
           playing  : harkUser.playing
+          playlist : harkUser.playlist

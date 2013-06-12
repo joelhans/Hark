@@ -13,10 +13,6 @@ window.jplayer_1 = () ->
     errorAlerts: false
     volume: 0.5
     play: (d) ->
-      $('.podcast-player').css({'top': '0px'})
-      $('.video-podcast-player').css({'top': '90px'})
-      $('.video-player').fadeOut(300)
-      $('.jp-playing').fadeIn(300)
       updatePlaying = setInterval (-> 
         window.updateStatus()
       ), 120000
@@ -55,8 +51,7 @@ window.jplayer_1 = () ->
       console.log d
     ready: (d) ->
       if typeof(playing) isnt 'undefined' and playing.podcast.indexOf('mp3') isnt -1
-        console.log 'fired'
-        $('.podcast-player').css({'top': '0px'})
+        $('.podcast-player').css({'width': '100%'})
         window.mediaData = playing
         window.playStatus(playing.progress, playing)
         $('#jquery_jplayer_1').jPlayer("setMedia", {
@@ -69,18 +64,15 @@ window.jplayer_1 = () ->
 
 window.jplayer_2 = () ->
   $('#jquery_jplayer_2').jPlayer
-    swfPath             : "/js"
+    swfPath             : "/js/"
     supplied            : 'm4v, m4a'
-    solution            : 'html, flash'
+    solution            : 'flash, html'
     errorAlerts         : false
     cssSelectorAncestor : "#jp_container_2"
     volume              : 0.5
     play                : (d) ->
-      $('.podcast-player').css({'top': '90px'})
-      $('.video-podcast-player').css({'top': '0px'})
       if !$('.video-player').hasClass('video-moved')
         $('.video-player').css('top': $(document).height() - $('.video-player').height() - 128)
-      $('.video-player, #jquery_jplayer_2, .jp-playing').fadeIn(300)
       updatePlaying = setInterval (-> 
         window.updateStatus()
       ), 120000
@@ -116,12 +108,15 @@ window.jplayer_2 = () ->
       if $('.playlist-item').length
         window.playlistInc()
     error: (d) ->
-      console.log 'ERROR:' + d
+      console.log 'ERROR'
+      console.log d
+      console.log d.jPlayer.error
     ready: (d) ->
       if typeof(playing) isnt 'undefined' and playing.podcast.indexOf('mp4') isnt -1
-        $('.podcast-player').css({'top': '90px'})
-        $('.video-podcast-player').css({'top': '0px'})
-        $('#jquery_jplayer_2').fadeIn(300)
+        $('.podcast-player').css({'width': '0px'})
+        $('.video-podcast-player').css({'width': '100%'})
+        $('.video-player, #jquery_jplayer_2, .jp-playing').show()
+        $('.video-player').css({'top': '40%'})
         window.mediaData = playing
         window.playStatus(playing.progress, playing)
         $('#jquery_jplayer_2').jPlayer("setMedia", {

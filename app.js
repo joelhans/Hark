@@ -146,8 +146,9 @@ function loadUser(req, res, next) {
   } else if ( typeof(req.user) === 'undefined' && req.url.indexOf('/directory') !== -1 ) {
     harkUser = false;
     return next();
+  } else {
+    res.redirect('/');
   }
-  res.redirect('/');
 }
 
 require('./lib/routes')(app, express, loadUser, Users, Feeds, Directory, db, moment, ObjectID)

@@ -182,10 +182,16 @@ $(document)
       feedTitle    : $('.selected').attr('data-feed')
 
     if window.mediaData.podcast.indexOf('mp4') is -1
+      $('.podcast-player').css({'width': '100%'})
+      $('.video-podcast-player').css({'width': '0px'})
+      $('.video-player, #jquery_jplayer_2, .jp-playing').hide()
       $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
         mp3: window.mediaData.podcast
       }).jPlayer('play')
-    else 
+    else
+      $('.podcast-player').css({'width': '0px'})
+      $('.video-podcast-player').css({'width': '100%'})
+      $('.video-player, #jquery_jplayer_2, .jp-playing').show()
       $('#jquery_jplayer_2').jPlayer("pauseOthers").jPlayer("setMedia", {
         m4v: window.mediaData.podcast
       }).jPlayer('play')
@@ -211,10 +217,16 @@ $(document)
       feedTitle    : $(this).attr('data-feed')
 
     if window.mediaData.podcast.indexOf('mp4') is -1
+      $('.podcast-player').css({'width': '100%'})
+      $('.video-podcast-player').css({'width': '0px'})
+      $('.video-player, #jquery_jplayer_2, .jp-playing').hide()
       $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
         mp3: window.mediaData.podcast
       }).jPlayer('play')
-    else 
+    else
+      $('.podcast-player').css({'width': '0px'})
+      $('.video-podcast-player').css({'width': '100%'})
+      $('.video-player, #jquery_jplayer_2, .jp-playing').show()
       $('#jquery_jplayer_2').jPlayer("pauseOthers").jPlayer("setMedia", {
         m4v: window.mediaData.podcast
       }).jPlayer('play')
