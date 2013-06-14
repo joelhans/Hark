@@ -1,4 +1,6 @@
-module.exports = (app, express, loadUser, Users, Feeds, Directory, db, moment, ObjectID) ->
+module.exports = (app, express, loadUser, Users, Directory, Feeds, db, url, crypto, request, async, xml2js, nodemailer, bcrypt, moment, parser, ObjectID, passport) ->
+
+  getFeeds = require('./feeds/get_feeds')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID)
 
   #####################################
   # LISTEN

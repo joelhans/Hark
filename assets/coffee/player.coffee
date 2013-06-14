@@ -66,7 +66,7 @@ window.jplayer_2 = () ->
   $('#jquery_jplayer_2').jPlayer
     swfPath             : "/js/"
     supplied            : 'm4v, m4a'
-    solution            : 'flash, html'
+    solution            : 'html, flash'
     errorAlerts         : false
     cssSelectorAncestor : "#jp_container_2"
     volume              : 0.5

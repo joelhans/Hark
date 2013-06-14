@@ -1,6 +1,9 @@
 module.exports = (app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID) ->
 
+  getFeeds    = require('./get_feeds')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID)
   FeedCatches = require('./catches').FeedCatches
+  requesting  = require('./catches').requesting
+  feed_check  = require('./catches').feed_check
 
   to_update       = null
   total           = null
@@ -22,7 +25,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
       existing_build  = []
       new_build       = []
       owner_build     = []
-      total     = result.length
+      total           = result.length
 
       for k of result
         update_feed_sift(res, result[k], total)
@@ -45,35 +48,20 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
   #
 
   update_feed_request = (res, to_update, total) ->
-    # Request the URL.
-    console.log 'We are owner-updating ' + to_update.title + to_update.href
-    request {uri: to_update.href}, (err, response, body) ->
-      if err
-        console.log err
-        console.log 'Failed to update this feed.'
-        console.log 'Failed feed: ' + to_update.title
+
+    requesting to_update, (error, feed, req_build) ->
+
+      if error?
+        console.log error
         counter++
         update_feed_finalize(res, to_update, total, new_build, existing_build, counter)
-        return
 
-      # Use XML2JS to parse it.
-      parser.parseString body, (err, xml) ->
-        if typeof(xml) is 'undefined'
-          return
+      feed_check feed, req_build, (error, req_build) ->
 
-        feed = xml.channel
-
-        req_build = []
-
-        for i in [0...10]
-          # This catches to see if there is an array of items.
-          if (typeof feed.item[_i] isnt "undefined") && (typeof feed.item[_i].enclosure isnt "undefined")
-            FeedCatches(feed.item[_i], req_build)
-
-          # This catches to see if there is only one item.
-          else if (typeof feed.item.title is "string")
-            FeedCatches(feed.item, req_build)
-            break
+        if error?
+          console.log error
+          counter++
+          update_feed_finalize(res, to_update, total, new_build, existing_build, counter)
 
         # Once we're done, we move on to the comparison function.
         update_feed_compare(res, to_update, total, req_build)
@@ -112,7 +100,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
     
     if counter is total
       getFeeds harkUser.userID, 'all', (error, feeds, podcasts) ->
-        res.render 'listen/listen-main', 
+        res.render 'listen/listen-structure', 
           user     : harkUser
           feeds    : feeds
           podcasts : podcasts
@@ -125,33 +113,20 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
 
   dir_feed_request = (res, to_update, total) ->
     Directory.findOne { 'uuid': to_update.uuid }, (err, result) ->
-      console.log 'We are directory-updating ' + result.title
-      # Request the URL.
-      request {uri: result.href}, (err, response, body) ->
-        if err
-          console.log err
-          console.log 'Failed to update this feed.'
-          console.log 'Failed feed: ' + to_update.title
+
+      requesting result, (error, feed, req_build) ->
+
+        if error?
+          console.log error
           counter++
           dir_feed_finalize(res, to_update, total, new_build, existing_build, counter)
-          return
-        
-        # Use XML2JS to parse it.
-        parser.parseString body, (err, xml) ->
-          if typeof(xml) is 'undefined'
-            return
 
-          feed = xml.channel
-          req_build = []
+        feed_check feed, req_build, (error, req_build) ->
 
-          for i in [0...10]
-            # This catches to see if there is an array of items.
-            if (typeof feed.item[_i] isnt "undefined") && (typeof feed.item[i].enclosure isnt "undefined")
-              FeedCatches(feed.item[_i], req_build)
-
-            # This catches to see if there is only one item.
-            else if (typeof feed.item.title isnt "undefined")
-              FeedCatches(feed.item, req_build)
+          if error?
+            console.log error
+            counter++
+            dir_feed_finalize(res, to_update, total, new_build, existing_build, counter)
 
           # Once we're done, we move on to the comparison function.
           dir_feed_compare(res, to_update, total, result, req_build)
@@ -159,7 +134,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
   dir_feed_compare = (res, to_update, total, result, req_build) ->
     existing_build  = []
     new_build       = []
-    existing_build = result.pods
+    existing_build  = result.pods
 
     for k,v of req_build
       match = false
@@ -201,7 +176,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
 
     if counter is total
       getFeeds harkUser.userID, 'all', (error, feeds, podcasts) ->
-        res.render 'listen/listen-main', 
+        res.render 'listen/listen-structure', 
           user     : harkUser
           feeds    : feeds
           podcasts : podcasts

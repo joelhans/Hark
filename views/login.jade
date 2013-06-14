@@ -13,7 +13,7 @@ block body
     h1 Log in to Hark.
   
   - if (typeof(message) !== 'undefined')
-    div.row.login-error.passport
+    div.login-error.passport
       p.error #{message}
 
   form.login(method='post', action='/login')

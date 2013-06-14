@@ -49,7 +49,7 @@ $(document)
         $('#modal').fadeIn(500)
       success: (data) ->
         $('.act-update a').text 'Update'
-        $('.primary').html(data)
+        $('.hark-container').html(data)
         window.ajaxHelpers()
 
 # ------------------------------
@@ -144,8 +144,10 @@ $(document)
       type:    'POST'
       data:    data
       url:     '/listen/remove/' + data.feedID
+      error: (err) ->
+        $('#modal').html(err.responseText)
+        $('#modal').fadeIn(500)
       success: (data) ->
-        console.log data
         $('.hark-container').html(data)
         window.ajaxHelpers()
 
@@ -198,7 +200,7 @@ $(document)
 
     $.ajax
       type    : 'POST'
-      url     : '/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
+      url     : '/listen/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
       data    : window.mediaData
       error: (data) ->
         console.log data
@@ -233,7 +235,7 @@ $(document)
 
     $.ajax
       type    : 'POST'
-      url     : '/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
+      url     : '/listen/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
       data    : window.mediaData
       error: (data) ->
         console.log data
@@ -265,7 +267,7 @@ $(document)
             $(this).remove()
       $.ajax
         type : 'POST'
-        url  : '/listen/' + data.feed + '/listened/' + data.id
+        url  : '/listen/listened/' + data.feed + data.id
         data : data
         success: (data) ->
           console.log data
@@ -275,7 +277,7 @@ $(document)
       $('#' + data.id).removeClass('false')
       $.ajax
         type : 'POST'
-        url  : '/listen/' + data.feed + '/listened/' + data.id
+        url  : '/listen/listened/' + data.feed + data.id
         data : data
         success: (data) ->
           console.log data

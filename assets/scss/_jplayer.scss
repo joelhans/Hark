@@ -120,7 +120,7 @@ i.icon-pause { padding-right: 3px; }
   position: absolute; top: 0px; left: 0px;
   height: 17px;
   border-radius: 8px;
-  @include background(lighten($red, 30%));
+  @include background(transparentize($red, 0.8));
 }
 
 .jp-play-bar {

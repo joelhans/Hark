@@ -12,9 +12,9 @@ block body
   section.signup-intro
     h1 Create a Hark account.
 
-  - if (typeof(flash) !== 'undefined')
-    div.create-error.passport
-      p.error= flash.error
+  - if (typeof(message) !== 'undefined')
+    div.login-error.passport
+      p.error #{message}
 
   form.create(method='post', action='/users/new')
     input.multi(type='text', name='email', placeholder="Enter your e-mail.")
