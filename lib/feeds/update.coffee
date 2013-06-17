@@ -55,6 +55,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
         console.log error
         counter++
         update_feed_finalize(res, to_update, total, new_build, existing_build, counter)
+        return
 
       feed_check feed, req_build, (error, req_build) ->
 
@@ -62,6 +63,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           console.log error
           counter++
           update_feed_finalize(res, to_update, total, new_build, existing_build, counter)
+          return
 
         # Once we're done, we move on to the comparison function.
         update_feed_compare(res, to_update, total, req_build)
@@ -120,6 +122,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           console.log error
           counter++
           dir_feed_finalize(res, to_update, total, new_build, existing_build, counter)
+          return
 
         feed_check feed, req_build, (error, req_build) ->
 
@@ -127,6 +130,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
             console.log error
             counter++
             dir_feed_finalize(res, to_update, total, new_build, existing_build, counter)
+            return
 
           # Once we're done, we move on to the comparison function.
           dir_feed_compare(res, to_update, total, result, req_build)

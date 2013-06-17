@@ -34,7 +34,7 @@ module.exports = (app, express, loadUser, Users, Directory, Feeds, db, url, cryp
 
   app.post '/listen/podcast/all', loadUser, (req, res) ->
     getFeeds harkUser.userID, 'all', (error, feeds, podcasts) ->
-      res.render 'listen/listen-main',
+      res.render 'listen/listen-structure',
         user     : harkUser
         feeds    : feeds
         podcasts : podcasts
@@ -113,9 +113,9 @@ module.exports = (app, express, loadUser, Users, Directory, Feeds, db, url, cryp
   #####################################
 
   app.get '/user/:user/rss', (req, res) ->
-    getFeeds req.params.user, (error, feed, podcastList) ->
+    getFeeds req.params.user, 'all', (error, feed, podcasts) ->
       res.render 'rss',
-        podcasts: podcastList
+        podcasts: podcasts
 
   #####################################
   # 404

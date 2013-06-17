@@ -36,7 +36,7 @@ window.jplayer_1 = () ->
             $('.jp-playing').fadeOut(300).html('')
       $.ajax
         type: 'POST'
-        url: '/listen/' + window.mediaData.feedUUID + '/listened/' + window.mediaData.podcastID
+        url: '/listen/listened/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
         success: () ->
           console.log 'jPlayer ended.'
         error: () ->
@@ -97,7 +97,7 @@ window.jplayer_2 = () ->
             $('.jp-playing').fadeOut(300).html('')
       $.ajax
         type: 'POST'
-        url: '/listen/' + window.mediaData.feedUUID + '/listened/' + window.mediaData.podcastID
+        url: '/listen/listened/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
         success: () ->
           console.log 'jPlayer ended.'
         error: () ->
@@ -171,10 +171,16 @@ window.playlistInc = () ->
     feedTitle    : $('.playlist-item').eq(0).attr('data-feed')
 
   if window.mediaData.podcast.indexOf('mp4') is -1
+    $('.podcast-player').css({'width': '100%'})
+    $('.video-podcast-player').css({'width': '0px'})
+    $('.video-player, #jquery_jplayer_2, .jp-playing').hide() 
     $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
       mp3: window.mediaData.podcast
     }).jPlayer('play')
   else 
+    $('.podcast-player').css({'width': '0px'})
+    $('.video-podcast-player').css({'width': '100%'})
+    $('.video-player, #jquery_jplayer_2, .jp-playing').show()
     $('#jquery_jplayer_2').jPlayer("pauseOthers").jPlayer("setMedia", {
       m4v: window.mediaData.podcast
     }).jPlayer('play')
@@ -188,7 +194,7 @@ window.playlistInc = () ->
     success : (data) ->
       $('.current-feed').text(window.mediaData.feedTitle)
       $('.currently-playing li:last-of-type p').text(window.mediaData.podcastTitle)
-      $('.playlist-item')[0].remove()
+      $('.playlist-item').eq(0).remove()
       $.ajax
         type    : 'POST'
         url     : '/listen/playlist/drop/'

@@ -13,21 +13,33 @@ class exports.FeedCatches
       pubDate = moment(feed_type['dc:date'], "YYYY-MM-DD\TH:mm:ssZ").format()
     # /PUBDATE #
 
-    # DESCRIPTION #
-    if typeof(feed_type.description) isnt "undefined" && typeof(feed_type.description) isnt "object"
-      description = feed_type.description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-    else if typeof(feed_type['itunes:summary']) isnt "undefined" && typeof(feed_type['itunes:summary']) isnt "object"
-      description = feed_type['itunes:summary'].replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-    else
-      description = 'No description available. Sorry.'
-    # /DESCRIPTION #
-
     # MEDIA #
     if typeof(feed_type.enclosure[0]) isnt "undefined"
       podMedia = feed_type.enclosure[0]['@'].url
     else
       podMedia = feed_type.enclosure['@'].url
     # /MEDIA #
+
+    # DESCRIPTION #
+    if typeof(feed_type.description) isnt "undefined" && typeof(feed_type.description) isnt "object"
+      description = feed_type.description
+    else if typeof(feed_type['itunes:summary']) isnt "undefined" && typeof(feed_type['itunes:summary']) isnt "object"
+      description = feed_type['itunes:summary']
+    else
+      description = 'No description available. Sorry.'
+
+    description = description.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    description = description.replace(/<audio\b[^<]*(?:(?!<\/audio>)<[^<]*)*<\/audio>/gi, '')
+    description = description.replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+
+    if podMedia.indexOf('Vergecast') isnt -1
+      description = description.replace('</h2> <li>', '</h2><ul><li>')
+      description = description.replace('</li> <h2>', '</li></ul><h2>')
+      description = description.replace('</li> <p>', '</li></ul><p>')
+      description = description.replace('page_break"> <li>', 'page_break"><ul><li>')
+      description = description.replace('</li> <p>', '</li></ul><p>')
+
+    # /DESCRIPTION #
 
     podData =
       podTitle    : feed_type.title

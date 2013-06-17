@@ -36,6 +36,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
       if error?
         console.log error
         update_directory_finalize(to_update, new_build, existing_build)
+        return
 
       feed_check feed, req_build, (error, req_build) ->
 

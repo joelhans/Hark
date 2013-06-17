@@ -8,7 +8,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           feeds_loop(feeds)
 
       else
-        Feeds.find( { 'owner': userID, 'uuid' : scope } ).limit(50).toArray (err, feeds) ->
+        Feeds.find( { 'owner': userID, 'uuid' : scope } ).toArray (err, feeds) ->
           feeds_loop(feeds)
 
       feeds_loop = (feeds) ->
@@ -39,10 +39,10 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
                         podcast_list.push pod_data
 
                   else if scope isnt 'all'
-                    for odcast in result.pods
-                      if odcast.podUUID is podcast.podUUID
-                        pod_data = odcast
-                        pod_data['listened'] = podcast.listened
+                    for i in [0..20]
+                      if result.pods[i].podUUID is podcast.podUUID
+                        pod_data = result.pods[i]
+                        pod_data['listened']  = podcast.listened
                         pod_data['feedTitle'] = result.title
                         pod_data['feedUUID']  = result.uuid
                         pod_data['feedDesc']  = result.description
@@ -51,6 +51,8 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
                 callback()
 
             else if feed.source is 'owner' || typeof(feed.source) is 'undefined'
+
+              counter = null
 
               for podcast in feed.pods
                 if podcast.listened is 'false' && scope is 'all'
@@ -63,11 +65,14 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
                     podcast_list.push pod_data
 
                 else if scope isnt 'all'
+                  counter++ 
                   pod_data = podcast
                   pod_data['feedTitle'] = feed.title
                   pod_data['feedUUID']  = feed.uuid
                   pod_data['feedDesc']  = feed.description
                   podcast_list.push pod_data
+                  if counter is 20
+                    break
 
               callback()
 

@@ -64,26 +64,8 @@ $(document)
       type    : 'POST'
       url     : '/listen/podcast/all'
       success : (data) ->
-        $('.primary').html(data)
+        $('.hark-container').html(data)
         window.ajaxHelpers()
-
-# ------------------------------
-# Load a single feed
-# ------------------------------
-
-# $(document)
-#   .delegate '.loadFeed, .loadFeedFromItem', 'click', (e) ->
-#     # History.pushState {}, "Hark | " + $('.loadFeed').text(), $(e.currentTarget).attr 'href'
-#     e.preventDefault()
-#     data =
-#       feedID : $(this).attr('href').split('/')[3]
-#     $.ajax
-#       type:    'POST'
-#       data:    data
-#       url:     '/listen/podcast/' + data.feedID
-#       success: (data) ->
-#         $('.primary').html(data)
-#         window.ajaxHelpers()
 
 # ------------------------------
 # Sidebar feed actions
@@ -121,7 +103,7 @@ $('.sidebar-action-edit-input')
   .live 'keypress', (e) ->
     if e.which is 13
       data =
-        feedID:   $(this).prev().attr('href').split('/')[3]
+        feedID:   $(this).parent().parent().prev().prev().attr('href').split('/')[3]
         feedName: $(this).val()
       console.log data
       $.ajax
@@ -267,7 +249,7 @@ $(document)
             $(this).remove()
       $.ajax
         type : 'POST'
-        url  : '/listen/listened/' + data.feed + data.id
+        url  : '/listen/listened/' + data.feed + '/' + data.id
         data : data
         success: (data) ->
           console.log data
@@ -277,7 +259,7 @@ $(document)
       $('#' + data.id).removeClass('false')
       $.ajax
         type : 'POST'
-        url  : '/listen/listened/' + data.feed + data.id
+        url  : '/listen/listened/' + data.feed + '/' + data.id
         data : data
         success: (data) ->
           console.log data
