@@ -1,4 +1,6 @@
-module.exports = (app, express, loadUser, Users, Feeds, Directory, db, moment, ObjectID) ->
+module.exports = (app, express, loadUser, Users, Directory, Feeds, db, url, crypto, request, async, xml2js, nodemailer, bcrypt, moment, parser, ObjectID, passport) ->
+
+  getFeeds = require('./feeds/get_feeds')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID)
 
   #####################################
   # LISTEN
@@ -32,7 +34,7 @@ module.exports = (app, express, loadUser, Users, Feeds, Directory, db, moment, O
 
   app.post '/listen/podcast/all', loadUser, (req, res) ->
     getFeeds harkUser.userID, 'all', (error, feeds, podcasts) ->
-      res.render 'listen/listen-main',
+      res.render 'listen/listen-structure',
         user     : harkUser
         feeds    : feeds
         podcasts : podcasts
@@ -111,9 +113,9 @@ module.exports = (app, express, loadUser, Users, Feeds, Directory, db, moment, O
   #####################################
 
   app.get '/user/:user/rss', (req, res) ->
-    getFeeds req.params.user, (error, feed, podcastList) ->
+    getFeeds req.params.user, 'all', (error, feed, podcasts) ->
       res.render 'rss',
-        podcasts: podcastList
+        podcasts: podcasts
 
   #####################################
   # 404

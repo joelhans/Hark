@@ -11,19 +11,19 @@ footer {
 .podcast-player,
 .video-podcast-player {
   position: absolute; top: 0px; left: 0px;
-  width: 100%;
+  width: 100%; height: 90px;
   margin: 0;
+  overflow: hidden;
   div { margin-bottom: 0px; }
 }
 
 .video-podcast-player {
-  top: 90px;
+  width: 0px;
 }
 
 .video-player {
-  display: none;
-  position: fixed; top: 40%; left: 220px;
-  // margin-left: -260px;
+  // display: none;
+  position: fixed; top: 100%; left: 220px;
   padding: 4px 4px 34px 4px;
   border-radius: 8px;
   @include background($copy);
@@ -120,7 +120,7 @@ i.icon-pause { padding-right: 3px; }
   position: absolute; top: 0px; left: 0px;
   height: 17px;
   border-radius: 8px;
-  @include background(lighten($red, 30%));
+  @include background(transparentize($red, 0.8));
 }
 
 .jp-play-bar {

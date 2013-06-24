@@ -49,7 +49,7 @@ $(document)
         $('#modal').fadeIn(500)
       success: (data) ->
         $('.act-update a').text 'Update'
-        $('.primary').html(data)
+        $('.hark-container').html(data)
         window.ajaxHelpers()
 
 # ------------------------------
@@ -64,26 +64,8 @@ $(document)
       type    : 'POST'
       url     : '/listen/podcast/all'
       success : (data) ->
-        $('.primary').html(data)
+        $('.hark-container').html(data)
         window.ajaxHelpers()
-
-# ------------------------------
-# Load a single feed
-# ------------------------------
-
-# $(document)
-#   .delegate '.loadFeed, .loadFeedFromItem', 'click', (e) ->
-#     # History.pushState {}, "Hark | " + $('.loadFeed').text(), $(e.currentTarget).attr 'href'
-#     e.preventDefault()
-#     data =
-#       feedID : $(this).attr('href').split('/')[3]
-#     $.ajax
-#       type:    'POST'
-#       data:    data
-#       url:     '/listen/podcast/' + data.feedID
-#       success: (data) ->
-#         $('.primary').html(data)
-#         window.ajaxHelpers()
 
 # ------------------------------
 # Sidebar feed actions
@@ -121,7 +103,7 @@ $('.sidebar-action-edit-input')
   .live 'keypress', (e) ->
     if e.which is 13
       data =
-        feedID:   $(this).prev().attr('href').split('/')[3]
+        feedID:   $(this).parent().parent().prev().prev().attr('href').split('/')[3]
         feedName: $(this).val()
       console.log data
       $.ajax
@@ -144,8 +126,10 @@ $(document)
       type:    'POST'
       data:    data
       url:     '/listen/remove/' + data.feedID
+      error: (err) ->
+        $('#modal').html(err.responseText)
+        $('#modal').fadeIn(500)
       success: (data) ->
-        console.log data
         $('.hark-container').html(data)
         window.ajaxHelpers()
 
@@ -182,17 +166,23 @@ $(document)
       feedTitle    : $('.selected').attr('data-feed')
 
     if window.mediaData.podcast.indexOf('mp4') is -1
+      $('.podcast-player').css({'width': '100%'})
+      $('.video-podcast-player').css({'width': '0px'})
+      $('.video-player, #jquery_jplayer_2, .jp-playing').hide()
       $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
         mp3: window.mediaData.podcast
       }).jPlayer('play')
-    else 
+    else
+      $('.podcast-player').css({'width': '0px'})
+      $('.video-podcast-player').css({'width': '100%'})
+      $('.video-player, #jquery_jplayer_2, .jp-playing').show()
       $('#jquery_jplayer_2').jPlayer("pauseOthers").jPlayer("setMedia", {
         m4v: window.mediaData.podcast
       }).jPlayer('play')
 
     $.ajax
       type    : 'POST'
-      url     : '/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
+      url     : '/listen/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
       data    : window.mediaData
       error: (data) ->
         console.log data
@@ -211,17 +201,23 @@ $(document)
       feedTitle    : $(this).attr('data-feed')
 
     if window.mediaData.podcast.indexOf('mp4') is -1
+      $('.podcast-player').css({'width': '100%'})
+      $('.video-podcast-player').css({'width': '0px'})
+      $('.video-player, #jquery_jplayer_2, .jp-playing').hide()
       $('#jquery_jplayer_1').jPlayer("pauseOthers").jPlayer("setMedia", {
         mp3: window.mediaData.podcast
       }).jPlayer('play')
-    else 
+    else
+      $('.podcast-player').css({'width': '0px'})
+      $('.video-podcast-player').css({'width': '100%'})
+      $('.video-player, #jquery_jplayer_2, .jp-playing').show()
       $('#jquery_jplayer_2').jPlayer("pauseOthers").jPlayer("setMedia", {
         m4v: window.mediaData.podcast
       }).jPlayer('play')
 
     $.ajax
       type    : 'POST'
-      url     : '/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
+      url     : '/listen/listen/' + window.mediaData.feedUUID + '/' + window.mediaData.podcastID
       data    : window.mediaData
       error: (data) ->
         console.log data
@@ -253,7 +249,7 @@ $(document)
             $(this).remove()
       $.ajax
         type : 'POST'
-        url  : '/listen/' + data.feed + '/listened/' + data.id
+        url  : '/listen/listened/' + data.feed + '/' + data.id
         data : data
         success: (data) ->
           console.log data
@@ -263,7 +259,7 @@ $(document)
       $('#' + data.id).removeClass('false')
       $.ajax
         type : 'POST'
-        url  : '/listen/' + data.feed + '/listened/' + data.id
+        url  : '/listen/listened/' + data.feed + '/' + data.id
         data : data
         success: (data) ->
           console.log data

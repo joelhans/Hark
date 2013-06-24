@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 2.0.0
+//  Current version: 2.0.2
 //
 //  Hark is podcasts for everyone: http://harkhq.com
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
@@ -37,8 +37,8 @@ var parser = new xml2js.Parser();
 
 var Db            = require('mongodb').Db
   , Server        = require('mongodb').Server
-  , server_config = new Server('localhost', 27017, {safe: true, auto_reconnect: true })
-  , db            = new Db('Hark', server_config, { w: 1 })
+  , server_config = new Server('localhost', 27017, {safe: true, auto_reconnect: true})
+  , db            = new Db('Hark', server_config, {w: 1})
   , mongoStore    = require('connect-mongodb')
   , ObjectID      = require('mongodb').ObjectID;
 
@@ -146,15 +146,17 @@ function loadUser(req, res, next) {
   } else if ( typeof(req.user) === 'undefined' && req.url.indexOf('/directory') !== -1 ) {
     harkUser = false;
     return next();
+  } else {
+    res.redirect('/');
   }
-  res.redirect('/');
 }
 
-require('./lib/routes')(app, express, loadUser, Users, Feeds, Directory, db, moment, ObjectID)
-require('./lib/users-js.js')(app, express, loadUser, Users, Directory, Feeds, db, bcrypt, nodemailer);
-require('./lib/users')(app, express, loadUser, Users, Directory, Feeds, db, bcrypt, nodemailer, crypto, passport);
-require('./lib/feeds.js')(app, express, loadUser, Users, Feeds, Directory, db, moment, ObjectID);
-require('./lib/directory')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID);
+require('./lib/routes')(app, express, loadUser, Users, Directory, Feeds, db, url, crypto, request, async, xml2js, nodemailer, bcrypt, moment, parser, ObjectID, passport)
+require('./lib/users-js.js')(app, express, loadUser, Users, Directory, Feeds, db, url, crypto, request, async, xml2js, nodemailer, bcrypt, moment, parser, ObjectID, passport)
+require('./lib/users')(app, express, loadUser, Users, Directory, Feeds, db, url, crypto, request, async, xml2js, nodemailer, bcrypt, moment, parser, ObjectID, passport)
+require('./lib/directory')(app, express, loadUser, Users, Directory, Feeds, db, url, crypto, request, async, xml2js, nodemailer, bcrypt, moment, parser, ObjectID, passport)
+
+// app, express, loadUser, Users, Directory, Feeds, db, crypto, request, async, xml2js, nodemailer, bcrypt, moment, parser, ObjectID, passport
 
 //  ---------------------------------------
 //  START THE SERVER!

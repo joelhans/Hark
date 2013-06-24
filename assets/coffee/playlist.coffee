@@ -25,7 +25,7 @@ $(document)
         $('.playlist').html(data)
 
 #######################################
-# CLEAR PLAYLIST
+# DROP FROM PLAYLIST
 #######################################
 
 $(document)

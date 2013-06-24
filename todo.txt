@@ -2,18 +2,42 @@
 TODO
 --------------------------------
 
-1.6
-----------
-  [ ] --  Have a variety of keyboard shortcuts for various important functions.
-  [ ] --  Allow user to save listening progress in one podcast, listen to another one, and resume where they left off.
-  [ ] --  Investigate a way to integrate the Directory individual pages with a user's own version. Is that even possible? At the very least, a check to show that a user is already subscribed.
-  [ ] --  Add a Directory check to show when certain podcasts are already subscribed to.
+--------------------------------
+BUGS
+--------------------------------
+
+FIXED IN 2.0.2!!!
+
+[x] -- Error on adding new user!!! Come on!
+[x] -- Adding feeds manually doesn't work!!!
+[x] -- When unsubscribing, the partial only reads "OK." Does not work.
+[x] -- When updating, the playlist sidebar does not return.
+[x] -- Marking as "listened" doesn't work. And doing so at the end of playback probably won't either.
+[x] -- On Firefox, the playlist does not remove items upon them reaching the top of the queue and playing.
+[x] -- When going to the next playlist item, the players are not swapped between video and audio.
+[x] -- Need better filtering of iframes, embeds, and anything that might search for an external script.
+[x] -- RSS feeds don't work.
+[x] -- TAL freezes Firefox altogether.
+[x] -- Editing the name of a feed doesn't work.
+[x] -- Playlist doesn't show when clicking "All" in sidebar.
 
 --------------------------------
 ROADMAP
 --------------------------------
 
-  1.7
+  2.1
+  ---------
+  [ ] --  A "load more" feature on individual podcast pages.
+  [ ] --  OPML import/export.
+  
+  2.2
+  ----------
+  [ ] --  Have a variety of keyboard shortcuts for various important functions.
+  [ ] --  Allow user to save listening progress in one podcast, listen to another one, and resume where they left off.
+  [ ] --  Investigate a way to integrate the Directory individual pages with a user's own version. Is that even possible? At the very least, a check to show that a user is already subscribed.
+  [ ] --  Add a Directory check to show when certain podcasts are already subscribed to.
+
+  2.3
   ----------
   [ ] --  Categories
             * Users will be able to "tag" podcasts for certain categories (technology, design, etc).
@@ -22,7 +46,7 @@ ROADMAP
   [ ] --  Suggestions
             * 
 
-  1.8
+  2.4
   ----------
   [ ] --  "Harks": Personalized podcast streams/playlists.
             * Users will be able to select certain feeds they want to bundle together, maybe share them.
@@ -233,6 +257,8 @@ DELETED
   Little Atoms
   Before You Buy
   Joel Osteen Podcast
+  The Organist -- http://www.kcrw.com/etc/programs/to/RSS
+  StartTalk
 
 PODCASTS TO ADD
   Quit! -- 5by5

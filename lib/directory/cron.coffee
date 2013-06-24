@@ -1,6 +1,8 @@
 module.exports = (app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID) ->
 
   FeedCatches = require('../feeds/catches').FeedCatches
+  requesting  = require('../feeds/catches').requesting
+  feed_check  = require('../feeds/catches').feed_check
 
   cronJob = require('cron').CronJob
 
@@ -28,32 +30,15 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
           break
 
   update_directory_request = (to_update) ->
-    console.log 'We are going to update ' + to_update.title + '.'
-    # Request the URL.
-    request {uri: to_update.href}, (err, response, body) ->
-      if err
-        console.log err
-        console.log 'Failed to update this feed.'
-        console.log 'Failed feed: ' + to_update.title
+
+    requesting to_update, (error, feed, req_build) ->
+
+      if error?
+        console.log error
         update_directory_finalize(to_update, new_build, existing_build)
         return
 
-      # Use XML2JS to parse it.
-      parser.parseString body, (err, xml) ->
-        if typeof(xml) is 'undefined'
-          return
-
-        feed = xml.channel
-
-        for i in [0...50]
-          # This catches to see if there is an array of items.
-          if (typeof feed.item[_i] isnt "undefined") && (typeof feed.item[i].enclosure isnt "undefined")
-            FeedCatches(feed.item[_i], req_build)
-
-          # This catches to see if there is only one item.
-          else if (typeof feed.item.title is 'string')
-            FeedCatches(feed.item, req_build)
-            break
+      feed_check feed, req_build, (error, req_build) ->
 
         # Once we're done, we move on to the comparison function.
         update_directory_compare(to_update, req_build)
@@ -85,8 +70,7 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
 
     if (typeof new_build[0] isnt 'undefined') && (new_build[0] isnt null)
       Directory.findAndModify { 'uuid': to_update.uuid }, [], { $set: { 'pods' : final_build, 'lastUpdated' : moment().format(), 'lastPodcast' : new_build[0].podDate } }, {new:true}, (err, result) ->
-        console.log 'Directory feed successfully updated.'
+        console.log 'Directory feed -- ' + to_update.title + ' -- successfully updated.'
     else
       Directory.findAndModify { 'uuid': to_update.uuid }, [], { $set: { 'lastUpdated' : moment().format() } }, {new:true}, (err, result) ->
-        console.log 'Directory feed not updated. Last updated time now current.'
-        console.log moment().format()
+        console.log 'Directory feed -- ' + to_update.title + ' -- not updated.'
