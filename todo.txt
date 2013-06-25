@@ -6,21 +6,6 @@ TODO
 BUGS
 --------------------------------
 
-FIXED IN 2.0.2!!!
-
-[x] -- Error on adding new user!!! Come on!
-[x] -- Adding feeds manually doesn't work!!!
-[x] -- When unsubscribing, the partial only reads "OK." Does not work.
-[x] -- When updating, the playlist sidebar does not return.
-[x] -- Marking as "listened" doesn't work. And doing so at the end of playback probably won't either.
-[x] -- On Firefox, the playlist does not remove items upon them reaching the top of the queue and playing.
-[x] -- When going to the next playlist item, the players are not swapped between video and audio.
-[x] -- Need better filtering of iframes, embeds, and anything that might search for an external script.
-[x] -- RSS feeds don't work.
-[x] -- TAL freezes Firefox altogether.
-[x] -- Editing the name of a feed doesn't work.
-[x] -- Playlist doesn't show when clicking "All" in sidebar.
-
 --------------------------------
 ROADMAP
 --------------------------------
@@ -28,7 +13,9 @@ ROADMAP
   2.1
   ---------
   [ ] --  A "load more" feature on individual podcast pages.
-  [ ] --  OPML import/export.
+  [x] --  OPML import.
+  [ ] --  OPML export.
+  [ ] --  A new user dialog that helps people with imports.
   
   2.2
   ----------
@@ -43,8 +30,6 @@ ROADMAP
             * Users will be able to "tag" podcasts for certain categories (technology, design, etc).
             * Or, they will be able to drag-and-drop them into buckets.
             * Maybe both.
-  [ ] --  Suggestions
-            * 
 
   2.4
   ----------

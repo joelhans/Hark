@@ -1,46 +1,53 @@
 div.settings
-	- if (typeof(user.username) == 'undefined')
-		h2#settings-username Claim your username!
-		p Some day, Hark might use usernames (as in harkhq.com/example-hark-user) to give people ways to interact and talk about their favorite podcasts. Nothing is certain at the moment, but it wouldn't hurt to claim your username right now, would it?
-		form.claim-username(method='post', action='/settings/claim-username')
-			input(type='text', name='claimed-username', placeholder='Claim it')
-			button(type='submit')
-				span Go
+  
+  h2#settings-import Import via OPML
+  form(action="/opml/import", method="post", enctype="multipart/form-data")
+    input(type="file", name="opml")
+    button(type='submit')
+      span Go
+  
+  - if (typeof(user.username) == 'undefined')
+    h2#settings-username Claim your username!
+    p Some day, Hark might use usernames (as in harkhq.com/example-hark-user) to give people ways to interact and talk about their favorite podcasts. Nothing is certain at the moment, but it wouldn't hurt to claim your username right now, would it?
+    form.claim-username(method='post', action='/settings/claim-username')
+      input(type='text', name='claimed-username', placeholder='Claim it')
+      button(type='submit')
+        span Go
 
-	h2#settings-email Change email
-	p This will be coming soon. If you need to change your e-mail right now, you can send a message to admin@harkhq.com.
+  h2#settings-email Change email
+  p This will be coming soon. If you need to change your e-mail right now, you can send a message to admin@harkhq.com.
 
-	h2#settings-password Change password
-	- if (typeof(flash) == 'undefined')
-		form.update-password(method='post', action='/settings/update-password')
-			input.multi(type='password', name='password-current', placeholder='Enter your current password.')
-			input.multi(type='password', name='password-new', placeholder='Enter your new password.')
-			input.multi(type='password', name='password-validate', placeholder='Re-enter your new password.')
-			button(type='submit')
-				span Go
-	- if (typeof(flash) != 'undefined')
-		form.update-password(method='post', action='/settings/update-password')
-			- if (typeof(flash.errorUpdatePassword) != 'undefined')
-				input.multi(type='password', name='password-current', placeholder='Enter your current password.')
-				p.error= flash.errorUpdatePassword
-			- else
-				input.multi(type='password', name='password-current', placeholder='Enter your current password.')
+  h2#settings-password Change password
+  - if (typeof(flash) == 'undefined')
+    form.update-password(method='post', action='/settings/update-password')
+      input.multi(type='password', name='password-current', placeholder='Enter your current password.')
+      input.multi(type='password', name='password-new', placeholder='Enter your new password.')
+      input.multi(type='password', name='password-validate', placeholder='Re-enter your new password.')
+      button(type='submit')
+        span Go
+  - if (typeof(flash) != 'undefined')
+    form.update-password(method='post', action='/settings/update-password')
+      - if (typeof(flash.errorUpdatePassword) != 'undefined')
+        input.multi(type='password', name='password-current', placeholder='Enter your current password.')
+        p.error= flash.errorUpdatePassword
+      - else
+        input.multi(type='password', name='password-current', placeholder='Enter your current password.')
 
-			- if (typeof(flash.errorUpdatePasswordMatch) != 'undefined')
-				input.multi(type='password', name='password-new', placeholder='Enter your new password.')
-				input.multi(type='password', name='password-validate', placeholder='Re-enter your new password.')
-				p.error= flash.errorUpdatePasswordMatch
-			- else
-				input.multi(type='password', name='password-new', placeholder='Enter your new password.')
-				input.multi(type='password', name='password-validate', placeholder='Re-enter your new password.')
+      - if (typeof(flash.errorUpdatePasswordMatch) != 'undefined')
+        input.multi(type='password', name='password-new', placeholder='Enter your new password.')
+        input.multi(type='password', name='password-validate', placeholder='Re-enter your new password.')
+        p.error= flash.errorUpdatePasswordMatch
+      - else
+        input.multi(type='password', name='password-new', placeholder='Enter your new password.')
+        input.multi(type='password', name='password-validate', placeholder='Re-enter your new password.')
 
-			button(type='submit')
-				span Go
+      button(type='submit')
+        span Go
 
-	h2#rss Your podcasts RSS feed
-	p Hark compiles an RSS feed, much like the ones that you might have used to subscribe to podcasts yourself, so that you can bring Hark's catching ability to other podcast managers out there. Take your podcasts mobile, for example, with one of the many smartphone applications available for iOS and Android. Simply direct the application toward the link below and your un-listened podcasts will also be available on-the-go.
-	a.rss-feed.red-button(href='/user/' + user.userID + '/rss/') Your RSS Feed
-	p.error Your RSS feed is publicly-accessible, but your personal account information is not included in its data.
+  h2#rss Your podcasts RSS feed
+  p Hark compiles an RSS feed, much like the ones that you might have used to subscribe to podcasts yourself, so that you can bring Hark's catching ability to other podcast managers out there. Take your podcasts mobile, for example, with one of the many smartphone applications available for iOS and Android. Simply direct the application toward the link below and your un-listened podcasts will also be available on-the-go.
+  a.rss-feed.red-button(href='/user/' + user.userID + '/rss/') Your RSS Feed
+  p.error Your RSS feed is publicly-accessible, but your personal account information is not included in its data.
 
-	h2#settings-delete Delete your Hark! account
-	a.delete-hark.red-button(href='/#') Goodbye, podcasts!
+  h2#settings-delete Delete your Hark! account
+  a.delete-hark.red-button(href='/#') Goodbye, podcasts!

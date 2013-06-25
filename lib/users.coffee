@@ -111,3 +111,9 @@ module.exports = (app, express, loadUser, Users, Directory, Feeds, db, url, cryp
           podcasts : podcasts
           playing  : harkUser.playing
           playlist : harkUser.playlist
+
+  ####################################
+  # IMPORT OPML
+  ####################################
+  
+  require('./opml/import')(app, express, loadUser, Directory, Feeds, moment, request, async, parser, ObjectID)

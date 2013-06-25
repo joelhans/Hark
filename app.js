@@ -14,6 +14,7 @@
 
 var express    = require('express')
   , http       = require('http')
+  , fs         = require('fs') 
   , url        = require('url')
   , coffee     = require('coffee-script')
   , crypto     = require('crypto')
