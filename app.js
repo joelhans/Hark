@@ -1,7 +1,7 @@
 //
 //  HARK!
 //
-//  Current version: 2.0.2
+//  Current version: 2.0.3
 //
 //  Hark is podcasts for everyone: http://harkhq.com
 //  Hark is open source. See it on Github: https://github.com/joelhans/Hark
