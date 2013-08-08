@@ -107,10 +107,14 @@ class exports.feed_check
 
     FeedCatches = require('./catches').FeedCatches
 
+    # Check for when "feed.item" is not defined; an error.
+    if (typeof feed.item is 'undefined')
+      error = 'Failed to update this feed at the request stage:' + to_update.title
+      callback(error, null)
+      return
+
     # Check for a feed that has only a single item.
     if (typeof feed.item[1] is 'null')
-      console.log 'Single listing.'
-      console.log feed.item.title
       FeedCatches(feed.item, req_build)
 
     # Check to see if there is more than one item. If so, loop through the most recent 10.
@@ -120,7 +124,7 @@ class exports.feed_check
         if (typeof feed.item[i] isnt 'undefined') && (typeof feed.item[i].enclosure isnt 'undefined')
           FeedCatches(feed.item[i], req_build)
 
-    # And if we can't find either an array of items or a single one, we bail.
+    # And if we can't find either of the two above, we bail on error.
     else
       error = 'Failed to update this feed at the request stage: ' + to_update.title
       callback(error, null)
