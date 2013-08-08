@@ -16,6 +16,10 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
   requesting  = require('../feeds/catches').requesting
   feed_check  = require('../feeds/catches').feed_check
 
+  #####################################
+  # IMPORT OPML FILE
+  #####################################
+  
   app.post '/opml/import', loadUser, (req, res) ->
     opml_items = [] 
 
@@ -81,5 +85,14 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
                       playlist : harkUser.playlist
 
 
-  app.get '/opml/export', loadUser, (req, res) ->
+  #####################################
+  # EXPORT OPML FILE
+  #####################################
 
+  app.get '/opml/export', loadUser, (req, res) ->
+    getFeeds harkUser.userID, 'all', (error, feeds, podcasts) ->
+      res.header 'Content-Type', 'application/xml'
+      res.render 'opml',
+        user     : harkUser 
+        podcasts : podcasts
+        feeds    : feeds

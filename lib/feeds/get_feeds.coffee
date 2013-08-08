@@ -94,6 +94,8 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
             feed_data =
               feedTitle : feed.title
               feeduuid  : feed.uuid
+              feedUrl   : feed.href
+              feedDescription : feed.description
 
             feed_list.push feed_data
 

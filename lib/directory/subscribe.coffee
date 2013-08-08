@@ -33,6 +33,8 @@ module.exports = (app, express, loadUser, Directory, Feeds, moment, request, asy
             uuid   : result.uuid
             source : 'directory'
             title  : result.title
+            href   : result.href
+            description : result.description
 
           for podcast in result.pods
             to_add =

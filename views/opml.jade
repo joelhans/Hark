@@ -1,0 +1,7 @@
+!!! xml
+opml(version="1.0")
+  head
+    title Hark subscriptions for #{user.email}
+  body
+    for feed in feeds
+      outline(title= feed.feedTitle, xmlUrl= feed.feedUrl, htmlUrl= feed.feedUrl ,text= feed.feedDescription, type="rss")

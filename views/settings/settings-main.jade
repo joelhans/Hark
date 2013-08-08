@@ -49,5 +49,9 @@ div.settings
   a.rss-feed.red-button(href='/user/' + user.userID + '/rss/') Your RSS Feed
   p.error Your RSS feed is publicly-accessible, but your personal account information is not included in its data.
 
+  h2#opml Export via OPML
+  p Hark is sorry to see you go, but if you want to port your subscriptions to another service, we're here to help. Clicking the button below will generate a file that you can save locally and import into your new home of choice. Happy listening!
+  a.opml.red-button(href='/opml/export') OPML
+
   h2#settings-delete Delete your Hark! account
   a.delete-hark.red-button(href='/#') Goodbye, podcasts!
