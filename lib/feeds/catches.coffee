@@ -114,7 +114,7 @@ class exports.feed_check
       return
 
     # Check for a feed that has only a single item.
-    if (typeof feed.item[1] is 'null')
+    if (typeof feed.item[1] is 'null' or typeof feed.item[1] is 'undefined')
       FeedCatches(feed.item, req_build)
 
     # Check to see if there is more than one item. If so, loop through the most recent 10.
